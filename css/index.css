@@ -1,0 +1,43 @@
+div[id="mainplaceholder"]{
+position: relative;
+top: 15em;
+}
+
+.glyphicon-th {
+    color: #66CCFF;
+}
+
+.glyphicon-retweet {
+    color: #66FF33;
+}
+
+.glyphicon {
+    font-size: 100px;
+}
+
+.borderMainB {
+    border: 2px solid #337ab7;
+    border-radius: 6px;
+    padding: 2px;
+    margin: 5px;
+	padding: 20px;
+	width:300px;
+}
+
+.borderColorB {
+    border: 4px solid #66CCFF;
+}
+
+.borderColorG {
+    border: 4px solid #66FF33;
+}
+
+A {
+    color: black; /* Цвет ссылок */
+   }
+   A:visited {
+    color: black; /* Цвет посещенных ссылок */
+   }
+   A:active {
+    color: black; /* Цвет активных ссылок */
+   }
