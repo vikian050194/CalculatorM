@@ -3,7 +3,7 @@ body {
 }
 
 .border{
-    border: 2px solid white;
+    border: 2px solid #428bca;
     border-radius: 5px;
 }
 
@@ -19,21 +19,26 @@ button{
     width: 25%;
 }
 
-table{
-    position: absolute;
-    width: calc(100% - 8px);
-    height: calc(100% - 8px);
-    top: 4px;
-    bottom: 4px;
-    left: 4px;
-    right: 4px;
+th, td{
+    padding: 5px;
 }
 
-.alert{
-    margin: 0;
+table{
+    position: absolute;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+}
+
+.output{
     text-align: right;
     font-size: 18px !important;
     word-wrap: break-word;
+    color: white;
+    height: 100%;
 }
 
 center a[href="http://somee.com"] {
