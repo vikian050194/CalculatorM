@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>CalculatorM</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
@@ -12,16 +13,62 @@
 </head>
 
 <body>
-    <div id="main">
-        <h1>
-        <span class="label label-default">Default</span>
-        <span class="label label-primary">Primary</span>
-        <span class="label label-success">Success</span>
-        <span class="label label-info">Info</span>
-        <span class="label label-warning">Warning</span>
-        <span class="label label-danger">Danger</span>
-      </h1>
+    <div class="calulator">
+        <table>
+            <thead>
+                <th class="column"></th>
+                <th class="column"></th>
+                <th class="column"></th>
+                <th class="column"></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th  colspan="4">
+                        <div class="alert alert-info" role="alert">
+                            12345678928470145214862147
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th><button type="button" class="btn btn-primary">C</button></th>
+                    <th><button type="button" class="btn btn-primary">MC</button></th>
+                    <th><button type="button" class="btn btn-primary">M+</button></th>
+                    <th><button type="button" class="btn btn-primary">M=X</button></th>
+                </tr>
+                <tr>
+                    <td><button type="button" class="btn btn-default">mod</button></td>
+                    <td><button type="button" class="btn btn-info">mod1</button></td>
+                    <td><button type="button" class="btn btn-info">mod2</button></td>
+                    <td><button type="button" class="btn btn-info">mod3</button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="btn btn-default">+</button></td>
+                    <td><button type="button" class="btn btn-default">7</button></td>
+                    <td><button type="button" class="btn btn-default">8</button></td>
+                    <td><button type="button" class="btn btn-default">9</button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="btn btn-default">-</button></td>
+                    <td><button type="button" class="btn btn-default">4</button></td>
+                    <td><button type="button" class="btn btn-default">5</button></td>
+                    <td><button type="button" class="btn btn-default">6</button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="btn btn-default">x</button></td>
+                    <td><button type="button" class="btn btn-default">1</button></td>
+                    <td><button type="button" class="btn btn-default">2</button></td>
+                    <td><button type="button" class="btn btn-default">3</button></td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="btn btn-default">/</button></td>
+                    <td><button type="button" class="btn btn-default">0</button></td>
+                    <td><button type="button" class="btn btn-primary">=</button></td>
+                    <td><button type="button" class="btn btn-default">???</button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+
 </body>
 
 </html>
