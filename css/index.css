@@ -3,7 +3,9 @@ body {
 }
 
 .border{
-    border: 2px solid #428bca;
+    /*border: 2px solid #428bca;*/
+    border: 2px solid white;
+    
     border-radius: 5px;
 }
 
@@ -51,4 +53,69 @@ div[style="opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom
 
 div[style="position: fixed; z-index: 2147483647; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: transparent; margin: 0px; padding: 0px;"] {
     display: none !important;
+}
+
+.gradient-background {
+    background: linear-gradient(270deg, #428bca, #5bc0de);
+    background-size: 400% 400%;
+    -webkit-animation: GradientBackground 60s ease infinite;
+    -moz-animation: GradientBackground 60s ease infinite;
+    -o-animation: GradientBackground 60s ease infinite;
+    animation: GradientBackground 60s ease infinite;
+}
+
+@-webkit-keyframes GradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@-moz-keyframes GradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@-o-keyframes GradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes GradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
