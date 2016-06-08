@@ -21,6 +21,10 @@ button{
     width: 25%;
 }
 
+.row{
+    height: 14%;
+}
+
 th, td{
     padding: 5px;
 }
@@ -58,10 +62,10 @@ div[style="position: fixed; z-index: 2147483647; left: 0px; bottom: 0px; height:
 .gradient-background {
     background: linear-gradient(270deg, #428bca, #5bc0de);
     background-size: 400% 400%;
-    -webkit-animation: GradientBackground 60s ease infinite;
-    -moz-animation: GradientBackground 60s ease infinite;
-    -o-animation: GradientBackground 60s ease infinite;
-    animation: GradientBackground 60s ease infinite;
+    -webkit-animation: GradientBackground 10s ease infinite;
+    -moz-animation: GradientBackground 10s ease infinite;
+    -o-animation: GradientBackground 10s ease infinite;
+    animation: GradientBackground 10s ease infinite;
 }
 
 @-webkit-keyframes GradientBackground {
