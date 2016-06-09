@@ -1,12 +1,42 @@
-function Calculator(calc) {
-    this.calc = $(calc);
-    this.calc.find('#output').html('kek');
+function Calculator(c) {
+    var calc = $(c);
+    var output = calc.find('#output')
+    var engine = new Engine();
+
+    var get = function () {
+        return output.text();
+    }
+    var set = function (result) {
+        output.html(result);
+    }
+    var append = function (i) {
+        var newValue = get();
+        if (newValue === '0') {
+            newValue = i;
+        } else {
+            newValue += i;
+        }
+        set(newValue);
+    }
+    var clean = function () {
+        set('0');
+        engine.currentValue = 0;
+    }
+    var init = function () {
+        $('#c').on('click', clean);
+
+        for (var i = 0; i <= 9; i++) {
+            var id = '#' + i;
+            $(id).on('click', function (e) {
+                var value = e.currentTarget.firstChild.data;
+                append(value)
+            });
+        }
+    }
+
+    init();
 }
 
 Calculator.prototype.start = function () {
-    $(this.calc).find('#1').click(function(){
-        var last = $(this.calc).find('#output').innerHTML;
-        $(this.calc).find('#output').html(last+'1');
-    });
-    $(this.calc).find('#output').html('123456789');
+
 }; 
