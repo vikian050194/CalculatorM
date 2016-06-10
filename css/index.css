@@ -1,9 +1,19 @@
-
+#output, #module, #modMessage{
+    font-size: 20px;
+    height: 100%;
+}
 
 .border{
-    /*border: 2px solid #428bca;*/
     border: 2px solid white;    
     border-radius: 5px;
+}
+
+#output{
+    text-align: center;
+    height: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: auto;
 }
 
 button{

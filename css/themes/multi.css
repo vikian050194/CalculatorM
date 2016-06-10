@@ -19,11 +19,3 @@ table {
     background: #E73B65;
 	border-color: #E73B65; 
 }
-
-.output{
-    text-align: right;
-    font-size: 18px;
-    word-wrap: break-word;
-    color: white;
-    height: 100%;
-}

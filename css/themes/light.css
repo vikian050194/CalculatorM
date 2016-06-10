@@ -4,26 +4,18 @@ table {
 
 .btn-operator{
 	color: #5ca36a;
-    background-color: #8DBF97;
-    border-color: #8DBF97;
+    background-color: #fff;
+    border-color: #5ca36a;
 }
 
 .btn-digit{
-    color: #ffcc00;
-    background-color: #ffe680;
-    border-color: #ffe680;
+    color: #9dc8a6;
+    background-color: #fff;
+    border-color: #9dc8a6;
 }
 
 .btn-special{
-	color: #df6dbf;
-    background-color: #E99BD3;
-	border-color: #E99BD3;
-}
-
-.output{
-    text-align: right;
-    font-size: 18px;
-    word-wrap: break-word;
-    color: white;
-    height: 100%;
+	color: #edabda;
+    background-color: #fff;
+	border-color: #edabda;
 }
