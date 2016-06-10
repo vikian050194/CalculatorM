@@ -3,20 +3,20 @@ body {
 }
 
 .btn-operator{
-	background: #2B5C33;
 	color: white;
+	background: #2B5C33;
 	border-color: #2B5C33;
 }
 
 .btn-digit{
-	background: #F1D437;
 	color: #08102F;
+	background: #F1D437;
 	border-color: #F1D437 ;
 }
 
 .btn-special{
-    background: #E73B65;
 	color: white;
+    background: #E73B65;
 	border-color: #E73B65; 
 }
 

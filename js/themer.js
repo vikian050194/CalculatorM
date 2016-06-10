@@ -1,8 +1,8 @@
 function Themer() {
-    var themes = ['blue', 'gray', 'multi', 'pastel'];
+    var themes = ['blue', 'gray', 'multi', 'pastel', 'light'];
     var loader = new Loader();
     function saveInCookies() {
-        Cookies.set("theme", currentThemeIndex, { expires: 365 });
+        Cookies.set("theme", currentThemeIndex, { expires: 31 });
     }
     function nextIndex() {
         currentThemeIndex++;
