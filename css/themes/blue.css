@@ -1,0 +1,29 @@
+body {
+    background: #08102F;
+}
+
+.btn-operator{
+	background: #0273C6;
+	color: white;
+	border-color: #0273C6;
+}
+
+.btn-digit{
+	background: #F7FFFB;
+	color: #08102F;
+	border-color: #F7FFFB ;
+}
+
+.btn-special{
+    background: #0048A4;
+	color: white;
+	border-color: #0048A4; 
+}
+
+.output{
+    text-align: right;
+    font-size: 18px;
+    word-wrap: break-word;
+    color: white;
+    height: 100%;
+}

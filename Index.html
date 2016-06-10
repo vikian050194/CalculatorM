@@ -7,8 +7,11 @@
     <title>CalculatorM</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
+    <link id="theme" href="css/themes/blue.css" rel="stylesheet">
     <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
+    <script type="text/javascript" src="js/themer.js"></script>
     <script type="text/javascript" src="js/engine.js"></script>
     <script type="text/javascript" src="js/calculator.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
@@ -21,46 +24,54 @@
             <tbody>
                 <tr class="row">
                     <th colspan="4">
-                        <div id="output" class="border output">0</div>
+                        <div class="input-group">
+                            <div id="output" class="form-control">0</div>
+                            <span class="input-group-addon" id="basic-addon1">mod</span>
+                            <div id="module" class="form-control">1</div>
+                        </div>
                     </th>
                 </tr>
-                <tr class="row">
-					<th colspan="4">
-						<div class="input-group">
-							<div id="module" class="form-control">1</div>
-							<span class="input-group-addon" id="basic-addon1">mod</span>
-						<!-- <input type="text" class="form-control" aria-describedby="basic-addon1"> -->
-						</div>
+                <!--<tr class="row">
+                    <th colspan="4">
+                        <div class="input-group">
+                            <div id="module" class="form-control">1</div>
+                            <span class="input-group-addon" id="basic-addon1">mod</span>
+                        </div>
                     </th>
+                </tr>-->
+                <tr class="row">
+                    <td class="column"><button id="pow" type="button" class="btn btn-operator">pow</button></td>
+                    <td class="column"><button id="mod" type="button" class="btn btn-operator">mod</button></td>
+                    <td class="column"><button id="c" type="button" class="btn btn-special">C</button></td>
+                    <td class="column"><button id="setMod" type="button" class="btn btn-special">set</button></td>
                 </tr>
                 <tr class="row">
-                    <td class="column"><button id="pow" type="button" class="btn btn-warning">pow</button></td>
-                    <td class="column"><button id="mod" type="button" class="btn btn-warning">mod</button></td>
-                    <td class="column"><button id="c" type="button" class="btn btn-danger">C</button></td>
-                    <td class="column"><button id="setMod" type="button" class="btn btn-primary">set</button></td>
+                    <td><button id="mul" type="button" class="btn btn-operator">mul</button></td>
+                    <td><button id="7" type="button" class="btn btn-digit">7</button></td>
+                    <td><button id="8" type="button" class="btn btn-digit">8</button></td>
+                    <td><button id="9" type="button" class="btn btn-digit">9</button></td>
                 </tr>
                 <tr class="row">
-                    <td><button id="mul" type="button" class="btn btn-warning">*</button></td>
-                    <td><button id="7" type="button" class="btn btn-default">7</button></td>
-                    <td><button id="8" type="button" class="btn btn-default">8</button></td>
-                    <td><button id="9" type="button" class="btn btn-default">9</button></td>
+                    <td><button id="div" type="button" class="btn btn-operator">div</button></td>
+                    <td><button id="4" type="button" class="btn btn-digit">4</button></td>
+                    <td><button id="5" type="button" class="btn btn-digit">5</button></td>
+                    <td><button id="6" type="button" class="btn btn-digit">6</button></td>
                 </tr>
                 <tr class="row">
-                    <td><button id="div" type="button" class="btn btn-warning">/</button></td>
-                    <td><button id="4" type="button" class="btn btn-default">4</button></td>
-                    <td><button id="5" type="button" class="btn btn-default">5</button></td>
-                    <td><button id="6" type="button" class="btn btn-default">6</button></td>
+                    <td><button id="add" type="button" class="btn btn-operator">add</button></td>
+                    <td><button id="1" type="button" class="btn btn-digit">1</button></td>
+                    <td><button id="2" type="button" class="btn btn-digit">2</button></td>
+                    <td><button id="3" type="button" class="btn btn-digit">3</button></td>
                 </tr>
                 <tr class="row">
-                    <td><button id="add" type="button" class="btn btn-warning">+</button></td>
-                    <td><button id="1" type="button" class="btn btn-default">1</button></td>
-                    <td><button id="2" type="button" class="btn btn-default">2</button></td>
-                    <td><button id="3" type="button" class="btn btn-default">3</button></td>
-                </tr>
-                <tr class="row">
-                    <td><button id="sub" type="button" class="btn btn-warning">-</button></td>
-                    <td><button id="0" type="button" class="btn btn-default">0</button></td>
-                    <td colspan="2"><button id="calculate" type="button" class="btn btn-primary">=</button></td>
+                    <td><button id="sub" type="button" class="btn btn-operator">sub</button></td>
+                    <td><button id="0" type="button" class="btn btn-digit">0</button></td>
+                    <td>
+                        <button id="nextTheme" type="button" class="btn btn-operator">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                    <td><button id="calculate" type="button" class="btn btn-special">=</button></td>
                 </tr>
             </tbody>
         </table>

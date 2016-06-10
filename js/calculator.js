@@ -3,7 +3,7 @@ function Calculator(c) {
     var output = calc.find('#output')
     var module = calc.find('#module')
     var engine = new Engine();
-
+    var themer = new Themer();
     var get = function () {
         return output.text();
     }
@@ -45,6 +45,7 @@ function Calculator(c) {
 		set(result);
 	}
     var init = function () {
+        calc.find('#nextTheme').on('click', themer.next);
 		calc.find('#setMod').on('click', setMod);
 		calc.find('#calculate').on('click', calculate);
         calc.find('#c').on('click', clean);
