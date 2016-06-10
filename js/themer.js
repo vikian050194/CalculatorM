@@ -1,11 +1,12 @@
 function Themer() {
     var themes = ['blue', 'gray', 'multi', 'pastel'];
     var loader = new Loader();
-
+    function saveInCookies() {
+        $.cookie("theme", currentThemeIndex, { expires: 365 });
+    }
     function nextIndex() {
         currentThemeIndex++;
         currentThemeIndex %= themes.length;
-        $.cookie("theme", currentThemeIndex);
     }
     function getHref() {
         var result = 'css/themes/' + themes[currentThemeIndex] + '.css';
@@ -21,14 +22,13 @@ function Themer() {
 
     this.next = function () {
         nextIndex();
+        saveInCookies();
         loadCurrentTheme();
     }
 
     var currentThemeIndex = $.cookie("theme");
-    if (currentThemeIndex != undefined) {
-        loadCurrentTheme();
-    } else {
+    if (currentThemeIndex == undefined) {
         currentThemeIndex = 0;
-        $.cookie("theme", currentThemeIndex);
+        saveInCookies();
     }
 }
