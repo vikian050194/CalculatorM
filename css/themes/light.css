@@ -1,23 +1,23 @@
-body {
+table {
     background: #fff;
 }
 
 .btn-operator{
-    color: #468847;
-    background-color: #dff0d8;
-    border: 1px solid #d6e9c6;
+	color: #5ca36a;
+    background-color: #8DBF97;
+    border-color: #8DBF97;
 }
 
 .btn-digit{
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
+    color: #ffcc00;
+    background-color: #ffe680;
+    border-color: #ffe680;
 }
 
 .btn-special{
-    color: #c7254e;
-    background: #f9f2f4;
-	border-color: #a94442;
+	color: #df6dbf;
+    background-color: #E99BD3;
+	border-color: #E99BD3;
 }
 
 .output{

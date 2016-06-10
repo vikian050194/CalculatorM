@@ -1,11 +1,11 @@
-body {
+table {
     background: #08102F;
 }
 
 .btn-operator{
-	color: white;
-	background: #0273C6;
-	border-color: #0273C6;
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
 }
 
 .btn-digit{
@@ -15,9 +15,9 @@ body {
 }
 
 .btn-special{
-	color: white;
-    background: #0048A4;
-	border-color: #0048A4; 
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
 }
 
 .output{

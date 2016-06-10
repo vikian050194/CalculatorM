@@ -32,12 +32,8 @@ th, td{
 
 table{
     position: absolute;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
-    top: 5px;
-    bottom: 5px;
-    left: 5px;
-    right: 5px;
+    width: 100%;
+    height: 100%;
 }
 
 center a[href="http://somee.com"] {
