@@ -1,23 +1,23 @@
 body {
-    background: #000;
+    background: #fff;
 }
 
 .btn-operator{
-    color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
+    color: #468847;
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
 }
 
 .btn-digit{
-	color: #000;
-	background: #fff;
-	border-color: #fff;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
 }
 
 .btn-special{
-    color: #fff;
-    background-color: #d9534f;
-    border-color: #d43f3a;
+    color: #c7254e;
+    background: #f9f2f4;
+	border-color: #a94442;
 }
 
 .output{

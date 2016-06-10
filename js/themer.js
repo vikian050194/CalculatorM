@@ -1,5 +1,5 @@
 function Themer() {
-    var themes = ['blue', 'gray', 'multi', 'pastel', 'light'];
+    var themes = ['blue', 'gray', 'multi', 'pastel', 'russia', 'light'];
     var loader = new Loader();
     function saveInCookies() {
         Cookies.set("theme", currentThemeIndex, { expires: 31 });
