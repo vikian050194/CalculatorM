@@ -2,7 +2,7 @@ function Themer() {
     var themes = ['blue', 'gray', 'multi', 'pastel', 'russia', 'light'];
     var loader = new Loader();
     function saveInCookies() {
-        Cookies.set("theme", currentThemeIndex, { expires: 31 });
+        $.cookie("theme", currentThemeIndex, { expires: 31 });
     }
     function nextIndex() {
         currentThemeIndex++;
@@ -26,7 +26,7 @@ function Themer() {
         loadCurrentTheme();
     }
 
-    var currentThemeIndex = Cookies.get("theme");
+    var currentThemeIndex = $.cookie("theme");
     if (currentThemeIndex == undefined) {
         currentThemeIndex = 0;
         saveInCookies();
