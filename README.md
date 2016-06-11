@@ -1,6 +1,7 @@
 # CalculatorM
 
 Развёрнуто на [Azure](http://calculatorm.azurewebsites.net/)
+
 Вёрстка пока только для устройств с не слишком большим экраном
 
 TODO
