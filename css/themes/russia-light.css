@@ -1,0 +1,21 @@
+table {
+    background: #fff;
+}
+
+.btn-operator{
+    color: #2e6da4;
+    background-color: #fff;
+    border-color: #2e6da4;
+}
+
+.btn-digit{
+	color: #000;
+	background: #fff;
+	border-color: #000;
+}
+
+.btn-special{
+    color: #d43f3a;
+    background-color: #fff;
+    border-color: #d43f3a;
+}
