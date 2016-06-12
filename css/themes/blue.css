@@ -4,18 +4,18 @@ table {
 
 .btn-operator{
     color: #fff;
-    background-color: #5bc0de;
+    background: linear-gradient(to bottom,#5bc0de 0,#2aabd2 100%);
     border-color: #46b8da;
 }
 
 .btn-digit{
-	color: #08102F;
-	background: #F7FFFB;
-	border-color: #F7FFFB ;
+    color: #333;
+    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    border-color: #ccc;
 }
 
 .btn-special{
     color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
+    background: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+    border-color: #245580;
 }

@@ -24,6 +24,10 @@ button{
     padding: 0 !important;
 }
 
+#setMod{
+    font-size: 12px !important;
+}
+
 .input-group{
     width: 100%;
 }

@@ -2,10 +2,8 @@ function Calculator(c) {
     var calc = $(c);
     var output = calc.find('#output')
     var module = calc.find('#module')
-
     var engine = new Engine();
     var themer = new Themer();
-
     var get = function () {
         return output.text();
     }
@@ -51,14 +49,11 @@ function Calculator(c) {
 		calc.find('#setMod').on('click', setMod);
 		calc.find('#calculate').on('click', calculate);
         calc.find('#c').on('click', clean);
-
         for (var i = 0; i <= 9; i++) {
             var id = '#' + i;
             calc.find(id).on('click', clickDigit);
         }
-
 		var operators = ['add','mul','sub','div','mod','pow'];
-
 		for(var i = 0;i<=operators.length;i++){
 			var id = '#' + operators[i];
             calc.find(id).on('click', clickOperator);
@@ -67,3 +62,7 @@ function Calculator(c) {
 	
     init();
 }
+
+Calculator.prototype.start = function () {
+
+}; 

@@ -8,9 +8,8 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <link id="theme" href="css/themes/blue.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
-    <!--<script type="text/javascript" src="js/jquery.cookie.js"></script>-->
-    <!--<script type="text/javascript" src="js/bootstrap.js"></script>-->
+    <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
+    <script type="text/javascript" src="js/js.cookie.js"></script>
     <script type="text/javascript" src="js/loader.js"></script>
     <script type="text/javascript" src="js/themer.js"></script>
     <script type="text/javascript" src="js/engine.js"></script>
@@ -27,7 +26,7 @@
                     <th colspan="4">
                         <div class="input-group">
                             <div id="output" class="form-control">0</div>
-                            <span id="modMessage" class="input-group-addon">mod</span>
+                            <span class="input-group-addon">mod</span>
                             <div id="module" class="form-control">1</div>
                         </div>
                     </th>
@@ -38,7 +37,8 @@
                     <td class="column"><button id="c" type="button" class="btn btn-special">C</button></td>
                     <td class="column">
                         <button id="setMod" type="button" class="btn btn-special">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
+                            <div>set</div>
+                            <div>module</div>
                         </button>
                     </td>
                 </tr>
@@ -63,7 +63,7 @@
                 <tr class="row">
                     <td><button id="sub" type="button" class="btn btn-operator">sub</button></td>
                     <td><button id="0" type="button" class="btn btn-digit">0</button></td>
-                    <td class="column">
+                    <td>
                         <button id="nextTheme" type="button" class="btn btn-operator">
                             <span class="glyphicon glyphicon-tint"></span>
                         </button>
