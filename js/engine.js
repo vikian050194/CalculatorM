@@ -4,7 +4,7 @@ function Engine() {
     var module = 1;
 	var state = 0;
 	var operator = '';
-	
+
 	this.clean = function () {
 		firstArgument = 0;
 		secondArgument = 0;
@@ -16,80 +16,85 @@ function Engine() {
 		firstArgument = 0;
 	}
 	this.calculate = function () {
-		function mod(){
+		function mod() {
 			return firstArgument % secondArgument;
 		}
-		function add(){
+		function add() {
 			return (firstArgument + secondArgument) % module;
 		}
-		function sub(){
+		function sub() {
 			return (firstArgument - secondArgument) % module;
 		}
-		function mul(){
+		function mul() {
 			return (firstArgument * secondArgument) % module;
 		}
-		function div(){
+		function div() {
 			return (firstArgument / secondArgument) % module;
 		}
-		function pow(){
+		function pow() {
 			var result = 1;
-			
-			for(var i = 1; i <= secondArgument; i++){
-				result = result * firstArgument % module;
+
+			while (secondArgument) {
+				if (secondArgument & 1) {
+					result = result * firstArgument % module;
+				}
+
+				firstArgument = firstArgument * firstArgument % module;
+				secondArgument /= 2;
 			}
-			
+
 			return result;
 		}
-		
+
 		var result = 0;
-		
-		switch(operator) {
-		case '':
-		result = firstArgument % module;
-		break;
-		case 'mod':
-		result = mod();
-		break;
-		case 'add':
-		result = add();
-		break;
-		case 'sub':
-		result = sub();
-		break;
-		case 'mul':
-		result = mul();
-		break;
-		case 'div':
-		result = div();
-		break;
-		case 'pow':
-		result = pow();
-		break;
-		default:
-		
-		break;
+
+		switch (operator) {
+			case '':
+				result = firstArgument % module;
+				break;
+			case 'mod':
+				result = mod();
+				break;
+			case 'add':
+				result = add();
+				break;
+			case 'sub':
+				result = sub();
+				break;
+			case 'mul':
+				result = mul();
+				break;
+			case 'div':
+				result = div();
+				break;
+			case 'pow':
+				result = pow();
+				break;
+			default:
+
+				break;
 		}
-		
+
 		state = 0;
 		operator = '';
 		firstArgument = result;
 		secondArgument = 0;
 		return result;
 	}
-	this.append = function(digit){
-		switch(state) {
-		case 0:
-		firstArgument = firstArgument * 10 + digit;
-		break;
-		case 1:
-		secondArgument = secondArgument * 10 + digit;
-		break;
-		default:
-		
-		break;
+	this.append = function (digit) {
+		switch (state) {
+			case 0:
+				firstArgument = firstArgument * 10 + digit;
+				break;
+			case 1:
+				secondArgument = secondArgument * 10 + digit;
+				break;
+			default:
+
+				break;
 		}
 	}
-	this.setOperator = function(param){
+	this.setOperator = function (param) {
 		operator = param;
 		state = 1;
 	}
