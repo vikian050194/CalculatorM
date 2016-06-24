@@ -1,7 +1,6 @@
-function Calculator(c) {
-    var calc = $(c);
-    var output = calc.find('#output')
-    var module = calc.find('#module')
+function Calculator() {
+    var output = $('#output');
+    var module = $('#module');
     var engine = new Engine();
     var themer = new Themer();
     var get = function () {
@@ -18,51 +17,37 @@ function Calculator(c) {
             newValue += i;
         }
         set(newValue);
-		engine.append(parseInt(i));
+        engine.append(parseInt(i));
     }
     var clean = function () {
         set('0');
         engine.clean();
     }
-	var setMod = function(){
-		var value = get();
-		module.html(value);
-		engine.setMod();
-		clean();
-	}
-	var clickDigit = function(e) {
-		var value = e.currentTarget.firstChild.data;
-		append(value)
+    var setMod = function () {
+        var value = get();
+        module.html(value);
+        engine.setMod();
+        clean();
     }
-	var clickOperator = function(e){
-		var value = e.currentTarget.firstChild.data;
-		engine.setOperator(value)
-		set('0');
-	}
-	var calculate = function()
-	{
-		var result = engine.calculate();
-		set(result);
-	}
+    var clickDigit = function (e, value) {
+        append(value)
+    }
+    var clickOperator = function (e, value) {
+        engine.setOperator(value)
+        set('0');
+    }
+    var calculate = function () {
+        var result = engine.calculate();
+        set(result);
+    }
     var init = function () {
-        calc.find('#nextTheme').on('click', themer.next);
-		calc.find('#setMod').on('click', setMod);
-		calc.find('#calculate').on('click', calculate);
-        calc.find('#c').on('click', clean);
-        for (var i = 0; i <= 9; i++) {
-            var id = '#' + i;
-            calc.find(id).on('click', clickDigit);
-        }
-		var operators = ['add','mul','sub','div','mod','pow'];
-		for(var i = 0;i<=operators.length;i++){
-			var id = '#' + operators[i];
-            calc.find(id).on('click', clickOperator);
-		}		
-    }	
-	
+        $(document).on('nextTheme', themer.next);
+        $(document).on('setMod', setMod);
+        $(document).on('clickDigit',clickDigit);
+        $(document).on('clickOperator',clickOperator);
+        $(document).on('calculate', calculate);
+        $(document).on('clean', clean);
+    }
+
     init();
 }
-
-Calculator.prototype.start = function () {
-
-}; 
