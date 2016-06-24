@@ -1,6 +1,7 @@
 function Themer() {
     var themes = ['blue', 'gray', 'russia'];
     var id = 'theme';
+
     function saveInCookies() {
         Cookies.set(id, currentThemeIndex, { expires: 31 });
     }
@@ -30,5 +31,7 @@ function Themer() {
         currentThemeIndex = 0;
         saveInCookies();
     }
-    changeTheme();
+    else if (currentThemeIndex != 0) {
+        changeTheme();
+    }
 }
