@@ -1,3 +1,13 @@
+#calculator {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 5px;
+    width: 100%;
+}
+
 #output, #module, #modMessage{
     font-size: 20px;
     height: 100%;
@@ -22,6 +32,11 @@ button{
     height: 100%;
     max-height: none;
     padding: 0 !important;
+    margin: 5px !important;
+}
+
+#input{
+    margin: 5px !important;
 }
 
 #setMod{
@@ -36,8 +51,9 @@ button{
     width: 25%;
 }
 
-.row{
+.btn-row{
     height: 16,66%;
+    display: flex;
 }
 
 th, td{
