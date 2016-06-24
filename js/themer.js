@@ -1,36 +1,34 @@
 function Themer() {
-    var themes = ['blue', 'gray', 'russia-dark', 'russia-light', 'green-light'];
-    var loader = new Loader();
+    var themes = ['blue', 'gray', 'russia'];
+    var id = 'theme';
     function saveInCookies() {
-        Cookies.set("theme", currentThemeIndex, { expires: 31 });
+        Cookies.set(id, currentThemeIndex, { expires: 31 });
     }
     function nextIndex() {
         currentThemeIndex++;
         currentThemeIndex %= themes.length;
     }
-    function getHref() {
-        var result = 'css/themes/' + themes[currentThemeIndex] + '.css';
+    function getClass() {
+        var result = 'calculator-' + themes[currentThemeIndex];
         return result;
     }
-    function loadCurrentTheme() {
-        var href = getHref();
-        var filetype = 'css';
-        var id = 'theme';
-        $('#' + id).remove();
-        loader.load(href, filetype, id);
+    function changeTheme() {
+        var oldTheme = $('#calculator').attr('class');
+        var newTheme = getClass();
+        $('#calculator').removeClass(oldTheme).addClass(newTheme);
     }
 
     this.next = function () {
         nextIndex();
         saveInCookies();
-        loadCurrentTheme();
+        changeTheme();
     }
 
-    var currentThemeIndex = Cookies.get("theme");
+    var currentThemeIndex = Cookies.get(id);
 
     if (currentThemeIndex == undefined || currentThemeIndex != undefined && currentThemeIndex >= themes.length) {
         currentThemeIndex = 0;
         saveInCookies();
     }
-    loadCurrentTheme();
+    changeTheme();
 }

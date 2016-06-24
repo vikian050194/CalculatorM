@@ -1,8 +1,10 @@
 function Calculator() {
     var output = $('#output');
     var module = $('#module');
+
     var engine = new Engine();
     var themer = new Themer();
+
     var get = function () {
         return output.text();
     }
@@ -40,6 +42,7 @@ function Calculator() {
         var result = engine.calculate();
         set(result);
     }
+    
     var init = function () {
         $(document).on('nextTheme', themer.next);
         $(document).on('setMod', setMod);
