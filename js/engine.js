@@ -1,7 +1,7 @@
 function Engine() {
     var firstArgument = 0;
     var secondArgument = 0;
-    var module = 1;
+    var module = 2;
 	var state = 0;
 	var operator = '';
 
