@@ -35,6 +35,9 @@ function CalculatorUI() {
             $(document).trigger('clean');
         });
 
+        $('#backward').on('click', function () {
+            $(document).trigger('backward');
+        });
     }
 
     init();

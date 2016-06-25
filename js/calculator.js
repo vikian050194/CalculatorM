@@ -42,14 +42,25 @@ function Calculator() {
         var result = engine.calculate();
         set(result);
     }
-    
+    var backward = function () {
+        var value = get();
+        if (value.length == 1) {
+            set('0');
+            engine.setValue(0);
+        } else if (value.length > 1) {
+            var newValue = value.slice(0, -1)
+            set(newValue);
+            engine.setValue(parseInt(newValue));
+        }
+    }
     var init = function () {
         $(document).on('nextTheme', themer.next);
         $(document).on('setMod', setMod);
-        $(document).on('clickDigit',clickDigit);
-        $(document).on('clickOperator',clickOperator);
+        $(document).on('clickDigit', clickDigit);
+        $(document).on('clickOperator', clickOperator);
         $(document).on('calculate', calculate);
         $(document).on('clean', clean);
+        $(document).on('backward', backward);
     }
 
     init();

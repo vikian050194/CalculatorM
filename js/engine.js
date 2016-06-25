@@ -94,6 +94,19 @@ function Engine() {
 				break;
 		}
 	}
+	this.setValue = function (value) {
+		switch (state) {
+			case 0:
+				firstArgument = value;
+				break;
+			case 1:
+				secondArgument = value;
+				break;
+			default:
+
+				break;
+		}
+	}
 	this.setOperator = function (param) {
 		operator = param;
 		state = 1;
