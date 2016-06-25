@@ -32,12 +32,8 @@ button{
     width: 100%;
 }
 
-.column{
-    width: 25%;
-}
-
-.row{
-    height: 16,66%;
+td{
+    width: 20%;
 }
 
 th, td{
