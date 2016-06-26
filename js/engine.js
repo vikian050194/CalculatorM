@@ -4,6 +4,8 @@ function Engine() {
     var module = 2;
 	var state = 0;
 	var operator = '';
+	var memory = 0;
+	var isMemoryUsed = false;
 
 	this.clean = function () {
 		firstArgument = 0;
@@ -110,5 +112,38 @@ function Engine() {
 	this.setOperator = function (param) {
 		operator = param;
 		state = 1;
+	}
+	this.memoryClean = function () {
+		isMemoryUsed = false;
+		memory = 0;
+	}
+	this.memoryRecall = function () {
+		this.setValue(memory);
+		return memory;
+	}
+	getValue = function () {
+		switch (state) {
+			case 0:
+				return firstArgument;
+			case 1:
+				return secondArgument;
+			default:
+
+				break;
+		}
+	}
+	this.addToMemory = function () {
+		memory += getValue();
+		if (!isMemoryUsed) {
+			isMemoryUsed = true;
+		}
+
+		// var value = getValue();
+		// if (!isMemoryUsed && value != 0) {
+		// 	memory += value;
+		// 	if (!isMemoryUsed) {
+		// 		isMemoryUsed = true;
+		// 	}
+		// }
 	}
 }

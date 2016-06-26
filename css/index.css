@@ -39,15 +39,31 @@ table{
     position: fixed;
     width: 100%;
     height: 100%;
-    /*top: 5px;
-    bottom: 5px;
-    left: 5px;
-    right: 5px;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);*/
 }
 
-/*.btn-group-vertical{
-    width: 100%;
-    height: auto;
-}*/
+.animated { 
+  -webkit-animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+  
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+} 
+
+@-webkit-keyframes pulse {
+    0% { -webkit-transform: scale(1); }
+    50% { -webkit-transform: scale(0.8); }
+    100% { -webkit-transform: scale(1); }
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.8); }
+    100% { transform: scale(1); }
+}
+.pulse {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+}

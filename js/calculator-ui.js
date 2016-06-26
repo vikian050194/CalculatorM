@@ -38,6 +38,18 @@ function CalculatorUI() {
         $('#backward').on('click', function () {
             $(document).trigger('backward');
         });
+        $('#memoryClean').on('click', function () {
+            $('.animated').removeClass('pulse');
+            $(document).trigger('memoryClean');
+        });
+        $('#memoryRecall').on('click', function () {
+            $(document).trigger('memoryRecall');
+        });
+        $('#addToMemory').on('click', function () {
+            $('.animated').removeClass('pulse').addClass('pulse');
+            $(document).trigger('addToMemory');
+        });
+
     }
 
     init();

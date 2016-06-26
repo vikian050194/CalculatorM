@@ -53,6 +53,10 @@ function Calculator() {
             engine.setValue(parseInt(newValue));
         }
     }
+    var memoryRecall = function(){
+        var value = engine.memoryRecall();
+        set(value);
+    }
     var init = function () {
         $(document).on('nextTheme', themer.next);
         $(document).on('setMod', setMod);
@@ -61,6 +65,9 @@ function Calculator() {
         $(document).on('calculate', calculate);
         $(document).on('clean', clean);
         $(document).on('backward', backward);
+        $(document).on('memoryClean', engine.memoryClean);
+        $(document).on('memoryRecall', memoryRecall);
+        $(document).on('addToMemory', engine.addToMemory);
     }
 
     init();
