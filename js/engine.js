@@ -1,9 +1,11 @@
 function Engine() {
     var firstArgument = 0;
     var secondArgument = 0;
-    var module = 1;
+    var module = 2;
 	var state = 0;
 	var operator = '';
+	var memory = 0;
+	var isMemoryUsed = false;
 
 	this.clean = function () {
 		firstArgument = 0;
@@ -94,8 +96,54 @@ function Engine() {
 				break;
 		}
 	}
+	this.setValue = function (value) {
+		switch (state) {
+			case 0:
+				firstArgument = value;
+				break;
+			case 1:
+				secondArgument = value;
+				break;
+			default:
+
+				break;
+		}
+	}
 	this.setOperator = function (param) {
 		operator = param;
 		state = 1;
+	}
+	this.memoryClean = function () {
+		isMemoryUsed = false;
+		memory = 0;
+	}
+	this.memoryRecall = function () {
+		this.setValue(memory);
+		return memory;
+	}
+	getValue = function () {
+		switch (state) {
+			case 0:
+				return firstArgument;
+			case 1:
+				return secondArgument;
+			default:
+
+				break;
+		}
+	}
+	this.addToMemory = function () {
+		memory += getValue();
+		if (!isMemoryUsed) {
+			isMemoryUsed = true;
+		}
+
+		// var value = getValue();
+		// if (!isMemoryUsed && value != 0) {
+		// 	memory += value;
+		// 	if (!isMemoryUsed) {
+		// 		isMemoryUsed = true;
+		// 	}
+		// }
 	}
 }
