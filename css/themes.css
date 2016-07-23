@@ -1,4 +1,4 @@
-.calculator-blue {
+.calculator-blue table{
     background: #08102F;
 }
 .calculator-blue .btn-operator{
@@ -17,7 +17,7 @@
     border-color: #245580;
 }
 
-.calculator-gray {
+.calculator-gray table{
     background: #242629;
 }
 .calculator-gray .btn-operator{
@@ -36,7 +36,7 @@
 	border-color: #242629; 
 }
 
-.calculator-russia {
+.calculator-russia table{
     background: #000;
 }
 .calculator-russia .btn-operator{

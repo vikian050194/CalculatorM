@@ -27,8 +27,8 @@ function Calculator() {
     }
     var setMod = function () {
         var value = get();
-        module.html(value);
         engine.setMod();
+        module.html(engine.getMod());        
         clean();
     }
     var clickDigit = function (e, value) {

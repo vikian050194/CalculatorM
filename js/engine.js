@@ -14,8 +14,15 @@ function Engine() {
 		operator = '';
 	}
 	this.setMod = function () {
-		module = firstArgument;
+		if (firstArgument <= 1) {
+			module = 2;
+		} else {
+			module = firstArgument;
+		}
 		firstArgument = 0;
+	}
+	this.getMod = function () {
+		return module;
 	}
 	this.calculate = function () {
 		function mod() {
