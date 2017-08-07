@@ -28,20 +28,28 @@ function Calculator() {
     var setMod = function () {
         var value = get();
         engine.setMod();
-        module.html(engine.getMod());        
+        module.html(engine.getMod());
         clean();
     }
-    var clickDigit = function (e, value) {
-        append(value)
-    }
-    var clickOperator = function (e, value) {
-        engine.setOperator(value)
-        set('0');
-    }
-    var calculate = function () {
-        var result = engine.calculate();
-        set(result);
-    }
+
+    this.digit = function (value) {
+        console.log(value);
+    };
+
+    this.operator = function (value) {
+        console.log(value);
+    };
+
+    this.memory = function (value) {
+        console.log(value);
+    };
+
+    this.model = function () {
+        return {
+            value
+        };
+    };
+
     var backward = function () {
         var value = get();
         if (value.length == 1) {
@@ -53,22 +61,8 @@ function Calculator() {
             engine.setValue(parseInt(newValue));
         }
     }
-    var memoryRecall = function(){
+    var memoryRecall = function () {
         var value = engine.memoryRecall();
         set(value);
     }
-    var init = function () {
-        $(document).on('nextTheme', themer.next);
-        $(document).on('setMod', setMod);
-        $(document).on('clickDigit', clickDigit);
-        $(document).on('clickOperator', clickOperator);
-        $(document).on('calculate', calculate);
-        $(document).on('clean', clean);
-        $(document).on('backward', backward);
-        $(document).on('memoryClean', engine.memoryClean);
-        $(document).on('memoryRecall', memoryRecall);
-        $(document).on('addToMemory', engine.addToMemory);
-    }
-
-    init();
 }
