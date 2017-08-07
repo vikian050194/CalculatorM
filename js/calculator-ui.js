@@ -2,40 +2,26 @@ function CalculatorUI() {
     var calculator = new Calculator();
 
     var init = function () {
-        for (var i = 0; i <= 9; i++) {
-            (function () {
-                var value = i;
-                var id = '#' + value;
-                $(id).on('click', function (e) {
-                    calculator.digit(value);
-                });
-            })();
-        }
-
+        var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         var operators = ['add', 'mul', 'sub', 'div', 'mod', 'pow', 'calc'];
-
-        for (var i = 0; i <= operators.length; i++) {
-            (function () {
-                var value = operators[i];
-                var id = '#' + value;
-                $(id).on('click', function (e) {
-                    calculator.operator(value);
-                });
-            })();
-        }
-
         var memory = ['memoryAdd', 'memoryClean', 'memoryRecall'];
 
-        for (var i = 0; i <= memory.length; i++) {
-            (function () {
-                var value = memory[i];
-                var id = '#' + value;
-                $(id).on('click', function (e) {
-                    calculator.memory(value);
-                });
-            })();
-        }
+        var foo = function (method, values) {
+            for (var i = 0; i <= values.length; i++) {
+                (function () {
+                    var value = values[i];
+                    var id = '#' + value;
+                    $(id).on('click', function (e) {
+                        calculator[method](value);
+                    });
+                })();
+            }
+        };
 
+        foo('digit', digits);
+        foo('operator', operators);
+        foo('memory', memory);
+        
         // $('#clean').on('click', function () {
         //     $(document).trigger('clean');
         // });
