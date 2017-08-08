@@ -1,11 +1,26 @@
 function Engine() {
-    var firstArgument = 0;
-    var secondArgument = 0;
-    var module = 2;
+	var firstArgument = 0;
+	var secondArgument = 0;
+	var module = 2;
 	var state = 0;
 	var operator = '';
 	var memory = 0;
 	var isMemoryUsed = false;
+
+	this.model = function () {
+		var result = new Model();
+		result.number = firstArgument;
+
+		return result;
+	}
+
+    this.operator = function (value) {
+        operator = value;
+    };
+
+    this.digit = function (value) {
+        firstArgument = value;
+    };
 
 	this.clean = function () {
 		firstArgument = 0;

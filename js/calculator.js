@@ -1,7 +1,4 @@
 function Calculator() {
-    var output = $('#output');
-    var module = $('#module');
-
     var engine = new Engine();
     var themer = new Themer();
 
@@ -31,17 +28,23 @@ function Calculator() {
         module.html(engine.getMod());        
         clean();
     }
-    var clickDigit = function (e, value) {
-        append(value)
-    }
-    var clickOperator = function (e, value) {
-        engine.setOperator(value)
-        set('0');
-    }
-    var calculate = function () {
-        var result = engine.calculate();
-        set(result);
-    }
+
+    this.digit = function (value) {
+        console.log(value);
+    };
+
+    this.operator = function (value) {
+        console.log(value);
+    };
+
+    this.memory = function (value) {
+        console.log(value);
+    };
+
+    this.model = function () {
+        return engine.model();
+    };
+
     var backward = function () {
         var value = get();
         if (value.length == 1) {

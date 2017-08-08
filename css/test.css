@@ -1,0 +1,9 @@
+#passedCount,
+#passed{
+    color: green;
+}
+
+#failedCount,
+#failed{
+    color: red;
+}
