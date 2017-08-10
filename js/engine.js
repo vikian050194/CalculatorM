@@ -1,7 +1,7 @@
 function Engine() {
 	var firstArgument = 0;
 	var secondArgument = 0;
-	var module = 2;
+	var module = 0;
 	var state = 0;
 	var operator = '';
 	var memory = 0;
@@ -9,18 +9,32 @@ function Engine() {
 
 	this.model = function () {
 		var result = new Model();
-		result.number = firstArgument;
-
+		result.firstArgument = firstArgument;		
+		result.secondArgument = secondArgument;
+		result.operator = operator;
 		return result;
 	}
 
-    this.operator = function (value) {
-        operator = value;
-    };
+	this.operator = function (value) {
+		operator = value;
+	};
 
-    this.digit = function (value) {
-        firstArgument = value;
-    };
+	this.digit = function (value) {
+		if(operator === '')
+			if (firstArgument === 0) {
+				firstArgument = value;
+			} else {
+				firstArgument *= 10;
+				firstArgument += value;
+			}
+		else
+			if (secondArgument === 0) {
+				secondArgument = value;
+			} else {
+				secondArgument *= 10;
+				secondArgument += value;
+			}
+	};
 
 	this.clean = function () {
 		firstArgument = 0;

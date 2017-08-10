@@ -1,3 +1,5 @@
 function Model() {
-    this.number = 0;
+    this.firstArgument = 0;
+    this.secondArgument = 0;
+    this.operator = '';
 }

@@ -11,7 +11,7 @@ $(document).ready(function () {
             {
                 name: 'Default model',
                 test: function () {
-                    expected.number = 0;
+                    expected.firstArgument = 0;
 
                     actual = engine.model();
                 }
@@ -19,7 +19,7 @@ $(document).ready(function () {
             {
                 name: 'One digit: zero',
                 test: function () {
-                    expected.number = 0;
+                    expected.firstArgument = 0;
 
                     engine.digit(0);
 
@@ -29,9 +29,49 @@ $(document).ready(function () {
             {
                 name: 'One digit: not zero',
                 test: function () {
-                    expected.number = 2;
+                    expected.firstArgument = 2;
 
                     engine.digit(2);
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Few digits',
+                test: function () {
+                    expected.firstArgument = 42;
+
+                    engine.digit(4);
+                    engine.digit(2);
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'First test operation',
+                test: function () {
+                    expected.firstArgument = 42;
+                    expected.operator = 'add';
+
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('add');
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Two arguments and operation',
+                test: function () {
+                    expected.firstArgument = 42;
+                    expected.operator = 'add';
+                    expected.secondArgument = 21;
+
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('add');
+                    engine.digit(2);
+                    engine.digit(1);
 
                     actual = engine.model();
                 }
@@ -53,6 +93,7 @@ $(document).ready(function () {
         tests.forEach(function (testItem) {
             try {
                 expected = new Model();
+                engine = new Engine();
 
                 testItem.test();
 
