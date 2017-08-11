@@ -23,6 +23,17 @@
     width: 96%;
     height: 14vh;
     margin: 2vh 2vw 0.1vh 2vw;
+    font-size: 4em;
+    text-align: right;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: auto;
+}
+
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 #work-panel {
@@ -36,18 +47,18 @@
 .arrow {
     text-align: center;
     color: white;
-    font-size: 50px;
+    font-size: 5em;
     opacity: 0.5;
 }
 
 #left-arrow:before {
-    margin-left: 1vw;
+    margin-left: 2vw;
     content: '\2039';
 }
 
 #right-arrow:before {
     content: '\203A';
-    margin-right: 1vw;
+    margin-right: 2vw;
 }
 
 #dots {
@@ -58,7 +69,7 @@
 .dot {
     text-align: center;
     color: white;
-    font-size: 40px;
+    font-size: 3em;
     opacity: 0.5;
     margin-top: -0.5vh;
 }
@@ -71,26 +82,21 @@
     content: '\0025CF';
 }
 
-#output, #module {
-    font-size: 20px;
-}
-
-#output{
-    text-align: right;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    overflow: auto;
-}
-
 #setMod{
-    font-size: 12px;
+    font-size: 1.5em;
+	line-height: 3.5vh;
 }
 
-button{
-    font-size: 24px;
+.calculator-btn{
+    font-size: 3em;
     width: 100%;
     height: 100%;
     padding: 0;
+	font-weight: bold;
+}
+
+.calculator-btn:focus {
+	outline:0;
 }
 
 .animated {
