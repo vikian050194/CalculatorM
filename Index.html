@@ -22,80 +22,117 @@
 
 <body>
     <div id="calculator" class="calculator-blue">
-        <table>
-            <tbody>
-                <tr>
-                    <th colspan="4">
-                        <div class="input-group">
-                            <div id="output" class="form-control">0</div>
-                            <span class="input-group-addon">mod</span>
-                            <div id="module" class="form-control">2</div>
-                        </div>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="setMod" type="button" class="btn btn-special">
-                            <div>set</div>
-                            <div>module</div>
-                        </button>
-                    </td>
-                    <td><button id="mod" type="button" class="btn btn-operator">mod</button></td>
-                    <td><button id="mul" type="button" class="btn btn-operator">mul</button></td>
-                    <td><button id="add" type="button" class="btn btn-operator">add</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="backward" type="button" class="btn btn-special">
-                            <span class="glyphicon glyphicon-step-backward"></span>
-                        </button>
-                    </td>
-                    <td><button id="pow" type="button" class="btn btn-operator">pow</button></td>
-                    <td><button id="div" type="button" class="btn btn-operator">div</button></td>
-                    <td><button id="sub" type="button" class="btn btn-operator">sub</button></td>
-                </tr>
-                <tr>
-                    <td><button id="clean" type="button" class="btn btn-special">C</button></td>
-                    <td><button id="7" type="button" class="btn btn-digit">7</button></td>
-                    <td><button id="8" type="button" class="btn btn-digit">8</button></td>
-                    <td><button id="9" type="button" class="btn btn-digit">9</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="memoryClean" type="button" class="btn btn-special">
-                            MC
-                        </button>
-                    </td>
-                    <td><button id="4" type="button" class="btn btn-digit">4</button></td>
-                    <td><button id="5" type="button" class="btn btn-digit">5</button></td>
-                    <td><button id="6" type="button" class="btn btn-digit">6</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="addToMemory" type="button" class="btn btn-special">
-                            M+
-                        </button>
-                    </td>
-                    <td><button id="1" type="button" class="btn btn-digit">1</button></td>
-                    <td><button id="2" type="button" class="btn btn-digit">2</button></td>
-                    <td><button id="3" type="button" class="btn btn-digit">3</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="memoryRecall" type="button" class="btn btn-special">
-                           <div class="animated">MR</div>
-                        </button>
-                    </td>
-                    <td><button id="0" type="button" class="btn btn-digit">0</button></td>
-                    <td>
-                        <button id="nextTheme" type="button" class="btn btn-special">
-                            <span class="glyphicon glyphicon-tint"></span>
-                        </button>
-                    </td>
-                    <td><button id="calculate" type="button" class="btn btn-special">=</button></td>
-                </tr>
-            </tbody>
-        </table>
+        <div id="output" class="form-control line"></div>
+        <div id="module" class="form-control line"></div>
+        <div id="work-panel">
+            <div id="left-arrow" class="arrow"></div>
+            <div id="btns-table">
+                <button id="add" class="btn btn-operator optional">+</button>
+                <button id="sub" class="btn btn-operator optional">-</button>
+                <button id="mul" class="btn btn-operator optional">*</button>
+                <button id="div" class="btn btn-operator optional">/</button>
+                <button id="pow" class="btn btn-operator optional">pow</button>
+                <button id="7" class="btn btn-digit">7</button>
+                <button id="8" class="btn btn-digit">8</button>
+                <button id="9" class="btn btn-digit">9</button>
+                <button id="setMod" class="btn btn-operator optional">set<br>mod</button>
+                <button id="4" class="btn btn-digit">4</button>
+                <button id="5" class="btn btn-digit">5</button>
+                <button id="6" class="btn btn-digit">6</button>
+                <button id="backward" class="btn btn-special">
+                    <span class="glyphicon glyphicon-step-backward"></span>
+                </button>
+                <button id="1" class="btn btn-digit">1</button>
+                <button id="2" class="btn btn-digit">2</button>
+                <button id="3" class="btn btn-digit">3</button>
+                <button id="clear" class="btn btn-special">C</button>
+                <button id="0" class="btn btn-digit">0</button>
+                <button id="nextTheme" class="btn btn-special">
+                    <span class="glyphicon glyphicon-tint"></span>
+                </button>
+                <button id="calculate" class="btn btn-special">=</button>
+            </div>
+            <div id="right-arrow" class="arrow"></div>
+        </div>
+        <div id="dots">
+            <div id="dot1" class="dot dot_chosen"></div>
+            <div id="dot2" class="dot"></div>
+        </div>
+
+        <!--<table>-->
+            <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<th colspan="4">-->
+                        <!--<div class="input-group">-->
+                            <!--<div id="output" class="form-control">0</div>-->
+                            <!--<span class="input-group-addon">mod</span>-->
+                            <!--<div id="module" class="form-control">2</div>-->
+                        <!--</div>-->
+                    <!--</th>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<button id="setMod" type="button" class="btn btn-special">-->
+                            <!--<div>set</div>-->
+                            <!--<div>module</div>-->
+                        <!--</button>-->
+                    <!--</td>-->
+                    <!--<td><button id="mod" type="button" class="btn btn-operator">mod</button></td>-->
+                    <!--<td><button id="mul" type="button" class="btn btn-operator">mul</button></td>-->
+                    <!--<td><button id="add" type="button" class="btn btn-operator">add</button></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<button id="backward" type="button" class="btn btn-special">-->
+                            <!--<span class="glyphicon glyphicon-step-backward"></span>-->
+                        <!--</button>-->
+                    <!--</td>-->
+                    <!--<td><button id="pow" type="button" class="btn btn-operator">pow</button></td>-->
+                    <!--<td><button id="div" type="button" class="btn btn-operator">div</button></td>-->
+                    <!--<td><button id="sub" type="button" class="btn btn-operator">sub</button></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td><button id="clean" type="button" class="btn btn-special">C</button></td>-->
+                    <!--<td><button id="7" type="button" class="btn btn-digit">7</button></td>-->
+                    <!--<td><button id="8" type="button" class="btn btn-digit">8</button></td>-->
+                    <!--<td><button id="9" type="button" class="btn btn-digit">9</button></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<button id="memoryClean" type="button" class="btn btn-special">-->
+                            <!--MC-->
+                        <!--</button>-->
+                    <!--</td>-->
+                    <!--<td><button id="4" type="button" class="btn btn-digit">4</button></td>-->
+                    <!--<td><button id="5" type="button" class="btn btn-digit">5</button></td>-->
+                    <!--<td><button id="6" type="button" class="btn btn-digit">6</button></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<button id="addToMemory" type="button" class="btn btn-special">-->
+                            <!--M+-->
+                        <!--</button>-->
+                    <!--</td>-->
+                    <!--<td><button id="1" type="button" class="btn btn-digit">1</button></td>-->
+                    <!--<td><button id="2" type="button" class="btn btn-digit">2</button></td>-->
+                    <!--<td><button id="3" type="button" class="btn btn-digit">3</button></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<button id="memoryRecall" type="button" class="btn btn-special">-->
+                           <!--<div class="animated">MR</div>-->
+                        <!--</button>-->
+                    <!--</td>-->
+                    <!--<td><button id="0" type="button" class="btn btn-digit">0</button></td>-->
+                    <!--<td>-->
+                        <!--<button id="nextTheme" type="button" class="btn btn-special">-->
+                            <!--<span class="glyphicon glyphicon-tint"></span>-->
+                        <!--</button>-->
+                    <!--</td>-->
+                    <!--<td><button id="calculate" type="button" class="btn btn-special">=</button></td>-->
+                <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
     </div>
 </body>
 

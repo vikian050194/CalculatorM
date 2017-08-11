@@ -1,58 +1,109 @@
-#output, #module, #modMessage{
-    font-size: 20px;
+#calculator {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#btns-table {
     height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 22%);
+    grid-gap: 2vh;
+    grid-template-rows: repeat(5, 10vh);
+    margin: 2vh;
+    margin-top: 4vh;
+    margin-bottom: 0;
+    justify-content: center;
+}
+
+.line {
+    width: 96%;
+    height: 14vh;
+    margin: 2vh 2vw 0.1vh 2vw;
+}
+
+#work-panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.arrow {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    opacity: 0.5;
+}
+
+#left-arrow:before {
+    margin-left: 1vw;
+    content: '\2039';
+}
+
+#right-arrow:before {
+    content: '\203A';
+    margin-right: 1vw;
+}
+
+#dots {
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    opacity: 0.5;
+    margin-top: -0.5vh;
+}
+
+.dot:before {
+    content: '\0025CB';
+}
+
+.dot_chosen:before {
+    content: '\0025CF';
+}
+
+#output, #module {
+    font-size: 20px;
 }
 
 #output{
     text-align: right;
-    height: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;
     overflow: auto;
 }
 
-button{
-    font-size: 24px !important;
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    padding: 0 !important;
-}
-
 #setMod{
-    font-size: 12px !important;
+    font-size: 12px;
 }
 
-.input-group{
-    width: 100%;
-}
-
-td{
-    height: 14.28%;
-    width: 25%;
-}
-
-th, td{
-    padding: 5px;
-}
-
-table{
-    position: fixed;
+button{
+    font-size: 24px;
     width: 100%;
     height: 100%;
+    padding: 0;
 }
 
-.animated { 
+.animated {
   -webkit-animation-duration: 5s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: ease;
   -webkit-animation-fill-mode: forwards;
-  
+
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: ease;
   animation-fill-mode: forwards;
-} 
+}
 
 @-webkit-keyframes pulse {
     0% { -webkit-transform: scale(1); }
@@ -67,4 +118,12 @@ table{
 .pulse {
     -webkit-animation-name: pulse;
     animation-name: pulse;
+}
+
+@media only screen and (min-device-width: 500px) {
+    #calculator {
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

@@ -36,7 +36,7 @@ function Engine() {
 			}
 	};
 
-	this.clean = function () {
+	this.clear = function () {
 		firstArgument = 0;
 		secondArgument = 0;
 		state = 0;
@@ -149,7 +149,7 @@ function Engine() {
 		operator = param;
 		state = 1;
 	}
-	this.memoryClean = function () {
+	this.memoryClear = function () {
 		isMemoryUsed = false;
 		memory = 0;
 	}

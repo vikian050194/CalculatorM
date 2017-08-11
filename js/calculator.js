@@ -18,15 +18,15 @@ function Calculator() {
         set(newValue);
         engine.append(parseInt(i));
     }
-    var clean = function () {
+    var clear = function () {
         set('0');
-        engine.clean();
+        engine.clear();
     }
     var setMod = function () {
         var value = get();
         engine.setMod();
         module.html(engine.getMod());        
-        clean();
+        clear();
     }
 
     this.digit = function (value) {
@@ -66,11 +66,11 @@ function Calculator() {
         $(document).on('clickDigit', clickDigit);
         $(document).on('clickOperator', clickOperator);
         $(document).on('calculate', calculate);
-        $(document).on('clean', clean);
+        $(document).on('clear', clear);
         $(document).on('backward', backward);
-        $(document).on('memoryClean', engine.memoryClean);
+        $(document).on('memoryClear', engine.memoryClear);
         $(document).on('memoryRecall', memoryRecall);
-        $(document).on('addToMemory', engine.addToMemory);
+        $(document).on('memoryAdd', engine.memoryAdd);
     }
 
     init();
