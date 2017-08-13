@@ -41,7 +41,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
 }
 
 .arrow {
@@ -97,6 +96,14 @@
 
 .calculator-btn:focus {
 	outline:0;
+}
+
+.memory-btn {
+	font-size: 1.5em;
+}
+
+.not-displayed {
+	display: none;
 }
 
 .animated {

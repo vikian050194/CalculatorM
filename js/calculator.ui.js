@@ -1,5 +1,6 @@
 function CalculatorUI() {
-    var calculator = new Calculator();
+    //var calculator = new Calculator();
+	var pageHandler = new PageHandler();
 
     var init = function () {
         var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -12,15 +13,15 @@ function CalculatorUI() {
                     var value = values[i];
                     var id = '#' + value;
                     $(id).on('click', function (e) {
-                        calculator[method](value);
+                        //calculator[method](value);
                     });
                 })();
             }
         };
 
-        foo('digit', digits);
-        foo('operator', operators);
-        foo('memory', memory);
+        //foo('digit', digits);
+        //foo('operator', operators);
+        //foo('memory', memory);
         
         // $('#clear').on('click', function () {
         //     $(document).trigger('clear');
@@ -37,6 +38,14 @@ function CalculatorUI() {
         // $('#setMod').on('click', function () {
         //     $(document).trigger(commonAction, args('setMod'));
         // });
+		
+		
+		$('#left-arrow').on('click', function() {
+			pageHandler.setPage(pageHandler.getCurrentPageNumber() - 1);
+		});
+		$('#right-arrow').on('click', function() {
+			pageHandler.setPage(pageHandler.getCurrentPageNumber() + 1);
+		});
     }
 
     init();

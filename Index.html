@@ -17,6 +17,7 @@
     <script type="text/javascript" src="js/calculator.js"></script>
     <script type="text/javascript" src="js/calculator.ui.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/page.handler.js"></script>
     <link rel="shortcut icon" href="icons/index.png" />
 </head>
 
@@ -27,15 +28,21 @@
         <div id="work-panel">
             <div id="left-arrow" class="arrow"></div>
             <div id="btns-table">
-                <button id="add" class="btn btn-operator optional calculator-btn">+</button>
-                <button id="sub" class="btn btn-operator optional calculator-btn">-</button>
-                <button id="mul" class="btn btn-operator optional calculator-btn">*</button>
-                <button id="div" class="btn btn-operator optional calculator-btn">/</button>
-                <button id="pow" class="btn btn-operator optional calculator-btn">^</button>
+                <button id="add" class="btn btn-operator page-1 calculator-btn">+</button>
+                <button id="sub" class="btn btn-operator page-1 calculator-btn">-</button>
+                <button id="mul" class="btn btn-operator page-1 calculator-btn">*</button>
+                <button id="div" class="btn btn-operator page-1 calculator-btn">/</button>
+                <button id="pow" class="btn btn-operator page-1 calculator-btn">^</button>
+				<button id="MR1" class="btn btn-operator page-2 calculator-btn not-displayed memory-btn">MR1</button>
+                <button id="MR2" class="btn btn-operator page-2 calculator-btn not-displayed memory-btn">MR2</button>
+                <button id="MR3" class="btn btn-operator page-2 calculator-btn not-displayed memory-btn">MR3</button>
+                <button id="MR4" class="btn btn-operator page-2 calculator-btn not-displayed memory-btn">MR4</button>
+                <button id="M+" class="btn btn-operator page-2 calculator-btn not-displayed memory-btn">M+</button>
                 <button id="7" class="btn btn-digit calculator-btn">7</button>
                 <button id="8" class="btn btn-digit calculator-btn">8</button>
                 <button id="9" class="btn btn-digit calculator-btn">9</button>
-                <button id="setMod" class="btn btn-operator optional calculator-btn">set<br>mod</button>
+                <button id="setMod" class="btn btn-operator page-1 calculator-btn">set<br>mod</button>
+				<button id="MC" class="btn btn-operator page-2 calculator-btn not-displayed memory-btn">MC</button>
                 <button id="4" class="btn btn-digit calculator-btn">4</button>
                 <button id="5" class="btn btn-digit calculator-btn">5</button>
                 <button id="6" class="btn btn-digit calculator-btn">6</button>
