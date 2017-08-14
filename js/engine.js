@@ -1,6 +1,7 @@
 function Engine() {
 	var firstArgument = 0;
 	var secondArgument = 0;
+	var result = 0;
 	var module = 0;
 	var state = 0;
 	var operator = '';
@@ -12,6 +13,7 @@ function Engine() {
 		result.firstArgument = firstArgument;		
 		result.secondArgument = secondArgument;
 		result.operator = operator;
+		result.module = module;
 		return result;
 	}
 
