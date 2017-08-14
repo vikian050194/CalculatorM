@@ -62,7 +62,7 @@ $(document).ready(function () {
             },
 
             {
-                name: 'Two arguments and operation ADD',
+                name: 'Two arguments and click ADD',
                 test: function () {
                     expected.firstArgument = 42;
                     expected.operator = 'add';
@@ -78,11 +78,91 @@ $(document).ready(function () {
                 }
             },
             {
+                name: 'Two arguments and click MUL',
+                test: function () {
+                    expected.firstArgument = 42;
+                    expected.operator = 'mul';
+                    expected.secondArgument = 21;
+
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('mul');
+                    engine.digit(2);
+                    engine.digit(1);
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Two arguments and click SUB',
+                test: function () {
+                    expected.firstArgument = 42;
+                    expected.operator = 'sub';
+                    expected.secondArgument = 21;
+
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('sub');
+                    engine.digit(2);
+                    engine.digit(1);
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Two arguments and click DIV',
+                test: function () {
+                    expected.firstArgument = 42;
+                    expected.operator = 'div';
+                    expected.secondArgument = 21;
+
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('div');
+                    engine.digit(2);
+                    engine.digit(1);
+
+                    actual = engine.model();
+                }
+            },
+             {
+                name: 'Two arguments and click MOD',
+                test: function () {
+                    expected.firstArgument = 42;
+                    expected.operator = 'mod';
+                    expected.secondArgument = 21;
+
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('mod');
+                    engine.digit(2);
+                    engine.digit(1);
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Two arguments and click POW',
+                test: function () {
+                    expected.firstArgument = 4;
+                    expected.operator = 'pow';
+                    expected.secondArgument = 21;
+
+                    engine.digit(4);
+                    engine.operator('pow');
+                    engine.digit(2);
+                    engine.digit(1);
+
+                    actual = engine.model();
+                }
+            },
+            {
                 name: 'Clean',
                 test: function () {
                     expected.firstArgument = 0;
                     expected.operator = '';
                     expected.secondArgument = 0;
+                    
                     engine.digit(4);
                     engine.digit(2);
                     engine.operator('add');
@@ -94,16 +174,149 @@ $(document).ready(function () {
                 }
             },
             {
-                name: 'Calculate +',
+                name: 'Set module',
                 test: function () {
                     expected.firstArgument = 0;
                     expected.operator = '';
                     expected.secondArgument = 0;
+                    expected.module = 1000;
+                    
+                    engine.digit(1);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.setMod();
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Calculate ADD',
+                test: function () {
+                    expected.firstArgument = 63;
+                    expected.operator = '';
+                    expected.secondArgument = 0;
+                    expected.module = 1000;
+                   
+                    engine.digit(1);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.setMod();
                     engine.digit(4);
                     engine.digit(2);
                     engine.operator('add');
                     engine.digit(2);
                     engine.digit(1);
+                    engine.calculate();
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Calculate SUB',
+                test: function () {
+                    expected.firstArgument = 21;
+                    expected.operator = '';
+                    expected.secondArgument = 0;
+                    expected.module = 1000;
+                   
+                    engine.digit(1);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.setMod();
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('sub');
+                    engine.digit(2);
+                    engine.digit(1);
+                    engine.calculate();
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Calculate MUL',
+                test: function () {
+                    expected.firstArgument = 36;
+                    expected.operator = '';
+                    expected.secondArgument = 0;
+                    expected.module = 1000;
+                   
+                    engine.digit(1);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.setMod();
+                    engine.digit(4);
+                    engine.operator('mul');
+                    engine.digit(9);
+                    engine.calculate();
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Calculate DIV',
+                test: function () {
+                    expected.firstArgument = 21;
+                    expected.operator = '';
+                    expected.secondArgument = 0;
+                    expected.module = 1000;
+
+                    engine.digit(1);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.setMod();
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('div');
+                    engine.digit(2);
+                    engine.calculate();
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Calculate MOD',
+                test: function () {
+                    expected.firstArgument = 1;
+                    expected.operator = '';
+                    expected.secondArgument = 0;
+                    expected.module = 1000;
+
+                    engine.digit(1);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.setMod();
+                    engine.digit(4);
+                    engine.digit(1);
+                    engine.operator('mod');
+                    engine.digit(2);
+                    engine.calculate();
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Calculate POW',
+                test: function () {
+                    expected.firstArgument = 16;
+                    expected.operator = '';
+                    expected.secondArgument = 0;
+                    expected.module = 1000;
+
+                    engine.digit(1);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.digit(0);
+                    engine.setMod();
+                    engine.digit(4);
+                    engine.operator('pow');
+                    engine.digit(2);
                     engine.calculate();
 
                     actual = engine.model();
@@ -141,6 +354,7 @@ $(document).ready(function () {
                 failed++;
                 var content = failedList.html() + '<div>' + testItem.name + '</div>';
                 failedList.html(content)
+                isTestFailed = false;
             } else {
                 passed++;
                 var content = passedList.html() + '<div>' + testItem.name + '</div>';
