@@ -19,9 +19,9 @@ function CalculatorUI() {
             }
         };
 
-        //foo('digit', digits);
-        //foo('operator', operators);
-        //foo('memory', memory);
+        foo('digit', digits);
+        foo('operator', operators);
+        foo('memory', memory);
         
         // $('#clear').on('click', function () {
         //     $(document).trigger('clear');
@@ -39,10 +39,7 @@ function CalculatorUI() {
         //     $(document).trigger(commonAction, args('setMod'));
         // });
 		
-		
-		$('#left-arrow').on('click', function() {
-			pageHandler.setPage(pageHandler.getCurrentPageNumber() - 1);
-		});
+
 		$('#right-arrow').on('click', function() {
 			pageHandler.setPage(pageHandler.getCurrentPageNumber() + 1);
 		});

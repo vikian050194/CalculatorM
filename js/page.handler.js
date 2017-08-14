@@ -2,6 +2,7 @@ function PageHandler() {
 	var currentPageNumber = 1;
 	var firstPageNumber = 1;
 	var lastPageNumber = 2;
+	var self = this;
 	
 	this.getCurrentPageNumber = function() {
 		return currentPageNumber;
@@ -20,20 +21,22 @@ function PageHandler() {
 		$('#dot' + number).addClass('dot_chosen');
 		
 		if(number === firstPageNumber) {
-			$('#left-arrow').attr('disabled', true);
+			$('#left-arrow').off('click');
 		}
 		if(number === lastPageNumber) {
-			$('#right-arrow').attr('disabled', true);
+			$('#right-arrow').off('click');
 		}
-		if(number >= firstPageNumber) {
-			$('#left-arrow').removeAttr('disabled');
+		if(number > firstPageNumber) {
+            $('#left-arrow').on('click', function() {
+                self.setPage(number - 1);
+            });
 		}
-		if(number <= lastPageNumber) {
-			$('#right-arrow').removeAttr('disabled');
+		if(number < lastPageNumber) {
+            $('#right-arrow').on('click', function() {
+                self.setPage(number + 1);
+            });
 		}
-		
+
 		currentPageNumber = number;
 	}
-	
-	this.setPage(firstPageNumber);
 }
