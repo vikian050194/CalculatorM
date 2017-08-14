@@ -9,10 +9,12 @@
 #btns-table {
     height: 100%;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 22%);
-    grid-gap: 2vh;
-    grid-template-rows: repeat(5, 10vh);
+    /*display: grid;*/
+    /*grid-template-columns: repeat(4, 22%);*/
+    /*grid-gap: 2vh;*/
+    /*grid-template-rows: repeat(5, 10vh);*/
+    display: flex;
+    flex-wrap: wrap;
     margin: 2vh;
     margin-top: 4vh;
     margin-bottom: 0;
@@ -88,9 +90,10 @@
 
 .calculator-btn{
     font-size: 3em;
-    width: 100%;
-    height: 100%;
+    width: 23%;
+    height: 10vh;
     padding: 0;
+    margin: 1%;
 	font-weight: bold;
 }
 
