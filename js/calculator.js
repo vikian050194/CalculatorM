@@ -30,11 +30,11 @@ function Calculator() {
     }
 
     this.digit = function (value) {
-        console.log(value);
+        engine.digit(value);
     };
 
     this.operator = function (value) {
-        console.log(value);
+        engine.operator(value);
     };
 
     this.memory = function (value) {
@@ -60,18 +60,4 @@ function Calculator() {
         var value = engine.memoryRecall();
         set(value);
     }
-    var init = function () {
-        $(document).on('nextTheme', themer.next);
-        $(document).on('setMod', setMod);
-        $(document).on('clickDigit', clickDigit);
-        $(document).on('clickOperator', clickOperator);
-        $(document).on('calculate', calculate);
-        $(document).on('clear', clear);
-        $(document).on('backward', backward);
-        $(document).on('memoryClear', engine.memoryClear);
-        $(document).on('memoryRecall', memoryRecall);
-        $(document).on('memoryAdd', engine.memoryAdd);
-    }
-
-    init();
 }
