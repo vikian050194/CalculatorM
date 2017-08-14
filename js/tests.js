@@ -60,8 +60,9 @@ $(document).ready(function () {
                     actual = engine.model();
                 }
             },
+
             {
-                name: 'Two arguments and operation',
+                name: 'Two arguments and operation ADD',
                 test: function () {
                     expected.firstArgument = 42;
                     expected.operator = 'add';
@@ -75,7 +76,40 @@ $(document).ready(function () {
 
                     actual = engine.model();
                 }
+            },
+            {
+                name: 'Clean',
+                test: function () {
+                    expected.firstArgument = 0;
+                    expected.operator = '';
+                    expected.secondArgument = 0;
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('add');
+                    engine.digit(2);
+                    engine.digit(1);
+                    engine.clean();
+
+                    actual = engine.model();
+                }
+            },
+            {
+                name: 'Calculate +',
+                test: function () {
+                    expected.firstArgument = 0;
+                    expected.operator = '';
+                    expected.secondArgument = 0;
+                    engine.digit(4);
+                    engine.digit(2);
+                    engine.operator('add');
+                    engine.digit(2);
+                    engine.digit(1);
+                    engine.calculate();
+
+                    actual = engine.model();
+                }
             }
+
         ];
 
         var isTestFailed = false;
