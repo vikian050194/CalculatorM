@@ -9,6 +9,11 @@ function PageHandler() {
 	}
 	
 	this.setPage = function(number) {
+		if(number > lastPageNumber)
+			number = firstPageNumber;
+		if(number < firstPageNumber)
+			number = lastPageNumber;
+
 		$('.page-' + currentPageNumber).each(function() {
 			$(this).addClass('not-displayed');
 		});
@@ -19,23 +24,6 @@ function PageHandler() {
 		
 		$('#dot' + currentPageNumber).removeClass('dot_chosen');
 		$('#dot' + number).addClass('dot_chosen');
-		
-		if(number === firstPageNumber) {
-			$('#left-arrow').off('click');
-		}
-		if(number === lastPageNumber) {
-			$('#right-arrow').off('click');
-		}
-		if(number > firstPageNumber) {
-            $('#left-arrow').on('click', function() {
-                self.setPage(number - 1);
-            });
-		}
-		if(number < lastPageNumber) {
-            $('#right-arrow').on('click', function() {
-                self.setPage(number + 1);
-            });
-		}
 
 		currentPageNumber = number;
 	}

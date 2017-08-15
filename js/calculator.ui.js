@@ -49,6 +49,10 @@ function CalculatorUI() {
 		$('#right-arrow').on('click', function() {
 			pageHandler.setPage(pageHandler.getCurrentPageNumber() + 1);
 		});
+
+        $('#left-arrow').on('click', function() {
+            pageHandler.setPage(pageHandler.getCurrentPageNumber() - 1);
+        });
     }
 
     init();

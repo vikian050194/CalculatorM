@@ -6,7 +6,7 @@ function TestSet() {
         testItems.push(testItem);
     };
 
-    this.test = function (assert) {
+    this.test = function () {
         var failed = 0;
         var failedTestNames = [];
 

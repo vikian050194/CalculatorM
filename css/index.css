@@ -1,3 +1,23 @@
+.carousel {
+    display: inline-block;
+    width: 100%;
+}
+
+.carousel__slide {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel_onebtn {
+    margin: 1%;
+    width: 23%;
+}
+
+.carousel_onebtn button {
+    margin: 0;
+    width: 100%;
+}
+
 #calculator {
     height: 100vh;
     width: 100%;
@@ -50,6 +70,10 @@
     color: white;
     font-size: 5em;
     opacity: 0.5;
+}
+
+.arrow:hover {
+    cursor: pointer;
 }
 
 #left-arrow:before {
