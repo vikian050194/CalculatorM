@@ -1,22 +1,3 @@
-.carousel {
-    display: inline-block;
-    width: 100%;
-}
-
-.carousel__slide {
-    display: flex;
-    justify-content: center;
-}
-
-.carousel_onebtn {
-    margin: 1%;
-    width: 23%;
-}
-
-.carousel_onebtn button {
-    margin: 0;
-    width: 100%;
-}
 
 #calculator {
     height: 100vh;
@@ -24,6 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 #btns-table {
@@ -39,6 +21,7 @@
     margin-top: 4vh;
     margin-bottom: 0;
     justify-content: center;
+    overflow: hidden;
 }
 
 .line {
@@ -76,53 +59,81 @@
     cursor: pointer;
 }
 
-#left-arrow:before {
+#arrow-prev:before {
     margin-left: 2vw;
     content: '\2039';
 }
 
-#right-arrow:before {
+#arrow-next:before {
     content: '\203A';
     margin-right: 2vw;
 }
 
-#dots {
-    display: flex;
-    justify-content: center;
+ul {
+    list-style-type: none;
 }
 
-.dot {
+.slick-dots {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.slick-dots li button {
+    display: none;
+}
+
+.slick-dots li {
+    opacity: 0.5;
+    margin-top: -0.5vh;
     text-align: center;
     color: white;
     font-size: 3em;
-    opacity: 0.5;
-    margin-top: -0.5vh;
 }
 
-.dot:before {
+.slick-dots li:before {
     content: '\0025CB';
 }
 
-.dot_chosen:before {
+.slick-dots .slick-active:before {
     content: '\0025CF';
 }
 
-#setMod{
-    font-size: 1.5em;
-	line-height: 3.5vh;
+.carousel {
+    display: inline-block;
+    width: 100%;
 }
 
-.calculator-btn{
+.slick-track {
+    display: flex;
+}
+
+.slick-slide {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.slick-slide:focus {
+    outline: 0;
+}
+
+.btn{
     font-size: 3em;
     width: 23%;
     height: 10vh;
     padding: 0;
     margin: 1%;
-	font-weight: bold;
+    font-weight: bold;
 }
 
-.calculator-btn:focus {
-	outline:0;
+.btn:focus {
+    outline:0;
+}
+
+.setMod-btn{
+    font-size: 1.5em;
+	line-height: 3.5vh;
 }
 
 .memory-btn {
@@ -130,34 +141,7 @@
 }
 
 .not-displayed {
-	display: none;
-}
-
-.animated {
-  -webkit-animation-duration: 5s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: ease;
-  -webkit-animation-fill-mode: forwards;
-
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease;
-  animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes pulse {
-    0% { -webkit-transform: scale(1); }
-    50% { -webkit-transform: scale(0.8); }
-    100% { -webkit-transform: scale(1); }
-}
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.8); }
-    100% { transform: scale(1); }
-}
-.pulse {
-    -webkit-animation-name: pulse;
-    animation-name: pulse;
+    display: none;
 }
 
 @media only screen and (min-device-width: 500px) {

@@ -1,6 +1,5 @@
 function CalculatorUI() {
     var calculator = new Calculator();
-	var pageHandler = new PageHandler();
 
     var updateUI = function () {
         var model = calculator.model();
@@ -16,10 +15,11 @@ function CalculatorUI() {
             for (var i = 0; i <= values.length; i++) {
                 (function () {
                     var value = values[i];
-                    var id = '#' + value;
-                    $(id).on('click', function (e) {
-                        calculator[method](value);
-                        updateUI();
+                    $('[data-value=' + value + ']').each(function () {
+                        $(this).on('click', function (e) {
+                            calculator[method](value);
+                            updateUI();
+                        });
                     });
                 })();
             }
@@ -44,15 +44,6 @@ function CalculatorUI() {
         // $('#setMod').on('click', function () {
         //     $(document).trigger(commonAction, args('setMod'));
         // });
-		
-
-		$('#right-arrow').on('click', function() {
-			pageHandler.setPage(pageHandler.getCurrentPageNumber() + 1);
-		});
-
-        $('#left-arrow').on('click', function() {
-            pageHandler.setPage(pageHandler.getCurrentPageNumber() - 1);
-        });
     }
 
     init();
