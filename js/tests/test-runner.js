@@ -5,6 +5,7 @@ $(document).ready(function () {
         var testSets = [];
 
         testSets.push(EngineTestSet);
+        testSets.push(FluxTestSet);
 
         var totalCount = 0;
         var passedCount = 0;
@@ -22,8 +23,9 @@ $(document).ready(function () {
             result.failedTestNames.forEach(function (name) {
                 failedHtml += '<div>' + name + '</div>';
             });
-            totalCount += passedCount + failedCount;
         }, this);
+
+        totalCount = passedCount + failedCount;
 
         $('#totalCount').html('total:' + totalCount);
         $('#passedCount').html('passed:' + passedCount);
