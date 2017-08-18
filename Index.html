@@ -21,14 +21,14 @@
     <script type="text/javascript" src="js/flux/store-creator.js"></script>
     <script type="text/javascript" src="js/flux/update-ui.js"></script>
     <script type="text/javascript" src="js/flux/module.js"></script>
-    <script type="text/javascript" src="https://rawgit.com/kenwheeler/slick/master/slick/slick.min.js"></script>
+    <script type="text/javascript" src="js/slick.min.js"></script>
     <link rel="shortcut icon" href="icons/index.png" />
 </head>
 
 <body>
     <div id="calculator" class="calculator-blue">
-        <input type="text" id="output" class="form-control line" readonly>
-        <input type="text" id="module" class="form-control line" readonly>
+        <input id="output" class="form-control line" readonly>
+        <input id="module" class="form-control line" readonly>
         <div id="work-panel">
             <div id="arrow-prev" class="arrow"></div>
             <div id="btns-table">
@@ -46,7 +46,7 @@
                         <button id="4" class="btn btn-digit" data-value="4">4</button>
                         <button id="5" class="btn btn-digit" data-value="5">5</button>
                         <button id="6" class="btn btn-digit" data-value="6">6</button>
-                        <button id="backward" class="btn btn-special" data-value="backward">
+                        <button id="backspace" class="btn btn-special" data-value="backspace">
                             <span class="glyphicon glyphicon-step-backward"></span>
                         </button>
                         <button id="1" class="btn btn-digit" data-value="1">1</button>
@@ -60,10 +60,10 @@
                         <button id="calc" class="btn btn-special" data-value="calc">=</button>
                     </div>
                     <div id="page-2" class="slick-slide">
-                        <button id="MR1" class="btn btn-operator memory-btn" data-value="memoryRecall">MR1</button>
-                        <button id="MR2" class="btn btn-operator memory-btn" data-value="MR2">MR2</button>
-                        <button id="MR3" class="btn btn-operator memory-btn" data-value="MR3">MR3</button>
-                        <button id="MR4" class="btn btn-operator memory-btn" data-value="MR4">MR4</button>
+                        <button id="MR" class="btn btn-operator memory-btn" data-value="memoryRecall">MR</button>
+                        <button id="undo" class="btn btn-operator memory-btn" data-value="undo">undo</button>
+                        <button id="redo" class="btn btn-operator memory-btn" data-value="redo">redo</button>
+                        <button id="menu" class="btn btn-operator memory-btn" data-value="menu">menu</button>
                         <button id="M+" class="btn btn-operator memory-btn" data-value="memoryAdd">M+</button>
                         <button id="7-page2" class="btn btn-digit" data-value="7">7</button>
                         <button id="8-page2" class="btn btn-digit" data-value="8">8</button>
@@ -72,7 +72,7 @@
                         <button id="4-page2" class="btn btn-digit" data-value="4">4</button>
                         <button id="5-page2" class="btn btn-digit" data-value="5">5</button>
                         <button id="6-page2" class="btn btn-digit" data-value="6">6</button>
-                        <button id="backward-page2" class="btn btn-special" data-value="backward">
+                        <button id="backspace-page2" class="btn btn-special" data-value="backspace">
                             <span class="glyphicon glyphicon-step-backward"></span>
                         </button>
                         <button id="1-page2" class="btn btn-digit" data-value="1">1</button>

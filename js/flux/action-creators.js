@@ -1,14 +1,14 @@
 function AddDigitActionCreator(digit) {
     return {
         type: 'addDigit',
-        digit: digit //or better name it 'value'?
+        digit: digit
     }
 }
 
 function AddOperatorActionCreator(operator) {
     return {
         type: 'addOperator',
-        operator: operator //or better name it 'value'?
+        operator: operator
     }
 }
 
@@ -21,7 +21,7 @@ function CalculateActionCreator() {
 function SetModuleActionCreator(module) {
     return {
         type: 'setModule',
-        module: module //or better name it 'value'?
+        module: module
     }
 }
 
@@ -40,5 +40,17 @@ function AddToMemoryActionCreator() {
 function GetFromMemoryActionCreator() {
     return {
         type: 'getFromMemory'
+    }
+}
+
+function ClearMemoryActionCreator() {
+    return {
+        type: 'clearMemory'
+    }
+}
+
+function DeleteDigitActionCreator() {
+    return {
+        type: 'deleteDigit'
     }
 }

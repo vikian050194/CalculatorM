@@ -48,10 +48,13 @@ function Reducer(previousState, action) {
             break;
 
         case 'clear':
-            if(previousState.secondArgument === null)
-                return Object.assign(previousState, {firstArgument: 0});
-            else
-                return Object.assign(previousState, {secondArgument: 0});
+            return {
+                firstArgument: 0,
+                secondArgument: null,
+                operator: '',
+                module: 0,
+                memory: null
+            };
             break;
 
         case 'addToMemory':
@@ -62,10 +65,23 @@ function Reducer(previousState, action) {
             break;
 
         case 'getFromMemory':
+            if(previousState.memory === null)
+                return previousState;
             if(previousState.secondArgument === null)
-                return Object.assign(previousState, {memory: null, firstArgument: previousState.memory});
+                return Object.assign(previousState, {firstArgument: previousState.memory});
             else
-                return Object.assign(previousState, {memory: null, secondArgument: previousState.memory});
+                return Object.assign(previousState, {secondArgument: previousState.memory});
+            break;
+
+        case 'clearMemory':
+            return Object.assign(previousState, {memory: null});
+            break;
+
+        case 'deleteDigit':
+            if(previousState.secondArgument === null)
+                return Object.assign(previousState, {firstArgument: (previousState.firstArgument - previousState.firstArgument % 10) / 10});
+            else
+                return Object.assign(previousState, {secondArgument: (previousState.secondArgument - previousState.secondArgument % 10) / 10});
             break;
 
         default:

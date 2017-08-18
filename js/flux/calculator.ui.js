@@ -41,6 +41,19 @@ function CalculatorUI() {
         }
     };
 
+    var clearMemory = function (dispatch, getState) {
+        return function (payload) {
+            dispatch(ClearMemoryActionCreator());
+        }
+    };
+
+    var deleteDigit = function (dispatch, getState) {
+        return function (payload) {
+            dispatch(DeleteDigitActionCreator());
+        }
+    };
+
+
     var init = function () {
         var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         var operators = ['add', 'sub', 'mul', 'div', 'pow', 'calc'];
@@ -89,6 +102,18 @@ function CalculatorUI() {
             });
         };
 
+        var applyMemoryClear = function () {
+            $('[data-value="memoryClear"]').on('click', function () {
+                calculator.thunk(clearMemory);
+            });
+        };
+
+        var applyBackspace = function () {
+            $('[data-value="backspace"]').on('click', function () {
+                calculator.thunk(deleteDigit);
+            })
+        };
+
         var setStartZero = function () {
             $('[data-value="0"]').trigger('click');
         };
@@ -99,6 +124,8 @@ function CalculatorUI() {
         applyClear();
         applyMemoryAdd();
         applyMemoryRecall();
+        applyMemoryClear();
+        applyBackspace();
         setStartZero();
     };
 
