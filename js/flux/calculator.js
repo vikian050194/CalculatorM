@@ -1,10 +1,10 @@
 function Calculator() {
     var defaultState = {
         firstArgument: 0,
-        secondArgument: 0,
+        secondArgument: null,
         operator: '',
         module: 0,
-        result: 0
+        memory: null
     };
     var store = createStore(Reducer, defaultState);
 

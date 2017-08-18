@@ -3,23 +3,41 @@ function CalculatorUI() {
 
     var addOperator = function (dispatch, getState) {
         return function (payload) {
-            dispatch(new Action('addOperator', payload));
+            dispatch(AddOperatorActionCreator(payload));
             var currentState = getState();
             if(currentState.operator === 'calc') {
-                dispatch(new Action('calculate'));
+                dispatch(CalculateActionCreator());
             }
         }
     };
 
     var addDigit = function (dispatch, getState) {
         return function (payload) {
-            dispatch(new Action('addDigit', payload));
+            dispatch(AddDigitActionCreator(payload));
         }
     };
 
     var setModule = function (dispatch, getState) {
         return function (payload) {
-            dispatch(new Action('setModule', payload));
+            dispatch(SetModuleActionCreator(payload));
+        }
+    };
+
+    var clear = function (dispatch, getState) {
+        return function (payload) {
+            dispatch(ClearActionCreator());
+        }
+    };
+
+    var addToMemory = function (dispatch, getState) {
+        return function (payload) {
+            dispatch(AddToMemoryActionCreator());
+        }
+    };
+
+    var getFromMemory = function (dispatch, getState) {
+        return function (payload) {
+            dispatch(GetFromMemoryActionCreator());
         }
     };
 
@@ -53,9 +71,35 @@ function CalculatorUI() {
             calculator.thunk(setModule, Module());
         };
 
+        var applyClear = function () {
+            $('[data-value="clear"]').on('click', function () {
+                calculator.thunk(clear);
+            });
+        };
+
+        var applyMemoryAdd = function () {
+            $('[data-value="memoryAdd"]').on('click', function () {
+                calculator.thunk(addToMemory);
+            });
+        };
+
+        var applyMemoryRecall = function () {
+            $('[data-value="memoryRecall"]').on('click', function () {
+                calculator.thunk(getFromMemory);
+            });
+        };
+
+        var setStartZero = function () {
+            $('[data-value="0"]').trigger('click');
+        };
+
         applyDigits(digits);
         applyOperators(operators);
-        applyModule();
+        // applyModule();
+        applyClear();
+        applyMemoryAdd();
+        applyMemoryRecall();
+        setStartZero();
     };
 
     init();
