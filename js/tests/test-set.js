@@ -17,7 +17,7 @@ function TestSet() {
             }
             catch (err) {
                 failed++;
-                failedTestNames.push(item.name + ' - ' + item.author);
+                failedTestNames.push(item.name + ' - ' + item.author + ': ' + err);
             }
         });
 
