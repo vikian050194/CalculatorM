@@ -1,13 +1,13 @@
 function QueryBuilder() {
     this.getQuery = function (model) {
-        var line = "";
-        line = model.firstArgument;
+        var line = new String();
+        line += model.firstArgument;
         if (model.operator !== '') {
-            line += model.operator + model.secondArgument;
+            line += ' ' + model.operator + ' ' + model.secondArgument;
 
         }
         if (model.module != 0) {
-            line += "mod" + model.module;
+            line += ' mod ' + model.module;
         }
         return line;
     }
