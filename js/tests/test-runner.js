@@ -4,7 +4,7 @@ $(document).ready(function () {
     (function () {
         var testSets = [];
 
-        //testSets.push(EngineTestSet);
+        testSets.push(EngineTestSet);
         testSets.push(QueryBuilderTestSet);
 
         var totalCount = 0;
