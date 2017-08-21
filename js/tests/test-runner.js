@@ -5,11 +5,8 @@ $(document).ready(function () {
         var testSets = [];
 
         testSets.push(EngineTestSet);
-<<<<<<< HEAD
         testSets.push(FluxTestSet);
-=======
         testSets.push(QueryBuilderTestSet);
->>>>>>> vitaly2
 
         var totalCount = 0;
         var passedCount = 0;
@@ -27,16 +24,10 @@ $(document).ready(function () {
             result.failedTestNames.forEach(function (name) {
                 failedHtml += '<div>' + name + '</div>';
             });
-<<<<<<< HEAD
         }, this);
 
         totalCount = passedCount + failedCount;
 
-=======
-
-        }, this);
-        totalCount += passedCount + failedCount;
->>>>>>> vitaly2
         $('#totalCount').html('total:' + totalCount);
         $('#passedCount').html('passed:' + passedCount);
         // $('#passed').html(passedHtml);

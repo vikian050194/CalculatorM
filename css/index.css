@@ -33,7 +33,7 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     overflow: auto;
-    direction: rtl;
+    /* direction: rtl; */
 }
 
 .form-control:focus {
