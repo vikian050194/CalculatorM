@@ -33,6 +33,7 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     overflow: auto;
+    direction: rtl;
 }
 
 .form-control:focus {
@@ -131,13 +132,13 @@ ul {
     outline:0;
 }
 
-.setMod-btn{
+.text-btn{
     font-size: 1.5em;
 	line-height: 3.5vh;
 }
 
-.memory-btn {
-	font-size: 1.5em;
+.glyphicon {
+    margin-top: 5%;
 }
 
 .not-displayed {

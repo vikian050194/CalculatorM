@@ -1,9 +1,9 @@
-function createStore(reducer, defaultState) {
-    var state = defaultState;
+function createStore(reducer, initialState) {
+    var state = {history: [initialState], currentIndex: 0};
     var listeners = [];
 
     var getState = function () {
-        return state;
+        return state.history[state.currentIndex];
     };
 
     var addListener = function (callback) {

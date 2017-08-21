@@ -6,11 +6,11 @@ function Calculator() {
         module: 0,
         memory: null
     };
-    var store = createStore(Reducer, initialState);
+    var store = createStore(Undoable(Reducer), initialState);
 
     this.thunk = function(func, payload) {
         store.thunk(func, payload);
     };
 
-    store.addListener(UpdateUI);
+    store.addListener(HistoryUpdate(UpdateUI));
 }

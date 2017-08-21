@@ -19,7 +19,12 @@ function CalculatorUI() {
 
     var setModule = function (dispatch, getState) {
         return function (payload) {
-            dispatch(SetModuleActionCreator(payload));
+            var currentState = getState();
+            dispatch(SetToZeroActionCreator());
+            var module = currentState.firstArgument;
+            if(currentState.secondArgument !== null)
+                module = currentState.secondArgument;
+            dispatch(SetModuleActionCreator(module));
         }
     };
 
@@ -53,6 +58,18 @@ function CalculatorUI() {
         }
     };
 
+    var undo = function (dispatch, getState) {
+        return function (payload) {
+            dispatch(UndoActionCreator());
+        }
+    };
+
+    var redo = function (dispatch, getState) {
+        return function (payload) {
+            dispatch(RedoActionCreator());
+        }
+    };
+
 
     var init = function () {
         var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -81,7 +98,9 @@ function CalculatorUI() {
         };
 
         var applyModule = function () {
-            calculator.thunk(setModule, Module());
+            $('[data-value="setMod"]').click(function () {
+                calculator.thunk(setModule, Module());
+            });
         };
 
         var applyClear = function () {
@@ -114,18 +133,33 @@ function CalculatorUI() {
             })
         };
 
+        var applyUndo = function () {
+            $('[data-value="undo"]').on('click', function () {
+                calculator.thunk(undo);
+            })
+        };
+
+        var applyRedo = function () {
+            $('[data-value="redo"]').on('click', function () {
+                calculator.thunk(redo);
+            })
+        };
+
         var setStartZero = function () {
-            $('[data-value="0"]').trigger('click');
+            $('#output').val(0);
+            $('#module').val(0);
         };
 
         applyDigits(digits);
         applyOperators(operators);
-        // applyModule();
+        applyModule();
         applyClear();
         applyMemoryAdd();
         applyMemoryRecall();
         applyMemoryClear();
         applyBackspace();
+        applyUndo();
+        applyRedo();
         setStartZero();
     };
 

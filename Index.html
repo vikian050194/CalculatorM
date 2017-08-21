@@ -20,7 +20,9 @@
     <script type="text/javascript" src="js/flux/reducer.js"></script>
     <script type="text/javascript" src="js/flux/store-creator.js"></script>
     <script type="text/javascript" src="js/flux/update-ui.js"></script>
+    <script type="text/javascript" src="js/flux/history-update.js"></script>
     <script type="text/javascript" src="js/flux/module.js"></script>
+    <script type="text/javascript" src="js/flux/undoable.js"></script>
     <script type="text/javascript" src="js/slick.min.js"></script>
     <link rel="shortcut icon" href="icons/index.png" />
 </head>
@@ -42,7 +44,7 @@
                         <button id="7" class="btn btn-digit" data-value="7">7</button>
                         <button id="8" class="btn btn-digit" data-value="8">8</button>
                         <button id="9" class="btn btn-digit" data-value="9">9</button>
-                        <button id="setMod" class="btn btn-operator setMod-btn" data-value="setMod">set<br>mod</button>
+                        <button id="setMod" class="btn btn-operator text-btn" data-value="setMod">set<br>mod</button>
                         <button id="4" class="btn btn-digit" data-value="4">4</button>
                         <button id="5" class="btn btn-digit" data-value="5">5</button>
                         <button id="6" class="btn btn-digit" data-value="6">6</button>
@@ -60,15 +62,17 @@
                         <button id="calc" class="btn btn-special" data-value="calc">=</button>
                     </div>
                     <div id="page-2" class="slick-slide">
-                        <button id="MR" class="btn btn-operator memory-btn" data-value="memoryRecall">MR</button>
-                        <button id="undo" class="btn btn-operator memory-btn" data-value="undo">undo</button>
-                        <button id="redo" class="btn btn-operator memory-btn" data-value="redo">redo</button>
-                        <button id="menu" class="btn btn-operator memory-btn" data-value="menu">menu</button>
-                        <button id="M+" class="btn btn-operator memory-btn" data-value="memoryAdd">M+</button>
+                        <button id="MR" class="btn btn-operator text-btn" data-value="memoryRecall">MR</button>
+                        <button id="undo" class="btn btn-operator text-btn" data-value="undo">undo</button>
+                        <button id="redo" class="btn btn-operator text-btn" data-value="redo">redo</button>
+                        <button id="menu" class="btn btn-operator" data-value="menu">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </button>
+                        <button id="M+" class="btn btn-operator text-btn" data-value="memoryAdd">M+</button>
                         <button id="7-page2" class="btn btn-digit" data-value="7">7</button>
                         <button id="8-page2" class="btn btn-digit" data-value="8">8</button>
                         <button id="9-page2" class="btn btn-digit" data-value="9">9</button>
-                        <button id="MC" class="btn btn-operator memory-btn" data-value="memoryClear">MC</button>
+                        <button id="MC" class="btn btn-operator text-btn" data-value="memoryClear">MC</button>
                         <button id="4-page2" class="btn btn-digit" data-value="4">4</button>
                         <button id="5-page2" class="btn btn-digit" data-value="5">5</button>
                         <button id="6-page2" class="btn btn-digit" data-value="6">6</button>

@@ -1,50 +1,58 @@
 function Reducer(previousState, action) {
+    var state = jQuery.extend(true, {}, previousState);
     switch (action.type) {
         case 'addDigit':
-            if(previousState.operator === '') {
-                previousState.firstArgument *= 10;
-                previousState.firstArgument += action.digit;
-                return Object.assign(previousState, {firstArgument: previousState.firstArgument});
+            if(state.operator === '') {
+                state.firstArgument *= 10;
+                state.firstArgument += action.digit;
+                return Object.assign(state, {firstArgument: state.firstArgument});
             }
             else {
-                if(previousState.secondArgument === null)
-                    previousState.secondArgument = 0;
-                previousState.secondArgument *= 10;
-                previousState.secondArgument += action.digit;
-                return Object.assign(previousState, {secondArgument: previousState.secondArgument});
+                if(state.secondArgument === null)
+                    state.secondArgument = 0;
+                state.secondArgument *= 10;
+                state.secondArgument += action.digit;
+                return Object.assign(state, {secondArgument: state.secondArgument});
             }
             break;
 
         case 'addOperator':
-            switch (previousState.operator) {
+            switch (state.operator) {
                 case 'add':
-                    previousState.firstArgument += previousState.secondArgument;
+                    state.firstArgument += state.secondArgument;
                     break;
                 case 'sub':
-                    previousState.firstArgument -= previousState.secondArgument;
+                    state.firstArgument -= state.secondArgument;
                     break;
                 case 'mul':
-                    previousState.firstArgument *= previousState.secondArgument;
+                    state.firstArgument *= state.secondArgument;
                     break;
                 case 'div':
-                    previousState.firstArgument /= previousState.secondArgument;
+                    state.firstArgument /= state.secondArgument;
                     break;
                 case 'pow':
-                    previousState.firstArgument = Math.pow(previousState.firstArgument, previousState.secondArgument);
+                    state.firstArgument = Math.pow(state.firstArgument, state.secondArgument);
                     break;
             }
-            return Object.assign(previousState, {operator: action.operator, secondArgument: 0});
+            return Object.assign(state, {operator: action.operator, secondArgument: 0});
             break;
 
         case 'calculate':
-            var result = previousState.firstArgument;
-            if(previousState.module !== 0)
-                result %= previousState.module;
-            return Object.assign(previousState, {operator: '', firstArgument: result, secondArgument: null});
+            var result = state.firstArgument;
+            if(state.module !== 0)
+                result %= state.module;
+            return Object.assign(state, {operator: '', firstArgument: result, secondArgument: null});
+            break;
+
+        case 'setToZero':
+            if(state.secondArgument === null)
+                return Object.assign(state, {firstArgument: 0});
+            else
+                return Object.assign(state, {secondArgument: 0});
             break;
 
         case 'setModule':
-            return Object.assign(previousState, {module: action.module});
+            return Object.assign(state, {module: action.module});
             break;
 
         case 'clear':
@@ -58,33 +66,33 @@ function Reducer(previousState, action) {
             break;
 
         case 'addToMemory':
-            if(previousState.secondArgument === null)
-                return Object.assign(previousState, {memory: previousState.firstArgument, firstArgument: 0});
+            if(state.secondArgument === null)
+                return Object.assign(state, {memory: state.firstArgument, firstArgument: 0});
             else
-                return Object.assign(previousState, {memory: previousState.secondArgument, secondArgument: 0});
+                return Object.assign(state, {memory: state.secondArgument, secondArgument: 0});
             break;
 
         case 'getFromMemory':
-            if(previousState.memory === null)
-                return previousState;
-            if(previousState.secondArgument === null)
-                return Object.assign(previousState, {firstArgument: previousState.memory});
+            if(state.memory === null)
+                return state;
+            if(state.secondArgument === null)
+                return Object.assign(state, {firstArgument: state.memory});
             else
-                return Object.assign(previousState, {secondArgument: previousState.memory});
+                return Object.assign(state, {secondArgument: state.memory});
             break;
 
         case 'clearMemory':
-            return Object.assign(previousState, {memory: null});
+            return Object.assign(state, {memory: null});
             break;
 
         case 'deleteDigit':
-            if(previousState.secondArgument === null)
-                return Object.assign(previousState, {firstArgument: (previousState.firstArgument - previousState.firstArgument % 10) / 10});
+            if(state.secondArgument === null)
+                return Object.assign(state, {firstArgument: (state.firstArgument - state.firstArgument % 10) / 10});
             else
-                return Object.assign(previousState, {secondArgument: (previousState.secondArgument - previousState.secondArgument % 10) / 10});
+                return Object.assign(state, {secondArgument: (state.secondArgument - state.secondArgument % 10) / 10});
             break;
 
         default:
-            return previousState;
+            return state;
     }
 }

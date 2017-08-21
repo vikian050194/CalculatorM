@@ -104,7 +104,7 @@ function FluxTestSet() {
         state.firstArgument = 63;
         state.operator = 'add';
         state.module = Module();
-        return Reducer(state,CalculateActionCreator());
+        return Reducer(state, CalculateActionCreator());
     };
 
     calculateTest.expectedObject = (function () {
@@ -146,6 +146,27 @@ function FluxTestSet() {
         return Object.assign(state, {module: 5, firstArgument: 3});
     })();
     testSet.addTestItem(setModuleWCalcTest);
+
+
+    var setModuleFromFirstArgumentTest = new TestItem();
+    setModuleFromFirstArgumentTest.name = 'Action "setModule" from first argument';
+    setModuleFromFirstArgumentTest.author = 'Anna';
+
+    setModuleFromFirstArgumentTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 5;
+        var module = state.firstArgument;
+        state = Reducer(state, SetToZeroActionCreator());
+        state = Reducer(state, SetModuleActionCreator(module));
+        state.firstArgument = 63;
+        return Reducer(state, CalculateActionCreator());
+    };
+
+    setModuleFromFirstArgumentTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        return Object.assign(state, {module: 5, firstArgument: 3});
+    })();
+    testSet.addTestItem(setModuleFromFirstArgumentTest);
 
 
     var addOperatorAddTest = new TestItem();
@@ -440,6 +461,103 @@ function FluxTestSet() {
         return Object.assign(state, {secondArgument: 0, firstArgument: 42, operator: 'add'});
     })();
     testSet.addTestItem(backspaceSAToZeroTest);
+
+
+    var undoTest = new TestItem();
+    undoTest.name = 'Undo test';
+    undoTest.author = 'Anna';
+
+    undoTest.test = function () {
+        var history = [
+            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42}),
+            Object.assign(jQuery.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 0
+            })
+        ];
+        return Undoable(Reducer)({history: history, currentIndex: 1}, UndoActionCreator());
+    };
+
+    undoTest.expectedObject = (function () {
+        var history = [
+            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42}),
+            Object.assign(jQuery.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 0
+            })
+        ];
+        return {history: history, currentIndex: 0};
+    })();
+    testSet.addTestItem(undoTest);
+
+
+    var undoWithNewTest = new TestItem();
+    undoWithNewTest.name = 'Undo with new digit test';
+    undoWithNewTest.author = 'Anna';
+
+    undoWithNewTest.test = function () {
+        var history = [
+            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42}),
+            Object.assign(jQuery.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 0
+            })
+        ];
+        var state = Undoable(Reducer)({history: history, currentIndex: 1}, UndoActionCreator());
+        return Undoable(Reducer)(state, AddDigitActionCreator(1));
+    };
+
+    undoWithNewTest.expectedObject = (function () {
+        var history = [
+            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42}),
+            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 421})
+        ];
+        return {history: history, currentIndex: 1};
+    })();
+    testSet.addTestItem(undoWithNewTest);
+
+
+    var redoTest = new TestItem();
+    redoTest.name = 'Redo test';
+    redoTest.author = 'Anna';
+
+    redoTest.test = function () {
+        var history = [
+            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42}),
+            Object.assign(jQuery.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 0
+            }),
+            Object.assign(jQuery.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 21
+            })
+        ];
+        return Undoable(Reducer)({history: history, currentIndex: 1}, RedoActionCreator());
+    };
+
+    redoTest.expectedObject = (function () {
+        var history = [
+            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42}),
+            Object.assign(jQuery.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 0
+            }),
+            Object.assign(jQuery.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 21
+            })
+        ];
+        return {history: history, currentIndex: 2};
+    })();
+    testSet.addTestItem(redoTest);
 
     return testSet.test();
 }

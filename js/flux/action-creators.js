@@ -18,6 +18,12 @@ function CalculateActionCreator() {
     }
 }
 
+function SetToZeroActionCreator() {
+    return {
+        type: 'setToZero'
+    }
+}
+
 function SetModuleActionCreator(module) {
     return {
         type: 'setModule',
@@ -52,5 +58,17 @@ function ClearMemoryActionCreator() {
 function DeleteDigitActionCreator() {
     return {
         type: 'deleteDigit'
+    }
+}
+
+function UndoActionCreator() {
+    return {
+        type: 'undo'
+    }
+}
+
+function RedoActionCreator() {
+    return {
+        type: 'redo'
     }
 }
