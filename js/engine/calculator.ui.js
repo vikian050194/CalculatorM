@@ -3,70 +3,70 @@ function CalculatorUI() {
 
     var addOperator = function (dispatch, getState) {
         return function (value) {
-            dispatch(AddOperatorActionCreator(value));
+            dispatch(createAction('addOperator')(value));
             var currentState = getState();
             if (currentState.operator === 'calc') {
-                dispatch(CalculateActionCreator());
+                dispatch(createAction('calculate')());
             }
         }
     };
 
     var addDigit = function (dispatch, getState) {
         return function (value) {
-            dispatch(AddDigitActionCreator(value));
+            dispatch(createAction('addDigit')(value));
         }
     };
 
     var setModule = function (dispatch, getState) {
         return function (value) {
             var currentState = getState();
-            dispatch(SetToZeroActionCreator());
+            dispatch(createAction('setToZero')());
             var module = currentState.firstArgument;
             if (currentState.secondArgument !== null)
                 module = currentState.secondArgument;
-            dispatch(SetModuleActionCreator(module));
+            dispatch(createAction('setModule')(module));
         }
     };
 
     var clear = function (dispatch, getState) {
         return function (value) {
-            dispatch(ClearActionCreator());
+            dispatch(createAction('clear')());
         }
     };
 
     var addToMemory = function (dispatch, getState) {
         return function (value) {
-            dispatch(AddToMemoryActionCreator());
+            dispatch(createAction('addToMemory')());
         }
     };
 
     var getFromMemory = function (dispatch, getState) {
         return function (value) {
-            dispatch(GetFromMemoryActionCreator());
+            dispatch(createAction('getFromMemory')());
         }
     };
 
     var clearMemory = function (dispatch, getState) {
         return function (value) {
-            dispatch(ClearMemoryActionCreator());
+            dispatch(createAction('clearMemory')());
         }
     };
 
     var deleteDigit = function (dispatch, getState) {
         return function (value) {
-            dispatch(DeleteDigitActionCreator());
+            dispatch(createAction('deleteDigit')());
         }
     };
 
     var undo = function (dispatch, getState) {
         return function (value) {
-            dispatch(UndoActionCreator());
+            dispatch(createAction('undo')());
         }
     };
 
     var redo = function (dispatch, getState) {
         return function (value) {
-            dispatch(RedoActionCreator());
+            dispatch(createAction('redo')());
         }
     };
 

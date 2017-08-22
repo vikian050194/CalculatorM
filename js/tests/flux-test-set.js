@@ -14,7 +14,7 @@ function FluxTestSet(initialState) {
 
     addDigitTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Reducer(state, AddDigitActionCreator(4));
+        return Reducer(state, createAction('addDigit')(4));
     };
 
     addDigitTest.expectedObject = (function () {
@@ -31,7 +31,7 @@ function FluxTestSet(initialState) {
     addFewDigitsTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 4;
-        return Reducer(state, AddDigitActionCreator(2));
+        return Reducer(state, createAction('addDigit')(2));
     };
 
     addFewDigitsTest.expectedObject = (function () {
@@ -48,7 +48,7 @@ function FluxTestSet(initialState) {
     addOperatorTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 42;
-        return Reducer(state, AddOperatorActionCreator('add'));
+        return Reducer(state, createAction('addOperator')('add'));
     };
 
     addOperatorTest.expectedObject = (function () {
@@ -67,7 +67,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 42;
         state.operator = 'add';
         state.secondArgument = 21;
-        return Reducer(state, AddOperatorActionCreator('add'));
+        return Reducer(state, createAction('addOperator')('add'));
     };
 
     addOperatorWPrevTest.expectedObject = (function () {
@@ -85,7 +85,7 @@ function FluxTestSet(initialState) {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 42;
         state.operator = 'add';
-        return Reducer(state, AddDigitActionCreator(1));
+        return Reducer(state, createAction('addDigit')(1));
     };
 
     twoArgumentsTest.expectedObject = (function () {
@@ -104,7 +104,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 63;
         state.operator = 'add';
         state.module = 5;
-        return Reducer(state, CalculateActionCreator());
+        return Reducer(state, createAction('calculate')());
     };
 
     calculateTest.expectedObject = (function () {
@@ -120,7 +120,7 @@ function FluxTestSet(initialState) {
 
     setModuleTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Reducer(state, SetModuleActionCreator(5));
+        return Reducer(state, createAction('setModule')(5));
     };
 
     setModuleTest.expectedObject = (function () {
@@ -136,9 +136,9 @@ function FluxTestSet(initialState) {
 
     setModuleWCalcTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
-        state = Reducer(state, SetModuleActionCreator(5));
+        state = Reducer(state, createAction('setModule')(5));
         state.firstArgument = 63;
-        return Reducer(state, CalculateActionCreator());
+        return Reducer(state, createAction('calculate')());
     };
 
     setModuleWCalcTest.expectedObject = (function () {
@@ -156,10 +156,10 @@ function FluxTestSet(initialState) {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 5;
         var module = state.firstArgument;
-        state = Reducer(state, SetToZeroActionCreator());
-        state = Reducer(state, SetModuleActionCreator(module));
+        state = Reducer(state, createAction('setToZero')());
+        state = Reducer(state, createAction('setModule')(module));
         state.firstArgument = 63;
-        return Reducer(state, CalculateActionCreator());
+        return Reducer(state, createAction('calculate')());
     };
 
     setModuleFromFirstArgumentTest.expectedObject = (function () {
@@ -178,7 +178,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 42;
         state.secondArgument = 21;
         state.operator = 'add';
-        return Reducer(state, AddOperatorActionCreator('add'));
+        return Reducer(state, createAction('addOperator')('add'));
     };
 
     addOperatorAddTest.expectedObject = (function () {
@@ -197,7 +197,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 42;
         state.secondArgument = 21;
         state.operator = 'sub';
-        return Reducer(state, AddOperatorActionCreator('sub'));
+        return Reducer(state, createAction('addOperator')('sub'));
     };
 
     addOperatorSubTest.expectedObject = (function () {
@@ -216,7 +216,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 4;
         state.secondArgument = 2;
         state.operator = 'mul';
-        return Reducer(state, AddOperatorActionCreator('mul'));
+        return Reducer(state, createAction('addOperator')('mul'));
     };
 
     addOperatorMulTest.expectedObject = (function () {
@@ -235,7 +235,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 42;
         state.secondArgument = 21;
         state.operator = 'div';
-        return Reducer(state, AddOperatorActionCreator('div'));
+        return Reducer(state, createAction('addOperator')('div'));
     };
 
     addOperatorDivTest.expectedObject = (function () {
@@ -254,7 +254,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 3;
         state.secondArgument = 2;
         state.operator = 'pow';
-        return Reducer(state, AddOperatorActionCreator('pow'));
+        return Reducer(state, createAction('addOperator')('pow'));
     };
 
     addOperationPowTest.expectedObject = (function () {
@@ -273,7 +273,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 3;
         state.operator = 'add';
         state.secondArgument = 5;
-        return Reducer(state, ClearActionCreator());
+        return Reducer(state, createAction('clear')());
     };
 
     clearTest.expectedObject = (function () {
@@ -289,7 +289,7 @@ function FluxTestSet(initialState) {
     addToMemoryTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 42;
-        return Reducer(state, AddToMemoryActionCreator());
+        return Reducer(state, createAction('addToMemory')());
     };
 
     addToMemoryTest.expectedObject = (function () {
@@ -308,7 +308,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 42;
         state.secondArgument = 21;
         state.operator = 'add';
-        return Reducer(state, AddToMemoryActionCreator());
+        return Reducer(state, createAction('addToMemory')());
     };
 
     addToMemoryFromSecArgTest.expectedObject = (function () {
@@ -326,7 +326,7 @@ function FluxTestSet(initialState) {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 42;
         state.memory = 21;
-        return Reducer(state, GetFromMemoryActionCreator());
+        return Reducer(state, createAction('getFromMemory')());
     };
 
     getFromMemoryTest.expectedObject = (function () {
@@ -345,7 +345,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 42;
         state.memory = 21;
         state.secondArgument = 0;
-        return Reducer(state, GetFromMemoryActionCreator());
+        return Reducer(state, createAction('getFromMemory')());
     };
 
     getFromMemoryToSecArgTest.expectedObject = (function () {
@@ -362,7 +362,7 @@ function FluxTestSet(initialState) {
     clearMemoryTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.memory = 21;
-        return Reducer(state, ClearMemoryActionCreator());
+        return Reducer(state, createAction('clearMemory')());
     };
 
     clearMemoryTest.expectedObject = (function () {
@@ -381,7 +381,7 @@ function FluxTestSet(initialState) {
         state.secondArgument = 21;
         state.operator = 'add';
         state.memory = 21;
-        return Reducer(state, ClearMemoryActionCreator());
+        return Reducer(state, createAction('clearMemory')());
     };
 
     clearMemoryWithArgsAndOpTest.expectedObject = (function () {
@@ -398,7 +398,7 @@ function FluxTestSet(initialState) {
     backspaceFATest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 42;
-        return Reducer(state, DeleteDigitActionCreator());
+        return Reducer(state, createAction('deleteDigit')());
     };
 
     backspaceFATest.expectedObject = (function () {
@@ -415,7 +415,7 @@ function FluxTestSet(initialState) {
     backspaceFAToZeroTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 4;
-        return Reducer(state, DeleteDigitActionCreator());
+        return Reducer(state, createAction('deleteDigit')());
     };
 
     backspaceFAToZeroTest.expectedObject = (function () {
@@ -434,7 +434,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 42;
         state.operator = 'add';
         state.secondArgument = 21;
-        return Reducer(state, DeleteDigitActionCreator());
+        return Reducer(state, createAction('deleteDigit')());
     };
 
     backspaceSATest.expectedObject = (function () {
@@ -453,7 +453,7 @@ function FluxTestSet(initialState) {
         state.firstArgument = 42;
         state.operator = 'add';
         state.secondArgument = 2;
-        return Reducer(state, DeleteDigitActionCreator());
+        return Reducer(state, createAction('deleteDigit')());
     };
 
     backspaceSAToZeroTest.expectedObject = (function () {
@@ -476,7 +476,7 @@ function FluxTestSet(initialState) {
                 secondArgument: 0
             })
         ];
-        return HistoryReducer(Reducer)({history: history, currentIndex: 1}, UndoActionCreator());
+        return HistoryReducer(Reducer)({history: history, currentIndex: 1}, createAction('undo')());
     };
 
     undoTest.expectedObject = (function () {
@@ -506,8 +506,8 @@ function FluxTestSet(initialState) {
                 secondArgument: 0
             })
         ];
-        var state = HistoryReducer(Reducer)({history: history, currentIndex: 1}, UndoActionCreator());
-        return HistoryReducer(Reducer)(state, AddDigitActionCreator(1));
+        var state = HistoryReducer(Reducer)({history: history, currentIndex: 1}, createAction('undo')());
+        return HistoryReducer(Reducer)(state, createAction('addDigit')(1));
     };
 
     undoWithNewTest.expectedObject = (function () {
@@ -538,7 +538,7 @@ function FluxTestSet(initialState) {
                 secondArgument: 21
             })
         ];
-        return HistoryReducer(Reducer)({history: history, currentIndex: 1}, RedoActionCreator());
+        return HistoryReducer(Reducer)({history: history, currentIndex: 1}, createAction('redo')());
     };
 
     redoTest.expectedObject = (function () {
