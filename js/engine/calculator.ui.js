@@ -2,70 +2,70 @@ function CalculatorUI() {
     var calculator = new Calculator();
 
     var addOperator = function (dispatch, getState) {
-        return function (payload) {
-            dispatch(AddOperatorActionCreator(payload));
+        return function (value) {
+            dispatch(AddOperatorActionCreator(value));
             var currentState = getState();
-            if(currentState.operator === 'calc') {
+            if (currentState.operator === 'calc') {
                 dispatch(CalculateActionCreator());
             }
         }
     };
 
     var addDigit = function (dispatch, getState) {
-        return function (payload) {
-            dispatch(AddDigitActionCreator(payload));
+        return function (value) {
+            dispatch(AddDigitActionCreator(value));
         }
     };
 
     var setModule = function (dispatch, getState) {
-        return function (payload) {
+        return function (value) {
             var currentState = getState();
             dispatch(SetToZeroActionCreator());
             var module = currentState.firstArgument;
-            if(currentState.secondArgument !== null)
+            if (currentState.secondArgument !== null)
                 module = currentState.secondArgument;
             dispatch(SetModuleActionCreator(module));
         }
     };
 
     var clear = function (dispatch, getState) {
-        return function (payload) {
+        return function (value) {
             dispatch(ClearActionCreator());
         }
     };
 
     var addToMemory = function (dispatch, getState) {
-        return function (payload) {
+        return function (value) {
             dispatch(AddToMemoryActionCreator());
         }
     };
 
     var getFromMemory = function (dispatch, getState) {
-        return function (payload) {
+        return function (value) {
             dispatch(GetFromMemoryActionCreator());
         }
     };
 
     var clearMemory = function (dispatch, getState) {
-        return function (payload) {
+        return function (value) {
             dispatch(ClearMemoryActionCreator());
         }
     };
 
     var deleteDigit = function (dispatch, getState) {
-        return function (payload) {
+        return function (value) {
             dispatch(DeleteDigitActionCreator());
         }
     };
 
     var undo = function (dispatch, getState) {
-        return function (payload) {
+        return function (value) {
             dispatch(UndoActionCreator());
         }
     };
 
     var redo = function (dispatch, getState) {
-        return function (payload) {
+        return function (value) {
             dispatch(RedoActionCreator());
         }
     };
@@ -99,7 +99,7 @@ function CalculatorUI() {
 
         var applyModule = function () {
             $('[data-value="setMod"]').click(function () {
-                calculator.thunk(setModule, Module());
+                calculator.thunk(setModule);
             });
         };
 
@@ -147,7 +147,7 @@ function CalculatorUI() {
 
         var setStartZero = function () {
             $('#output').val(0);
-            $('#module').val(0);
+            $('#query').val(0);
         };
 
         applyDigits(digits);

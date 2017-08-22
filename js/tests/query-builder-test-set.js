@@ -1,12 +1,12 @@
-function QueryBuilderTestSet() {
+function QueryBuilderTestSet(initialState) {
     var testSet = new TestSet();
 
     var defaultModelTest = new TestItem();
     defaultModelTest.name = 'Empty query';
     defaultModelTest.test = function () {
         var queryBuilder = new QueryBuilder();
-        var model = new Model();
-        return queryBuilder.getQuery(model);
+        var state = jQuery.extend(true, {}, initialState);
+        return queryBuilder.getQuery(state);
     };
 
     defaultModelTest.expectedObject = (function () {
@@ -21,9 +21,9 @@ function QueryBuilderTestSet() {
     oneArgumentTest.name = 'One argument';
     oneArgumentTest.test = function () {
         var queryBuilder = new QueryBuilder();
-        var model = new Model();
-        model.firstArgument = 3;
-        return queryBuilder.getQuery(model);
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 3;
+        return queryBuilder.getQuery(state);
     };
 
     oneArgumentTest.expectedObject = (function () {
@@ -38,10 +38,11 @@ function QueryBuilderTestSet() {
     OneArgumentAndOperation.name = 'One argument and operation';
     OneArgumentAndOperation.test = function () {
         var queryBuilder = new QueryBuilder();
-        var model = new Model();
-        model.firstArgument = 7;
-        model.operator = 'add'
-        return queryBuilder.getQuery(model);
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 7;
+        state.operator = 'add';
+        state.secondArgument = 0;
+        return queryBuilder.getQuery(state);
     };
 
     OneArgumentAndOperation.expectedObject = (function () {
@@ -56,11 +57,11 @@ function QueryBuilderTestSet() {
     twoNumberAndOperationTest.name = 'Two arguments and operation';
     twoNumberAndOperationTest.test = function () {
         var queryBuilder = new QueryBuilder();
-        var model = new Model();
-        model.firstArgument = 7;
-        model.operator = 'add'
-        model.secondArgument = 32;
-        return queryBuilder.getQuery(model);
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 7;
+        state.operator = 'add';
+        state.secondArgument = 32;
+        return queryBuilder.getQuery(state);
     };
 
     twoNumberAndOperationTest.expectedObject = (function () {
@@ -75,9 +76,9 @@ function QueryBuilderTestSet() {
     ModuleTest.name = 'Test module';
     ModuleTest.test = function () {
         var queryBuilder = new QueryBuilder();
-        var model = new Model();
-        model.module = 100
-        return queryBuilder.getQuery(model);
+        var state = jQuery.extend(true, {}, initialState);
+        state.module = 100;
+        return queryBuilder.getQuery(state);
     };
 
     ModuleTest.expectedObject = (function () {
@@ -92,10 +93,10 @@ function QueryBuilderTestSet() {
     ModuleAndArgumentTest.name = 'Test module';
     ModuleAndArgumentTest.test = function () {
         var queryBuilder = new QueryBuilder();
-        var model = new Model();
-        model.firstArgument = 72;
-        model.module = 100
-        return queryBuilder.getQuery(model);
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 72;
+        state.module = 100;
+        return queryBuilder.getQuery(state);
     };
 
     ModuleAndArgumentTest.expectedObject = (function () {
@@ -105,16 +106,16 @@ function QueryBuilderTestSet() {
     ModuleAndArgumentTest.author = 'Vitaly';
     testSet.addTestItem(ModuleAndArgumentTest);
 
-     var ModuleAndTwoArgumentsTest = new TestItem();
+    var ModuleAndTwoArgumentsTest = new TestItem();
     ModuleAndTwoArgumentsTest.name = 'Test module';
     ModuleAndTwoArgumentsTest.test = function () {
         var queryBuilder = new QueryBuilder();
-        var model = new Model();
-        model.firstArgument = 72;
-        model.module = 100
-        model.operator = 'sub'
-        model.secondArgument = 5;
-        return queryBuilder.getQuery(model);
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 72;
+        state.module = 100;
+        state.operator = 'sub';
+        state.secondArgument = 5;
+        return queryBuilder.getQuery(state);
     };
 
     ModuleAndTwoArgumentsTest.expectedObject = (function () {

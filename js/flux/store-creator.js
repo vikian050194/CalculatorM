@@ -12,7 +12,7 @@ function createStore(reducer, initialState) {
             listeners.splice(index, 1);
         };
         listeners.push(callback);
-        return { removeListener };
+        return {removeListener};
     };
 
     var dispatch = function (action) {
@@ -22,8 +22,8 @@ function createStore(reducer, initialState) {
         })
     };
 
-    var thunk = function (func, payload) {
-        func(dispatch, getState)(payload);
+    var thunk = function (func, value) {
+        func(dispatch, getState)(value);
     };
 
     return {

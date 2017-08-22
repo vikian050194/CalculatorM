@@ -1,14 +1,14 @@
-function AddDigitActionCreator(digit) {
+function AddDigitActionCreator(value) {
     return {
         type: 'addDigit',
-        digit: digit
+        value: value
     }
 }
 
-function AddOperatorActionCreator(operator) {
+function AddOperatorActionCreator(value) {
     return {
         type: 'addOperator',
-        operator: operator
+        value: value
     }
 }
 
@@ -24,10 +24,10 @@ function SetToZeroActionCreator() {
     }
 }
 
-function SetModuleActionCreator(module) {
+function SetModuleActionCreator(value) {
     return {
         type: 'setModule',
-        module: module
+        value: value
     }
 }
 

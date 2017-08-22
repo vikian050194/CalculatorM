@@ -1,12 +1,5 @@
-function FluxTestSet() {
+function FluxTestSet(initialState) {
     var testSet = new TestSet();
-    var initialState = {
-        firstArgument: 0,
-        secondArgument: null,
-        operator: '',
-        module: 0,
-        memory: null
-    };
 
     var addDigitTest = new TestItem();
     addDigitTest.name = 'Action "addDigit"';
@@ -103,13 +96,13 @@ function FluxTestSet() {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.operator = 'add';
-        state.module = Module();
+        state.module = 5;
         return Reducer(state, CalculateActionCreator());
     };
 
     calculateTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 63 % Module(), module: Module()});
+        return Object.assign(state, {firstArgument: 3, module: 5});
     })();
     testSet.addTestItem(calculateTest);
 
@@ -476,7 +469,7 @@ function FluxTestSet() {
                 secondArgument: 0
             })
         ];
-        return Undoable(Reducer)({history: history, currentIndex: 1}, UndoActionCreator());
+        return HistoryReducer(Reducer)({history: history, currentIndex: 1}, UndoActionCreator());
     };
 
     undoTest.expectedObject = (function () {
@@ -506,8 +499,8 @@ function FluxTestSet() {
                 secondArgument: 0
             })
         ];
-        var state = Undoable(Reducer)({history: history, currentIndex: 1}, UndoActionCreator());
-        return Undoable(Reducer)(state, AddDigitActionCreator(1));
+        var state = HistoryReducer(Reducer)({history: history, currentIndex: 1}, UndoActionCreator());
+        return HistoryReducer(Reducer)(state, AddDigitActionCreator(1));
     };
 
     undoWithNewTest.expectedObject = (function () {
@@ -538,7 +531,7 @@ function FluxTestSet() {
                 secondArgument: 21
             })
         ];
-        return Undoable(Reducer)({history: history, currentIndex: 1}, RedoActionCreator());
+        return HistoryReducer(Reducer)({history: history, currentIndex: 1}, RedoActionCreator());
     };
 
     redoTest.expectedObject = (function () {

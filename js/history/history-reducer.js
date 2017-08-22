@@ -1,4 +1,4 @@
-function Undoable(reducer) {
+function HistoryReducer(reducer) {
     return function (previousState, action) {
         switch (action.type) {
             case 'undo':

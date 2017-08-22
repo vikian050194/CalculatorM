@@ -4,5 +4,5 @@ function UpdateUI(state) {
         $('#output').val(state.firstArgument);
     else
         $('#output').val(state.secondArgument);
-    $('#module').val(query.getQuery(state));
+    $('#query').val(query.getQuery(state));
 }

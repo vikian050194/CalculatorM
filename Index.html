@@ -8,40 +8,38 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <link id="theme" href="css/themes.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
-    <script type="text/javascript" src="js/js.cookie.js"></script>
-    <script type="text/javascript" src="js/loader.js"></script>
-    <script type="text/javascript" src="js/themer.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/query-builder.js"></script>
-    <script type="text/javascript" src="js/page-handler.js"></script>
-    <script type="text/javascript" src="js/flux/action-creators.js"></script>
-    <script type="text/javascript" src="js/flux/calculator.js"></script>
-    <script type="text/javascript" src="js/flux/calculator.ui.js"></script>
-    <script type="text/javascript" src="js/flux/reducer.js"></script>
+    <script type="text/javascript" src="js/plugins/jquery-2.2.4.js"></script>
+    <script type="text/javascript" src="js/plugins/js.cookie.js"></script>
+    <script type="text/javascript" src="js/plugins/slick.min.js"></script>
+    <script type="text/javascript" src="js/ui/themer.js"></script>
+    <script type="text/javascript" src="js/ui/page-handler.js"></script>
+    <script type="text/javascript" src="js/engine/query-builder.js"></script>
+    <script type="text/javascript" src="js/engine/action-creators.js"></script>
+    <script type="text/javascript" src="js/engine/calculator.js"></script>
+    <script type="text/javascript" src="js/engine/calculator.ui.js"></script>
+    <script type="text/javascript" src="js/engine/update-ui.js"></script>
+    <script type="text/javascript" src="js/engine/reducer.js"></script>
     <script type="text/javascript" src="js/flux/store-creator.js"></script>
-    <script type="text/javascript" src="js/flux/update-ui.js"></script>
-    <script type="text/javascript" src="js/flux/history-update.js"></script>
-    <script type="text/javascript" src="js/flux/module.js"></script>
-    <script type="text/javascript" src="js/flux/undoable.js"></script>
-    <script type="text/javascript" src="js/slick.min.js"></script>
+    <script type="text/javascript" src="js/history/history-update.js"></script>
+    <script type="text/javascript" src="js/history/history-reducer.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <link rel="shortcut icon" href="icons/index.png" />
 </head>
 
 <body>
     <div id="calculator" class="calculator-blue">
         <input id="output" class="form-control line" readonly>
-        <input id="module" class="form-control line" readonly>
+        <input id="query" class="form-control line" readonly>
         <div id="work-panel">
             <div id="arrow-prev" class="arrow"></div>
             <div id="btns-table">
                 <div id="carousel" class="carousel">
                     <div id="page-1" class="slick-slide">
-                        <button id="add" class="btn btn-operator" data-value="add">+</button>
-                        <button id="sub" class="btn btn-operator" data-value="sub">-</button>
-                        <button id="mul" class="btn btn-operator" data-value="mul">*</button>
-                        <button id="div" class="btn btn-operator" data-value="div">/</button>
-                        <button id="pow" class="btn btn-operator" data-value="pow">^</button>
+                        <button id="add" class="btn btn-operator text-btn" data-value="add">add</button>
+                        <button id="sub" class="btn btn-operator text-btn" data-value="sub">sub</button>
+                        <button id="mul" class="btn btn-operator text-btn" data-value="mul">mul</button>
+                        <button id="div" class="btn btn-operator text-btn" data-value="div">div</button>
+                        <button id="pow" class="btn btn-operator text-btn" data-value="pow">pow</button>
                         <button id="7" class="btn btn-digit" data-value="7">7</button>
                         <button id="8" class="btn btn-digit" data-value="8">8</button>
                         <button id="9" class="btn btn-digit" data-value="9">9</button>

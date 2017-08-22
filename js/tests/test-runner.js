@@ -4,7 +4,6 @@ $(document).ready(function () {
     (function () {
         var testSets = [];
 
-        testSets.push(EngineTestSet);
         testSets.push(FluxTestSet);
         testSets.push(QueryBuilderTestSet);
 
@@ -14,8 +13,16 @@ $(document).ready(function () {
         var failedHtml = '';
         var passedHtml = '';
 
+        var initialState = {
+            firstArgument: 0,
+            secondArgument: null,
+            operator: '',
+            module: 0,
+            memory: null
+        };
+
         testSets.forEach(function (testSet) {
-            var result = testSet();
+            var result = testSet(initialState);
             passedCount += result.passed;
             // result.passedTestNames.forEach(function (name) {
             //     passedHtml += '<div>' + name + '</div>';

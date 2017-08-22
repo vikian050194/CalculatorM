@@ -1,17 +1,16 @@
-function PageHandler() {
+function PageHandler(lastPage) {
     var currentPageNumber = 1;
     var firstPageNumber = 1;
-    var lastPageNumber = 2;
-    var self = this;
+    var lastPageNumber = lastPage;
 
-    this.getCurrentPageNumber = function() {
+    this.getCurrentPageNumber = function () {
         return currentPageNumber;
-    }
+    };
 
-    this.setPage = function(number) {
-        if(number > lastPageNumber)
+    this.setPage = function (number) {
+        if (number > lastPageNumber)
             number = firstPageNumber;
-        if(number < firstPageNumber)
+        if (number < firstPageNumber)
             number = lastPageNumber;
 
         $('#page-' + currentPageNumber).addClass('not-displayed');

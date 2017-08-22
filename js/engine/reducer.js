@@ -4,14 +4,14 @@ function Reducer(previousState, action) {
         case 'addDigit':
             if(state.operator === '') {
                 state.firstArgument *= 10;
-                state.firstArgument += action.digit;
+                state.firstArgument += action.value;
                 return Object.assign(state, {firstArgument: state.firstArgument});
             }
             else {
                 if(state.secondArgument === null)
                     state.secondArgument = 0;
                 state.secondArgument *= 10;
-                state.secondArgument += action.digit;
+                state.secondArgument += action.value;
                 return Object.assign(state, {secondArgument: state.secondArgument});
             }
             break;
@@ -34,7 +34,7 @@ function Reducer(previousState, action) {
                     state.firstArgument = Math.pow(state.firstArgument, state.secondArgument);
                     break;
             }
-            return Object.assign(state, {operator: action.operator, secondArgument: 0});
+            return Object.assign(state, {operator: action.value, secondArgument: 0});
             break;
 
         case 'calculate':
@@ -52,7 +52,7 @@ function Reducer(previousState, action) {
             break;
 
         case 'setModule':
-            return Object.assign(state, {module: action.module});
+            return Object.assign(state, {module: action.value});
             break;
 
         case 'clear':

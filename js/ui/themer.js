@@ -3,27 +3,31 @@ function Themer() {
     var id = 'theme';
 
     function saveInCookies() {
-        Cookies.set(id, currentThemeIndex, { expires: 31 });
+        Cookies.set(id, currentThemeIndex, {expires: 31});
     }
+
     function nextIndex() {
         currentThemeIndex++;
         currentThemeIndex %= themes.length;
     }
+
     function getClass() {
         var result = 'calculator-' + themes[currentThemeIndex];
         return result;
     }
+
     function changeTheme() {
-        var oldTheme = $('#calculator').attr('class');
+        var calc = $('#calculator');
+        var oldTheme = calc.attr('class');
         var newTheme = getClass();
-        $('#calculator').removeClass(oldTheme).addClass(newTheme);
+        calc.removeClass(oldTheme).addClass(newTheme);
     }
 
     this.next = function () {
         nextIndex();
         saveInCookies();
         changeTheme();
-    }
+    };
 
     var currentThemeIndex = Cookies.get(id);
 
