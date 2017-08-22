@@ -1,5 +1,12 @@
 function FluxTestSet(initialState) {
     var testSet = new TestSet();
+    var Reducer = combineReducers({
+        clearing: ClearingReducer,
+        digit: DigitReducer,
+        memory: MemoryReducer,
+        module: ModuleReducer,
+        operator: OperatorReducer
+    });
 
     var addDigitTest = new TestItem();
     addDigitTest.name = 'Action "addDigit"';
