@@ -4,14 +4,16 @@ function CalculatorStore() {
         secondArgument: null,
         operator: '',
         module: 0,
-        memory: null
+        memory: null,
+        query: ''
     };
     var store = createStore(HistoryReducer(combineReducers({
         clearing: ClearingReducer,
         digit: DigitReducer,
         memory: MemoryReducer,
         module: ModuleReducer,
-        operator: OperatorReducer
+        operator: OperatorReducer,
+        query: QueryReducer
     })), initialState);
 
     this.thunk = function (func, value) {

@@ -31,7 +31,7 @@ function compare(expected, actual) {
 
     for (var p in expected) {
         if (typeof (actual[p]) == 'undefined') {
-            throw 'missing' + p;
+            throw 'missing ' + p;
         }
     }
 }

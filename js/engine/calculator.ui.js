@@ -4,7 +4,6 @@ function CalculatorUI() {
     var init = function () {
         var setStartZero = function () {
             $('#output').val(0);
-            $('#query').val(0);
         };
 
         applyDigits(calculatorStore);

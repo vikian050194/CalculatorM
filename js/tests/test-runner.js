@@ -4,9 +4,14 @@ $(document).ready(function () {
     (function () {
         var testSets = [];
 
-        testSets.push(ReducerTestSet);
         testSets.push(HistoryTestSet);
         testSets.push(QueryBuilderTestSet);
+
+        testSets.push(ClearingReducerTestSet);
+        testSets.push(DigitReducerTestSet);
+        testSets.push(MemoryReducerTestSet);
+        testSets.push(ModuleReducerTestSet);
+        testSets.push(OperatorReducerTestSet);
 
         var totalCount = 0;
         var passedCount = 0;
@@ -19,7 +24,8 @@ $(document).ready(function () {
             secondArgument: null,
             operator: '',
             module: 0,
-            memory: null
+            memory: null,
+            query: ''
         };
 
         testSets.forEach(function (testSet) {
