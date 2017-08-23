@@ -29,6 +29,7 @@ function createStore(reducer, initialState) {
     return {
         getState: getState,
         thunk: thunk,
+        dispatch: dispatch,
         addListener: addListener
     }
 }

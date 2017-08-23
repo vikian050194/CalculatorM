@@ -18,5 +18,9 @@ function Calculator() {
         store.thunk(func, value);
     };
 
+    this.dispatch = function (action) {
+        return store.dispatch(action);
+    };
+
     store.addListener(HistoryUpdate(UpdateUI));
 }
