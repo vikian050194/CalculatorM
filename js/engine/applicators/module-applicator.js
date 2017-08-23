@@ -1,4 +1,4 @@
-function applyModule(calculator) {
+function applyModule(calculatorStore) {
     var setModule = function (dispatch, getState) {
         return function (value) {
             var currentState = getState();
@@ -12,7 +12,7 @@ function applyModule(calculator) {
 
     var applyModule = function () {
         $('[data-value="setMod"]').click(function () {
-            calculator.thunk(setModule);
+            calculatorStore.thunk(setModule);
         });
     };
 

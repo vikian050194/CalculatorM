@@ -1,19 +1,19 @@
-function applyMemory(calculator) {
+function applyMemory(calculatorStore) {
     var applyMemoryAdd = function () {
         $('[data-value="memoryAdd"]').on('click', function () {
-            calculator.dispatch(createAction('addToMemory')());
+            calculatorStore.dispatch(createAction('addToMemory')());
         });
     };
 
     var applyMemoryRecall = function () {
         $('[data-value="memoryRecall"]').on('click', function () {
-            calculator.dispatch(createAction('getFromMemory')());
+            calculatorStore.dispatch(createAction('getFromMemory')());
         });
     };
 
     var applyMemoryClear = function () {
         $('[data-value="memoryClear"]').on('click', function () {
-            calculator.dispatch(createAction('clearMemory')());
+            calculatorStore.dispatch(createAction('clearMemory')());
         });
     };
 

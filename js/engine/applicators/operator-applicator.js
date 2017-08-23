@@ -1,4 +1,4 @@
-function applyOperators(calculator) {
+function applyOperators(calculatorStore) {
     var addOperator = function (dispatch, getState) {
         return function (value) {
             dispatch(createAction('addOperator')(value));
@@ -15,7 +15,7 @@ function applyOperators(calculator) {
             (function () {
                 var value = operators[i];
                 $('[data-value=' + value + ']').on('click', function () {
-                    calculator.thunk(addOperator, value);
+                    calculatorStore.thunk(addOperator, value);
                 });
             })();
         }

@@ -1,5 +1,5 @@
 function CalculatorUI() {
-    var calculator = new Calculator();
+    var calculatorStore = new CalculatorStore();
 
     var init = function () {
         var setStartZero = function () {
@@ -7,12 +7,12 @@ function CalculatorUI() {
             $('#query').val(0);
         };
 
-        applyDigits(calculator);
-        applyOperators(calculator);
-        applyModule(calculator);
-        applyClearing(calculator);
-        applyMemory(calculator);
-        applyHistory(calculator);
+        applyDigits(calculatorStore);
+        applyOperators(calculatorStore);
+        applyModule(calculatorStore);
+        applyClearing(calculatorStore);
+        applyMemory(calculatorStore);
+        applyHistory(calculatorStore);
         setStartZero();
     };
 

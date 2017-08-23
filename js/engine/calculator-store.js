@@ -1,4 +1,4 @@
-function Calculator() {
+function CalculatorStore() {
     var initialState = {
         firstArgument: 0,
         secondArgument: null,

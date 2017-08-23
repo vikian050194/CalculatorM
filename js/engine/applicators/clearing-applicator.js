@@ -1,13 +1,13 @@
-function applyClearing(calculator) {
+function applyClearing(calculatorStore) {
     var applyClear = function () {
         $('[data-value="clear"]').on('click', function () {
-            calculator.dispatch(createAction('clear')());
+            calculatorStore.dispatch(createAction('clear')());
         });
     };
 
     var applyBackspace = function () {
         $('[data-value="backspace"]').on('click', function () {
-            calculator.dispatch(createAction('deleteDigit')());
+            calculatorStore.dispatch(createAction('deleteDigit')());
         })
     };
 

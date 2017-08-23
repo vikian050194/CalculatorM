@@ -4,7 +4,8 @@ $(document).ready(function () {
     (function () {
         var testSets = [];
 
-        testSets.push(FluxTestSet);
+        testSets.push(ReducerTestSet);
+        testSets.push(HistoryTestSet);
         testSets.push(QueryBuilderTestSet);
 
         var totalCount = 0;
