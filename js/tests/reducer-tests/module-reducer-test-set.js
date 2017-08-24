@@ -30,7 +30,7 @@ function ModuleReducerTestSet(initialState) {
 
     setModuleWCalcTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {module: 5, firstArgument: 3});
+        return Object.assign(state, {module: 5, firstArgument: 63, result: 3});
     })();
     testSet.addTestItem(setModuleWCalcTest);
 
@@ -51,7 +51,7 @@ function ModuleReducerTestSet(initialState) {
 
     setModuleFromFirstArgumentTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {module: 5, firstArgument: 3});
+        return Object.assign(state, {module: 5, firstArgument: 63, result: 3});
     })();
     testSet.addTestItem(setModuleFromFirstArgumentTest);
 
@@ -70,12 +70,13 @@ function ModuleReducerTestSet(initialState) {
         state = ModuleReducer(state, createAction('setModule')(module));
         state.secondArgument = 63;
         state = OperatorReducer(state, createAction('addOperator')('add'));
+        state = OperatorReducer(state, createAction('precalculate')());
         return OperatorReducer(state, createAction('calculate')());
     };
 
     setModuleFromSecondArgumentTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 4, module: 5});
+        return Object.assign(state, {firstArgument: 21, operator: 'add', secondArgument: 63, module: 5, result: 4});
     })();
     testSet.addTestItem(setModuleFromSecondArgumentTest);
 

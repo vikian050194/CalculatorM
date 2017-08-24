@@ -32,7 +32,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorWPrevTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 63, operator: 'mul', secondArgument: 0});
+        return Object.assign(state, {firstArgument: 42, operator: 'mul', secondArgument: 21});
     })();
     testSet.addTestItem(addOperatorWPrevTest);
 
@@ -44,14 +44,13 @@ function OperatorReducerTestSet(initialState) {
     calculateTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 63;
-        state.operator = 'add';
         state.module = 5;
         return OperatorReducer(state, createAction('calculate')());
     };
 
     calculateTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 3, module: 5});
+        return Object.assign(state, {firstArgument: 63, result: 3, module: 5});
     })();
     testSet.addTestItem(calculateTest);
 
@@ -68,7 +67,7 @@ function OperatorReducerTestSet(initialState) {
 
     calculateWithoutModuleTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 63});
+        return Object.assign(state, {firstArgument: 63, result: 63});
     })();
     testSet.addTestItem(calculateWithoutModuleTest);
 
@@ -82,12 +81,13 @@ function OperatorReducerTestSet(initialState) {
         state.firstArgument = 42;
         state.secondArgument = 21;
         state.operator = 'add';
-        return OperatorReducer(state, createAction('addOperator')('add'));
+        state = OperatorReducer(state, createAction('addOperator')('add'));
+        return OperatorReducer(state, createAction('precalculate')());
     };
 
     addOperatorAddTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 63, operator: 'add', secondArgument: 0});
+        return Object.assign(state, {firstArgument: 42, operator: 'add', secondArgument: 21, result: 63});
     })();
     testSet.addTestItem(addOperatorAddTest);
 
@@ -101,12 +101,13 @@ function OperatorReducerTestSet(initialState) {
         state.firstArgument = 42;
         state.secondArgument = 21;
         state.operator = 'sub';
-        return OperatorReducer(state, createAction('addOperator')('sub'));
+        state = OperatorReducer(state, createAction('addOperator')('sub'));
+        return OperatorReducer(state, createAction('precalculate')());
     };
 
     addOperatorSubTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 21, operator: 'sub', secondArgument: 0});
+        return Object.assign(state, {firstArgument: 42, operator: 'sub', secondArgument: 21, result: 21});
     })();
     testSet.addTestItem(addOperatorSubTest);
 
@@ -120,12 +121,13 @@ function OperatorReducerTestSet(initialState) {
         state.firstArgument = 4;
         state.secondArgument = 2;
         state.operator = 'mul';
-        return OperatorReducer(state, createAction('addOperator')('mul'));
+        state = OperatorReducer(state, createAction('addOperator')('mul'));
+        return OperatorReducer(state, createAction('precalculate')());
     };
 
     addOperatorMulTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 8, operator: 'mul', secondArgument: 0});
+        return Object.assign(state, {firstArgument: 4, operator: 'mul', secondArgument: 2, result: 8});
     })();
     testSet.addTestItem(addOperatorMulTest);
 
@@ -139,12 +141,13 @@ function OperatorReducerTestSet(initialState) {
         state.firstArgument = 42;
         state.secondArgument = 21;
         state.operator = 'div';
-        return OperatorReducer(state, createAction('addOperator')('div'));
+        state = OperatorReducer(state, createAction('addOperator')('div'));
+        return OperatorReducer(state, createAction('precalculate')());
     };
 
     addOperatorDivTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 2, operator: 'div', secondArgument: 0});
+        return Object.assign(state, {firstArgument: 42, operator: 'div', secondArgument: 21, result: 2});
     })();
     testSet.addTestItem(addOperatorDivTest);
 
@@ -158,12 +161,13 @@ function OperatorReducerTestSet(initialState) {
         state.firstArgument = 3;
         state.secondArgument = 2;
         state.operator = 'pow';
-        return OperatorReducer(state, createAction('addOperator')('pow'));
+        state = OperatorReducer(state, createAction('addOperator')('pow'));
+        return OperatorReducer(state, createAction('precalculate')());
     };
 
     addOperationPowTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 9, operator: 'pow', secondArgument: 0});
+        return Object.assign(state, {firstArgument: 3, operator: 'pow', secondArgument: 2, result: 9});
     })();
     testSet.addTestItem(addOperationPowTest);
 

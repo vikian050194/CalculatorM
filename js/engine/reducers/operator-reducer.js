@@ -1,31 +1,44 @@
 function OperatorReducer(previousState, action) {
     switch (action.type) {
         case 'addOperator':
+            if (previousState.result !== null) {
+                previousState.firstArgument = previousState.result;
+                previousState.result = null;
+                previousState.secondArgument = null;
+            }
+            return Object.assign(previousState, {operator: action.value});
+            break;
+
+        case 'precalculate':
             switch (previousState.operator) {
                 case 'add':
-                    previousState.firstArgument += previousState.secondArgument;
+                    previousState.result = previousState.firstArgument + previousState.secondArgument;
                     break;
                 case 'sub':
-                    previousState.firstArgument -= previousState.secondArgument;
+                    previousState.result = previousState.firstArgument - previousState.secondArgument;
                     break;
                 case 'mul':
-                    previousState.firstArgument *= previousState.secondArgument;
+                    previousState.result = previousState.firstArgument * previousState.secondArgument;
                     break;
                 case 'div':
-                    previousState.firstArgument /= previousState.secondArgument;
+                    previousState.result = previousState.firstArgument / previousState.secondArgument;
                     break;
                 case 'pow':
-                    previousState.firstArgument = Math.pow(previousState.firstArgument, previousState.secondArgument);
+                    previousState.result = Math.pow(previousState.firstArgument, previousState.secondArgument);
                     break;
             }
-            return Object.assign(previousState, {operator: action.value, secondArgument: 0});
+            return previousState;
             break;
 
         case 'calculate':
-            var result = previousState.firstArgument;
-            if (previousState.module !== 0)
+            var result = previousState.result;
+            if (previousState.result === null) {
+                result = previousState.firstArgument;
+            }
+            if (previousState.module !== 0) {
                 result %= previousState.module;
-            return Object.assign(previousState, {operator: '', firstArgument: result, secondArgument: null});
+            }
+            return Object.assign(previousState, {result: result});
             break;
 
         default:

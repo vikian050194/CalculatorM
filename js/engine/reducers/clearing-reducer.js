@@ -7,7 +7,8 @@ function ClearingReducer(previousState, action) {
                 operator: '',
                 module: 0,
                 memory: null,
-                query: ''
+                query: '',
+                result: null
             };
             break;
 

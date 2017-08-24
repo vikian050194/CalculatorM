@@ -6,6 +6,16 @@ function QueryReducer(previousState, action) {
             return Object.assign(previousState, {query: new QueryBuilder().getQuery(queryState)});
             break;
 
+        case 'calculate':
+            return Object.assign(previousState, {
+                firstArgument: previousState.result,
+                operator: '',
+                secondArgument: null,
+                result: null,
+                query: new QueryBuilder().getQuery(previousState)
+            });
+            break;
+
         case 'addDigit':
         case 'clear':
         case 'deleteDigit':

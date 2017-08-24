@@ -12,6 +12,7 @@ $(document).ready(function () {
         testSets.push(MemoryReducerTestSet);
         testSets.push(ModuleReducerTestSet);
         testSets.push(OperatorReducerTestSet);
+        testSets.push(QueryReducerTestSet);
 
         var totalCount = 0;
         var passedCount = 0;
@@ -25,7 +26,8 @@ $(document).ready(function () {
             operator: '',
             module: 0,
             memory: null,
-            query: ''
+            query: '',
+            result: null
         };
 
         testSets.forEach(function (testSet) {
