@@ -13,7 +13,7 @@ function applyOperators(calculatorStore) {
     };
 
     var applyOperators = function () {
-        var operators = ['add', 'sub', 'mul', 'div', 'pow', 'calc'];
+        var operators = ['add', 'sub', 'mul', 'div', 'pow', 'calc', 'mod'];
         for (var i = 0; i <= operators.length; i++) {
             (function () {
                 var value = operators[i];

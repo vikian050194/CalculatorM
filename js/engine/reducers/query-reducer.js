@@ -7,23 +7,28 @@ function QueryReducer(previousState, action) {
             break;
 
         case 'calculate':
+            var queryState = jQuery.extend(true, {}, previousState);
+            if (queryState.secondArgument === null && queryState.operator !== '') {
+                queryState.secondArgument = 0;
+            }
+            if (queryState.operator === 'mod') {
+                queryState.operator = '';
+                queryState.secondArgument = null;
+            }
             return Object.assign(previousState, {
                 firstArgument: previousState.result,
                 operator: '',
                 secondArgument: null,
                 result: null,
-                query: new QueryBuilder().getQuery(previousState)
+                query: new QueryBuilder().getQuery(queryState)
             });
             break;
 
         case 'addDigit':
         case 'clear':
-        case 'deleteDigit':
         case 'addToMemory':
         case 'getFromMemory':
         case 'clearMemory':
-        case 'setToZero':
-        case 'setModule':
             return Object.assign(previousState, {query: new QueryBuilder().getQuery(previousState)});
             break;
 

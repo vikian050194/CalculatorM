@@ -4,7 +4,6 @@ function HistoryTestSet(initialState) {
         clearing: ClearingReducer,
         digit: DigitReducer,
         memory: MemoryReducer,
-        module: ModuleReducer,
         operator: OperatorReducer,
         query: QueryReducer
     });

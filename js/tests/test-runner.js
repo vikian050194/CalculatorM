@@ -10,7 +10,6 @@ $(document).ready(function () {
         testSets.push(ClearingReducerTestSet);
         testSets.push(DigitReducerTestSet);
         testSets.push(MemoryReducerTestSet);
-        testSets.push(ModuleReducerTestSet);
         testSets.push(OperatorReducerTestSet);
         testSets.push(QueryReducerTestSet);
 

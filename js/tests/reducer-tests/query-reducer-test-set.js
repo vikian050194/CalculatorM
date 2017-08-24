@@ -57,5 +57,25 @@ function QueryReducerTestSet(initialState) {
     });
     testSet.addTestItem(calculateQueryTest);
 
+
+    var calculateWFAQueryTest = new TestItem();
+    calculateWFAQueryTest.name = 'Query after action "calculate" with first argument';
+    calculateWFAQueryTest.author = 'Anna';
+
+    calculateWFAQueryTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 63;
+        state = OperatorReducer(state, createAction('precalculate')());
+        return QueryReducer(state, createAction('calculate')())
+    };
+
+    calculateWFAQueryTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 63;
+        state.result = 63;
+        return Object.assign(state, {query: new QueryBuilder().getQuery(state)});
+    })();
+    testSet.addTestItem(calculateWFAQueryTest);
+
     return testSet.test();
 }

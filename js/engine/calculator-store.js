@@ -12,7 +12,6 @@ function CalculatorStore() {
         clearing: ClearingReducer,
         digit: DigitReducer,
         memory: MemoryReducer,
-        module: ModuleReducer,
         operator: OperatorReducer,
         query: QueryReducer
     })), initialState);

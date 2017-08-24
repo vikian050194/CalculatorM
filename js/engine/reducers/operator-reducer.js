@@ -26,6 +26,13 @@ function OperatorReducer(previousState, action) {
                 case 'pow':
                     previousState.result = Math.pow(previousState.firstArgument, previousState.secondArgument);
                     break;
+                case 'mod':
+                    previousState.result = previousState.firstArgument % previousState.secondArgument;
+                    previousState.module = previousState.secondArgument;
+                    break;
+            }
+            if (previousState.module !== 0) {
+                previousState.result %= previousState.module;
             }
             return previousState;
             break;
