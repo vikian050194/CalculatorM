@@ -246,7 +246,6 @@ function OperatorReducerTestSet(initialState) {
     addOperatorModTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 3;
-        state = OperatorReducer(state, createAction('precalculate')());
         state = OperatorReducer(state, createAction('addOperator')('mod'));
         state.secondArgument = 2;
         return OperatorReducer(state, createAction('precalculate')());
@@ -259,15 +258,73 @@ function OperatorReducerTestSet(initialState) {
     testSet.addTestItem(addOperatorModTest);
 
 
+    var addOperatorModWPosCookieTest = new TestItem();
+    addOperatorModWPosCookieTest.name = 'Add operator "mod" with positive cookie';
+    addOperatorModWPosCookieTest.author = 'Anna';
+
+    addOperatorModWPosCookieTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = -17;
+        Cookies.set('positive', true, {expires: 31});
+        state = OperatorReducer(state, createAction('addOperator')('mod'));
+        state.secondArgument = 9;
+        return OperatorReducer(state, createAction('precalculate')());
+    };
+
+    addOperatorModWPosCookieTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        return Object.assign(state, {firstArgument: -17, secondArgument: 9, operator: 'mod', module: 9, result: 1});
+    })();
+    testSet.addTestItem(addOperatorModWPosCookieTest);
+
+
+    var addOperatorWPosCookieTest = new TestItem();
+    addOperatorWPosCookieTest.name = 'Add operator with positive cookie and module';
+    addOperatorWPosCookieTest.author = 'Anna';
+
+    addOperatorWPosCookieTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = -18;
+        state.module = 9;
+        Cookies.set('positive', true, {expires: 31});
+        state = OperatorReducer(state, createAction('addOperator')('add'));
+        state.secondArgument = 1;
+        return OperatorReducer(state, createAction('precalculate')());
+    };
+
+    addOperatorWPosCookieTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        return Object.assign(state, {firstArgument: -18, secondArgument: 1, operator: 'add', module: 9, result: 1});
+    })();
+    testSet.addTestItem(addOperatorWPosCookieTest);
+
+
+    var calculateWPosCookieTest = new TestItem();
+    calculateWPosCookieTest.name = 'Calculate with positive cookie and module';
+    calculateWPosCookieTest.author = 'Anna';
+
+    calculateWPosCookieTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = -17;
+        state.module = 9;
+        Cookies.set('positive', true, {expires: 31});
+        return OperatorReducer(state, createAction('calculate')());
+    };
+
+    calculateWPosCookieTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        return Object.assign(state, {firstArgument: -17, module: 9, result: 1});
+    })();
+    testSet.addTestItem(calculateWPosCookieTest);
+
+
     var calculateAfterModTest = new TestItem();
     calculateAfterModTest.name = 'Calculate right after "mod"';
     calculateAfterModTest.author = 'Anna';
 
     calculateAfterModTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
-        state = OperatorReducer(state, createAction('precalculate')());
         state = OperatorReducer(state, createAction('addOperator')('mod'));
-        state = OperatorReducer(state, createAction('precalculate')());
         return OperatorReducer(state, createAction('calculate')());
     };
 
@@ -285,9 +342,8 @@ function OperatorReducerTestSet(initialState) {
     addOperatorAfterCalculateWModTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 78;
-        state = OperatorReducer(state, createAction('precalculate')());
         state = OperatorReducer(state, createAction('addOperator')('mod'));
-        state = QueryReducer(state, createAction('addOperator')('add'));
+        state = QueryReducer(state, createAction('addOperator')('mod'));
         state.secondArgument = 72;
         state = OperatorReducer(state, createAction('precalculate')());
         state = OperatorReducer(state, createAction('calculate')());

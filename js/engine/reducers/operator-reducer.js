@@ -30,11 +30,17 @@ function OperatorReducer(previousState, action) {
                     if (previousState.secondArgument !== null) {
                         previousState.result = previousState.firstArgument % previousState.secondArgument;
                         previousState.module = previousState.secondArgument;
+                        if(previousState.result < 0 && Cookies.get('positive') === 'true') {
+                            previousState.result += previousState.module;
+                        }
                     }
                     break;
             }
             if (previousState.module !== 0 && previousState.result !== null) {
                 previousState.result %= previousState.module;
+                if(previousState.result < 0 && Cookies.get('positive') === 'true') {
+                    previousState.result += previousState.module;
+                }
             }
             return previousState;
             break;
@@ -46,6 +52,9 @@ function OperatorReducer(previousState, action) {
             }
             if (previousState.module !== 0) {
                 result %= previousState.module;
+                if(result < 0 && Cookies.get('positive') === 'true') {
+                    result += previousState.module;
+                }
             }
             return Object.assign(previousState, {result: result});
             break;

@@ -33,6 +33,7 @@ function QueryReducer(previousState, action) {
         case 'addToMemory':
         case 'getFromMemory':
         case 'clearMemory':
+        case 'changeSign':
             return Object.assign(previousState, {query: new QueryBuilder().getQuery(previousState)});
             break;
 

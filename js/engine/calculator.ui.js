@@ -1,5 +1,6 @@
 function CalculatorUI() {
     var calculatorStore = new CalculatorStore();
+    var themer = new Themer();
 
     var init = function () {
         var setStartZero = function () {
@@ -13,6 +14,9 @@ function CalculatorUI() {
         applyMemory(calculatorStore);
         applyHistory(calculatorStore);
         setStartZero();
+
+        applyThemes(themer);
+        Cookies.set('positive', true, {expires: 31});
     };
 
     init();
