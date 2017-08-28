@@ -1,8 +1,11 @@
 function UpdateUI(state) {
-    if (state.secondArgument === null)
+    if (state.secondArgument === null) {
         $('#output').val(state.firstArgument);
-    else
+    } else {
         $('#output').val(state.secondArgument);
+    }
+    if (state.result !== null) {
+        $('#output').val(state.result);
+    }
     $('#query').val(state.query);
-    console.log(state);
 }

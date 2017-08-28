@@ -73,7 +73,7 @@ function QueryReducerTestSet(initialState) {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.result = 63;
-        return Object.assign(state, {result: null, query: new QueryBuilder().getQuery(state)});
+        return Object.assign(state, {firstArgument: 0, query: new QueryBuilder().getQuery(state)});
     })();
     testSet.addTestItem(calculateWFAQueryTest);
 
@@ -95,7 +95,7 @@ function QueryReducerTestSet(initialState) {
         state.firstArgument = 63;
         state.result = 3;
         state.module = 20;
-        return Object.assign(state, {firstArgument: 3, result: null, query: new QueryBuilder().getQuery(state)});
+        return Object.assign(state, {firstArgument: 0, query: new QueryBuilder().getQuery(state)});
     })();
     testSet.addTestItem(calculateWFAModQueryTest);
 

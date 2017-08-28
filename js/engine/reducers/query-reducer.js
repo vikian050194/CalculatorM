@@ -16,16 +16,20 @@ function QueryReducer(previousState, action) {
                 queryState.secondArgument = null;
             }
             return Object.assign(previousState, {
-                firstArgument: previousState.result,
+                firstArgument: 0,
                 operator: '',
                 secondArgument: null,
-                result: null,
                 query: new QueryBuilder().getQuery(queryState)
             });
             break;
 
         case 'addDigit':
+            previousState.result = null;
+            return Object.assign(previousState, {query: new QueryBuilder().getQuery(previousState)});
+            break;
+
         case 'clear':
+        case 'deleteDigit':
         case 'addToMemory':
         case 'getFromMemory':
         case 'clearMemory':
