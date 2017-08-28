@@ -2,9 +2,9 @@ function MemoryReducer(previousState, action) {
     switch (action.type) {
         case 'addToMemory':
             if (previousState.secondArgument === null)
-                return Object.assign(previousState, {memory: previousState.firstArgument, firstArgument: 0});
+                return Object.assign(previousState, {memory: previousState.firstArgument});
             else
-                return Object.assign(previousState, {memory: previousState.secondArgument, secondArgument: 0});
+                return Object.assign(previousState, {memory: previousState.secondArgument});
             break;
 
         case 'getFromMemory':

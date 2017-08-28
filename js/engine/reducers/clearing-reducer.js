@@ -13,10 +13,14 @@ function ClearingReducer(previousState, action) {
             break;
 
         case 'deleteDigit':
-            if (previousState.secondArgument === null)
+            if(previousState.operator !== '' && previousState.secondArgument === null) {
+                return previousState;
+            }
+            if (previousState.secondArgument === null) {
                 return Object.assign(previousState, {firstArgument: (previousState.firstArgument - previousState.firstArgument % 10) / 10});
-            else
+            } else {
                 return Object.assign(previousState, {secondArgument: (previousState.secondArgument - previousState.secondArgument % 10) / 10});
+            }
             break;
 
         default:

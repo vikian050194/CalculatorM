@@ -12,6 +12,10 @@ function compare(expected, actual) {
             return false;
         }
 
+        if(actual[p] === null && expected[p] !== null) {
+            throw 'incorrect value: ' + p;
+        }
+
         switch (typeof (actual[p])) {
             case 'array':
             case 'object':

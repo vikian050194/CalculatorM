@@ -4,4 +4,5 @@ function UpdateUI(state) {
     else
         $('#output').val(state.secondArgument);
     $('#query').val(state.query);
+    console.log(state);
 }

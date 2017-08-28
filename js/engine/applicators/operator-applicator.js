@@ -1,9 +1,7 @@
 function applyOperators(calculatorStore) {
     var addOperator = function (dispatch, getState) {
         return function (value) {
-            if (getState().secondArgument !== null) {
-                dispatch(createAction('precalculate')());
-            }
+            dispatch(createAction('precalculate')());
             if (value !== 'calc') {
                 dispatch(createAction('addOperator')(value));
             } else {

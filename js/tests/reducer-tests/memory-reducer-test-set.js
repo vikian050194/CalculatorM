@@ -29,7 +29,7 @@ function MemoryReducerTestSet(initialState) {
 
     addToMemoryTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {memory: 42});
+        return Object.assign(state, {memory: 42, firstArgument: 42});
     })();
     testSet.addTestItem(addToMemoryTest);
 
@@ -52,7 +52,7 @@ function MemoryReducerTestSet(initialState) {
             memory: 21,
             operator: 'add',
             firstArgument: 42,
-            secondArgument: 0
+            secondArgument: 21
         });
     })();
     testSet.addTestItem(addToMemoryFromSecArgTest);

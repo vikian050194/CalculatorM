@@ -65,7 +65,7 @@ function QueryReducerTestSet(initialState) {
     calculateWFAQueryTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 63;
-        state = OperatorReducer(state, createAction('precalculate')());
+        state = OperatorReducer(state, createAction('calculate')());
         return QueryReducer(state, createAction('calculate')())
     };
 
@@ -73,9 +73,31 @@ function QueryReducerTestSet(initialState) {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.result = 63;
-        return Object.assign(state, {query: new QueryBuilder().getQuery(state)});
+        return Object.assign(state, {result: null, query: new QueryBuilder().getQuery(state)});
     })();
     testSet.addTestItem(calculateWFAQueryTest);
+
+
+    var calculateWFAModQueryTest = new TestItem();
+    calculateWFAModQueryTest.name = 'Query after action "calculate" with first argument and module';
+    calculateWFAModQueryTest.author = 'Anna';
+
+    calculateWFAModQueryTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 63;
+        state.module = 20;
+        state = OperatorReducer(state, createAction('calculate')());
+        return QueryReducer(state, createAction('calculate')())
+    };
+
+    calculateWFAModQueryTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 63;
+        state.result = 3;
+        state.module = 20;
+        return Object.assign(state, {firstArgument: 3, result: null, query: new QueryBuilder().getQuery(state)});
+    })();
+    testSet.addTestItem(calculateWFAModQueryTest);
 
     return testSet.test();
 }
