@@ -43,12 +43,14 @@ function OperatorReducerTestSet(initialState) {
         state.firstArgument = 42;
         state = OperatorReducer(state, createAction('addOperator')('add'));
         state = OperatorReducer(state, createAction('addOperator')('sub'));
-        return OperatorReducer(state, createAction('addOperator')('mul'));
+        state = OperatorReducer(state, createAction('addOperator')('mul'));
+        state = OperatorReducer(state, createAction('addOperator')('pow'));
+        return OperatorReducer(state, createAction('addOperator')('div'));
     };
 
     addSeveralOperatorsTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'mul'});
+        return Object.assign(state, {firstArgument: 42, operator: 'div'});
     })();
     testSet.addTestItem(addSeveralOperatorsTest);
 
@@ -256,6 +258,45 @@ function OperatorReducerTestSet(initialState) {
         return Object.assign(state, {firstArgument: 3, operator: 'mod', secondArgument: 2, module: 2, result: 1});
     })();
     testSet.addTestItem(addOperatorModTest);
+
+
+    var addOperatorModWZeroTest = new TestItem();
+    addOperatorModWZeroTest.name = 'Add operator "mod" with zero';
+    addOperatorModWZeroTest.author = 'Anna';
+
+    addOperatorModWZeroTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 0;
+        state = OperatorReducer(state, createAction('addOperator')('mod'));
+        state.secondArgument = 0;
+        return OperatorReducer(state, createAction('precalculate')());
+    };
+
+    addOperatorModWZeroTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        return Object.assign(state, {firstArgument: 0, operator: 'mod', secondArgument: 0});
+    })();
+    testSet.addTestItem(addOperatorModWZeroTest);
+
+
+    var addOperatorModWZeroWPrevTest = new TestItem();
+    addOperatorModWZeroWPrevTest.name = 'Add operator "mod" with zero with previous module';
+    addOperatorModWZeroWPrevTest.author = 'Anna';
+
+    addOperatorModWZeroWPrevTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 0;
+        state.module = 78;
+        state = OperatorReducer(state, createAction('addOperator')('mod'));
+        state.secondArgument = 0;
+        return OperatorReducer(state, createAction('precalculate')());
+    };
+
+    addOperatorModWZeroWPrevTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        return Object.assign(state, {firstArgument: 0, operator: 'mod', secondArgument: 0});
+    })();
+    testSet.addTestItem(addOperatorModWZeroWPrevTest);
 
 
     var addOperatorModWPosCookieTest = new TestItem();

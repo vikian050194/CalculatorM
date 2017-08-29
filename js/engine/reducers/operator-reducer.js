@@ -27,18 +27,21 @@ function OperatorReducer(previousState, action) {
                     previousState.result = Math.pow(previousState.firstArgument, previousState.secondArgument);
                     break;
                 case 'mod':
-                    if (previousState.secondArgument !== null) {
+                    if (previousState.secondArgument !== null && previousState.secondArgument !== 0) {
                         previousState.result = previousState.firstArgument % previousState.secondArgument;
                         previousState.module = previousState.secondArgument;
-                        if(previousState.result < 0 && Cookies.get('positive') === 'true') {
+                        if (previousState.result < 0 && Cookies.get('positive') === 'true') {
                             previousState.result += previousState.module;
                         }
+                    }
+                    if (previousState.secondArgument === 0) {
+                        previousState.module = 0;
                     }
                     break;
             }
             if (previousState.module !== 0 && previousState.result !== null) {
                 previousState.result %= previousState.module;
-                if(previousState.result < 0 && Cookies.get('positive') === 'true') {
+                if (previousState.result < 0 && Cookies.get('positive') === 'true') {
                     previousState.result += previousState.module;
                 }
             }
@@ -52,7 +55,7 @@ function OperatorReducer(previousState, action) {
             }
             if (previousState.module !== 0) {
                 result %= previousState.module;
-                if(result < 0 && Cookies.get('positive') === 'true') {
+                if (result < 0 && Cookies.get('positive') === 'true') {
                     result += previousState.module;
                 }
             }
