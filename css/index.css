@@ -24,7 +24,7 @@
     width: 96%;
     height: 14vh;
     margin: 2vh 2vw 0.1vh 2vw;
-    font-size: 4em;
+    font-size: 8vh;
     text-align: right;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -47,7 +47,7 @@
 .arrow {
     text-align: center;
     color: white;
-    font-size: 5em;
+    font-size: 10vh;
     opacity: 0.5;
 }
 
@@ -84,7 +84,7 @@ ul {
     margin-top: -0.5vh;
     text-align: center;
     color: white;
-    font-size: 3em;
+    font-size: 6vh;
 }
 
 .slick-dots li:before {
@@ -115,7 +115,7 @@ ul {
 }
 
 .btn {
-    font-size: 3em;
+    font-size: 6vh;
     width: 23%;
     height: 10vh;
     padding: 0;
@@ -130,7 +130,7 @@ ul {
 }
 
 .text-btn {
-    font-size: 1.5em;
+    font-size: 3vh;
 }
 
 .glyphicon {
