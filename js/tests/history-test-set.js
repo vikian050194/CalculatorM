@@ -14,8 +14,8 @@ function HistoryTestSet(initialState) {
 
     undoTest.test = function () {
         var history = [
-            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
-            Object.assign(jQuery.extend(true, {}, initialState), {
+            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
+            $.extend({}, jQuery.extend(true, {}, initialState), {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
@@ -27,8 +27,8 @@ function HistoryTestSet(initialState) {
 
     undoTest.expectedObject = (function () {
         var history = [
-            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
-            Object.assign(jQuery.extend(true, {}, initialState), {
+            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
+            $.extend({}, jQuery.extend(true, {}, initialState), {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
@@ -46,8 +46,8 @@ function HistoryTestSet(initialState) {
 
     undoWithNewTest.test = function () {
         var history = [
-            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
-            Object.assign(jQuery.extend(true, {}, initialState), {
+            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
+            $.extend({}, jQuery.extend(true, {}, initialState), {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
@@ -60,8 +60,8 @@ function HistoryTestSet(initialState) {
 
     undoWithNewTest.expectedObject = (function () {
         var history = [
-            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
-            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 421, query: '421'})
+            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
+            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 421, query: '421'})
         ];
         return {history: history, currentIndex: 1};
     })();
@@ -74,14 +74,14 @@ function HistoryTestSet(initialState) {
 
     redoTest.test = function () {
         var history = [
-            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
-            Object.assign(jQuery.extend(true, {}, initialState), {
+            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
+            $.extend({}, jQuery.extend(true, {}, initialState), {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
                 query: '42 add 0'
             }),
-            Object.assign(jQuery.extend(true, {}, initialState), {
+            $.extend({}, jQuery.extend(true, {}, initialState), {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 21,
@@ -93,14 +93,14 @@ function HistoryTestSet(initialState) {
 
     redoTest.expectedObject = (function () {
         var history = [
-            Object.assign(jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
-            Object.assign(jQuery.extend(true, {}, initialState), {
+            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42'}),
+            $.extend({}, jQuery.extend(true, {}, initialState), {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
                 query: '42 add 0'
             }),
-            Object.assign(jQuery.extend(true, {}, initialState), {
+            $.extend({}, jQuery.extend(true, {}, initialState), {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 21,

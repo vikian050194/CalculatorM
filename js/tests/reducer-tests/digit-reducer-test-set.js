@@ -12,7 +12,7 @@ function DigitReducerTestSet(initialState) {
 
     addDigitTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 4});
+        return $.extend({}, state, {firstArgument: 4});
     })();
     testSet.addTestItem(addDigitTest);
 
@@ -29,7 +29,7 @@ function DigitReducerTestSet(initialState) {
 
     addFewDigitsTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42});
+        return $.extend({}, state, {firstArgument: 42});
     })();
     testSet.addTestItem(addFewDigitsTest);
 
@@ -48,7 +48,7 @@ function DigitReducerTestSet(initialState) {
 
     addDigitToSecArgTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'add', secondArgument: 2});
+        return $.extend({}, state, {firstArgument: 42, operator: 'add', secondArgument: 2});
     })();
     testSet.addTestItem(addDigitToSecArgTest);
 
@@ -67,7 +67,7 @@ function DigitReducerTestSet(initialState) {
 
     addFewDigitsToSecArgTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'add', secondArgument: 21});
+        return $.extend({}, state, {firstArgument: 42, operator: 'add', secondArgument: 21});
     })();
     testSet.addTestItem(addFewDigitsToSecArgTest);
 
@@ -84,7 +84,7 @@ function DigitReducerTestSet(initialState) {
 
     addDigitToPositiveValueTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 421});
+        return $.extend({}, state, {firstArgument: 421});
     })();
     testSet.addTestItem(addDigitToPositiveValueTest);
 
@@ -101,7 +101,7 @@ function DigitReducerTestSet(initialState) {
 
     addDigitToNegativeValueTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: -421});
+        return $.extend({}, state, {firstArgument: -421});
     })();
     testSet.addTestItem(addDigitToNegativeValueTest);
 
@@ -117,7 +117,7 @@ function DigitReducerTestSet(initialState) {
 
     addDigitToZeroTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 1});
+        return $.extend({}, state, {firstArgument: 1});
     })();
     testSet.addTestItem(addDigitToZeroTest);
 
@@ -134,7 +134,7 @@ function DigitReducerTestSet(initialState) {
 
     changeSignToFirstArgTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: -42});
+        return $.extend({}, state, {firstArgument: -42});
     })();
     testSet.addTestItem(changeSignToFirstArgTest);
 
@@ -168,7 +168,7 @@ function DigitReducerTestSet(initialState) {
 
     changeSignToSecArgTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'add', secondArgument: -21});
+        return $.extend({}, state, {firstArgument: 42, operator: 'add', secondArgument: -21});
     })();
     testSet.addTestItem(changeSignToSecArgTest);
 
@@ -186,7 +186,7 @@ function DigitReducerTestSet(initialState) {
 
     changeSignToSecArgWithZeroTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'add'});
+        return $.extend({}, state, {firstArgument: 42, operator: 'add'});
     })();
     testSet.addTestItem(changeSignToSecArgWithZeroTest);
 
@@ -210,7 +210,7 @@ function DigitReducerTestSet(initialState) {
 
     changeSignToResultTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: -63, query: '42 add 21 = 63'});
+        return $.extend({}, state, {firstArgument: -63, query: '42 add 21 = 63'});
     })();
     testSet.addTestItem(changeSignToResultTest);
 

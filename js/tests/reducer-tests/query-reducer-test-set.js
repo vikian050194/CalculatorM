@@ -12,7 +12,7 @@ function QueryReducerTestSet(initialState) {
     addDigitQueryTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 1;
-        return Object.assign(state, {query: new QueryBuilder().getQuery(state)});
+        return $.extend({}, state, {query: new QueryBuilder().getQuery(state)});
     });
     testSet.addTestItem(addDigitQueryTest);
 
@@ -31,7 +31,7 @@ function QueryReducerTestSet(initialState) {
         state.firstArgument = 1;
         state.operator = 'add';
         state.secondArgument = null;
-        return Object.assign(state, {query: new QueryBuilder().getQuery(state)});
+        return $.extend({}, state, {query: new QueryBuilder().getQuery(state)});
     });
     testSet.addTestItem(addOperatorQueryTest);
 
@@ -53,7 +53,7 @@ function QueryReducerTestSet(initialState) {
         state.operator = '';
         state.secondArgument = null;
         state.result = null;
-        return Object.assign(state, {query: new QueryBuilder().getQuery(state)});
+        return $.extend({}, state, {query: new QueryBuilder().getQuery(state)});
     });
     testSet.addTestItem(calculateQueryTest);
 
@@ -73,7 +73,7 @@ function QueryReducerTestSet(initialState) {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.result = 63;
-        return Object.assign(state, {firstArgument: 0, query: new QueryBuilder().getQuery(state)});
+        return $.extend({}, state, {firstArgument: 0, query: new QueryBuilder().getQuery(state)});
     })();
     testSet.addTestItem(calculateWFAQueryTest);
 
@@ -95,7 +95,7 @@ function QueryReducerTestSet(initialState) {
         state.firstArgument = 63;
         state.result = 3;
         state.module = 20;
-        return Object.assign(state, {firstArgument: 0, query: new QueryBuilder().getQuery(state)});
+        return $.extend({}, state, {firstArgument: 0, query: new QueryBuilder().getQuery(state)});
     })();
     testSet.addTestItem(calculateWFAModQueryTest);
 

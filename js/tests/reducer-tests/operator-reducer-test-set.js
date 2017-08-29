@@ -12,7 +12,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorEmptyTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {operator: 'add'});
+        return $.extend({}, state, {operator: 'add'});
     })();
     testSet.addTestItem(addOperatorEmptyTest);
 
@@ -29,7 +29,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'add'});
+        return $.extend({}, state, {firstArgument: 42, operator: 'add'});
     })();
     testSet.addTestItem(addOperatorTest);
 
@@ -50,7 +50,7 @@ function OperatorReducerTestSet(initialState) {
 
     addSeveralOperatorsTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'div'});
+        return $.extend({}, state, {firstArgument: 42, operator: 'div'});
     })();
     testSet.addTestItem(addSeveralOperatorsTest);
 
@@ -70,7 +70,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorWPrevTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 63, operator: 'mul'});
+        return $.extend({}, state, {firstArgument: 63, operator: 'mul'});
     })();
     testSet.addTestItem(addOperatorWPrevTest);
 
@@ -89,7 +89,7 @@ function OperatorReducerTestSet(initialState) {
 
     calculateWithoutSecArgTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'div', result: Infinity});
+        return $.extend({}, state, {firstArgument: 42, operator: 'div', result: Infinity});
     })();
     testSet.addTestItem(calculateWithoutSecArgTest);
 
@@ -107,7 +107,7 @@ function OperatorReducerTestSet(initialState) {
 
     calculateTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 63, result: 3, module: 5});
+        return $.extend({}, state, {firstArgument: 63, result: 3, module: 5});
     })();
     testSet.addTestItem(calculateTest);
 
@@ -124,7 +124,7 @@ function OperatorReducerTestSet(initialState) {
 
     calculateWFATest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 63, result: 63});
+        return $.extend({}, state, {firstArgument: 63, result: 63});
     })();
     testSet.addTestItem(calculateWFATest);
 
@@ -141,7 +141,7 @@ function OperatorReducerTestSet(initialState) {
 
     calculateWithoutModuleTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 63, result: 63});
+        return $.extend({}, state, {firstArgument: 63, result: 63});
     })();
     testSet.addTestItem(calculateWithoutModuleTest);
 
@@ -160,7 +160,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorAddTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'add', secondArgument: 21, result: 63});
+        return $.extend({}, state, {firstArgument: 42, operator: 'add', secondArgument: 21, result: 63});
     })();
     testSet.addTestItem(addOperatorAddTest);
 
@@ -179,7 +179,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorSubTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'sub', secondArgument: 21, result: 21});
+        return $.extend({}, state, {firstArgument: 42, operator: 'sub', secondArgument: 21, result: 21});
     })();
     testSet.addTestItem(addOperatorSubTest);
 
@@ -198,7 +198,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorMulTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 4, operator: 'mul', secondArgument: 2, result: 8});
+        return $.extend({}, state, {firstArgument: 4, operator: 'mul', secondArgument: 2, result: 8});
     })();
     testSet.addTestItem(addOperatorMulTest);
 
@@ -217,7 +217,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorDivTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, operator: 'div', secondArgument: 21, result: 2});
+        return $.extend({}, state, {firstArgument: 42, operator: 'div', secondArgument: 21, result: 2});
     })();
     testSet.addTestItem(addOperatorDivTest);
 
@@ -236,7 +236,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorPowTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 3, operator: 'pow', secondArgument: 2, result: 9});
+        return $.extend({}, state, {firstArgument: 3, operator: 'pow', secondArgument: 2, result: 9});
     })();
     testSet.addTestItem(addOperatorPowTest);
 
@@ -255,7 +255,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorModTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 3, operator: 'mod', secondArgument: 2, module: 2, result: 1});
+        return $.extend({}, state, {firstArgument: 3, operator: 'mod', secondArgument: 2, module: 2, result: 1});
     })();
     testSet.addTestItem(addOperatorModTest);
 
@@ -274,7 +274,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorModWZeroTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 0, operator: 'mod', secondArgument: 0});
+        return $.extend({}, state, {firstArgument: 0, operator: 'mod', secondArgument: 0});
     })();
     testSet.addTestItem(addOperatorModWZeroTest);
 
@@ -294,7 +294,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorModWZeroWPrevTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 0, operator: 'mod', secondArgument: 0});
+        return $.extend({}, state, {firstArgument: 0, operator: 'mod', secondArgument: 0});
     })();
     testSet.addTestItem(addOperatorModWZeroWPrevTest);
 
@@ -314,7 +314,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorModWPosCookieTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: -17, secondArgument: 9, operator: 'mod', module: 9, result: 1});
+        return $.extend({}, state, {firstArgument: -17, secondArgument: 9, operator: 'mod', module: 9, result: 1});
     })();
     testSet.addTestItem(addOperatorModWPosCookieTest);
 
@@ -335,7 +335,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorWPosCookieTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: -18, secondArgument: 1, operator: 'add', module: 9, result: 1});
+        return $.extend({}, state, {firstArgument: -18, secondArgument: 1, operator: 'add', module: 9, result: 1});
     })();
     testSet.addTestItem(addOperatorWPosCookieTest);
 
@@ -354,7 +354,7 @@ function OperatorReducerTestSet(initialState) {
 
     calculateWPosCookieTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: -17, module: 9, result: 1});
+        return $.extend({}, state, {firstArgument: -17, module: 9, result: 1});
     })();
     testSet.addTestItem(calculateWPosCookieTest);
 
@@ -371,7 +371,7 @@ function OperatorReducerTestSet(initialState) {
 
     calculateAfterModTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {operator: 'mod', result: 0});
+        return $.extend({}, state, {operator: 'mod', result: 0});
     })();
     testSet.addTestItem(calculateAfterModTest);
 
@@ -396,7 +396,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorAfterCalculateWModTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 6, operator: 'add', module: 72, query: '6 add mod 72'});
+        return $.extend({}, state, {firstArgument: 6, operator: 'add', module: 72, query: '6 add mod 72'});
     })();
     testSet.addTestItem(addOperatorAfterCalculateWModTest);
 

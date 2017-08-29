@@ -32,7 +32,7 @@ function ClearingReducerTestSet(initialState) {
 
     backspaceFATest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 4});
+        return $.extend({}, state, {firstArgument: 4});
     })();
     testSet.addTestItem(backspaceFATest);
 
@@ -49,7 +49,7 @@ function ClearingReducerTestSet(initialState) {
 
     backspaceFAToZeroTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 0});
+        return $.extend({}, state, {firstArgument: 0});
     })();
     testSet.addTestItem(backspaceFAToZeroTest);
 
@@ -68,7 +68,7 @@ function ClearingReducerTestSet(initialState) {
 
     backspaceSATest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {secondArgument: 2, firstArgument: 42, operator: 'add'});
+        return $.extend({}, state, {secondArgument: 2, firstArgument: 42, operator: 'add'});
     })();
     testSet.addTestItem(backspaceSATest);
 
@@ -87,7 +87,7 @@ function ClearingReducerTestSet(initialState) {
 
     backspaceSAToZeroTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {secondArgument: 0, firstArgument: 42, operator: 'add'});
+        return $.extend({}, state, {secondArgument: 0, firstArgument: 42, operator: 'add'});
     })();
     testSet.addTestItem(backspaceSAToZeroTest);
 

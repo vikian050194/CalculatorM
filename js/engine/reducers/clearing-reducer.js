@@ -14,7 +14,7 @@ function ClearingReducer(previousState, action) {
 
         case 'deleteDigit':
             if (previousState.result !== null && previousState.firstArgument === 0) {
-                return Object.assign(previousState, {
+                return $.extend({}, previousState, {
                     firstArgument: (previousState.result - previousState.result % 10) / 10,
                     result: null
                 });
@@ -23,9 +23,9 @@ function ClearingReducer(previousState, action) {
                 return previousState;
             }
             if (previousState.secondArgument === null) {
-                return Object.assign(previousState, {firstArgument: (previousState.firstArgument - previousState.firstArgument % 10) / 10});
+                return $.extend({}, previousState, {firstArgument: (previousState.firstArgument - previousState.firstArgument % 10) / 10});
             } else {
-                return Object.assign(previousState, {secondArgument: (previousState.secondArgument - previousState.secondArgument % 10) / 10});
+                return $.extend({}, previousState, {secondArgument: (previousState.secondArgument - previousState.secondArgument % 10) / 10});
             }
             break;
 

@@ -12,7 +12,7 @@ function MemoryReducerTestSet(initialState) {
 
     addZeroToMemoryTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {memory: 0});
+        return $.extend({}, state, {memory: 0});
     })();
     testSet.addTestItem(addZeroToMemoryTest);
 
@@ -29,7 +29,7 @@ function MemoryReducerTestSet(initialState) {
 
     addToMemoryTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {memory: 42, firstArgument: 42});
+        return $.extend({}, state, {memory: 42, firstArgument: 42});
     })();
     testSet.addTestItem(addToMemoryTest);
 
@@ -48,7 +48,7 @@ function MemoryReducerTestSet(initialState) {
 
     addToMemoryFromSecArgTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {
+        return $.extend({}, state, {
             memory: 21,
             operator: 'add',
             firstArgument: 42,
@@ -72,7 +72,7 @@ function MemoryReducerTestSet(initialState) {
 
     addZeroToMemoryFromSecArgTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {
+        return $.extend({}, state, {
             memory: 0,
             operator: 'add',
             firstArgument: 42,
@@ -94,7 +94,7 @@ function MemoryReducerTestSet(initialState) {
 
     getFromEmptyMemoryTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 21});
+        return $.extend({}, state, {firstArgument: 21});
     })();
     testSet.addTestItem(getFromEmptyMemoryTest);
 
@@ -112,7 +112,7 @@ function MemoryReducerTestSet(initialState) {
 
     getFromMemoryTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 21, memory: 21});
+        return $.extend({}, state, {firstArgument: 21, memory: 21});
     })();
     testSet.addTestItem(getFromMemoryTest);
 
@@ -132,7 +132,7 @@ function MemoryReducerTestSet(initialState) {
 
     getFromMemoryToSecArgTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {
+        return $.extend({}, state, {
             secondArgument: 21,
             memory: 21,
             firstArgument: 42,
@@ -188,7 +188,7 @@ function MemoryReducerTestSet(initialState) {
 
     clearMemoryWithArgsAndOpTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return Object.assign(state, {firstArgument: 42, secondArgument: 21, operator: 'add'});
+        return $.extend({}, state, {firstArgument: 42, secondArgument: 21, operator: 'add'});
     })();
     testSet.addTestItem(clearMemoryWithArgsAndOpTest);
 

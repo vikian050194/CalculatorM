@@ -3,7 +3,7 @@ function QueryReducer(previousState, action) {
         case 'addOperator':
             var queryState = jQuery.extend(true, {}, previousState);
             queryState.secondArgument = null;
-            return Object.assign(previousState, {query: new QueryBuilder().getQuery(queryState)});
+            return $.extend({}, previousState, {query: new QueryBuilder().getQuery(queryState)});
             break;
 
         case 'calculate':
@@ -15,7 +15,7 @@ function QueryReducer(previousState, action) {
                 queryState.operator = '';
                 queryState.secondArgument = null;
             }
-            return Object.assign(previousState, {
+            return $.extend({}, previousState, {
                 firstArgument: 0,
                 operator: '',
                 secondArgument: null,
@@ -25,7 +25,7 @@ function QueryReducer(previousState, action) {
 
         case 'addDigit':
             previousState.result = null;
-            return Object.assign(previousState, {query: new QueryBuilder().getQuery(previousState)});
+            return $.extend({}, previousState, {query: new QueryBuilder().getQuery(previousState)});
             break;
 
         case 'clear':
@@ -34,7 +34,7 @@ function QueryReducer(previousState, action) {
         case 'getFromMemory':
         case 'clearMemory':
         case 'changeSign':
-            return Object.assign(previousState, {query: new QueryBuilder().getQuery(previousState)});
+            return $.extend({}, previousState, {query: new QueryBuilder().getQuery(previousState)});
             break;
 
         default:

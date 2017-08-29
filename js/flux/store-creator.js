@@ -12,7 +12,7 @@ function createStore(reducer, initialState) {
             listeners.splice(index, 1);
         };
         listeners.push(callback);
-        return {removeListener};
+        return {removeListener: removeListener};
     };
 
     var dispatch = function (action) {

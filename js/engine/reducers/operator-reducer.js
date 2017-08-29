@@ -6,7 +6,7 @@ function OperatorReducer(previousState, action) {
                 previousState.result = null;
                 previousState.secondArgument = null;
             }
-            return Object.assign(previousState, {operator: action.value});
+            return $.extend({}, previousState, {operator: action.value});
             break;
 
         case 'precalculate':
@@ -59,7 +59,7 @@ function OperatorReducer(previousState, action) {
                     result += previousState.module;
                 }
             }
-            return Object.assign(previousState, {result: result});
+            return $.extend({}, previousState, {result: result});
             break;
 
         default:
