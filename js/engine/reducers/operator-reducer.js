@@ -1,10 +1,13 @@
 function OperatorReducer(previousState, action) {
     switch (action.type) {
         case 'addOperator':
-            if (previousState.result !== null) {
+            if (previousState.result !== null && !isNaN(previousState.result)) {
                 previousState.firstArgument = previousState.result;
                 previousState.result = null;
                 previousState.secondArgument = null;
+            }
+            if (action.value === 'mod') {
+                previousState.module = 0;
             }
             return $.extend({}, previousState, {operator: action.value});
             break;

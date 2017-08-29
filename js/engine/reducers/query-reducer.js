@@ -3,6 +3,15 @@ function QueryReducer(previousState, action) {
         case 'addOperator':
             var queryState = jQuery.extend(true, {}, previousState);
             queryState.secondArgument = null;
+            if (isNaN(queryState.result)) {
+                return $.extend({}, previousState, {
+                    firstArgument: 0,
+                    operator: '',
+                    secondArgument: null,
+                    result: null,
+                    query: 'ERROR'
+                });
+            }
             return $.extend({}, previousState, {query: new QueryBuilder().getQuery(queryState)});
             break;
 
@@ -15,11 +24,16 @@ function QueryReducer(previousState, action) {
                 queryState.operator = '';
                 queryState.secondArgument = null;
             }
+            var query = new QueryBuilder().getQuery(queryState);
+            if (isNaN(queryState.result)) {
+                previousState.result = null;
+                query = 'ERROR';
+            }
             return $.extend({}, previousState, {
                 firstArgument: 0,
                 operator: '',
                 secondArgument: null,
-                query: new QueryBuilder().getQuery(queryState)
+                query: query
             });
             break;
 

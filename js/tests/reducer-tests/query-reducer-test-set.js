@@ -99,5 +99,67 @@ function QueryReducerTestSet(initialState) {
     })();
     testSet.addTestItem(calculateWFAModQueryTest);
 
+
+    var calculateWNaNResultQueryTest = new TestItem();
+    calculateWNaNResultQueryTest.name = 'Query after action "calculate" with NaN result';
+    calculateWNaNResultQueryTest.author = 'Anna';
+
+    calculateWNaNResultQueryTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 63;
+        state.secondArgument = 21;
+        state.operator = 'add';
+        state.result = NaN;
+        state = OperatorReducer(state, createAction('calculate')());
+        return QueryReducer(state, createAction('calculate')());
+    };
+
+    calculateWNaNResultQueryTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        return $.extend({}, state, {query: 'ERROR'});
+    })();
+    testSet.addTestItem(calculateWNaNResultQueryTest);
+
+
+    var addOperatorWNaNResultQueryTest = new TestItem();
+    addOperatorWNaNResultQueryTest.name = 'Query after action "addOperator" with NaN result';
+    addOperatorWNaNResultQueryTest.author = 'Anna';
+
+    addOperatorWNaNResultQueryTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 63;
+        state.secondArgument = 21;
+        state.operator = 'add';
+        state.result = NaN;
+        state = OperatorReducer(state, createAction('addOperator')('add'));
+        return QueryReducer(state, createAction('addOperator')('add'));
+    };
+
+    addOperatorWNaNResultQueryTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        return $.extend({}, state, {query: 'ERROR'});
+    })();
+    testSet.addTestItem(addOperatorWNaNResultQueryTest);
+
+
+    var addSeveralModulesQueryTest = new TestItem();
+    addSeveralModulesQueryTest.name = 'Query after adding module with previous module';
+    addSeveralModulesQueryTest.author = 'Anna';
+
+    addSeveralModulesQueryTest.test = function () {
+        var state = jQuery.extend(true, {}, initialState);
+        state.firstArgument = 63;
+        state.module = 6;
+        state.operator = 'mod';
+        state = OperatorReducer(state, createAction('addOperator')('mod'));
+        return QueryReducer(state, createAction('addOperator')('mod'));
+    };
+
+    addSeveralModulesQueryTest.expectedObject = (function () {
+        var state = jQuery.extend(true, {}, initialState);
+        return $.extend({}, state, {firstArgument: 63, operator: 'mod', module: 0, query: '63 mod'});
+    })();
+    testSet.addTestItem(addSeveralModulesQueryTest);
+
     return testSet.test();
 }
