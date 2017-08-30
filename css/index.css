@@ -5,6 +5,7 @@
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    justify-content: space-around;
 }
 
 #btns-table {
@@ -22,7 +23,7 @@
 
 .line {
     width: 96%;
-    height: 14vh;
+    height: 20vh;
     margin: 2vh 2vw 0.1vh 2vw;
     text-align: right;
     word-wrap: break-word;

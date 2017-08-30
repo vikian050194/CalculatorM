@@ -157,7 +157,7 @@ function QueryReducerTestSet(initialState) {
 
     addSeveralModulesQueryTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {firstArgument: 63, operator: 'mod', module: 0, query: '63 mod'});
+        return $.extend({}, state, {firstArgument: 63, operator: 'mod', module: 0, query: '63 mod _'});
     })();
     testSet.addTestItem(addSeveralModulesQueryTest);
 

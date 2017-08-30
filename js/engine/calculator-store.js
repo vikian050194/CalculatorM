@@ -5,7 +5,7 @@ function CalculatorStore() {
         operator: '',
         module: 0,
         memory: null,
-        query: '',
+        query: '_',
         result: null
     };
     var store = createStore(HistoryReducer(combineReducers({

@@ -12,12 +12,18 @@ function QueryBuilder() {
                 line += ' ';
             }
         }
-        if (model.result !== null) {
-            line += ' = ' + model.result;
+        if (model.result === null) {
+            line += '_';
         }
-        line += '_';
-        if (model.module !== 0) {
-            line += ' mod ' + model.module;
+        if (model.module !== 0 && model.result !== null) {
+            line += '  \u2630 ' + model.result + '_' + ' mod ' + model.module;
+        } else {
+            if (model.result !== null) {
+                line += ' = ' + model.result + '_';
+            }
+            if (model.module !== 0) {
+                line += ' mod ' + model.module;
+            }
         }
         return line;
     }

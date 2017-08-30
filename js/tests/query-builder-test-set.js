@@ -27,7 +27,7 @@ function QueryBuilderTestSet(initialState) {
     };
 
     oneArgumentTest.expectedObject = (function () {
-        return '3';
+        return '3_';
     })();
 
     oneArgumentTest.author = 'Vitaly';
@@ -46,7 +46,7 @@ function QueryBuilderTestSet(initialState) {
     };
 
     OneArgumentAndOperation.expectedObject = (function () {
-        return '7 add 0';
+        return '7 add 0_';
     })();
 
     OneArgumentAndOperation.author = 'Vitaly';
@@ -65,7 +65,7 @@ function QueryBuilderTestSet(initialState) {
     };
 
     twoNumberAndOperationTest.expectedObject = (function () {
-        return '7 add 32';
+        return '7 add 32_';
     })();
 
     twoNumberAndOperationTest.author = 'Vitaly';
@@ -82,7 +82,7 @@ function QueryBuilderTestSet(initialState) {
     };
 
     ModuleTest.expectedObject = (function () {
-        return '0 mod 100';
+        return '0_ mod 100';
     })();
 
     ModuleTest.author = 'Vitaly';
@@ -100,7 +100,7 @@ function QueryBuilderTestSet(initialState) {
     };
 
     ModuleAndArgumentTest.expectedObject = (function () {
-        return '72 mod 100';
+        return '72_ mod 100';
     })();
 
     ModuleAndArgumentTest.author = 'Vitaly';
@@ -119,7 +119,7 @@ function QueryBuilderTestSet(initialState) {
     };
 
     ModuleAndTwoArgumentsTest.expectedObject = (function () {
-        return '72 sub 5 mod 100';
+        return '72 sub 5_ mod 100';
     })();
 
     ModuleAndTwoArgumentsTest.author = 'Vitaly';

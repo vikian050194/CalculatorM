@@ -396,7 +396,7 @@ function OperatorReducerTestSet(initialState) {
 
     addOperatorAfterCalculateWModTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {firstArgument: 6, operator: 'add', module: 72, query: '6 add mod 72'});
+        return $.extend({}, state, {firstArgument: 6, operator: 'add', module: 72, query: '6 add _ mod 72'});
     })();
     testSet.addTestItem(addOperatorAfterCalculateWModTest);
 

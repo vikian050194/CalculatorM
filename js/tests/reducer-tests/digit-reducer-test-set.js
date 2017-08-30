@@ -210,7 +210,7 @@ function DigitReducerTestSet(initialState) {
 
     changeSignToResultTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {firstArgument: -63, query: '42 add 21 = 63'});
+        return $.extend({}, state, {firstArgument: -63, query: '42 add 21 = 63_'});
     })();
     testSet.addTestItem(changeSignToResultTest);
 
