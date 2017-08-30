@@ -25,4 +25,5 @@ function CalculatorStore() {
     };
 
     store.addListener(HistoryUpdate(UpdateUI));
+    UpdateUI(initialState);
 }

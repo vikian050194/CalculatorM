@@ -8,4 +8,5 @@ function UpdateUI(state) {
         $('#output').val(state.result);
     }
     $('#query').val(state.query);
+    AutoresizeText();
 }

@@ -1,30 +1,31 @@
 function AutoresizeText() {
-    var el, elements, _i, _len, _results;
-    elements = $('.resize');
+    var elements = $('.resize');
     if (elements.length < 0) {
         return;
     }
-    _results = [];
     for (_i = 0, _len = elements.length; _i < _len; _i++) {
-        el = elements[_i];
-        _results.push((function(el) {
-            var reduceText, enlargeText, _results1;
-            reduceText = function() {
-                var elNewFontSize;
-                elNewFontSize = (parseInt($(el).css('font-size').slice(0, -2)) - 1) + 'px';
+        var el = elements[_i];
+        (function(el) {
+            var reduceText = function() {
+                var elNewFontSize = (parseInt($(el).css('font-size').slice(0, -2)) - 1) + 'px';
                 return $(el).css('font-size', elNewFontSize);
             };
-            reduceText = function() {
-                var elNewFontSize;
-                elNewFontSize = (parseInt($(el).css('font-size').slice(0, -2)) - 1) + 'px';
+            var enlargeText = function() {
+                var elNewFontSize = (parseInt($(el).css('font-size').slice(0, -2)) + 1) + 'px';
                 return $(el).css('font-size', elNewFontSize);
             };
-            _results1 = [];
-            while (el.scrollWidth > el.offsetWidth) {
-                _results1.push(reduceText());
+            while (el.scrollWidth > el.clientWidth) {
+                reduceText();
             }
-            return _results1;
-        })(el));
+            var size = parseInt($(el).css('font-size').slice(0, -2));
+            while (size / 1.65 * el.selectionStart < el.clientWidth && size < el.clientHeight / 1.5) {
+                enlargeText();
+                size = parseInt($(el).css('font-size').slice(0, -2));
+            }
+            // while (el.scrollWidth === el.clientWidth && size < el.clientHeight / 1.5) {
+            //     enlargeText();
+            //     size = parseInt($(el).css('font-size').slice(0, -2));
+            // }
+        })(el);
     }
-    return _results;
-};
+}
