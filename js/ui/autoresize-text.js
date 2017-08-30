@@ -14,18 +14,15 @@ function AutoresizeText() {
                 var elNewFontSize = (parseInt($(el).css('font-size').slice(0, -2)) + 1) + 'px';
                 return $(el).css('font-size', elNewFontSize);
             };
-            while (el.scrollWidth > el.clientWidth) {
-                reduceText();
-            }
             var size = parseInt($(el).css('font-size').slice(0, -2));
-            while (size / 1.65 * el.selectionStart < el.clientWidth && size < el.clientHeight / 1.5) {
+            while (size / 1.65 * el.value.length > el.clientWidth) {
+                reduceText();
+                size = parseInt($(el).css('font-size').slice(0, -2));
+            }
+            while (size / 1.65 * el.value.length < el.clientWidth && size < el.clientHeight / 1.5) {
                 enlargeText();
                 size = parseInt($(el).css('font-size').slice(0, -2));
             }
-            // while (el.scrollWidth === el.clientWidth && size < el.clientHeight / 1.5) {
-            //     enlargeText();
-            //     size = parseInt($(el).css('font-size').slice(0, -2));
-            // }
         })(el);
     }
 }
