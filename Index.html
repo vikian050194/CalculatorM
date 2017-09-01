@@ -19,6 +19,7 @@
     <script type="text/javascript" src="js/engine/calculator-store.js"></script>
     <script type="text/javascript" src="js/engine/calculator.ui.js"></script>
     <script type="text/javascript" src="js/engine/update-ui.js"></script>
+    <script type="text/javascript" src="js/engine/safe-integer.js"></script>
     <script type="text/javascript" src="js/engine/reducers/clearing-reducer.js"></script>
     <script type="text/javascript" src="js/engine/reducers/combine-reducers.js"></script>
     <script type="text/javascript" src="js/engine/reducers/digit-reducer.js"></script>
@@ -30,7 +31,7 @@
     <script type="text/javascript" src="js/engine/applicators/history-applicator.js"></script>
     <script type="text/javascript" src="js/engine/applicators/memory-applicator.js"></script>
     <script type="text/javascript" src="js/engine/applicators/operator-applicator.js"></script>
-    <script type="text/javascript" src="js/engine/applicators/themes-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/menu-applicator.js"></script>
     <script type="text/javascript" src="js/flux/store-creator.js"></script>
     <script type="text/javascript" src="js/history/history-update.js"></script>
     <script type="text/javascript" src="js/history/history-reducer.js"></script>
@@ -40,10 +41,21 @@
 
 <body>
     <div id="calculator" class="calculator-blue">
-        <input id="query" class="form-control line resize" readonly>
+        <div id="lines-container">
+            <input id="query" class="form-control line resize" readonly>
+            <input id="result" class="form-control line resize" readonly>
+        </div>
         <div id="work-panel">
             <div id="arrow-prev" class="arrow"></div>
             <div id="btns-table">
+                <div id="slide-btns">
+                    <button id="F1" class="btn btn-operator slide-btn">F1</button>
+                    <button id="F2" class="btn btn-operator slide-btn">F2</button>
+                    <button id="F3" class="btn btn-operator slide-btn">F3</button>
+                    <button id="menu" class="btn btn-operator">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </button>
+                </div>
                 <div id="carousel" class="carousel">
                     <div id="page-1" class="slick-slide">
                         <button id="add" class="btn btn-operator text-btn" data-value="add">add</button>
@@ -66,18 +78,14 @@
                         <button id="3" class="btn btn-digit" data-value="3">3</button>
                         <button id="clear" class="btn btn-special" data-value="clear">C</button>
                         <button id="0" class="btn btn-digit" data-value="0">0</button>
-                        <button id="nextTheme" class="btn btn-special" data-value="nextTheme">
-                            <span class="glyphicon glyphicon-tint"></span>
-                        </button>
+                        <button id="sign" class="btn btn-special sign-btn" data-value="sign"></button>
                         <button id="calc" class="btn btn-special" data-value="calc">=</button>
                     </div>
                     <div id="page-2" class="slick-slide">
                         <button id="MR" class="btn btn-operator text-btn" data-value="memoryRecall">MR</button>
                         <button id="undo" class="btn btn-operator text-btn" data-value="undo">undo</button>
                         <button id="redo" class="btn btn-operator text-btn" data-value="redo">redo</button>
-                        <button id="menu" class="btn btn-operator" data-value="menu" disabled>
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </button>
+                        <button id="?" class="btn btn-operator" data-value="?" disabled>?</button>
                         <button id="M+" class="btn btn-operator text-btn" data-value="memoryAdd">M+</button>
                         <button id="7-page2" class="btn btn-digit" data-value="7">7</button>
                         <button id="8-page2" class="btn btn-digit" data-value="8">8</button>
@@ -94,20 +102,29 @@
                         <button id="3-page2" class="btn btn-digit" data-value="3">3</button>
                         <button id="clear-page2" class="btn btn-special" data-value="clear">C</button>
                         <button id="0-page2" class="btn btn-digit" data-value="0">0</button>
-                        <button id="nextTheme-page2" class="btn btn-special" data-value="nextTheme">
-                            <span class="glyphicon glyphicon-tint"></span>
-                        </button>
+                        <button id="sign-page2" class="btn btn-special sign-btn" data-value="sign"></button>
                         <button id="calc-page2" class="btn btn-special" data-value="calc">=</button>
+                    </div>
+                    <div id="page-3" class="slick-slide">
+                        <div style="color: white; font-size: 50px; margin: auto">Coming soon :)</div>
+                    </div>
+                    <div id="page-4" class="slick-slide">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <button id="nextTheme" class="btn btn-special text-btn">Change theme</button>
+                            </li>
+                            <li class="list-group-item">
+                                <span>Set result of module calculation to positive number</span>
+                                <div class="switch">
+                                    <input id="positive" type="checkbox"/>
+                                    <label for="positive" class="label-default"></label>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div id="arrow-next" class="arrow"></div>
-        </div>
-        <div id="dots">
-            <ul id="desktop-dots" class="slick-dots">
-                <li id="dot1" class="dot slick-active" data-page="1"></li>
-                <li id="dot2" class="dot" data-page="2"></li>
-            </ul>
         </div>
     </div>
 </body>

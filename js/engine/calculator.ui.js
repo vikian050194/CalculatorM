@@ -9,8 +9,7 @@ function CalculatorUI() {
         applyMemory(calculatorStore);
         applyHistory(calculatorStore);
 
-        applyThemes(themer);
-        Cookies.set('positive', true, {expires: 31});
+        applyMenu(themer);
     };
 
     init();

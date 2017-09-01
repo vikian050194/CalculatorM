@@ -10,7 +10,7 @@ function QueryBuilderTestSet(initialState) {
     };
 
     defaultModelTest.expectedObject = (function () {
-        return '0';
+        return '';
     })();
 
     defaultModelTest.author = 'Vitaly';
@@ -82,7 +82,7 @@ function QueryBuilderTestSet(initialState) {
     };
 
     ModuleTest.expectedObject = (function () {
-        return '0_ mod 100';
+        return '_ mod 100';
     })();
 
     ModuleTest.author = 'Vitaly';

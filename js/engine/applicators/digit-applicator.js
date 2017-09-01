@@ -12,4 +12,8 @@ function applyDigits(calculatorStore) {
     };
 
     applyDigit();
+
+    $('[data-value="sign"]').on('click', function () {
+        calculatorStore.dispatch(createAction('changeSign')());
+    });
 }

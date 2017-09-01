@@ -5,7 +5,6 @@
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    justify-content: space-around;
 }
 
 #btns-table {
@@ -14,21 +13,44 @@
     display: flex;
     flex-wrap: wrap;
     margin: 2vh;
-    margin-top: 4vh;
+    margin-top: -1vh;
     margin-bottom: 0;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
+#lines-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    width: 100%;
+}
+
 .line {
     width: 96%;
-    height: 20vh;
-    margin: 2vh 2vw 0.1vh 2vw;
+    height: 15vh;
+    font-size: 9vh;
+    margin: 0 2vw;
     text-align: right;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    overflow: auto;
+    overflow: hidden;
+    resize: none;
+}
+
+#query {
+    border-bottom: none;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#result {
+    border-top: none;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .form-control:focus {
@@ -49,6 +71,7 @@
     color: white;
     font-size: 10vh;
     opacity: 0.5;
+    display: none;
 }
 
 .arrow:hover {
@@ -133,6 +156,95 @@ ul {
     font-size: 3vh;
 }
 
+#slide-btns {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.sign-btn:before {
+    content: '\0000B1';
+}
+
+#page-4 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+#nextTheme {
+    width: 95%;
+    padding: 0 5%;
+    font-size: 5vh;
+}
+
+.list-group {
+    width: 100%;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.list-group-item span {
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+.switch {
+    width: 15vh;
+    margin-left: 3vh;
+}
+
+.switch > input[type="checkbox"] {
+    display: none;
+}
+
+.switch > label {
+    cursor: pointer;
+    height: 0px;
+    position: relative;
+    width: 70%;
+}
+
+.switch > label::before {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 2vh;
+    content: '';
+    height: 4vh;
+    margin-top: -2vh;
+    position: absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 8vh;
+}
+.switch > label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 4.5vh;
+    left: -1vh;
+    margin-top: -1.25vh;
+    position: absolute;
+    top: -1vh;
+    transition: all 0.3s ease-in-out;
+    width: 4.5vh;
+}
+.switch > input[type="checkbox"]:checked + label::before {
+    background: inherit;
+    opacity: 0.5;
+}
+.switch > input[type="checkbox"]:checked + label::after {
+    background: inherit;
+    left: 5vh;
+}
+
 .glyphicon {
     margin-top: 5%;
 }
@@ -141,7 +253,7 @@ ul {
     display: none;
 }
 
-@media only screen and (min-device-width: 500px) {
+@media only screen and (min-device-width: 1050px) {
     #calculator {
         width: 500px;
         margin-left: auto;

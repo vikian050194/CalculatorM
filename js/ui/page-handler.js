@@ -8,16 +8,28 @@ function PageHandler(lastPage) {
     };
 
     this.setPage = function (number) {
-        if (number > lastPageNumber)
+        if (number > lastPageNumber) {
             number = firstPageNumber;
-        if (number < firstPageNumber)
+        }
+        if (number < firstPageNumber) {
             number = lastPageNumber;
+        }
 
-        $('#page-' + currentPageNumber).addClass('not-displayed');
-        $('#page-' + number).removeClass('not-displayed');
+        for(var i = 1; i <= lastPageNumber; i++) {
+            if(i === number) {
+                $('#page-' + i).removeClass('not-displayed');
+            } else {
+                $('#page-' + i).addClass('not-displayed');
+            }
+        }
 
-        $('#dot' + currentPageNumber).removeClass('slick-active');
-        $('#dot' + number).addClass('slick-active');
+        for(var i = 1; i <= lastPageNumber; i++) {
+            if(i === number) {
+                $('#dot' + i).addClass('slick-active');
+            } else {
+                $('#dot' + i).removeClass('slick-active');
+            }
+        }
 
         currentPageNumber = number;
     }
