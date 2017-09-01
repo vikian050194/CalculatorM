@@ -7,12 +7,12 @@ $(document).ready(function () {
 
     setPositiveSwitch();
 
-    if (window.innerWidth <= 500) {
-        setMobileView();
-    }
-    else {
+    // if (window.innerWidth <= 500) {
+    //     setMobileView();
+    // }
+    // else {
         setDesktopView(pageHandler);
-    }
+    // }
 
     $('[data-value="redo"], [data-value="undo"]').attr('disabled', true);
 
