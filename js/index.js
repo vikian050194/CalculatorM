@@ -7,46 +7,12 @@ $(document).ready(function () {
 
     setPositiveSwitch();
 
-    // if (window.innerWidth <= 500) {
-    //     setMobileView();
-    // }
-    // else {
-        setDesktopView(pageHandler);
-    // }
+    setModuleSwitch();
 
     $('[data-value="redo"], [data-value="undo"]').attr('disabled', true);
 
     var calculator = new CalculatorUI();
 });
-
-function setDesktopView(pageHandler) {
-    $('#arrow-next').on('click', function () {
-        pageHandler.setPage(pageHandler.getCurrentPageNumber() + 1);
-    });
-
-    $('#arrow-prev').on('click', function () {
-        pageHandler.setPage(pageHandler.getCurrentPageNumber() - 1);
-    });
-
-    $('.dot').each(function () {
-        $(this).on('click', function (event) {
-            pageHandler.setPage(event.target.dataset.page);
-        })
-    })
-}
-
-function setMobileView() {
-    $('#carousel').slick({
-        swipeToSlide: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        dots: true,
-        appendDots: $('#dots')
-    });
-
-    $('#arrow-next, #arrow-prev, #desktop-dots').addClass('not-displayed');
-}
 
 function setSlideButtons(pageHandler) {
     $('#F1').on('click', function () {
@@ -76,5 +42,18 @@ function setPositiveSwitch() {
     var positiveSwitch = $("#positive")[0];
     if (positiveCookie === "true") {
         positiveSwitch.checked = "true";
+    }
+}
+
+function setModuleSwitch() {
+    var moduleCookie = Cookies.get('module');
+    if (moduleCookie === undefined) {
+        Cookies.set('positive', false, {expires: 31});
+        return;
+    }
+
+    var moduleSwitch = $("#module")[0];
+    if (moduleCookie === "true") {
+        moduleSwitch.checked = "true";
     }
 }

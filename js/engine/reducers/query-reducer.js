@@ -29,6 +29,9 @@ function QueryReducer(previousState, action) {
                 previousState.result = null;
                 query = 'ERROR';
             }
+            if (Cookies.get('module') === 'false') {
+                previousState.module = 0;
+            }
             return $.extend({}, previousState, {
                 firstArgument: 0,
                 operator: '',

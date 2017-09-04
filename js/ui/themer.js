@@ -6,27 +6,18 @@ function Themer() {
         Cookies.set(id, currentThemeIndex, {expires: 31});
     }
 
-    function nextIndex() {
-        currentThemeIndex++;
-        currentThemeIndex %= themes.length;
-    }
-
-    function getClass() {
-        var result = 'calculator-' + themes[currentThemeIndex];
-        return result;
-    }
-
-    function changeTheme() {
+    function changeTheme(themeIndex) {
         var calc = $('#calculator');
         var oldTheme = calc.attr('class');
-        var newTheme = getClass();
-        calc.removeClass(oldTheme).addClass(newTheme);
+        calc.removeClass(oldTheme).addClass('calculator-' + themes[themeIndex]);
     }
 
-    this.next = function () {
-        nextIndex();
+    this.setTheme = function (theme) {
+        if (themes.indexOf(theme) < 0) {
+            return;
+        }
         saveInCookies();
-        changeTheme();
+        changeTheme(themes.indexOf(theme));
     };
 
     var currentThemeIndex = Cookies.get(id);
@@ -36,6 +27,9 @@ function Themer() {
         saveInCookies();
     }
     else if (currentThemeIndex != 0) {
-        changeTheme();
+        changeTheme(currentThemeIndex);
     }
+
+    var changeThemeSelect = $('#changeTheme');
+    changeThemeSelect[0].selectedIndex = currentThemeIndex;
 }

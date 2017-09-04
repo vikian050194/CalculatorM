@@ -46,7 +46,6 @@
             <input id="result" class="form-control line resize" readonly>
         </div>
         <div id="work-panel">
-            <div id="arrow-prev" class="arrow"></div>
             <div id="btns-table">
                 <div id="slide-btns">
                     <button id="F1" class="btn btn-operator slide-btn">F1</button>
@@ -111,7 +110,12 @@
                     <div id="page-4" class="slick-slide">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <button id="nextTheme" class="btn btn-special text-btn">Change theme</button>
+                                <span>Change theme</span>
+                                <select class="form-control" id="changeTheme">
+                                    <option>Blue</option>
+                                    <option>Gray</option>
+                                    <option>Russia</option>
+                                </select>
                             </li>
                             <li class="list-group-item">
                                 <span>Set result of module calculation to positive number</span>
@@ -120,11 +124,17 @@
                                     <label for="positive" class="label-default"></label>
                                 </div>
                             </li>
+                            <li class="list-group-item">
+                                <span>Set module remembering</span>
+                                <div class="switch">
+                                    <input id="module" type="checkbox"/>
+                                    <label for="module" class="label-default"></label>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div id="arrow-next" class="arrow"></div>
         </div>
     </div>
 </body>
