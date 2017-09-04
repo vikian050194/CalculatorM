@@ -1,8 +1,8 @@
 function applyMenu(themer) {
     $('#changeTheme').on('change', function () {
-        var option = this.selectedOptions[0].innerHTML;
+        var optionIndex = this.selectedIndex;
 
-        themer.setTheme(option.toLowerCase());
+        themer.setTheme(optionIndex);
     });
 
     $("#positive").change(function () {

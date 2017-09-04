@@ -12,11 +12,11 @@ function Themer() {
         calc.removeClass(oldTheme).addClass('calculator-' + themes[currentThemeIndex]);
     }
 
-    this.setTheme = function (theme) {
-        if (themes.indexOf(theme) < 0) {
+    this.setTheme = function (themeIndex) {
+        if (themeIndex < 0 || themeIndex >= themes.length) {
             return;
         }
-		currentThemeIndex = themes.indexOf(theme);
+		currentThemeIndex = themeIndex;
         saveInCookies();
         changeTheme();
     };
