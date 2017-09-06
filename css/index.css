@@ -24,7 +24,7 @@
     align-items: center;
     margin: 2vh;
     padding: 0 1.4vh;
-    width: 100%;
+    width: 99.75%;
 }
 
 .line {
@@ -156,7 +156,7 @@ ul {
 }
 
 .list-group {
-    width: 100%;
+    width: 97.75%;
 	margin-top: 3vh;
 }
 
@@ -180,6 +180,7 @@ ul {
 
 .switch {
     width: 10vh;
+	margin: 2vh 0;
     margin-left: 3vh;
 }
 
