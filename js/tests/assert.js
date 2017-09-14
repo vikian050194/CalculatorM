@@ -31,8 +31,8 @@ function compare(expected, actual) {
                 }
                 break;
             default:
-                if (actual[p] != expected[p]) {
-                    throw 'incorrect value: ' + p;
+                if (actual[p] !== expected[p]) {
+                    throw 'incorrect value: ' + 'expected: "' + expected + '" actual: "' + actual + '"';
                 }
         }
     }

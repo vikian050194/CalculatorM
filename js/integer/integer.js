@@ -1,5 +1,5 @@
 function Integer(number) {
-    var pattern = /\d/;
+    var pattern = /-*\d/;
     digits = [];
     if (typeof number === "string" & pattern.test(number)) {
         for (var i = 0; i < number.length; i++) {
@@ -12,7 +12,7 @@ function Integer(number) {
 
     this.toString = function () {
         var result = digits.reduce(function (previousValue, currentValue) {
-            return previousValue + currentValue;
+            return currentValue + previousValue;
         });
 
         return result;
