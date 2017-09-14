@@ -1,4 +1,4 @@
-function testInt() {
+function IntegerTestSet() {
     var testSet = new TestSet();
 
     var addBigNumber = new TestItem();
@@ -6,13 +6,12 @@ function testInt() {
     addBigNumber.author = 'Vitaly';
 
     addBigNumber.test = function () {
-       
-       var firstArgument = Int('534534534534543534543543534534543');
-        return testInt(state, createAction('clear')());
+        var number = new Integer('1');
+        return number.toString();
     };
 
     addBigNumber.expectedObject = (function () {
-        return jQuery.extend(true, {}, initialState)
+        return '2';
     })();
     testSet.addTestItem(addBigNumber);
 

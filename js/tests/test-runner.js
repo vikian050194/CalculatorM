@@ -12,7 +12,7 @@ $(document).ready(function () {
       //  testSets.push(MemoryReducerTestSet);
       //  testSets.push(OperatorReducerTestSet);
        //testSets.push(QueryReducerTestSet);
-      testSets.push(testInt);
+      testSets.push(IntegerTestSet);
 
         var totalCount = 0;
         var passedCount = 0;

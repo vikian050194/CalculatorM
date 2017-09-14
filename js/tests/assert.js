@@ -6,13 +6,17 @@ Assert.prototype.areEqual = function (expected, actual) {
     compare(expected, actual);
 };
 
+function getErrorMessage(expected, actual) {
+    var result = 'expected: "' + expected + '" actual: "' + actual + '"';
+}
+
 function compare(expected, actual) {
     for (var p in actual) {
         if (actual.hasOwnProperty(p) !== expected.hasOwnProperty(p)) {
             return false;
         }
 
-        if(actual[p] === null && expected[p] !== null) {
+        if (actual[p] === null && expected[p] !== null) {
             throw 'incorrect value: ' + p;
         }
 
