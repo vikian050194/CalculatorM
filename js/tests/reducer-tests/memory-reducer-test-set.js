@@ -1,5 +1,6 @@
-function MemoryReducerTestSet(initialState) {
+function MemoryReducerTestSet() {
     var testSet = new TestSet();
+    var initialState = new TestState;
 
     var addZeroToMemoryTest = new TestItem();
     addZeroToMemoryTest.name = 'Add zero to memory';
