@@ -237,7 +237,7 @@ ul {
     display: none;
 }
 
-@media only screen and (min-device-width: 1050px) {
+@media only screen and (min-device-width: 800px) {
     #calculator {
         width: 500px;
         margin-left: auto;

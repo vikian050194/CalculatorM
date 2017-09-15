@@ -4,15 +4,14 @@ $(document).ready(function () {
     (function () {
         var testSets = [];
 
-      //  testSets.push(HistoryTestSet);
-     //   testSets.push(QueryBuilderTestSet);
-
-       // testSets.push(ClearingReducerTestSet);
-      //  testSets.push(DigitReducerTestSet);
-      //  testSets.push(MemoryReducerTestSet);
-      //  testSets.push(OperatorReducerTestSet);
-       //testSets.push(QueryReducerTestSet);
-      testSets.push(IntegerTestSet);
+    testSets.push(HistoryTestSet);
+    testSets.push(QueryBuilderTestSet);
+    testSets.push(ClearingReducerTestSet);
+    testSets.push(DigitReducerTestSet);
+    testSets.push(MemoryReducerTestSet);
+    testSets.push(OperatorReducerTestSet);
+    testSets.push(QueryReducerTestSet);
+    testSets.push(IntegerTestSet);
 
         var totalCount = 0;
         var passedCount = 0;
@@ -20,18 +19,8 @@ $(document).ready(function () {
         var failedHtml = '';
         var passedHtml = '';
 
-        var initialState = {
-            firstArgument: 0,
-            secondArgument: null,
-            operator: '',
-            module: 0,
-            memory: null,
-            query: '',
-            result: null
-        };
-
         testSets.forEach(function (testSet) {
-            var result = testSet(initialState);
+            var result = testSet();
             passedCount += result.passed;
             // result.passedTestNames.forEach(function (name) {
             //     passedHtml += '<div>' + name + '</div>';
@@ -51,3 +40,13 @@ $(document).ready(function () {
         $('#failed').html(failedHtml);
     })();
 });
+
+function TestState(){
+    this.firstArgument= 0;
+    this.secondArgument=  null;
+    this.operator= '';
+    this.module= 0;
+    this.memory= null;
+    this.query= '';
+    this.result= null;
+};

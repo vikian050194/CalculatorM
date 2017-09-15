@@ -1,4 +1,5 @@
-function DigitReducerTestSet(initialState) {
+function DigitReducerTestSet() {
+    var initialState = new TestState;
     var testSet = new TestSet();
 
     var addDigitTest = new TestItem();

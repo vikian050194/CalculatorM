@@ -1,5 +1,6 @@
-function ClearingReducerTestSet(initialState) {
+function ClearingReducerTestSet() {
     var testSet = new TestSet();
+    var initialState = new TestState;
 
     var clearTest = new TestItem();
     clearTest.name = 'Clear';
