@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>CalculatorM</title>
+    <link href="css/test.css" rel="stylesheet">
+    <link id="theme" href="css/themes.css" rel="stylesheet">
+    <script type="text/javascript" src="js/plugins/jquery-2.2.4.js"></script>
+    <script type="text/javascript" src="js/plugins/js.cookie.js"></script>
+    <script type="text/javascript" src="js/tests/assert.js"></script>
+    <script type="text/javascript" src="js/tests/test-runner.js"></script>
+    <script type="text/javascript" src="js/integer/integer.js"></script>
+    <script type="text/javascript" src="js/tests/test-set.js"></script>
+    <script type="text/javascript" src="js/tests/test-integer.js"></script>
+    <script type="text/javascript" src="js/tests/test-item.js"></script>
+    <script type="text/javascript" src="js/tests/history-test-set.js"></script>
+    <script type="text/javascript" src="js/tests/query-builder-test-set.js"></script>
+    <script type="text/javascript" src="js/tests/reducer-tests/clearing-reducer-test-set.js"></script>
+    <script type="text/javascript" src="js/tests/reducer-tests/digit-reducer-test-set.js"></script>
+    <script type="text/javascript" src="js/tests/reducer-tests/memory-reducer-test-set.js"></script>
+    <script type="text/javascript" src="js/tests/reducer-tests/operator-reducer-test-set.js"></script>
+    <script type="text/javascript" src="js/tests/reducer-tests/query-reducer-test-set.js"></script>
+    <script type="text/javascript" src="js/engine/calculator-store.js"></script>
+    <script type="text/javascript" src="js/engine/calculator.ui.js"></script>
+    <script type="text/javascript" src="js/engine/action-creator.js"></script>
+    <script type="text/javascript" src="js/engine/safe-integer.js"></script>
+    <script type="text/javascript" src="js/engine/query-builders/query-builder-wtes.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/clearing-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/digit-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/history-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/memory-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/operator-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/clearing-reducer.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/combine-reducers.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/digit-reducer.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/memory-reducer.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/operator-reducer.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/query-reducer.js"></script>
+    <script type="text/javascript" src="js/flux/store-creator.js"></script>
+    <script type="text/javascript" src="js/history/history-reducer.js"></script>
+    <link rel="shortcut icon" href="icons/test.png" />
+</head>
+
+<body>
+    <div>
+        <h1 id="totalCount">0</h1>
+    </div>
+    <div>
+        <h1 id="passedCount">0</h1>
+        <div id="passed">
+
+        </div>
+    </div>
+    <div>
+        <h1 id="failedCount">0</h1>
+        <div id="failed">
+
+        </div>
+    </div>
+</body>
+
+</html>

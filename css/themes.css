@@ -1,4 +1,4 @@
-.calculator-blue table{
+.calculator-blue {
     background: #08102F;
 }
 .calculator-blue .btn-operator{
@@ -16,8 +16,13 @@
     background: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
     border-color: #245580;
 }
+.calculator-blue .label-default{
+    color: #fff;
+    background: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+    border-color: #245580;
+}
 
-.calculator-gray table{
+.calculator-gray {
     background: #242629;
 }
 .calculator-gray .btn-operator{
@@ -35,8 +40,13 @@
 	background-image: linear-gradient(to bottom,#5f666d 0,#373B3F 100%);
 	border-color: #242629; 
 }
+.calculator-gray .label-default{
+    color: white;
+    background-image: linear-gradient(to bottom,#5f666d 0,#373B3F 100%);
+    border-color: #242629;
+}
 
-.calculator-russia table{
+.calculator-russia {
     background: #000;
 }
 .calculator-russia .btn-operator{
@@ -50,6 +60,11 @@
     border-color: #ccc;
 }
 .calculator-russia .btn-special{
+    color: #fff;
+    background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
+    border-color: #d43f3a;
+}
+.calculator-russia .label-default {
     color: #fff;
     background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
     border-color: #d43f3a;

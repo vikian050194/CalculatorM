@@ -1,8 +1,17 @@
 temp/
 
+
 *.mdf
+
 *.ldf
 
+
 *.zip
+
 *.rar
+
 *.7z
+
+
+# WebStorm files
+.idea/

@@ -8,93 +8,135 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <link id="theme" href="css/themes.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
-    <script type="text/javascript" src="js/js.cookie.js"></script>
-    <script type="text/javascript" src="js/loader.js"></script>
-    <script type="text/javascript" src="js/themer.js"></script>
-    <script type="text/javascript" src="js/engine.js"></script>
-    <script type="text/javascript" src="js/calculator.js"></script>
-    <script type="text/javascript" src="js/calculator-ui.js"></script>
+    <script type="text/javascript" src="js/plugins/jquery-2.2.4.js"></script>
+    <script type="text/javascript" src="js/plugins/js.cookie.js"></script>
+    <script type="text/javascript" src="js/plugins/slick.min.js"></script>
+    <script type="text/javascript" src="js/integer/integer.js"></script>
+    <script type="text/javascript" src="js/ui/themer.js"></script>
+    <script type="text/javascript" src="js/ui/page-handler.js"></script>
+    <script type="text/javascript" src="js/ui/autoresize-text.js"></script>
+    <script type="text/javascript" src="js/engine/query-builders/query-builder-wtes.js"></script>
+    <script type="text/javascript" src="js/engine/action-creator.js"></script>
+    <script type="text/javascript" src="js/engine/calculator-store.js"></script>
+    <script type="text/javascript" src="js/engine/calculator.ui.js"></script>
+    <script type="text/javascript" src="js/engine/update-ui.js"></script>
+    <script type="text/javascript" src="js/engine/safe-integer.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/clearing-reducer.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/combine-reducers.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/digit-reducer.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/memory-reducer.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/operator-reducer.js"></script>
+    <script type="text/javascript" src="js/engine/reducers/query-reducer.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/clearing-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/digit-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/history-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/memory-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/operator-applicator.js"></script>
+    <script type="text/javascript" src="js/engine/applicators/menu-applicator.js"></script>
+    <script type="text/javascript" src="js/flux/store-creator.js"></script>
+    <script type="text/javascript" src="js/history/history-update.js"></script>
+    <script type="text/javascript" src="js/history/history-reducer.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    <link rel="shortcut icon" href="icon.png" />
+    <link rel="shortcut icon" href="icons/index.png" />
 </head>
 
 <body>
     <div id="calculator" class="calculator-blue">
-        <table>
-            <tbody>
-                <tr>
-                    <th colspan="4">
-                        <div class="input-group">
-                            <div id="output" class="form-control">0</div>
-                            <span class="input-group-addon">mod</span>
-                            <div id="module" class="form-control">2</div>
-                        </div>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="setMod" type="button" class="btn btn-special">
-                            <div>set</div>
-                            <div>module</div>
-                        </button>
-                    </td>
-                    <td><button id="mod" type="button" class="btn btn-operator">mod</button></td>
-                    <td><button id="mul" type="button" class="btn btn-operator">mul</button></td>
-                    <td><button id="add" type="button" class="btn btn-operator">add</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="backward" type="button" class="btn btn-special">
+        <div id="lines-container">
+            <input id="query" class="form-control line resize" readonly>
+            <input id="result" class="form-control line resize" readonly>
+        </div>
+        <div id="work-panel">
+            <div id="btns-table">
+                <div id="slide-btns">
+                    <button id="F1" class="btn btn-operator slide-btn">F1</button>
+                    <button id="F2" class="btn btn-operator slide-btn">F2</button>
+                    <button id="F3" class="btn btn-operator slide-btn">F3</button>
+                    <button id="menu" class="btn btn-operator">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </button>
+                </div>
+                <div id="carousel" class="carousel">
+                    <div id="page-1" class="slick-slide">
+                        <button id="add" class="btn btn-operator text-btn" data-value="add">add</button>
+                        <button id="sub" class="btn btn-operator text-btn" data-value="sub">sub</button>
+                        <button id="mul" class="btn btn-operator text-btn" data-value="mul">mul</button>
+                        <button id="div" class="btn btn-operator text-btn" data-value="div">div</button>
+                        <button id="pow" class="btn btn-operator text-btn" data-value="pow">pow</button>
+                        <button id="7" class="btn btn-digit" data-value="7">7</button>
+                        <button id="8" class="btn btn-digit" data-value="8">8</button>
+                        <button id="9" class="btn btn-digit" data-value="9">9</button>
+                        <button id="mod" class="btn btn-operator text-btn" data-value="mod">mod</button>
+                        <button id="4" class="btn btn-digit" data-value="4">4</button>
+                        <button id="5" class="btn btn-digit" data-value="5">5</button>
+                        <button id="6" class="btn btn-digit" data-value="6">6</button>
+                        <button id="backspace" class="btn btn-special" data-value="backspace">
                             <span class="glyphicon glyphicon-step-backward"></span>
                         </button>
-                    </td>
-                    <td><button id="pow" type="button" class="btn btn-operator">pow</button></td>
-                    <td><button id="div" type="button" class="btn btn-operator">div</button></td>
-                    <td><button id="sub" type="button" class="btn btn-operator">sub</button></td>
-                </tr>
-                <tr>
-                    <td><button id="clean" type="button" class="btn btn-special">C</button></td>
-                    <td><button id="7" type="button" class="btn btn-digit">7</button></td>
-                    <td><button id="8" type="button" class="btn btn-digit">8</button></td>
-                    <td><button id="9" type="button" class="btn btn-digit">9</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="memoryClean" type="button" class="btn btn-special">
-                            MC
+                        <button id="1" class="btn btn-digit" data-value="1">1</button>
+                        <button id="2" class="btn btn-digit" data-value="2">2</button>
+                        <button id="3" class="btn btn-digit" data-value="3">3</button>
+                        <button id="clear" class="btn btn-special" data-value="clear">C</button>
+                        <button id="0" class="btn btn-digit" data-value="0">0</button>
+                        <button id="sign" class="btn btn-special sign-btn" data-value="sign"></button>
+                        <button id="calc" class="btn btn-special" data-value="calc">=</button>
+                    </div>
+                    <div id="page-2" class="slick-slide">
+                        <button id="MR" class="btn btn-operator text-btn" data-value="memoryRecall">MR</button>
+                        <button id="undo" class="btn btn-operator text-btn" data-value="undo">undo</button>
+                        <button id="redo" class="btn btn-operator text-btn" data-value="redo">redo</button>
+                        <button id="?" class="btn btn-operator" data-value="?" disabled>?</button>
+                        <button id="M+" class="btn btn-operator text-btn" data-value="memoryAdd">M+</button>
+                        <button id="7-page2" class="btn btn-digit" data-value="7">7</button>
+                        <button id="8-page2" class="btn btn-digit" data-value="8">8</button>
+                        <button id="9-page2" class="btn btn-digit" data-value="9">9</button>
+                        <button id="MC" class="btn btn-operator text-btn" data-value="memoryClear">MC</button>
+                        <button id="4-page2" class="btn btn-digit" data-value="4">4</button>
+                        <button id="5-page2" class="btn btn-digit" data-value="5">5</button>
+                        <button id="6-page2" class="btn btn-digit" data-value="6">6</button>
+                        <button id="backspace-page2" class="btn btn-special" data-value="backspace">
+                            <span class="glyphicon glyphicon-step-backward"></span>
                         </button>
-                    </td>
-                    <td><button id="4" type="button" class="btn btn-digit">4</button></td>
-                    <td><button id="5" type="button" class="btn btn-digit">5</button></td>
-                    <td><button id="6" type="button" class="btn btn-digit">6</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="memoryAdd" type="button" class="btn btn-special">
-                            M+
-                        </button>
-                    </td>
-                    <td><button id="1" type="button" class="btn btn-digit">1</button></td>
-                    <td><button id="2" type="button" class="btn btn-digit">2</button></td>
-                    <td><button id="3" type="button" class="btn btn-digit">3</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="memoryRecall" type="button" class="btn btn-special">
-                           <div class="animated">MR</div>
-                        </button>
-                    </td>
-                    <td><button id="0" type="button" class="btn btn-digit">0</button></td>
-                    <td>
-                        <button id="nextTheme" type="button" class="btn btn-special">
-                            <span class="glyphicon glyphicon-tint"></span>
-                        </button>
-                    </td>
-                    <td><button id="calc" type="button" class="btn btn-special">=</button></td>
-                </tr>
-            </tbody>
-        </table>
+                        <button id="1-page2" class="btn btn-digit" data-value="1">1</button>
+                        <button id="2-page2" class="btn btn-digit" data-value="2">2</button>
+                        <button id="3-page2" class="btn btn-digit" data-value="3">3</button>
+                        <button id="clear-page2" class="btn btn-special" data-value="clear">C</button>
+                        <button id="0-page2" class="btn btn-digit" data-value="0">0</button>
+                        <button id="sign-page2" class="btn btn-special sign-btn" data-value="sign"></button>
+                        <button id="calc-page2" class="btn btn-special" data-value="calc">=</button>
+                    </div>
+                    <div id="page-3" class="slick-slide">
+                        <div style="color: white; font-size: 50px; margin: auto">Coming soon :)</div>
+                    </div>
+                    <div id="page-4" class="slick-slide">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span>Change theme</span>
+                                <select class="form-control" id="changeTheme">
+                                    <option>Blue</option>
+                                    <option>Gray</option>
+                                    <option>Russia</option>
+                                </select>
+                            </li>
+                            <li class="list-group-item">
+                                <span>Set result of module calculation to positive number</span>
+                                <div class="switch">
+                                    <input id="positive" type="checkbox"/>
+                                    <label for="positive" class="label-default"></label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <span>Set module remembering</span>
+                                <div class="switch">
+                                    <input id="module" type="checkbox"/>
+                                    <label for="module" class="label-default"></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
