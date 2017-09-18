@@ -1,4 +1,4 @@
-function IntegerTestSet() {
+function IntTestSet() {
     var testSet = new TestSet();
 
     var addNumber = new TestItem();
@@ -6,7 +6,7 @@ function IntegerTestSet() {
     addNumber.author = 'Vitaly';
 
     addNumber.test = function () {
-        var number = new Integer('2');
+        var number = new Int('2');
         return number.toString();
     };
 
@@ -20,7 +20,7 @@ function IntegerTestSet() {
     addNegativeNumber.author = 'Vitaly';
 
     addNegativeNumber.test = function () {
-        var number = new Integer('-2');
+        var number = new Int('-2');
         return number.toString();
     };
 
@@ -34,7 +34,7 @@ function IntegerTestSet() {
     addBigNumber.author = 'Vitaly';
 
     addBigNumber.test = function () {
-        var number = new Integer('-210');
+        var number = new Int('-210');
         return number.toString();
     };
 

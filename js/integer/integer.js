@@ -1,9 +1,13 @@
-function Integer(number) {
+function Int(number) {
     var pattern = /-*\d/;
     digits = [];
+    this.sign = '+';
     if (typeof number === "string" & pattern.test(number)) {
-        for (var i = 0; i < number.length; i++) {
-            digits[number.length - i - 1] = number[i];
+        if (number[0] === '-') {
+            this.sign = '-';
+        }
+        for (var i = 1; i < number.length; i++) {
+            digits[number.length - i - 1] = parseInt(number[i]);
         }
     }
     else {
@@ -11,9 +15,13 @@ function Integer(number) {
     }
 
     this.toString = function () {
-        var result = digits.reduce(function (previousValue, currentValue) {
-            return currentValue + previousValue;
-        });
+        var result ='';
+        if (this.sign === '-'){
+            result +='-';
+        }
+            result += String(digits.reduce(function (previousValue, currentValue) {
+                return pacurrentValue + previousValue;
+            }));
 
         return result;
     }

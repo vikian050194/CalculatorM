@@ -4,14 +4,14 @@ $(document).ready(function () {
     (function () {
         var testSets = [];
 
-    testSets.push(HistoryTestSet);
+    /* testSets.push(HistoryTestSet);
     testSets.push(QueryBuilderTestSet);
     testSets.push(ClearingReducerTestSet);
     testSets.push(DigitReducerTestSet);
     testSets.push(MemoryReducerTestSet);
     testSets.push(OperatorReducerTestSet);
-    testSets.push(QueryReducerTestSet);
-    testSets.push(IntegerTestSet);
+    testSets.push(QueryReducerTestSet); */
+    testSets.push(IntTestSet);
 
         var totalCount = 0;
         var passedCount = 0;
