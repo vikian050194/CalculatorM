@@ -4,14 +4,14 @@ $(document).ready(function () {
     (function () {
         var testSets = [];
 
-    testSets.push(HistoryTestSet);
-    testSets.push(QueryBuilderTestSet);
-    testSets.push(ClearingReducerTestSet);
-    testSets.push(DigitReducerTestSet);
-    testSets.push(MemoryReducerTestSet);
-    testSets.push(OperatorReducerTestSet);
-    testSets.push(QueryReducerTestSet);
-    testSets.push(IntegerTestSet);
+		testSets.push(HistoryTestSet);
+		testSets.push(QueryBuilderTestSet);
+		testSets.push(ClearingReducerTestSet);
+		testSets.push(DigitReducerTestSet);
+		testSets.push(MemoryReducerTestSet);
+		testSets.push(OperatorReducerTestSet);
+		testSets.push(QueryReducerTestSet);
+		testSets.push(IntegerTestSet);
 
         var totalCount = 0;
         var passedCount = 0;
@@ -53,11 +53,13 @@ $(document).ready(function () {
 });
 
 function TestState(){
-    this.firstArgument= 0;
-    this.secondArgument=  null;
-    this.operator= '';
-    this.module= 0;
-    this.memory= null;
-    this.query= '';
-    this.result= null;
+    this.firstArgument = 0;
+    this.secondArgument =  null;
+    this.operator = '';
+    this.module = 0;
+    this.memory = null;
+    this.query = '';
+    this.result = null;
+	this.positiveCookie = false;
+	this.moduleCookie = true;
 };

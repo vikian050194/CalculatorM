@@ -31,7 +31,7 @@ function QueryReducer(previousState, action) {
                 previousState.result = null;
                 query = 'ERROR';
             }
-            if (Cookies.get('module') === 'false') {
+            if (!previousState.moduleCookie) {
                 previousState.module = 0;
             }
             return $.extend({}, previousState, {

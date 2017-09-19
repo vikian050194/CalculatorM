@@ -41,7 +41,7 @@ function OperatorReducer(previousState, action) {
             }
             if (previousState.module !== 0 && previousState.result !== null) {
                 previousState.result %= previousState.module;
-                if (previousState.result < 0 && Cookies.get('positive') === 'true') {
+                if (previousState.result < 0 && previousState.positiveCookie) {
                     previousState.result += previousState.module;
                 }
             }
@@ -55,7 +55,7 @@ function OperatorReducer(previousState, action) {
             }
             if (previousState.module !== 0) {
                 result %= previousState.module;
-                if (result < 0 && Cookies.get('positive') === 'true') {
+                if (result < 0 && previousState.positiveCookie) {
                     result += previousState.module;
                 }
             }

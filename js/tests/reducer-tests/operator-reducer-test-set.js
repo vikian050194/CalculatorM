@@ -306,8 +306,8 @@ function OperatorReducerTestSet() {
 
     addOperatorModWPosCookieTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
+		state.positiveCookie = true;
         state.firstArgument = -17;
-        Cookies.set('positive', true, {expires: 31});
         state = OperatorReducer(state, createAction('addOperator')('mod'));
         state.secondArgument = 9;
         return OperatorReducer(state, createAction('precalculate')());
@@ -315,6 +315,7 @@ function OperatorReducerTestSet() {
 
     addOperatorModWPosCookieTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
+		state.positiveCookie = true;
         return $.extend({}, state, {firstArgument: -17, secondArgument: 9, operator: 'mod', module: 9, result: 1});
     })();
     testSet.addTestItem(addOperatorModWPosCookieTest);
@@ -325,10 +326,10 @@ function OperatorReducerTestSet() {
     addOperatorWPosCookieTest.author = 'Anna';
 
     addOperatorWPosCookieTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = jQuery.extend(true, {}, initialState);		
+		state.positiveCookie = true;
         state.firstArgument = -18;
         state.module = 9;
-        Cookies.set('positive', true, {expires: 31});
         state = OperatorReducer(state, createAction('addOperator')('add'));
         state.secondArgument = 1;
         return OperatorReducer(state, createAction('precalculate')());
@@ -336,6 +337,7 @@ function OperatorReducerTestSet() {
 
     addOperatorWPosCookieTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
+		state.positiveCookie = true;
         return $.extend({}, state, {firstArgument: -18, secondArgument: 1, operator: 'add', module: 9, result: 1});
     })();
     testSet.addTestItem(addOperatorWPosCookieTest);
@@ -347,14 +349,15 @@ function OperatorReducerTestSet() {
 
     calculateWPosCookieTest.test = function () {
         var state = jQuery.extend(true, {}, initialState);
+		state.positiveCookie = true;
         state.firstArgument = -17;
         state.module = 9;
-        Cookies.set('positive', true, {expires: 31});
         return OperatorReducer(state, createAction('calculate')());
     };
 
     calculateWPosCookieTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
+		state.positiveCookie = true;
         return $.extend({}, state, {firstArgument: -17, module: 9, result: 1});
     })();
     testSet.addTestItem(calculateWPosCookieTest);
