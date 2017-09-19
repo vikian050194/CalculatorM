@@ -1,5 +1,6 @@
-function ClearingReducerTestSet(initialState) {
+function ClearingReducerTestSet() {
     var testSet = new TestSet();
+    var initialState = new TestState;
 
     var clearTest = new TestItem();
     clearTest.name = 'Clear';
@@ -89,7 +90,7 @@ function ClearingReducerTestSet(initialState) {
         var state = jQuery.extend(true, {}, initialState);
         return $.extend({}, state, {secondArgument: 0, firstArgument: 42, operator: 'add'});
     })();
-    testSet.addTestItem(backspaceSAToZeroTest);
+    testSet.addTestItem(backspaceSAToZeroTest); 
 
     return testSet.test();
 }

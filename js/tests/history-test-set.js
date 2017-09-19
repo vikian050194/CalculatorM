@@ -1,5 +1,6 @@
-function HistoryTestSet(initialState) {
+function HistoryTestSet() {
     var testSet = new TestSet();
+    var initialState = new TestState;
     var Reducer = combineReducers({
         clearing: ClearingReducer,
         digit: DigitReducer,

@@ -6,21 +6,28 @@ function TestSet() {
         testItems.push(testItem);
     };
 
+    function getFailedInfo(item, result) {
+        return {
+            name: item.name,
+            author: item.author,
+            incorrect: result.incorrect,
+            actual: result.actual,
+            expected: result.expected
+        };
+    }
+
     this.test = function () {
-        var failed = 0;
-        var failedTestNames = [];
+        var failedTests = [];
 
         testItems.forEach(function (item) {
+            var actual = item.test();
             try {
-                var actual = item.test();
                 assert.areEqual(item.expectedObject, actual);
-            }
-            catch (err) {
-                failed++;
-                failedTestNames.push(item.name + ' - ' + item.author + ': ' + err);
+            } catch (e) {
+                failedTests.push(getFailedInfo(item, e));
             }
         });
 
-        return {passed: testItems.length - failed, failed: failed, failedTestNames: failedTestNames};
+        return { passed: testItems.length - failedTests.length, failed: failedTests.length, failedTests: failedTests };
     }
 }

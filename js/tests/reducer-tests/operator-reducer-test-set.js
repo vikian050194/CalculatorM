@@ -1,5 +1,6 @@
-function OperatorReducerTestSet(initialState) {
+function OperatorReducerTestSet() {
     var testSet = new TestSet();
+    var initialState = new TestState;
 
     var addOperatorEmptyTest = new TestItem();
     addOperatorEmptyTest.name = 'Action "addOperator" with empty input';

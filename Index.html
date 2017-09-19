@@ -10,7 +10,7 @@
     <link id="theme" href="css/themes.css" rel="stylesheet">
     <script type="text/javascript" src="js/plugins/jquery-2.2.4.js"></script>
     <script type="text/javascript" src="js/plugins/js.cookie.js"></script>
-    <script type="text/javascript" src="js/plugins/slick.min.js"></script>
+    <script type="text/javascript" src="js/integer/integer.js"></script>
     <script type="text/javascript" src="js/ui/themer.js"></script>
     <script type="text/javascript" src="js/ui/page-handler.js"></script>
     <script type="text/javascript" src="js/ui/autoresize-text.js"></script>
@@ -50,13 +50,13 @@
                 <div id="slide-btns">
                     <button id="F1" class="btn btn-operator slide-btn">F1</button>
                     <button id="F2" class="btn btn-operator slide-btn">F2</button>
-                    <button id="F3" class="btn btn-operator slide-btn">F3</button>
+                    <button id="F3" disabled class="btn btn-operator slide-btn">F3</button>
                     <button id="menu" class="btn btn-operator">
                         <span class="glyphicon glyphicon-cog"></span>
                     </button>
                 </div>
-                <div id="carousel" class="carousel">
-                    <div id="page-1" class="slick-slide">
+                <div id="carousel" class="page-container">
+                    <div id="page-1" class="page">
                         <button id="add" class="btn btn-operator text-btn" data-value="add">add</button>
                         <button id="sub" class="btn btn-operator text-btn" data-value="sub">sub</button>
                         <button id="mul" class="btn btn-operator text-btn" data-value="mul">mul</button>
@@ -80,7 +80,7 @@
                         <button id="sign" class="btn btn-special sign-btn" data-value="sign"></button>
                         <button id="calc" class="btn btn-special" data-value="calc">=</button>
                     </div>
-                    <div id="page-2" class="slick-slide">
+                    <div id="page-2" class="page">
                         <button id="MR" class="btn btn-operator text-btn" data-value="memoryRecall">MR</button>
                         <button id="undo" class="btn btn-operator text-btn" data-value="undo">undo</button>
                         <button id="redo" class="btn btn-operator text-btn" data-value="redo">redo</button>
@@ -104,10 +104,9 @@
                         <button id="sign-page2" class="btn btn-special sign-btn" data-value="sign"></button>
                         <button id="calc-page2" class="btn btn-special" data-value="calc">=</button>
                     </div>
-                    <div id="page-3" class="slick-slide">
-                        <div style="color: white; font-size: 50px; margin: auto">Coming soon :)</div>
+                    <div id="page-3" class="page">
                     </div>
-                    <div id="page-4" class="slick-slide">
+                    <div id="page-4" class="page">
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <span>Change theme</span>
