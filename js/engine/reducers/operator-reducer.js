@@ -33,9 +33,6 @@ function OperatorReducer(previousState, action) {
                     if (previousState.secondArgument !== null && previousState.secondArgument !== 0) {
                         previousState.result = previousState.firstArgument % previousState.secondArgument;
                         previousState.module = previousState.secondArgument;
-                        if (previousState.result < 0 && Cookies.get('positive') === 'true') {
-                            previousState.result += previousState.module;
-                        }
                     }
                     if (previousState.secondArgument === 0) {
                         previousState.module = 0;

@@ -18,6 +18,14 @@ function compare(expected, actual) {
     if (typeof (actual) !== typeof (expected)) {
         throwError('type', typeof (expected), typeof (actual));
     }
+	
+	if (actual === null && expected !== null) {
+        return throwError('actual', expected[p], actual[p]);
+    }
+				
+	if (actual === null && expected === null) {
+        return;
+    }
 
     switch (typeof (actual)) {
         case 'array':
@@ -40,12 +48,8 @@ function compare(expected, actual) {
                 if (actual.hasOwnProperty(p) !== expected.hasOwnProperty(p)) {
                     throwError('object key', p, undefined);
                 }
-
-                compare(expected[p], actual[p]);
-
-                // if (actual[p] === null && expected[p] !== null) {
-                //     return getResult('value', expected[p], actual[p]);
-                // }
+				
+				compare(expected[p], actual[p]);	
             }
             break;
         case 'function':
