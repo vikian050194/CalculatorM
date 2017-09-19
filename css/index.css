@@ -94,22 +94,18 @@ ul {
     content: '\0025CF';
 }
 
-.carousel {
+.page-container {
     display: inline-block;
     width: 100%;
 }
 
-.slick-track {
-    display: flex;
-}
-
-.slick-slide {
+.page {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
 }
 
-.slick-slide:focus {
+.page:focus {
     outline: 0;
 }
 

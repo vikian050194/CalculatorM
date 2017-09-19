@@ -39,7 +39,7 @@ function IntegerTestSet() {
     };
 
     addBigNumber.expectedObject = (function () {
-        return '-21';
+        return '-210';
     })();
     testSet.addTestItem(addBigNumber);
 

@@ -19,6 +19,17 @@ $(document).ready(function () {
         var failedHtml = '';
         var passedHtml = '';
 
+        function getHtmlForInfo(info){
+            var keys = ['name', 'author', 'incorrect', 'actual', 'expected'];
+            var result = '';
+            
+            keys.forEach(function (key) {
+                result += '<div><b>' + key +'</b>:&nbsp;'+ info[key]+ '</div>';
+            });
+
+            return result;
+        }
+
         testSets.forEach(function (testSet) {
             var result = testSet();
             passedCount += result.passed;
@@ -26,8 +37,8 @@ $(document).ready(function () {
             //     passedHtml += '<div>' + name + '</div>';
             // });
             failedCount += result.failed;
-            result.failedTestNames.forEach(function (name) {
-                failedHtml += '<div>' + name + '</div>';
+            result.failedTests.forEach(function (info) {
+                failedHtml += getHtmlForInfo(info) + '<hr/>';
             });
         }, this);
 
