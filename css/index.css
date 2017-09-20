@@ -94,18 +94,22 @@ ul {
     content: '\0025CF';
 }
 
-.page-container {
+.carousel {
     display: inline-block;
     width: 100%;
 }
 
-.page {
+.slick-track {
+    display: flex;
+}
+
+.slick-slide {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
 }
 
-.page:focus {
+.slick-slide:focus {
     outline: 0;
 }
 
@@ -232,7 +236,7 @@ ul {
     display: none;
 }
 
-@media only screen and (min-device-width: 800px) {
+@media only screen and (min-device-width: 1050px) {
     #calculator {
         width: 500px;
         margin-left: auto;
