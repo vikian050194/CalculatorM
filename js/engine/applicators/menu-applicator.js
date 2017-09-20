@@ -6,7 +6,7 @@ function applyMenu(calculatorStore, themer) {
     });
 
 	var positiveCheckbox = $("#positive");	
-	if (positiveCheckbox.checked) {
+	if (positiveCheckbox[0].checked) {
 		calculatorStore.dispatch(createAction('changePositiveCookie')(true));
     } else {
 		calculatorStore.dispatch(createAction('changePositiveCookie')(false));
@@ -22,7 +22,7 @@ function applyMenu(calculatorStore, themer) {
     });
 
 	var moduleCheckbox = $("#module");	
-	if (moduleCheckbox.checked) {
+	if (moduleCheckbox[0].checked) {
 		calculatorStore.dispatch(createAction('changeModuleCookie')(true));
     } else {
 		calculatorStore.dispatch(createAction('changeModuleCookie')(false));
