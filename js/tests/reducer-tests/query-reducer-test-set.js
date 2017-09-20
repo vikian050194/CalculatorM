@@ -1,6 +1,5 @@
-function QueryReducerTestSet() {
+function QueryReducerTestSet(initialState) {
     var testSet = new TestSet();
-    var initialState = new TestState;
 
     var addDigitQueryTest = new TestItem();
     addDigitQueryTest.name = 'Query after action "addDigit"';
@@ -14,7 +13,7 @@ function QueryReducerTestSet() {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 1;
         return $.extend({}, state, {query: new QueryBuilder().getQuery(state)});
-    })();
+    });
     testSet.addTestItem(addDigitQueryTest);
 
 
@@ -33,7 +32,7 @@ function QueryReducerTestSet() {
         state.operator = 'add';
         state.secondArgument = null;
         return $.extend({}, state, {query: new QueryBuilder().getQuery(state)});
-    })();
+    });
     testSet.addTestItem(addOperatorQueryTest);
 
 
@@ -55,7 +54,7 @@ function QueryReducerTestSet() {
         state.secondArgument = null;
         state.result = null;
         return $.extend({}, state, {query: new QueryBuilder().getQuery(state)});
-    })();
+    });
     testSet.addTestItem(calculateQueryTest);
 
 

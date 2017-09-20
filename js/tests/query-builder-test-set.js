@@ -1,6 +1,5 @@
-function QueryBuilderTestSet() {
+function QueryBuilderTestSet(initialState) {
     var testSet = new TestSet();
-    var initialState = new TestState;
 
     var defaultModelTest = new TestItem();
     defaultModelTest.name = 'Empty query';
@@ -11,7 +10,7 @@ function QueryBuilderTestSet() {
     };
 
     defaultModelTest.expectedObject = (function () {
-        return '_';
+        return '';
     })();
 
     defaultModelTest.author = 'Vitaly';
