@@ -33,7 +33,7 @@ function compare(expected, actual) {
                 if (actual.length !== expected.length) {
                     throwError('array length', expected.length, actual.length);
                 }
-                
+
                 actual.forEach(function (element, index) {
                     compare(expected[index], element);
                 }, this);
@@ -52,7 +52,7 @@ function compare(expected, actual) {
             }
             break;
         case 'function':
-            if (typeof (expected) === 'undefined' || (actual.toString() !== expected.toString())) {//сколько тут необходимо = ???
+            if (typeof (expected) === 'undefined' || (actual.toString() !== expected.toString())) {
                 throwError('function', expected, actual);
             }
             break;
