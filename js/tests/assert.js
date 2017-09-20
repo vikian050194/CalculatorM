@@ -24,7 +24,7 @@ function compare(expected, actual) {
     }
 
     if (actual === null && expected === null) {
-        throwError('null', expected[p], actual[p]);
+       return;
     }
 
     switch (typeof (actual)) {
