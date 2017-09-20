@@ -20,11 +20,11 @@ function compare(expected, actual) {
     }
 
     if (actual === null && expected !== null) {
-        return throwError('actual', expected[p], actual[p]);
+        throwError('actual', expected[p], actual[p]);
     }
 
     if (actual === null && expected === null) {
-        return;
+        throwError('null', expected[p], actual[p]);
     }
 
     switch (typeof (actual)) {
