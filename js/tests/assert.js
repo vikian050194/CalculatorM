@@ -19,8 +19,8 @@ function compare(expected, actual) {
         throwError('type', typeof (expected), typeof (actual));
     }
 
-    if (actual === null && expected !== null) {
-        throwError('actual', expected[p], actual[p]);
+    if (actual === null && expected !== null || actual !== null && expected === null) {
+        throwError('actual', expected, actual);
     }
 
     if (actual === null && expected === null) {

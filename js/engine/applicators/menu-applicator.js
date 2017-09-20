@@ -8,8 +8,6 @@ function applyMenu(calculatorStore, themer) {
 	var positiveCheckbox = $("#positive");	
 	if (positiveCheckbox[0].checked) {
 		calculatorStore.dispatch(createAction('changePositiveCookie')(true));
-    } else {
-		calculatorStore.dispatch(createAction('changePositiveCookie')(false));
     }
     positiveCheckbox.change(function () {
         if (this.checked) {
@@ -24,8 +22,6 @@ function applyMenu(calculatorStore, themer) {
 	var moduleCheckbox = $("#module");	
 	if (moduleCheckbox[0].checked) {
 		calculatorStore.dispatch(createAction('changeModuleCookie')(true));
-    } else {
-		calculatorStore.dispatch(createAction('changeModuleCookie')(false));
     }
     moduleCheckbox.change(function () {
         if (this.checked) {
