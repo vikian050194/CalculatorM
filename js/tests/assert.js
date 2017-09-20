@@ -6,36 +6,59 @@ Assert.prototype.areEqual = function (expected, actual) {
     compare(expected, actual);
 };
 
+function throwError(incorrect, expected, actual) {
+    throw {
+        incorrect: incorrect,
+        expected: expected,
+        actual: actual
+    };
+}
+
 function compare(expected, actual) {
-    for (var p in actual) {
-        if (actual.hasOwnProperty(p) !== expected.hasOwnProperty(p)) {
-            return false;
-        }
-
-        if(actual[p] === null && expected[p] !== null) {
-            throw 'incorrect value: ' + p;
-        }
-
-        switch (typeof (actual[p])) {
-            case 'array':
-            case 'object':
-                compare(expected[p], actual[p]);
-                break;
-            case 'function':
-                if (typeof (expected[p]) == 'undefined' || (actual[p].toString() != expected[p].toString())) {
-                    throw 'incorrect function: ' + p.name;
-                }
-                break;
-            default:
-                if (actual[p] != expected[p]) {
-                    throw 'incorrect value: ' + p;
-                }
-        }
+    if (typeof (actual) !== typeof (expected)) {
+        throwError('type', typeof (expected), typeof (actual));
     }
 
-    for (var p in expected) {
-        if (typeof (actual[p]) == 'undefined') {
-            throw 'missing ' + p;
-        }
+    if (actual === null && expected !== null) {
+        return throwError('actual', expected[p], actual[p]);
+    }
+
+    if (actual === null && expected === null) {
+        return;
+    }
+
+    switch (typeof (actual)) {
+        case 'object':
+            if (Array.isArray(actual)) {
+                if (actual.length !== expected.length) {
+                    throwError('array length', expected.length, actual.length);
+                }
+                
+                actual.forEach(function (element, index) {
+                    compare(expected[index], element);
+                }, this);
+            } else {
+                if (Object.keys(actual).length !== Object.keys(expected).length) {
+                    throwError('objects keys count', Object.keys(expected).length, Object.keys(actual).length);
+                }
+
+                for (var p in actual) {
+                    if (actual.hasOwnProperty(p) !== expected.hasOwnProperty(p)) {
+                        throwError('object key', p, undefined);
+                    }
+
+                    compare(expected[p], actual[p]);
+                }
+            }
+            break;
+        case 'function':
+            if (typeof (expected) === 'undefined' || (actual.toString() !== expected.toString())) {//сколько тут необходимо = ???
+                throwError('function', expected, actual);
+            }
+            break;
+        default:
+            if (actual !== expected) {
+                throwError('value', expected, actual);
+            }
     }
 }

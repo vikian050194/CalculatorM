@@ -9,8 +9,7 @@ function DigitReducer(previousState, action) {
                     previousState.firstArgument -= action.value;
                 }
                 return $.extend({}, previousState, {firstArgument: previousState.firstArgument});
-            }
-            else {
+            } else {
                 if (previousState.secondArgument === null) {
                     previousState.secondArgument = 0;
                 }
@@ -29,13 +28,9 @@ function DigitReducer(previousState, action) {
                 return $.extend({}, previousState, {firstArgument: previousState.result * (-1), result: null});
             }
             if (previousState.operator === '') {
-                if (previousState.firstArgument === 0) {
-                    return previousState;
-                }
                 return $.extend({}, previousState, {firstArgument: previousState.firstArgument * (-1)});
-            }
-            else {
-                if (previousState.secondArgument === 0 || previousState.secondArgument === null) {
+            } else {
+                if (previousState.secondArgument === null) {
                     return previousState;
                 }
                 return $.extend({}, previousState, {secondArgument: previousState.secondArgument * (-1)});

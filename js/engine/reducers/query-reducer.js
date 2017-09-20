@@ -3,7 +3,9 @@ function QueryReducer(previousState, action) {
         case 'addOperator':
             var queryState = jQuery.extend(true, {}, previousState);
             queryState.secondArgument = null;
-            if (!isSafeInteger(previousState.firstArgument) || (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument)) || (previousState.result !== null && !isSafeInteger(previousState.result))) {
+            if (!isSafeInteger(previousState.firstArgument) 
+				|| (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument)) 
+				|| (previousState.result !== null && !isSafeInteger(previousState.result))) {
                 return $.extend({}, previousState, {
                     firstArgument: 0,
                     operator: '',
@@ -17,9 +19,9 @@ function QueryReducer(previousState, action) {
 
         case 'calculate':
             var queryState = jQuery.extend(true, {}, previousState);
-            if (queryState.secondArgument === null && queryState.operator !== '') {
-                queryState.secondArgument = 0;
-            }
+			if (queryState.secondArgument === null && queryState.operator !== '') {
+				queryState.secondArgument = 0;
+			}
             if (queryState.operator === 'mod') {
                 queryState.operator = '';
                 queryState.secondArgument = null;
@@ -29,7 +31,7 @@ function QueryReducer(previousState, action) {
                 previousState.result = null;
                 query = 'ERROR';
             }
-            if (Cookies.get('module') === 'false') {
+            if (!previousState.moduleCookie) {
                 previousState.module = 0;
             }
             return $.extend({}, previousState, {
@@ -42,7 +44,8 @@ function QueryReducer(previousState, action) {
 
         case 'addDigit':
             previousState.result = null;
-            if (!isSafeInteger(previousState.firstArgument) || (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument))) {
+            if (!isSafeInteger(previousState.firstArgument) 
+				|| (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument))) {
                 return $.extend({}, previousState, {
                     firstArgument: 0,
                     operator: '',
