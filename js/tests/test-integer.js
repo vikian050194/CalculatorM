@@ -48,10 +48,9 @@ function IntTestSet() {
     getAmount.author = 'Vitaly';
 
     getAmount.test = function () {
-        var number = new Integer('210');
+        var numberFirst = new Integer('210');
         var numberSecond = new Integer('95');
-        var result = new Integer();
-        result.getAdd(number, numberSecond);
+        var result = numberFirst.add(numberFirst, numberSecond);
         return result.toString();
     };
 
@@ -61,14 +60,13 @@ function IntTestSet() {
     testSet.addTestItem(getAmount);
 
     var getAmountNegativeNumbers = new TestItem();
-    getAmountNegativeNumbers.name = 'Get Amount';
+    getAmountNegativeNumbers.name = 'Get Amount negative numbers';
     getAmountNegativeNumbers.author = 'Vitaly';
 
     getAmountNegativeNumbers.test = function () {
         var numberFirst = new Integer('-87');
         var numberSecond = new Integer('-59');
-        var result = new Integer();
-        result.getAdd(numberFirst, numberSecond);
+        var result = numberFirst.add(numberFirst, numberSecond);
         return result.toString();
     };
 
@@ -78,14 +76,13 @@ function IntTestSet() {
     testSet.addTestItem(getAmountNegativeNumbers);
 
     var getAmountBigNumbers = new TestItem();
-    getAmountBigNumbers.name = 'Get Amount';
+    getAmountBigNumbers.name = 'Get Amount big numbers';
     getAmountBigNumbers.author = 'Vitaly';
 
     getAmountBigNumbers.test = function () {
         var numberFirst = new Integer('21037831813');
         var numberSecond = new Integer('959');
-        var result = new Integer();
-        result.getAdd(numberFirst, numberSecond);
+        var result = numberFirst.add(numberFirst, numberSecond);
         return result.toString();
     };
 
@@ -93,6 +90,41 @@ function IntTestSet() {
         return '21037832772';
     })();
     testSet.addTestItem(getAmountBigNumbers);
+
+    var getSubNumbers = new TestItem();
+    getSubNumbers.name = 'Get sub big numbers';
+    getSubNumbers.author = 'Vitaly';
+    
+    getSubNumbers.test = function () {
+        var numberFirst = new Integer('100');
+        var numberSecond = new Integer('9');
+        var result = numberFirst.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    getSubNumbers.expectedObject = (function () {
+        return '91';
+    })();
+    testSet.addTestItem(getSubNumbers);
+
+
+    var getSubNumbersTwo = new TestItem();
+    getSubNumbersTwo.name = 'Get sub big numbers';
+    getSubNumbersTwo.author = 'Vitaly';
+    
+    getSubNumbersTwo.test = function () {
+        var numberFirst = new Integer('21');
+        var numberSecond = new Integer('30');
+        var result = numberFirst.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    getSubNumbersTwo.expectedObject = (function () {
+        return '9';
+    })();
+    testSet.addTestItem(getSubNumbersTwo);
+
+
 
     return testSet.test();
 };

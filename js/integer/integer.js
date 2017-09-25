@@ -3,16 +3,16 @@ function Integer(number) {
     this.digits = [];
     this.sign = '+';//лучше использовать bool вместо string
     if (number !== undefined) {
-        if (typeof number === "string" & pattern.test(number)) {//два &&
+        if (typeof number === "string" && pattern.test(number)) {
             if (number[0] === '-') {
                 this.sign = '-';
                 for (var i = 1; i < number.length; i++) {
-                    this.digits[number.length - i - 1] = parseInt(number[i]);//можно использовать метод push
+                    this.digits.unshift(parseInt(number[i]));
                 }
             }
             else {
                 for (var i = 0; i < number.length; i++) {//если использовать пуш, то код тем более не придётся дублировать
-                    this.digits[number.length - i - 1] = parseInt(number[i]);
+                    this.digits.unshift(parseInt(number[i]));
                 }
             }
 
@@ -25,44 +25,109 @@ function Integer(number) {
         this.digits[0] = 0;
     }
 
-    this.getAdd = function (termFirst, termSecond) {//странное имя "getAdd", лучше возвращать новый объект
+    this.add = function (termFirst, termSecond) {//странное имя "getAdd", лучше возвращать новый объект
+
+        var termResult = new Integer();
         if ((typeof termFirst !== 'object') || (typeof termSecond !== 'object')) {//этой проверки скорее всего недостаточно
             throw 'Error format in operation Add!'
         }
         else {
+            if (termFirst.digits.length < termSecond.digits.length) {
+                var exchange = termFirst;
+                termFirst = termSecond;
+                termSecond = exchange;
+            }
+
             if (termFirst.sign === termSecond.sign) {
-                this.sign = termFirst.sign;
+                termResult.sign = termFirst.sign;
                 var i = 0;
-                var balance = 0;
-                while (i <= termFirst.digits.length - 1 && i <= termSecond.digits.length - 1) {//думаю, что код по сложению можно улучшить
-                    this.digits[i] = termFirst.digits[i] + termSecond.digits[i] + balance;
-                    balance = 0;//до и после if лучше оставлять пустые строки
-                    if (this.digits[i] >= 10) {
-                        balance = parseInt(this.digits[i] / 10);//parseInt ведь для "откругления" после деления?
-                        this.digits[i] %= 10;
+                balance = 0;
+
+                while (i < termSecond.digits.length) {
+                    termResult.digits[i] = termFirst.digits[i] + termSecond.digits[i] + balance;
+                    balance = 0;
+
+                    if (termResult.digits[i] >= 10) {
+                        balance = parseInt(termResult.digits[i] / 10);
+                        termResult.digits[i] %= 10;
                     }
                     i++;
                 }
-                if (termFirst.digits.length - 1 === termSecond.digits.length - 1) {
-                    this.digits[i] = balance;
+
+                if (termFirst.digits.length === termSecond.digits.length) {
+                    termResult.digits[i] = balance;
                 }
-                if (termFirst.digits.length - 1 < termSecond.digits.length - 1) {
-                    while (i <= termSecond.digits.length - 1) {
-                        this.digits[i] = termSecond.digits[i] + balance;
-                        balance = 0;
-                        i++;
-                    }
-                }
-                if (termFirst.digits.length - 1 > termSecond.digits.length - 1) {
-                    while (i <= termFirst.digits.length - 1) {
-                        this.digits[i] = termFirst.digits[i] + balance;
+
+                else {
+                    while (i < termFirst.digits.length) {
+                        termResult.digits[i] = termFirst.digits[i] + balance;
+
+                        if (termResult.digits[i] >= 10) {
+                            balance = parseInt(termResult.digits[i] / 10);
+                            termResult.digits[i] %= 10;
+                        }
                         balance = 0;
                         i++;
                     }
                 }
             }
         }
+        return termResult;
+    }
 
+    this.sub = function(termFirst, termSecond){
+        
+        var termResult = new Integer();
+        if ((typeof termFirst !== 'object') || (typeof termSecond !== 'object')) {//этой проверки скорее всего недостаточно
+            throw 'Error format in operation Sub!'
+        }
+        else {
+            if (termFirst.digits.length < termSecond.digits.length) {
+                var exchange = termFirst;
+                termFirst = termSecond;
+                termSecond = exchange;
+            }
+
+            if (termFirst.digits.length === termSecond.digits.length){
+                var i = termFirst.digits.length - 1;
+                while(termFirst.digits[i] === termSecond.digits[i]){
+                    i--;
+                }
+                 if(termFirst.digits[i] < termSecond.digits[i]){
+                    var exchange = termFirst;
+                    termFirst = termSecond;
+                    termSecond = exchange
+                }
+            }
+            var i = 0;
+            while(i <  termSecond.digits.length){
+                if(termFirst.digits[i]>=termSecond.digits[i]){
+                    termResult.digits[i] = termFirst.digits[i] - termSecond.digits[i];
+                    i++;
+                }
+                else{
+                    var balance = 1;
+                    while(termFirst.digits[i+balance] === 0 && termFirst.digits[i+balance+1] !==undefined){
+                        termFirst.digits[i+balance+1] -= 1;
+                        termFirst.digits[i+balance]+=10;
+                        balance++;
+                    }
+                    termFirst.digits[i+1] -= 1;
+                    termFirst.digits[i]+=10;
+                    termResult.digits[i] = termFirst.digits[i] - termSecond.digits[i];
+                    i++; 
+                
+                }
+            }
+            while(i < termFirst.digits.length){
+                if(termFirst.digits[i]!==0 && termFirst.digits[i+1]!== undefined)
+                termResult.digits[i] = termFirst.digits[i];
+                i++;
+            }
+
+
+        }
+        return termResult;
     }
 
     this.toString = function () {
@@ -71,8 +136,7 @@ function Integer(number) {
             result += '-';
         }
         result += String(this.digits.reduce(function (previousValue, currentValue) {
-            var str = '' + currentValue + previousValue;//str - плохое название
-            return str;
+            return '' + currentValue + previousValue;
         }));
 
         return result;
