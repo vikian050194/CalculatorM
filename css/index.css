@@ -199,6 +199,9 @@ ul {
     margin-top: -2vh;
     position: absolute;
     opacity: 0.3;
+	-webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
     width: 8vh;
 }
@@ -211,6 +214,9 @@ ul {
     left: -1vh;
     margin-top: -1.25vh;
     position: absolute;
+	-webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     top: -1vh;
     width: 4.5vh;
