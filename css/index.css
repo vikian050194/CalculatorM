@@ -171,12 +171,12 @@ ul {
 #changeTheme {
     font-size: 3vh;
     height: auto;
+    margin-left: 3vh;
 }
 
 .switch {
     width: 10vh;
-	margin: 2vh 0;
-    margin-left: 3vh;
+	margin: 2vh 0 2vh 3vh;
 }
 
 .switch > input[type="checkbox"] {
@@ -211,8 +211,8 @@ ul {
     left: -1vh;
     margin-top: -1.25vh;
     position: absolute;
-    top: -1vh;
     transition: all 0.3s ease-in-out;
+    top: -1vh;
     width: 4.5vh;
 }
 .switch > input[type="checkbox"]:checked + label::before {
