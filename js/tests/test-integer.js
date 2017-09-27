@@ -75,6 +75,39 @@ function IntTestSet() {
     })();
     testSet.addTestItem(getAmountNegativeNumbers);
 
+    var getAmountOnePositiveOneNegativeNumber = new TestItem();
+    getAmountOnePositiveOneNegativeNumber.name = 'Get Amount first positive and second negative numbers';
+    getAmountOnePositiveOneNegativeNumber.author = 'Vitaly';
+
+    getAmountOnePositiveOneNegativeNumber.test = function () {
+        var numberFirst = new Integer('87');
+        var numberSecond = new Integer('-59');
+        var result = numberFirst.add(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    getAmountOnePositiveOneNegativeNumber.expectedObject = (function () {
+        return '28';
+    })();
+    testSet.addTestItem(getAmountOnePositiveOneNegativeNumber);
+
+    var getAmountOnePositiveOneNegativeNumberTwo = new TestItem();
+    getAmountOnePositiveOneNegativeNumberTwo.name = 'Get Amount first negative and second positive numbers';
+    getAmountOnePositiveOneNegativeNumberTwo.author = 'Vitaly';
+
+    getAmountOnePositiveOneNegativeNumberTwo.test = function () {
+        var numberFirst = new Integer('-87');
+        var numberSecond = new Integer('59');
+        var result = numberFirst.add(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    getAmountOnePositiveOneNegativeNumberTwo.expectedObject = (function () {
+        return '-28';
+    })();
+    testSet.addTestItem(getAmountOnePositiveOneNegativeNumberTwo);
+
+
     var getAmountBigNumbers = new TestItem();
     getAmountBigNumbers.name = 'Get Amount big numbers';
     getAmountBigNumbers.author = 'Vitaly';
@@ -120,11 +153,58 @@ function IntTestSet() {
     };
 
     getSubNumbersTwo.expectedObject = (function () {
-        return '9';
+        return '-9';
     })();
     testSet.addTestItem(getSubNumbersTwo);
 
 
+    var getSubTwoNegativenumbers = new TestItem();
+    getSubTwoNegativenumbers.name = 'Get SUB two negative numbers';
+    getSubTwoNegativenumbers.author = 'Vitaly';
+    
+    getSubTwoNegativenumbers.test = function () {
+        var numberFirst = new Integer('-21');
+        var numberSecond = new Integer('-30');
+        var result = numberFirst.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    getSubTwoNegativenumbers.expectedObject = (function () {
+        return '9';
+    })();
+    testSet.addTestItem(getSubTwoNegativenumbers);
+
+    var getSubOneNegiveNumber = new TestItem();
+    getSubOneNegiveNumber.name = 'Get SUB first positive and second negative numbers';
+    getSubOneNegiveNumber.author = 'Vitaly';
+    
+    getSubOneNegiveNumber.test = function () {
+        var numberFirst = new Integer('21');
+        var numberSecond = new Integer('-30');
+        var result = numberFirst.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    getSubOneNegiveNumber.expectedObject = (function () {
+        return '51';
+    })();
+    testSet.addTestItem(getSubOneNegiveNumber);
+
+    var getSubOneNegiveNumberTwo = new TestItem();
+    getSubOneNegiveNumberTwo.name = 'Get SUB first negative and second positive numbers';
+    getSubOneNegiveNumberTwo.author = 'Vitaly';
+    
+    getSubOneNegiveNumberTwo.test = function () {
+        var numberFirst = new Integer('-21');
+        var numberSecond = new Integer('30');
+        var result = numberFirst.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    getSubOneNegiveNumberTwo.expectedObject = (function () {
+        return '-51';
+    })();
+    testSet.addTestItem(getSubOneNegiveNumberTwo);
 
     return testSet.test();
 };

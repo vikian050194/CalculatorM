@@ -25,7 +25,7 @@ function Integer(number) {
         this.digits[0] = 0;
     }
 
-    this.add = function (termFirst, termSecond) {//странное имя "getAdd", лучше возвращать новый объект
+    this.add = function (termFirst, termSecond) {
 
         var termResult = new Integer();
         if ((typeof termFirst !== 'object') || (typeof termSecond !== 'object')) {//этой проверки скорее всего недостаточно
@@ -70,6 +70,14 @@ function Integer(number) {
                         i++;
                     }
                 }
+            }
+            else{
+                if(termFirst.sign ==='-'&&termSecond==='+'){
+                    var exchange = termFirst;
+                    termFirst = termSecond;
+                    termSecond = exchange;
+                }
+                termResult = termResult.sub(termFirst, termSecond);
             }
         }
         return termResult;
