@@ -1,21 +1,21 @@
 function Integer(number) {
     var pattern = /-*\d/;
+
     this.digits = [];
-    this.sign = '+';//лучше использовать bool вместо string
+    this.isNegative = false;
+
     if (number !== undefined) {
         if (typeof number === "string" && pattern.test(number)) {
+            var start = 0;
+
             if (number[0] === '-') {
-                this.sign = '-';
-                for (var i = 1; i < number.length; i++) {
-                    this.digits.unshift(parseInt(number[i]));
-                }
-            }
-            else {
-                for (var i = 0; i < number.length; i++) {//если использовать пуш, то код тем более не придётся дублировать
-                    this.digits.unshift(parseInt(number[i]));
-                }
+                this.isNegative = true;
+                start = 1;
             }
 
+            for (var i = number.length - 1; i >= start; i--) {
+                this.digits.push(parseInt(number[i]));
+            }
         }
         else {
             throw "Format error!";
@@ -25,128 +25,123 @@ function Integer(number) {
         this.digits[0] = 0;
     }
 
-    this.add = function (termFirst, termSecond) {
+    this.sub = function (firstArgument, secondArgument) {
 
-        var termResult = new Integer();
-        if ((typeof termFirst !== 'object') || (typeof termSecond !== 'object')) {//этой проверки скорее всего недостаточно
-            throw 'Error format in operation Add!'
-        }
-        else {
-            if (termFirst.digits.length < termSecond.digits.length) {
-                var exchange = termFirst;
-                termFirst = termSecond;
-                termSecond = exchange;
-            }
-
-            if (termFirst.sign === termSecond.sign) {
-                termResult.sign = termFirst.sign;
-                var i = 0;
-                balance = 0;
-
-                while (i < termSecond.digits.length) {
-                    termResult.digits[i] = termFirst.digits[i] + termSecond.digits[i] + balance;
-                    balance = 0;
-
-                    if (termResult.digits[i] >= 10) {
-                        balance = parseInt(termResult.digits[i] / 10);
-                        termResult.digits[i] %= 10;
-                    }
-                    i++;
-                }
-
-                if (termFirst.digits.length === termSecond.digits.length) {
-                    termResult.digits[i] = balance;
-                }
-
-                else {
-                    while (i < termFirst.digits.length) {
-                        termResult.digits[i] = termFirst.digits[i] + balance;
-
-                        if (termResult.digits[i] >= 10) {
-                            balance = parseInt(termResult.digits[i] / 10);
-                            termResult.digits[i] %= 10;
-                        }
-                        balance = 0;
-                        i++;
-                    }
-                }
-            }
-            else{
-                if(termFirst.sign ==='-'&&termSecond==='+'){
-                    var exchange = termFirst;
-                    termFirst = termSecond;
-                    termSecond = exchange;
-                }
-                termResult = termResult.sub(termFirst, termSecond);
-            }
-        }
-        return termResult;
-    }
-
-    this.sub = function(termFirst, termSecond){
-        
-        var termResult = new Integer();
-        if ((typeof termFirst !== 'object') || (typeof termSecond !== 'object')) {//этой проверки скорее всего недостаточно
+        var result = new Integer();
+        if ((typeof firstArgument !== 'object') || (typeof secondArgument !== 'object')) {//этой проверки скорее всего недостаточно
             throw 'Error format in operation Sub!'
         }
         else {
-            if (termFirst.digits.length < termSecond.digits.length) {
-                var exchange = termFirst;
-                termFirst = termSecond;
-                termSecond = exchange;
+            if (firstArgument.digits.length < secondArgument.digits.length) {
+                var exchange = firstArgument;
+                firstArgument = secondArgument;
+                secondArgument = exchange;
             }
 
-            if (termFirst.digits.length === termSecond.digits.length){
-                var i = termFirst.digits.length - 1;
-                while(termFirst.digits[i] === termSecond.digits[i]){
+            if (firstArgument.digits.length === secondArgument.digits.length) {
+                var i = firstArgument.digits.length - 1;
+                while (firstArgument.digits[i] === secondArgument.digits[i]) {
                     i--;
                 }
-                 if(termFirst.digits[i] < termSecond.digits[i]){
-                    var exchange = termFirst;
-                    termFirst = termSecond;
-                    termSecond = exchange
+                if (firstArgument.digits[i] < secondArgument.digits[i]) {
+                    var exchange = firstArgument;
+                    firstArgument = secondArgument;
+                    secondArgument = exchange
                 }
             }
             var i = 0;
-            while(i <  termSecond.digits.length){
-                if(termFirst.digits[i]>=termSecond.digits[i]){
-                    termResult.digits[i] = termFirst.digits[i] - termSecond.digits[i];
+            while (i < secondArgument.digits.length) {
+                if (firstArgument.digits[i] >= secondArgument.digits[i]) {
+                    result.digits[i] = firstArgument.digits[i] - secondArgument.digits[i];
                     i++;
                 }
-                else{
+                else {
                     var balance = 1;
-                    while(termFirst.digits[i+balance] === 0 && termFirst.digits[i+balance+1] !==undefined){
-                        termFirst.digits[i+balance+1] -= 1;
-                        termFirst.digits[i+balance]+=10;
+                    while (firstArgument.digits[i + balance] === 0 && firstArgument.digits[i + balance + 1] !== undefined) {
+                        firstArgument.digits[i + balance + 1] -= 1;
+                        firstArgument.digits[i + balance] += 10;
                         balance++;
                     }
-                    termFirst.digits[i+1] -= 1;
-                    termFirst.digits[i]+=10;
-                    termResult.digits[i] = termFirst.digits[i] - termSecond.digits[i];
-                    i++; 
-                
+                    firstArgument.digits[i + 1] -= 1;
+                    firstArgument.digits[i] += 10;
+                    result.digits[i] = firstArgument.digits[i] - secondArgument.digits[i];
+                    i++;
+
                 }
             }
-            while(i < termFirst.digits.length){
-                if(termFirst.digits[i]!==0 && termFirst.digits[i+1]!== undefined)
-                termResult.digits[i] = termFirst.digits[i];
+            while (i < firstArgument.digits.length) {
+                if (firstArgument.digits[i] !== 0 && firstArgument.digits[i + 1] !== undefined)
+                    result.digits[i] = firstArgument.digits[i];
                 i++;
             }
 
 
         }
-        return termResult;
+
+        return result;
     }
 
     this.toString = function () {
         var result = '';
-        if (this.sign === '-') {
-            result += '-';
+        
+        if (this.isNegative) {
+            result = '-';
         }
+
         result += String(this.digits.reduce(function (previousValue, currentValue) {
             return '' + currentValue + previousValue;
         }));
 
         return result;
     }
+}
+
+Integer.add = function (firstArgument, secondArgument) {
+    var result = new Integer();
+
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation Add!'
+    }
+    else {
+        if (firstArgument.digits.length < secondArgument.digits.length) {
+            var exchange = firstArgument;
+            firstArgument = secondArgument;
+            secondArgument = exchange;
+        }
+
+        if (firstArgument.isNegative === secondArgument.isNegative) {
+            result.isNegative = firstArgument.isNegative;
+            var i = 0;
+            var balance = 0;
+
+            for (; i < firstArgument.digits.length; i++) {
+                var secondArgumentDigit = secondArgument.digits[i] || 0; 
+                var resultDigit = firstArgument.digits[i] + secondArgumentDigit + balance;
+
+                if (resultDigit >= 10) {
+                    balance = parseInt(resultDigit / 10);
+                    resultDigit %= 10;
+                } else{
+                    balance = 0;
+                }
+
+                result.digits.push(resultDigit);
+            }
+
+            if (firstArgument.digits.length === secondArgument.digits.length) {//need to check balance!!!
+                result.digits.push(balance);
+            }
+        }
+        else {
+            if (firstArgument.isNegative && secondArgument.isNegative) {
+                var exchange = firstArgument;
+                firstArgument = secondArgument;
+                secondArgument = exchange;
+            }
+            
+            result = result.sub(firstArgument, secondArgument);
+        }
+    }
+
+    return result;
 }

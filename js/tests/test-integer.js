@@ -1,4 +1,4 @@
-function IntTestSet() {
+function IntegerTestSet() {
     var testSet = new TestSet();
 
     var addNumber = new TestItem();
@@ -50,7 +50,7 @@ function IntTestSet() {
     getAmount.test = function () {
         var numberFirst = new Integer('210');
         var numberSecond = new Integer('95');
-        var result = numberFirst.add(numberFirst, numberSecond);
+        var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
@@ -66,7 +66,7 @@ function IntTestSet() {
     getAmountNegativeNumbers.test = function () {
         var numberFirst = new Integer('-87');
         var numberSecond = new Integer('-59');
-        var result = numberFirst.add(numberFirst, numberSecond);
+        var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
@@ -82,7 +82,7 @@ function IntTestSet() {
     getAmountOnePositiveOneNegativeNumber.test = function () {
         var numberFirst = new Integer('87');
         var numberSecond = new Integer('-59');
-        var result = numberFirst.add(numberFirst, numberSecond);
+        var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
@@ -98,7 +98,7 @@ function IntTestSet() {
     getAmountOnePositiveOneNegativeNumberTwo.test = function () {
         var numberFirst = new Integer('-87');
         var numberSecond = new Integer('59');
-        var result = numberFirst.add(numberFirst, numberSecond);
+        var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
@@ -115,7 +115,7 @@ function IntTestSet() {
     getAmountBigNumbers.test = function () {
         var numberFirst = new Integer('21037831813');
         var numberSecond = new Integer('959');
-        var result = numberFirst.add(numberFirst, numberSecond);
+        var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
