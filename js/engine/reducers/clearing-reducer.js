@@ -3,12 +3,14 @@ function ClearingReducer(previousState, action) {
         case 'clear':
             return {
                 firstArgument: 0,
-                secondArgument: null,
-                operator: '',
-                module: 0,
-                memory: null,
-                query: '',
-                result: null
+				secondArgument: null,
+				operator: '',
+				module: 0,
+				memory: null,
+				query: '',
+				result: null,
+				positiveCookie: previousState.positiveCookie,
+				moduleCookie: previousState.moduleCookie
             };
             break;
 

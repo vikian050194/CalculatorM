@@ -6,9 +6,12 @@ function CalculatorStore() {
         module: 0,
         memory: null,
         query: '_',
-        result: null
+        result: null,
+		positiveCookie: false,
+		moduleCookie: false
     };
     var store = createStore(HistoryReducer(combineReducers({
+		cookie: CookieReducer,
         clearing: ClearingReducer,
         digit: DigitReducer,
         memory: MemoryReducer,

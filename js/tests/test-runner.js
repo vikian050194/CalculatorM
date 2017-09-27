@@ -11,13 +11,24 @@ $(document).ready(function () {
     testSets.push(MemoryReducerTestSet);
     testSets.push(OperatorReducerTestSet);
     testSets.push(QueryReducerTestSet); */
-    testSets.push(IntTestSet);
+    testSets.push(IntegerTestSet);
 
         var totalCount = 0;
         var passedCount = 0;
         var failedCount = 0;
         var failedHtml = '';
         var passedHtml = '';
+
+        function getHtmlForInfo(info){
+            var keys = ['name', 'author', 'incorrect', 'actual', 'expected'];
+            var result = '';
+            
+            keys.forEach(function (key) {
+                result += '<div><b>' + key +'</b>:&nbsp;'+ info[key]+ '</div>';
+            });
+
+            return result;
+        }
 
         testSets.forEach(function (testSet) {
             var result = testSet();
@@ -26,8 +37,8 @@ $(document).ready(function () {
             //     passedHtml += '<div>' + name + '</div>';
             // });
             failedCount += result.failed;
-            result.failedTestNames.forEach(function (name) {
-                failedHtml += '<div>' + name + '</div>';
+            result.failedTests.forEach(function (info) {
+                failedHtml += getHtmlForInfo(info) + '<hr/>';
             });
         }, this);
 
@@ -42,11 +53,13 @@ $(document).ready(function () {
 });
 
 function TestState(){
-    this.firstArgument= 0;
-    this.secondArgument=  null;
-    this.operator= '';
-    this.module= 0;
-    this.memory= null;
-    this.query= '';
-    this.result= null;
+    this.firstArgument = 0;
+    this.secondArgument =  null;
+    this.operator = '';
+    this.module = 0;
+    this.memory = null;
+    this.query = '';
+    this.result = null;
+	this.positiveCookie = false;
+	this.moduleCookie = true;
 };
