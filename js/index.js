@@ -41,7 +41,7 @@ function setPositiveSwitch() {
 
     var positiveSwitch = $("#positive")[0];
     if (positiveCookie === "true") {
-        positiveSwitch.checked = "true";
+        positiveSwitch.checked = true;
     }
 }
 
@@ -54,6 +54,6 @@ function setModuleSwitch() {
 
     var moduleSwitch = $("#module")[0];
     if (moduleCookie === "true") {
-        moduleSwitch.checked = "true";
+        moduleSwitch.checked = true;
     }
 }
