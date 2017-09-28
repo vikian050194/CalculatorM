@@ -2,9 +2,14 @@ function HistoryReducer(reducer) {
     return function (previousState, action) {
         switch (action.type) {
             case 'undo':
+                var newIndex = previousState.currentIndex - 1;
+                var currentState = previousState.history[previousState.currentIndex];
+                while (newIndex > 0 && currentState === previousState.history[newIndex]) {
+                    newIndex--;
+                }
                 return {
                     history: previousState.history,
-                    currentIndex: previousState.currentIndex - 1
+                    currentIndex: newIndex
                 };
                 break;
             case 'redo':

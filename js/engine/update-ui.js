@@ -27,4 +27,10 @@ function UpdateUI(state) {
         $('#result').val('');
     }
     AutoresizeText();
+
+    var cookiesSettings = {
+        expires: 31
+    };
+	Cookies.set('positive', state.positiveCookie, cookiesSettings);
+	Cookies.set('module', state.moduleCookie, cookiesSettings);
 }

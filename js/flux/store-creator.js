@@ -1,5 +1,8 @@
 function createStore(reducer, initialState) {
-    var state = {history: [initialState], currentIndex: 0};
+    var state = {
+        history: [initialState],
+        currentIndex: 0
+    };
     var listeners = [];
 
     var getState = function () {
