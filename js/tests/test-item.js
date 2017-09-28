@@ -1,6 +1,6 @@
-function TestItem() {
-    this.name = '';
+function TestItem(name, author) {
+    this.name = name;
+    this.author = author;
     this.expectedObject = undefined;
-    this.author = '';
     this.test = undefined;
 }
