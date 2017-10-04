@@ -6,12 +6,12 @@ function QueryReducerTestSet() {
     addDigitQueryTest.name = 'Query after action "addDigit"';
     addDigitQueryTest.author = 'Anna';
     addDigitQueryTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 1;
         return QueryReducer(state, createAction('addDigit')(1));
     };
     addDigitQueryTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 1;
         return $.extend({}, state, {query: new QueryBuilder().getQuery(state)});
     })();
@@ -22,13 +22,13 @@ function QueryReducerTestSet() {
     addOperatorQueryTest.name = 'Query after action "addOperator"';
     addOperatorQueryTest.author = 'Anna';
     addOperatorQueryTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 1;
         state.operator = 'add';
         return QueryReducer(state, createAction('addOperator')('add'));
     };
     addOperatorQueryTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 1;
         state.operator = 'add';
         state.secondArgument = null;
@@ -41,7 +41,7 @@ function QueryReducerTestSet() {
     calculateQueryTest.name = 'Query after action "calculate"';
     calculateQueryTest.author = 'Anna';
     calculateQueryTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 1;
         state.operator = 'add';
         state.secondArgument = 2;
@@ -49,12 +49,12 @@ function QueryReducerTestSet() {
         return QueryReducer(state, createAction('calculate')());
     };
     calculateQueryTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 1;
         state.operator = 'add';
         state.secondArgument = 2;
         state.result = 3;
-        return $.extend({}, initialState, {result: 3, query: new QueryBuilder().getQuery(state)});
+        return $.extend(true, {}, initialState, {result: 3, query: new QueryBuilder().getQuery(state)});
     })();
     testSet.addTestItem(calculateQueryTest);
 
@@ -64,14 +64,14 @@ function QueryReducerTestSet() {
     calculateWFAQueryTest.author = 'Anna';
 
     calculateWFAQueryTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 63;
         state = OperatorReducer(state, createAction('calculate')());
         return QueryReducer(state, createAction('calculate')())
     };
 
     calculateWFAQueryTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.result = 63;
         return $.extend({}, state, {firstArgument: 0, query: new QueryBuilder().getQuery(state)});
@@ -84,7 +84,7 @@ function QueryReducerTestSet() {
     calculateWFAModQueryTest.author = 'Anna';
 
     calculateWFAModQueryTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.module = 20;
         state = OperatorReducer(state, createAction('calculate')());
@@ -92,7 +92,7 @@ function QueryReducerTestSet() {
     };
 
     calculateWFAModQueryTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.result = 3;
         state.module = 20;
@@ -106,7 +106,7 @@ function QueryReducerTestSet() {
     calculateWNaNResultQueryTest.author = 'Anna';
 
     calculateWNaNResultQueryTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.secondArgument = 21;
         state.operator = 'add';
@@ -116,8 +116,7 @@ function QueryReducerTestSet() {
     };
 
     calculateWNaNResultQueryTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {query: 'ERROR'});
+        return $.extend({}, initialState, {query: 'ERROR'});
     })();
     testSet.addTestItem(calculateWNaNResultQueryTest);
 
@@ -127,7 +126,7 @@ function QueryReducerTestSet() {
     addOperatorWNaNResultQueryTest.author = 'Anna';
 
     addOperatorWNaNResultQueryTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.secondArgument = 21;
         state.operator = 'add';
@@ -137,8 +136,7 @@ function QueryReducerTestSet() {
     };
 
     addOperatorWNaNResultQueryTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {query: 'ERROR'});
+        return $.extend({}, initialState, {query: 'ERROR'});
     })();
     testSet.addTestItem(addOperatorWNaNResultQueryTest);
 
@@ -148,7 +146,7 @@ function QueryReducerTestSet() {
     addSeveralModulesQueryTest.author = 'Anna';
 
     addSeveralModulesQueryTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.module = 6;
         state.operator = 'mod';
@@ -157,8 +155,7 @@ function QueryReducerTestSet() {
     };
 
     addSeveralModulesQueryTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {firstArgument: 63, operator: 'mod', module: 0, query: '63 mod _'});
+        return $.extend({}, initialState, {firstArgument: 63, operator: 'mod', module: 0, query: '63 mod _'});
     })();
     testSet.addTestItem(addSeveralModulesQueryTest);
 

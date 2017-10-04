@@ -1,15 +1,4 @@
-function CalculatorStore() {
-    var initialState = {
-        firstArgument: 0,
-        secondArgument: null,
-        operator: '',
-        module: 0,
-        memory: null,
-        query: '_',
-        result: null,
-		positiveCookie: false,
-		moduleCookie: false
-    };
+function CalculatorStore(initialState) {
     var store = createStore(HistoryReducer(combineReducers({
 		cookie: CookieReducer,
         clearing: ClearingReducer,

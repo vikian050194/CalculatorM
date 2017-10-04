@@ -33,4 +33,8 @@ function UpdateUI(state) {
     };
 	Cookies.set('positive', state.positiveCookie, cookiesSettings);
 	Cookies.set('module', state.moduleCookie, cookiesSettings);
+
+    $("#positive")[0].checked = state.positiveCookie;
+
+    $("#module")[0].checked = state.moduleCookie;
 }

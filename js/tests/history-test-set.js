@@ -15,8 +15,8 @@ function HistoryTestSet() {
 
     undoTest.test = function () {
         var history = [
-            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
-            $.extend({}, jQuery.extend(true, {}, initialState), {
+            $.extend(true, {}, initialState, {firstArgument: 42, query: '42_'}),
+            $.extend(true, {}, initialState, {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
@@ -28,8 +28,8 @@ function HistoryTestSet() {
 
     undoTest.expectedObject = (function () {
         var history = [
-            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
-            $.extend({}, jQuery.extend(true, {}, initialState), {
+            $.extend(true, {}, initialState, {firstArgument: 42, query: '42_'}),
+            $.extend(true, {}, initialState, {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
@@ -47,8 +47,8 @@ function HistoryTestSet() {
 
     undoWithNewTest.test = function () {
         var history = [
-            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
-            $.extend({}, jQuery.extend(true, {}, initialState), {
+            $.extend(true, {}, initialState, {firstArgument: 42, query: '42_'}),
+            $.extend(true, {}, initialState, {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
@@ -61,8 +61,8 @@ function HistoryTestSet() {
 
     undoWithNewTest.expectedObject = (function () {
         var history = [
-            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
-            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 421, query: '421_'})
+            $.extend(true, {}, initialState, {firstArgument: 42, query: '42_'}),
+            $.extend(true, {}, initialState, {firstArgument: 421, query: '421_'})
         ];
         return {history: history, currentIndex: 1};
     })();
@@ -75,14 +75,14 @@ function HistoryTestSet() {
 
     redoTest.test = function () {
         var history = [
-            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
-            $.extend({}, jQuery.extend(true, {}, initialState), {
+            $.extend(true, {}, initialState, {firstArgument: 42, query: '42_'}),
+            $.extend(true, {}, initialState, {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
                 query: '42 add 0_'
             }),
-            $.extend({}, jQuery.extend(true, {}, initialState), {
+            $.extend(true, {}, initialState, {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 21,
@@ -94,14 +94,14 @@ function HistoryTestSet() {
 
     redoTest.expectedObject = (function () {
         var history = [
-            $.extend({}, jQuery.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
-            $.extend({}, jQuery.extend(true, {}, initialState), {
+            $.extend(true, {}, initialState, {firstArgument: 42, query: '42_'}),
+            $.extend(true, {}, initialState, {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 0,
                 query: '42 add 0_'
             }),
-            $.extend({}, jQuery.extend(true, {}, initialState), {
+            $.extend(true, {}, initialState, {
                 firstArgument: 42,
                 operator: 'add',
                 secondArgument: 21,

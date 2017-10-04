@@ -5,10 +5,6 @@ $(document).ready(function () {
 
     setSlideButtons(pageHandler);
 
-    setPositiveSwitch();
-
-    setModuleSwitch();
-
     $('[data-value="redo"], [data-value="undo"]').attr('disabled', true);
 
     var calculator = new CalculatorUI();
@@ -30,30 +26,4 @@ function setSlideButtons(pageHandler) {
     $('#menu').on('click', function () {
         pageHandler.setPage(4);
     });
-}
-
-function setPositiveSwitch() {
-    var positiveCookie = Cookies.get('positive');
-    if (positiveCookie === undefined) {
-        Cookies.set('positive', false, {expires: 31});
-        return;
-    }
-
-    var positiveSwitch = $("#positive")[0];
-    if (positiveCookie === "true") {
-        positiveSwitch.checked = true;
-    }
-}
-
-function setModuleSwitch() {
-    var moduleCookie = Cookies.get('module');
-    if (moduleCookie === undefined) {
-        Cookies.set('positive', false, {expires: 31});
-        return;
-    }
-
-    var moduleSwitch = $("#module")[0];
-    if (moduleCookie === "true") {
-        moduleSwitch.checked = true;
-    }
 }

@@ -7,7 +7,7 @@ function ClearingReducerTestSet() {
     clearTest.author = 'Anna';
 
     clearTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 3;
         state.operator = 'add';
         state.secondArgument = 5;
@@ -16,7 +16,7 @@ function ClearingReducerTestSet() {
     };
 
     clearTest.expectedObject = (function () {
-        return jQuery.extend(true, {}, initialState)
+        return $.extend(true, {}, initialState)
     })();
     testSet.addTestItem(clearTest);
 
@@ -26,14 +26,13 @@ function ClearingReducerTestSet() {
     backspaceFATest.author = 'Anna';
 
     backspaceFATest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 42;
         return ClearingReducer(state, createAction('deleteDigit')());
     };
 
     backspaceFATest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {firstArgument: 4});
+        return $.extend(true, {}, initialState, {firstArgument: 4});
     })();
     testSet.addTestItem(backspaceFATest);
 
@@ -43,14 +42,13 @@ function ClearingReducerTestSet() {
     backspaceFAToZeroTest.author = 'Anna';
 
     backspaceFAToZeroTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 4;
         return ClearingReducer(state, createAction('deleteDigit')());
     };
 
     backspaceFAToZeroTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {firstArgument: 0});
+        return $.extend(true, {}, initialState, {firstArgument: 0});
     })();
     testSet.addTestItem(backspaceFAToZeroTest);
 
@@ -60,7 +58,7 @@ function ClearingReducerTestSet() {
     backspaceSATest.author = 'Anna';
 
     backspaceSATest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 42;
         state.operator = 'add';
         state.secondArgument = 21;
@@ -68,8 +66,7 @@ function ClearingReducerTestSet() {
     };
 
     backspaceSATest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {secondArgument: 2, firstArgument: 42, operator: 'add'});
+        return $.extend(true, {}, initialState, {secondArgument: 2, firstArgument: 42, operator: 'add'});
     })();
     testSet.addTestItem(backspaceSATest);
 
@@ -79,7 +76,7 @@ function ClearingReducerTestSet() {
     backspaceSAToZeroTest.author = 'Anna';
 
     backspaceSAToZeroTest.test = function () {
-        var state = jQuery.extend(true, {}, initialState);
+        var state = $.extend(true, {}, initialState);
         state.firstArgument = 42;
         state.operator = 'add';
         state.secondArgument = 2;
@@ -87,8 +84,7 @@ function ClearingReducerTestSet() {
     };
 
     backspaceSAToZeroTest.expectedObject = (function () {
-        var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {secondArgument: 0, firstArgument: 42, operator: 'add'});
+        return $.extend(true, {}, initialState, {secondArgument: 0, firstArgument: 42, operator: 'add'});
     })();
     testSet.addTestItem(backspaceSAToZeroTest); 
 

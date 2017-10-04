@@ -1,5 +1,33 @@
 function CalculatorUI() {
-    var calculatorStore = new CalculatorStore();
+    var cookiesSettings = {
+        expires: 31
+    };
+
+    var positiveCookie = Cookies.get('positive');
+    if (positiveCookie === undefined) {
+        Cookies.set('positive', false, cookiesSettings);
+        positiveCookie = 'false';
+    }
+
+    var moduleCookie = Cookies.get('module');
+    if (moduleCookie === undefined) {
+        Cookies.set('positive', false, cookiesSettings);
+        moduleCookie = 'false';
+    }
+
+    var initialState = {
+        firstArgument: 0,
+        secondArgument: null,
+        operator: '',
+        module: 0,
+        memory: null,
+        query: '_',
+        result: null,
+        positiveCookie: (positiveCookie === 'true'),
+        moduleCookie: (moduleCookie === 'true')
+    };
+
+    var calculatorStore = new CalculatorStore(initialState); //send initstate
     var themer = new Themer();
 
     var init = function () {		
