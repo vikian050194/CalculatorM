@@ -124,6 +124,22 @@ function IntegerTestSet() {
     })();
     testSet.addTestItem(getAmountBigNumbers);
 
+    var getAmountBigNumbers = new TestItem();
+    getAmountBigNumbers.name = '-21037831813 ADD 959';
+    getAmountBigNumbers.author = 'Vitaly';
+
+    getAmountBigNumbers.test = function () {
+        var numberFirst = new Integer('-21037831813');
+        var numberSecond = new Integer('959');
+        var result = Integer.add(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    getAmountBigNumbers.expectedObject = (function () {
+        return '-21037830854';
+    })();
+    testSet.addTestItem(getAmountBigNumbers);
+
     var getSubNumbers = new TestItem();
     getSubNumbers.name = '100 SUB 9';
     getSubNumbers.author = 'Vitaly';
@@ -139,7 +155,6 @@ function IntegerTestSet() {
         return '91';
     })();
     testSet.addTestItem(getSubNumbers);
-
 
     var getSubNumbersTwo = new TestItem();
     getSubNumbersTwo.name = '21 SUB 30';

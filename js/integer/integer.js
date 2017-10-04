@@ -47,17 +47,28 @@ Integer.add = function (firstArgument, secondArgument) {
         throw 'Error format in operation Add!'
     }
     else {
-        //Проблема с заменой местами при не равных знаках?
-        if (firstArgument.digits.length < secondArgument.digits.length) {
-            var exchange = firstArgument;
-            firstArgument = secondArgument;
-            secondArgument = exchange;
+        if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
+            secondArgument.isNegative = false;
+            result = Integer.sub(firstArgument, secondArgument);
+            return result;
+        }
+
+        if (firstArgument.isNegative === true && secondArgument.isNegative === false) {
+            firstArgument.isNegative = false;
+            result = Integer.sub(secondArgument, firstArgument);
+            return result;
         }
 
         if (firstArgument.isNegative === secondArgument.isNegative) {
             result.isNegative = firstArgument.isNegative;
             var i = 0;
             var balance = 0;
+
+            if (firstArgument.digits.length < secondArgument.digits.length) {
+                var exchange = firstArgument;
+                firstArgument = secondArgument;
+                secondArgument = exchange;
+            }
 
             for (; i < firstArgument.digits.length; i++) {
                 var secondArgumentDigit = secondArgument.digits[i] || 0;
@@ -138,28 +149,25 @@ Integer.sub = function (firstArgument, secondArgument) {
 
             for (var i = 0; i < firstArgument.digits.length; i++) {
                 var secondArgumentDigit = secondArgument.digits[i] || 0;
-                if (firstArgument.digits[i] >= secondArgument.digits[i]) {
-                    
+                if (firstArgument.digits[i] >= secondArgumentDigit) {
+
                     var resultDigit = firstArgument.digits[i] - secondArgumentDigit;
-                    if(!(resultDigit===0 && i === firstArgument.digits.length - 1)){
+                    if (!(resultDigit === 0 && i === firstArgument.digits.length - 1)) {
                         result.digits.push(resultDigit);
                     }
                 }
                 else {
-                    if(i<firstArgument.digits.length - 1){
-                    firstArgument.digits[i]+=10;
-                    firstArgument.digits[i+1]-=1;
+                    if (i < firstArgument.digits.length - 1) {
+                        firstArgument.digits[i] += 10;
+                        firstArgument.digits[i + 1] -= 1;
                     }
-                    if(i+1 === firstArgument.digits.length - 1 && firstArgument.digits[i+1]===0){
-                        firstArgument.digits.length-=1;
+                    if (i + 1 === firstArgument.digits.length - 1 && firstArgument.digits[i + 1] === 0) {
+                        firstArgument.digits.length -= 1;
                     }
                     resultDigit = firstArgument.digits[i] - secondArgumentDigit;
                     result.digits.push(resultDigit);
                 }
-               
             }
-            
-
         }
 
         if (firstArgument.isNegative === true && secondArgument.isNegative === true) {
