@@ -180,3 +180,57 @@ Integer.sub = function (firstArgument, secondArgument) {
     return result;
 }
 
+Integer.mul = function (firstArgument, secondArgument) {
+    var result = new Integer();
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation multiplication!'
+    }
+    else {
+        
+            var balanceTen = 0;
+            for (var i = 0; i < secondArgument.digits.length; i++) {
+
+                var balanceAdd = 0;
+                var additionalNumber = new Integer();
+
+                for (var j = 0; j < firstArgument.digits.length; j++) {
+                    additionalNumber.digits[j] = secondArgument.digits[i] * firstArgument.digits[j] + balanceAdd;
+
+                    if (additionalNumber.digits[j] >= 10) {
+                        balanceAdd = parseInt(additionalNumber.digits[j] / 10);
+                        additionalNumber.digits[j] %= 10;
+                    } else {
+                        balanceAdd = 0;
+                    }
+
+                }
+
+                if(balanceAdd!=0){
+                    additionalNumber.digits[additionalNumber.digits.length] = balanceAdd;
+                }
+
+
+                for (var i = 0; i < balanceTen; i++) {
+                    
+                    for (var j = additionalNumber.digits.length - 1; j >= 0; j--) {
+                        additionalNumber.digits[j+1] = additionalNumber.digits[j];
+                    }
+                    additionalNumber.digits[0] = 0;
+                }
+
+                result = Integer.add(result, additionalNumber);
+                balanceTen++;
+
+            }
+
+            if (firstArgument.isNegative === secondArgument.isNegative) {
+                result.isNegative = false;
+            }
+            else{
+                result.isNegative = true;
+            }
+        return result;
+    }
+
+}
+
