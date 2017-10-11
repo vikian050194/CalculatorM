@@ -43,266 +43,330 @@ function IntegerTestSet() {
     })();
     testSet.addTestItem(addBigNumber);
 
-    var getAmount = new TestItem();
-    getAmount.name = '210 ADD 95';
-    getAmount.author = 'Vitaly';
+    var testAddition = new TestItem();
+    testAddition.name = '210 ADD 95';
+    testAddition.author = 'Vitaly';
 
-    getAmount.test = function () {
+    testAddition.test = function () {
         var numberFirst = new Integer('210');
         var numberSecond = new Integer('95');
         var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getAmount.expectedObject = (function () {
+    testAddition.expectedObject = (function () {
         return '305';
     })();
-    testSet.addTestItem(getAmount);
+    testSet.addTestItem(testAddition);
 
-    var getAmountNegativeNumbers = new TestItem();
-    getAmountNegativeNumbers.name = '-87 ADD -59';
-    getAmountNegativeNumbers.author = 'Vitaly';
+    var testAddition = new TestItem();
+    testAddition.name = '0 ADD 0';
+    testAddition.author = 'Vitaly';
 
-    getAmountNegativeNumbers.test = function () {
+    testAddition.test = function () {
+        var numberFirst = new Integer('0');
+        var numberSecond = new Integer('0');
+        var result = Integer.add(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testAddition.expectedObject = (function () {
+        return '0';
+    })();
+    testSet.addTestItem(testAddition);
+
+    var testAddition= new TestItem();
+    testAddition.name = '-87 ADD -59';
+    testAddition.author = 'Vitaly';
+
+    testAddition.test = function () {
         var numberFirst = new Integer('-87');
         var numberSecond = new Integer('-59');
         var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getAmountNegativeNumbers.expectedObject = (function () {
+    testAddition.expectedObject = (function () {
         return '-146';
     })();
-    testSet.addTestItem(getAmountNegativeNumbers);
+    testSet.addTestItem(testAddition);
 
-    var getAmountOnePositiveOneNegativeNumber = new TestItem();
-    getAmountOnePositiveOneNegativeNumber.name = '87 ADD -59';
-    getAmountOnePositiveOneNegativeNumber.author = 'Vitaly';
+    var testAddition = new TestItem();
+    testAddition.name = '87 ADD -59';
+    testAddition.author = 'Vitaly';
 
-    getAmountOnePositiveOneNegativeNumber.test = function () {
+    testAddition.test = function () {
         var numberFirst = new Integer('87');
         var numberSecond = new Integer('-59');
         var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getAmountOnePositiveOneNegativeNumber.expectedObject = (function () {
+    testAddition.expectedObject = (function () {
         return '28';
     })();
-    testSet.addTestItem(getAmountOnePositiveOneNegativeNumber);
+    testSet.addTestItem(testAddition);
 
-    var getAmountOnePositiveOneNegativeNumberTwo = new TestItem();
-    getAmountOnePositiveOneNegativeNumberTwo.name = '-87 ADD 59';
-    getAmountOnePositiveOneNegativeNumberTwo.author = 'Vitaly';
+    var testAdditionTwo = new TestItem();
+    testAdditionTwo.name = '-87 ADD 59';
+    testAdditionTwo.author = 'Vitaly';
 
-    getAmountOnePositiveOneNegativeNumberTwo.test = function () {
+    testAdditionTwo.test = function () {
         var numberFirst = new Integer('-87');
         var numberSecond = new Integer('59');
         var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getAmountOnePositiveOneNegativeNumberTwo.expectedObject = (function () {
+    testAdditionTwo.expectedObject = (function () {
         return '-28';
     })();
-    testSet.addTestItem(getAmountOnePositiveOneNegativeNumberTwo);
+    testSet.addTestItem(testAdditionTwo);
 
 
-    var getAmountBigNumbers = new TestItem();
-    getAmountBigNumbers.name = '21037831813 ADD 959';
-    getAmountBigNumbers.author = 'Vitaly';
+    var testAddition = new TestItem();
+    testAddition.name = '21037831813 ADD 959';
+    testAddition.author = 'Vitaly';
 
-    getAmountBigNumbers.test = function () {
+    testAddition.test = function () {
         var numberFirst = new Integer('21037831813');
         var numberSecond = new Integer('959');
         var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getAmountBigNumbers.expectedObject = (function () {
+    testAddition.expectedObject = (function () {
         return '21037832772';
     })();
-    testSet.addTestItem(getAmountBigNumbers);
+    testSet.addTestItem(testAddition);
 
-    var getAmountBigNumbers = new TestItem();
-    getAmountBigNumbers.name = '21037831813453466456745765767525 ADD 46457656765756756465656756';
-    getAmountBigNumbers.author = 'Vitaly';
+    var testAddition = new TestItem();
+    testAddition.name = '21037831813453466456745765767525 ADD 46457656765756756465656756';
+    testAddition.author = 'Vitaly';
 
-    getAmountBigNumbers.test = function () {
+    testAddition.test = function () {
         var numberFirst = new Integer('21037831813453466456745765767525');
         var numberSecond = new Integer('46457656765756756465656756');
         var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getAmountBigNumbers.expectedObject = (function () {
+    testAddition.expectedObject = (function () {
         return '21037878271110232213502231424281';
     })();
-    testSet.addTestItem(getAmountBigNumbers);
+    testSet.addTestItem(testAddition);
 
 
-    var getAmountBigNumbers = new TestItem();
-    getAmountBigNumbers.name = '-21037831813 ADD 959';
-    getAmountBigNumbers.author = 'Vitaly';
+    var testAddition = new TestItem();
+    testAddition.name = '-21037831813 ADD 959';
+    testAddition.author = 'Vitaly';
 
-    getAmountBigNumbers.test = function () {
+    testAddition.test = function () {
         var numberFirst = new Integer('-21037831813');
         var numberSecond = new Integer('959');
         var result = Integer.add(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getAmountBigNumbers.expectedObject = (function () {
+    testAddition.expectedObject = (function () {
         return '-21037830854';
     })();
-    testSet.addTestItem(getAmountBigNumbers);
+    testSet.addTestItem(testAddition);
 
-    var getSubNumbers = new TestItem();
-    getSubNumbers.name = '100 SUB 9';
-    getSubNumbers.author = 'Vitaly';
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '1 SUB 1';
+    testSubtraction.author = 'Vitaly';
     
-    getSubNumbers.test = function () {
+    testSubtraction.test = function () {
+        var numberFirst = new Integer('1');
+        var numberSecond = new Integer('1');
+        var result = Integer.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testSubtraction.expectedObject = (function () {
+        return '0';
+    })();
+    testSet.addTestItem(testSubtraction);
+
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '100 SUB 9';
+    testSubtraction.author = 'Vitaly';
+    
+    testSubtraction.test = function () {
         var numberFirst = new Integer('100');
         var numberSecond = new Integer('9');
         var result = Integer.sub(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getSubNumbers.expectedObject = (function () {
+    testSubtraction.expectedObject = (function () {
         return '91';
     })();
-    testSet.addTestItem(getSubNumbers);
+    testSet.addTestItem(testSubtraction);
 
-    var getSubNumbersTwo = new TestItem();
-    getSubNumbersTwo.name = '21 SUB 30';
-    getSubNumbersTwo.author = 'Vitaly';
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '21 SUB 30';
+    testSubtraction.author = 'Vitaly';
     
-    getSubNumbersTwo.test = function () {
+    testSubtraction.test = function () {
         var numberFirst = new Integer('21');
         var numberSecond = new Integer('30');
         var result = Integer.sub(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getSubNumbersTwo.expectedObject = (function () {
+    testSubtraction.expectedObject = (function () {
         return '-9';
     })();
-    testSet.addTestItem(getSubNumbersTwo);
+    testSet.addTestItem(testSubtraction);
 
 
-    var getSubTwoNegativenumbers = new TestItem();
-    getSubTwoNegativenumbers.name = '-21 SUB -30';
-    getSubTwoNegativenumbers.author = 'Vitaly';
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '-21 SUB -30';
+    testSubtraction.author = 'Vitaly';
     
-    getSubTwoNegativenumbers.test = function () {
+    testSubtraction.test = function () {
         var numberFirst = new Integer('-21');
         var numberSecond = new Integer('-30');
         var result = Integer.sub(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getSubTwoNegativenumbers.expectedObject = (function () {
+    testSubtraction.expectedObject = (function () {
         return '9';
     })();
-    testSet.addTestItem(getSubTwoNegativenumbers);
+    testSet.addTestItem(testSubtraction);
 
-    var getSubOneNegiveNumber = new TestItem();
-    getSubOneNegiveNumber.name = '21 SUB -30';
-    getSubOneNegiveNumber.author = 'Vitaly';
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '21 SUB -30';
+    testSubtraction.author = 'Vitaly';
     
-    getSubOneNegiveNumber.test = function () {
+    testSubtraction.test = function () {
         var numberFirst = new Integer('21');
         var numberSecond = new Integer('-30');
         var result = Integer.sub(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getSubOneNegiveNumber.expectedObject = (function () {
+    testSubtraction.expectedObject = (function () {
         return '51';
         })();
-    testSet.addTestItem(getSubOneNegiveNumber);
+    testSet.addTestItem(testSubtraction);
 
-    var getSubOneNegiveNumberTwo = new TestItem();
-    getSubOneNegiveNumberTwo.name = '-21 SUB 30';
-    getSubOneNegiveNumberTwo.author = 'Vitaly';
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '-21 SUB 30';
+    testSubtraction.author = 'Vitaly';
     
-    getSubOneNegiveNumberTwo.test = function () {
+    testSubtraction.test = function () {
         var numberFirst = new Integer('-21');
         var numberSecond = new Integer('30');
         var result = Integer.sub(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getSubOneNegiveNumberTwo.expectedObject = (function () {
+    testSubtraction.expectedObject = (function () {
         return '-51';
     })();
-    testSet.addTestItem(getSubOneNegiveNumberTwo);
+    testSet.addTestItem(testSubtraction);
 
-    var getSubOneNegiveNumberTwo = new TestItem();
-    getSubOneNegiveNumberTwo.name = '100000000 SUB 1';
-    getSubOneNegiveNumberTwo.author = 'Vitaly';
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '100000000 SUB 1';
+    testSubtraction.author = 'Vitaly';
     
-    getSubOneNegiveNumberTwo.test = function () {
+    testSubtraction.test = function () {
         var numberFirst = new Integer('100000000');
         var numberSecond = new Integer('1');
         var result = Integer.sub(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getSubOneNegiveNumberTwo.expectedObject = (function () {
+    testSubtraction.expectedObject = (function () {
         return '99999999';
     })();
-    testSet.addTestItem(getSubOneNegiveNumberTwo);
+    testSet.addTestItem(testSubtraction);
 
 
-    var getSubOneNegiveNumberTwo = new TestItem();
-    getSubOneNegiveNumberTwo.name = '-645645776578 SUB 343255465768768798';
-    getSubOneNegiveNumberTwo.author = 'Vitaly';
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '-645645776578 SUB 343255465768768798';
+    testSubtraction.author = 'Vitaly';
     
-    getSubOneNegiveNumberTwo.test = function () {
+    testSubtraction.test = function () {
         var numberFirst = new Integer('-645645776578');
         var numberSecond = new Integer('343255465768768798');
         var result = Integer.sub(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getSubOneNegiveNumberTwo.expectedObject = (function () {
+    testSubtraction.expectedObject = (function () {
         return '-343256111414545376';
     })();
-    testSet.addTestItem(getSubOneNegiveNumberTwo);
+    testSet.addTestItem(testSubtraction);
 
-
-    var getSubBigNumbers = new TestItem();
-    getSubBigNumbers.name = '354456436346345745645684965394583456 SUB 4364565454645823653489534';
-    getSubBigNumbers.author = 'Vitaly';
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '354456436346 SUB 4364';
+    testSubtraction.author = 'Vitaly';
     
-    getSubBigNumbers.test = function () {
+    testSubtraction.test = function () {
+        var numberFirst = new Integer('354456436346');
+        var numberSecond = new Integer('4364');
+        var result = Integer.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testSubtraction.expectedObject = (function () {
+        return '354456431982';
+    })();
+    testSet.addTestItem(testSubtraction);
+
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '965394583456 SUB 89534';
+    testSubtraction.author = 'Vitaly';
+    
+    testSubtraction.test = function () {
+        var numberFirst = new Integer('965394583456');
+        var numberSecond = new Integer('89534');
+        var result = Integer.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testSubtraction.expectedObject = (function () {
+        return '965394493922';
+    })();
+    testSet.addTestItem(testSubtraction);
+    
+
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '354456436346345745645684965394583456 SUB 4364565454645823653489534';
+    testSubtraction.author = 'Vitaly';
+    
+    testSubtraction.test = function () {
         var numberFirst = new Integer('354456436346345745645684965394583456');
         var numberSecond = new Integer('4364565454645823653489534');
         var result = Integer.sub(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getSubBigNumbers.expectedObject = (function () {
-        return '35445639270069119918744843049924';
+    testSubtraction.expectedObject = (function () {
+        return '354456436341981180191039141741093922';
     })();
-    testSet.addTestItem(getSubBigNumbers);
+    testSet.addTestItem(testSubtraction);
 
-    var getSubOneNegiveNumberTwo = new TestItem();
-    getSubOneNegiveNumberTwo.name = '-1 SUB -1000000000000';
-    getSubOneNegiveNumberTwo.author = 'Vitaly';
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '-1 SUB -1000000000000';
+    testSubtraction.author = 'Vitaly';
     
-    getSubOneNegiveNumberTwo.test = function () {
+    testSubtraction.test = function () {
         var numberFirst = new Integer('-1');
         var numberSecond = new Integer('-1000000000000');
         var result = Integer.sub(numberFirst, numberSecond);
         return result.toString();
     };
 
-    getSubOneNegiveNumberTwo.expectedObject = (function () {
+    testSubtraction.expectedObject = (function () {
         return '999999999999';
     })();
-    testSet.addTestItem(getSubOneNegiveNumberTwo);
+    testSet.addTestItem(testSubtraction);
 
     var firstTestMultiplication = new TestItem();
     firstTestMultiplication.name = '9 MUL 10';
@@ -320,85 +384,119 @@ function IntegerTestSet() {
         })();
     testSet.addTestItem(firstTestMultiplication);
 
-    var secondTetstMul = new TestItem();
-    secondTetstMul.name = '9187 MUL 189';
-    secondTetstMul.author = 'Vitaly';
+    var testMultiplication = new TestItem();
+    testMultiplication.name = '935345 MUL 0';
+    testMultiplication.author = 'Vitaly';
     
-    secondTetstMul.test = function () {
+    testMultiplication.test = function () {
+        var numberFirst = new Integer('935345');
+        var numberSecond = new Integer('0');
+        var result = Integer.mul(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testMultiplication.expectedObject = (function () {
+        return '0';
+        })();
+    testSet.addTestItem(testMultiplication);
+
+    var testMultiplication = new TestItem();
+    testMultiplication.name = '9187 MUL 189';
+    testMultiplication.author = 'Vitaly';
+    
+    testMultiplication.test = function () {
         var numberFirst = new Integer('9187');
         var numberSecond = new Integer('189');
         var result = Integer.mul(numberFirst, numberSecond);
         return result.toString();
     };
 
-    secondTetstMul.expectedObject = (function () {
+    testMultiplication.expectedObject = (function () {
         return '1736343';
         })();
-    testSet.addTestItem(secondTetstMul);
+    testSet.addTestItem(testMultiplication);
 
-    var tetstMulNegativeFirst = new TestItem();
-    tetstMulNegativeFirst.name = '9187 MUL -189';
-    tetstMulNegativeFirst.author = 'Vitaly';
+    var testMultiplication = new TestItem();
+    testMultiplication.name = '9187 MUL -189';
+    testMultiplication.author = 'Vitaly';
     
-    tetstMulNegativeFirst.test = function () {
+    testMultiplication.test = function () {
         var numberFirst = new Integer('9187');
         var numberSecond = new Integer('-189');
         var result = Integer.mul(numberFirst, numberSecond);
         return result.toString();
     };
 
-    tetstMulNegativeFirst.expectedObject = (function () {
+    testMultiplication.expectedObject = (function () {
         return '-1736343';
         })();
-    testSet.addTestItem(tetstMulNegativeFirst);
+    testSet.addTestItem(testMultiplication);
 
-    var tetstMulNegativeSecond = new TestItem();
-    tetstMulNegativeSecond.name = '-9187 MUL 189';
-    tetstMulNegativeSecond.author = 'Vitaly';
+    var testMultiplication = new TestItem();
+    testMultiplication.name = '-9187 MUL 189';
+    testMultiplication.author = 'Vitaly';
     
-    tetstMulNegativeSecond.test = function () {
+    testMultiplication.test = function () {
         var numberFirst = new Integer('-9187');
         var numberSecond = new Integer('189');
         var result = Integer.mul(numberFirst, numberSecond);
         return result.toString();
     };
 
-    tetstMulNegativeSecond.expectedObject = (function () {
+    testMultiplication.expectedObject = (function () {
         return '-1736343';
         })();
-    testSet.addTestItem(tetstMulNegativeSecond);
+    testSet.addTestItem(testMultiplication);
 
-     var testTwoNegativeNumbers = new TestItem();
-    testTwoNegativeNumbers.name = '-91874214143 MUL -32534563000';
-    testTwoNegativeNumbers.author = 'Vitaly';
+     var testMultiplication = new TestItem();
+    testMultiplication.name = '-91874214143 MUL -32534563000';
+    testMultiplication.author = 'Vitaly';
     
-    testTwoNegativeNumbers.test = function () {
+    testMultiplication.test = function () {
         var numberFirst = new Integer('-91874214143');
         var numberSecond = new Integer('-32534563000');
         var result = Integer.mul(numberFirst, numberSecond);
         return result.toString();
     };
 
-    testTwoNegativeNumbers.expectedObject = (function () {
+    testMultiplication.expectedObject = (function () {
         return '2989087408110924509000';
         })();
-    testSet.addTestItem(testTwoNegativeNumbers);
+    testSet.addTestItem(testMultiplication);
 
-    var tetsForMultiplication = new TestItem();
-    tetsForMultiplication.name = '324144744621 MUL 1000000000000';
-    tetsForMultiplication.author = 'Vitaly';
+    var testMultiplication = new TestItem();
+    testMultiplication.name = '324144744621 MUL 1000000000000';
+    testMultiplication.author = 'Vitaly';
     
-    tetsForMultiplication.test = function () {
+    testMultiplication.test = function () {
         var numberFirst = new Integer('324144744621');
         var numberSecond = new Integer('1000000000000');
         var result = Integer.mul(numberFirst, numberSecond);
         return result.toString();
     };
 
-    tetsForMultiplication.expectedObject = (function () {
+    testMultiplication.expectedObject = (function () {
         return '324144744621000000000000';
         })();
-    testSet.addTestItem(tetsForMultiplication);
+    testSet.addTestItem(testMultiplication);
+
+
+    var testPow = new TestItem();
+    testPow.name = '2 POW 8';
+    testPow.author = 'Vitaly';
+    
+    testPow.test = function () {
+        var numberFirst = new Integer('2');
+        var numberSecond = new Integer('8');
+        var result = Integer.pow(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testPow.expectedObject = (function () {
+        return '256';
+        })();
+    testSet.addTestItem(testPow);
+
 
     return testSet.test();
 };
