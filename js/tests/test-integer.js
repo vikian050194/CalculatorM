@@ -221,6 +221,22 @@ function IntegerTestSet() {
     })();
     testSet.addTestItem(testSubtraction);
 
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '1000 SUB 999';
+    testSubtraction.author = 'Vitaly';
+    
+    testSubtraction.test = function () {
+        var numberFirst = new Integer('1000');
+        var numberSecond = new Integer('999');
+        var result = Integer.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testSubtraction.expectedObject = (function () {
+        return '1';
+    })();
+    testSet.addTestItem(testSubtraction);
+
 
     var testSubtraction = new TestItem();
     testSubtraction.name = '-21 SUB -30';

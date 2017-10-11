@@ -104,8 +104,8 @@ Integer.add = function (firstArgument, secondArgument) {
 }
 
 Integer.sub = function (firstArgument, secondArgument) {
-
     var result = new Integer();
+
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
         throw 'Error format in operation Sub!'
     }
@@ -125,6 +125,7 @@ Integer.sub = function (firstArgument, secondArgument) {
 
         if (firstArgument.isNegative === false && secondArgument.isNegative === false) {
             result.isNegative = false;
+
             if (firstArgument.digits.length < secondArgument.digits.length) {
                 var exchange = firstArgument;
                 firstArgument = secondArgument;
@@ -134,6 +135,7 @@ Integer.sub = function (firstArgument, secondArgument) {
 
             if (firstArgument.digits.length === secondArgument.digits.length) {
                 var i = firstArgument.digits.length - 1;
+
                 while (firstArgument.digits[i] === secondArgument.digits[i] && i != 0) {
                     i--;
                 }
@@ -149,9 +151,10 @@ Integer.sub = function (firstArgument, secondArgument) {
 
             for (var i = 0; i < firstArgument.digits.length; i++) {
                 var secondArgumentDigit = secondArgument.digits[i] || 0;
-                if (firstArgument.digits[i] >= secondArgumentDigit) {
 
+                if (firstArgument.digits[i] >= secondArgumentDigit) {
                     var resultDigit = firstArgument.digits[i] - secondArgumentDigit;
+
                     if (!(resultDigit === 0 && i === firstArgument.digits.length - 1) || (resultDigit === 0 && result.digits.length === 0)) {
                         result.digits.push(resultDigit);
                     }
@@ -164,6 +167,7 @@ Integer.sub = function (firstArgument, secondArgument) {
                     if (i + 1 === firstArgument.digits.length - 1 && firstArgument.digits[i + 1] === 0) {
                         firstArgument.digits.length -= 1;
                     }
+                    
                     resultDigit = firstArgument.digits[i] - secondArgumentDigit;
                     result.digits.push(resultDigit);
                 }
@@ -182,17 +186,16 @@ Integer.sub = function (firstArgument, secondArgument) {
 
 Integer.pow = function (firstArgument, secondArgument) {
     var result = new Integer('1');
+
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
         throw 'Error format in operation multiplication!'
     }
     else {
-
         while (secondArgument.digits[0] != 0 && secondArgument.length != 1) {
             result = Integer.mul(result, firstArgument);
             var balance = new Integer('1');
             secondArgument = Integer.sub(secondArgument, balance);
         }
-
 
         return result;
     }
@@ -200,6 +203,7 @@ Integer.pow = function (firstArgument, secondArgument) {
 
 Integer.mul = function (firstArgument, secondArgument) {
     var result = new Integer();
+
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
         throw 'Error format in operation multiplication!'
     }
@@ -208,31 +212,28 @@ Integer.mul = function (firstArgument, secondArgument) {
             result.digits.push(0);
         }
         else {
-            var balanceTen = 0;
             for (var i = 0; i < secondArgument.digits.length; i++) {
-
-                var balanceAdd = 0;
+                var balance = 0;
                 var additionalNumber = new Integer();
 
                 for (var j = 0; j < firstArgument.digits.length; j++) {
-                    additionalNumber.digits[j] = secondArgument.digits[i] * firstArgument.digits[j] + balanceAdd;
+                    additionalNumber.digits[j] = secondArgument.digits[i] * firstArgument.digits[j] + balance;
 
                     if (additionalNumber.digits[j] >= 10) {
-                        balanceAdd = parseInt(additionalNumber.digits[j] / 10);
+                        balance = parseInt(additionalNumber.digits[j] / 10);
                         additionalNumber.digits[j] %= 10;
                     } else {
-                        balanceAdd = 0;
+                        balance = 0;
                     }
 
                 }
 
-                if (balanceAdd != 0) {
-                    additionalNumber.digits[additionalNumber.digits.length] = balanceAdd;
+                if (balance != 0) {
+                    additionalNumber.digits[additionalNumber.digits.length] = balance;
                 }
 
 
-                for (var i = 0; i < balanceTen; i++) {
-
+                for (var k = 0; k < i; k++) {
                     for (var j = additionalNumber.digits.length - 1; j >= 0; j--) {
                         additionalNumber.digits[j + 1] = additionalNumber.digits[j];
                     }
@@ -240,8 +241,6 @@ Integer.mul = function (firstArgument, secondArgument) {
                 }
 
                 result = Integer.add(result, additionalNumber);
-                balanceTen++;
-
             }
 
             if (firstArgument.isNegative === secondArgument.isNegative) {
@@ -250,10 +249,7 @@ Integer.mul = function (firstArgument, secondArgument) {
             else {
                 result.isNegative = true;
             }
-           
         }
         return result;
     }
-
 }
-
