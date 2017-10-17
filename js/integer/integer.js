@@ -17,4 +17,6 @@ function Integer(number) {
 
         return result;
     }
-} 
+}
+
+module.exports = Integer;

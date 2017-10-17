@@ -42,3 +42,5 @@ function QueryBuilder() {
         return line;
     }
 }
+
+module.exports = QueryBuilder;

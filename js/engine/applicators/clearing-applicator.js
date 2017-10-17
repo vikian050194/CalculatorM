@@ -1,3 +1,5 @@
+var createAction = require('./../action-creator');
+
 function applyClearing(calculatorStore) {
     var applyClear = function () {
         $('[data-value="clear"]').on('click', function () {
@@ -14,3 +16,5 @@ function applyClearing(calculatorStore) {
     applyClear();
     applyBackspace();
 }
+
+module.exports = applyClearing;

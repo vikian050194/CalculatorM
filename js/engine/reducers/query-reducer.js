@@ -1,11 +1,14 @@
+var QueryBuilder = require('./../query-builders/query-builder-wtes'),
+    isSafeInteger = require('./../safe-integer');
+
 function QueryReducer(previousState, action) {
     switch (action.type) {
         case 'addOperator':
-            var queryState = jQuery.extend(true, {}, previousState);
+            var queryState = $.extend(true, {}, previousState);
             queryState.secondArgument = null;
-            if (!isSafeInteger(previousState.firstArgument) 
-				|| (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument)) 
-				|| (previousState.result !== null && !isSafeInteger(previousState.result))) {
+            if (!isSafeInteger(previousState.firstArgument)
+                || (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument))
+                || (previousState.result !== null && !isSafeInteger(previousState.result))) {
                 return $.extend({}, previousState, {
                     firstArgument: 0,
                     operator: '',
@@ -14,14 +17,14 @@ function QueryReducer(previousState, action) {
                     query: 'ERROR'
                 });
             }
-            return $.extend({}, previousState, {query: new QueryBuilder().getQuery(queryState)});
+            return $.extend({}, previousState, { query: new QueryBuilder().getQuery(queryState) });
             break;
 
         case 'calculate':
-            var queryState = jQuery.extend(true, {}, previousState);
-			if (queryState.secondArgument === null && queryState.operator !== '') {
-				queryState.secondArgument = 0;
-			}
+            var queryState = $.extend(true, {}, previousState);
+            if (queryState.secondArgument === null && queryState.operator !== '') {
+                queryState.secondArgument = 0;
+            }
             if (queryState.operator === 'mod') {
                 queryState.operator = '';
                 queryState.secondArgument = null;
@@ -44,8 +47,8 @@ function QueryReducer(previousState, action) {
 
         case 'addDigit':
             previousState.result = null;
-            if (!isSafeInteger(previousState.firstArgument) 
-				|| (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument))) {
+            if (!isSafeInteger(previousState.firstArgument)
+                || (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument))) {
                 return $.extend({}, previousState, {
                     firstArgument: 0,
                     operator: '',
@@ -54,7 +57,7 @@ function QueryReducer(previousState, action) {
                     query: 'ERROR'
                 });
             }
-            return $.extend({}, previousState, {query: new QueryBuilder().getQuery(previousState)});
+            return $.extend({}, previousState, { query: new QueryBuilder().getQuery(previousState) });
             break;
 
         case 'clear':
@@ -63,10 +66,12 @@ function QueryReducer(previousState, action) {
         case 'getFromMemory':
         case 'clearMemory':
         case 'changeSign':
-            return $.extend({}, previousState, {query: new QueryBuilder().getQuery(previousState)});
+            return $.extend({}, previousState, { query: new QueryBuilder().getQuery(previousState) });
             break;
 
         default:
             return previousState;
     }
 }
+
+module.exports = QueryReducer;

@@ -1,3 +1,15 @@
+var createStore = require('./../flux/store-creator'),
+    HistoryReducer = require('./../history/history-reducer'),
+    combineReducers = require('./reducers/combine-reducers'),
+    CookieReducer = require('./reducers/cookie-reducer'),
+    ClearingReducer = require('./reducers/clearing-reducer'),
+    DigitReducer = require('./reducers/digit-reducer'),
+    MemoryReducer = require('./reducers/memory-reducer'),
+    OperatorReducer = require('./reducers/operator-reducer'),
+    QueryReducer = require('./reducers/query-reducer'),
+    HistoryUpdate = require('./../history/history-update'),
+    UpdateUI = require('./../engine/update-ui');
+
 function CalculatorStore() {
     var initialState = {
         firstArgument: 0,
@@ -7,11 +19,11 @@ function CalculatorStore() {
         memory: null,
         query: '_',
         result: null,
-		positiveCookie: false,
-		moduleCookie: false
+        positiveCookie: false,
+        moduleCookie: false
     };
     var store = createStore(HistoryReducer(combineReducers({
-		cookie: CookieReducer,
+        cookie: CookieReducer,
         clearing: ClearingReducer,
         digit: DigitReducer,
         memory: MemoryReducer,
@@ -30,3 +42,5 @@ function CalculatorStore() {
     store.addListener(HistoryUpdate(UpdateUI));
     UpdateUI(initialState);
 }
+
+module.exports = CalculatorStore;

@@ -41,3 +41,5 @@ function DigitReducer(previousState, action) {
             return previousState;
     }
 }
+
+module.exports = DigitReducer;

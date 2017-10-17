@@ -1,3 +1,5 @@
+var createAction = require('./../action-creator');
+
 function applyHistory(calculatorStore) {
     var applyUndo = function () {
         $('[data-value="undo"]').on('click', function () {
@@ -14,3 +16,5 @@ function applyHistory(calculatorStore) {
     applyUndo();
     applyRedo();
 }
+
+module.exports = applyHistory;

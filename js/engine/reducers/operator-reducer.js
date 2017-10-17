@@ -66,3 +66,5 @@ function OperatorReducer(previousState, action) {
             return previousState;
     }
 }
+
+module.exports = OperatorReducer;

@@ -1,3 +1,6 @@
+var PageHandler = require('./ui/page-handler'),
+    CalculatorUI = require('./engine/calculator.ui');
+
 $(document).ready(function () {
     var pageHandler = new PageHandler(4);
 
@@ -35,7 +38,7 @@ function setSlideButtons(pageHandler) {
 function setPositiveSwitch() {
     var positiveCookie = Cookies.get('positive');
     if (positiveCookie === undefined) {
-        Cookies.set('positive', false, {expires: 31});
+        Cookies.set('positive', false, { expires: 31 });
         return;
     }
 
@@ -48,7 +51,7 @@ function setPositiveSwitch() {
 function setModuleSwitch() {
     var moduleCookie = Cookies.get('module');
     if (moduleCookie === undefined) {
-        Cookies.set('positive', false, {expires: 31});
+        Cookies.set('positive', false, { expires: 31 });
         return;
     }
 

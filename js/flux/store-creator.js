@@ -36,3 +36,5 @@ function createStore(reducer, initialState) {
         addListener: addListener
     }
 }
+
+module.exports = createStore;

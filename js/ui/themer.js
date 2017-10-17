@@ -34,3 +34,5 @@ function Themer() {
     var changeThemeSelect = $('#changeTheme');
     changeThemeSelect[0].selectedIndex = currentThemeIndex;
 }
+
+module.exports = Themer;

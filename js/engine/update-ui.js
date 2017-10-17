@@ -1,3 +1,5 @@
+var AutoresizeText = require('./../ui/autoresize-text')
+
 function UpdateUI(state) {
     var queries = [];
     if (state.query.indexOf(' = ') >= 0) {
@@ -34,3 +36,5 @@ function UpdateUI(state) {
 	Cookies.set('positive', state.positiveCookie, cookiesSettings);
 	Cookies.set('module', state.moduleCookie, cookiesSettings);
 }
+
+module.exports = UpdateUI;

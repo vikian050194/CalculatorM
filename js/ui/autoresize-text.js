@@ -36,3 +36,5 @@ function AutoresizeText() {
         })(element);
     }
 }
+
+module.exports = AutoresizeText;

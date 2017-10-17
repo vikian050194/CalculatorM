@@ -18,3 +18,5 @@ function isSafeInteger(number) {
 function getSign(x) {
     return x ? x < 0 ? -1 : 1 : 0;
 }
+
+module.exports = isSafeInteger;

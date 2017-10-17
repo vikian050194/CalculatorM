@@ -1,0 +1,29 @@
+{
+  "name": "calculatorm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --recursive ./js/tests",
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikian050194/Calculator.git"
+  },
+  "author": "kirillv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikian050194/Calculator/issues"
+  },
+  "homepage": "https://github.com/vikian050194/Calculator#readme",
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "mocha": "^4.0.1",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "js-cookie": "^2.1.4"
+  }
+}

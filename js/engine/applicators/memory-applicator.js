@@ -1,3 +1,5 @@
+var createAction = require('./../action-creator');
+
 function applyMemory(calculatorStore) {
     var applyMemoryAdd = function () {
         $('[data-value="memoryAdd"]').on('click', function () {
@@ -21,3 +23,5 @@ function applyMemory(calculatorStore) {
     applyMemoryRecall();
     applyMemoryClear();
 }
+
+module.exports = applyMemory;

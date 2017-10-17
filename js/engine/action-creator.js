@@ -6,3 +6,5 @@ function createAction(type) {
         }
     }
 }
+
+module.exports = createAction;

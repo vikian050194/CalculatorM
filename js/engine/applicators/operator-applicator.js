@@ -1,3 +1,5 @@
+var createAction = require('./../action-creator');
+
 function applyOperators(calculatorStore) {
     var addOperator = function (dispatch, getState) {
         return function (value) {
@@ -26,3 +28,5 @@ function applyOperators(calculatorStore) {
 
     applyOperators();
 }
+
+module.exports = applyOperators;

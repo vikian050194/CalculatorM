@@ -29,3 +29,5 @@ function HistoryReducer(reducer) {
         }
     }
 }
+
+module.exports = HistoryReducer;

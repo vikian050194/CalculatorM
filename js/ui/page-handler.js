@@ -34,3 +34,5 @@ function PageHandler(lastPage) {
         currentPageNumber = number;
     }
 }
+
+module.exports = PageHandler;

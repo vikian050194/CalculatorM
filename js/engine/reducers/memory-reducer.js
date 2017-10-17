@@ -27,3 +27,5 @@ function MemoryReducer(previousState, action) {
             return previousState;
     }
 }
+
+module.exports = MemoryReducer;

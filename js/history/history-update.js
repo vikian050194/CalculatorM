@@ -13,3 +13,5 @@ function HistoryUpdate(func) {
         func(currentState);
     }
 }
+
+module.exports = HistoryUpdate;

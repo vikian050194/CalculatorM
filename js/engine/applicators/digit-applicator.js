@@ -1,3 +1,5 @@
+var createAction = require('./../action-creator');
+
 function applyDigits(calculatorStore) {
     var applyDigit = function() {
         var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -17,3 +19,5 @@ function applyDigits(calculatorStore) {
         calculatorStore.dispatch(createAction('changeSign')());
     });
 }
+
+module.exports = applyDigits;

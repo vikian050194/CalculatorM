@@ -35,3 +35,5 @@ function ClearingReducer(previousState, action) {
             return previousState;
     }
 }
+
+module.exports = ClearingReducer;

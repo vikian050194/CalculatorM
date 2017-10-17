@@ -1,39 +1,41 @@
-function QueryBuilder() {
-    this.getQuery = function (model) {
-        var line = new String();
+// function QueryBuilder() {
+//     this.getQuery = function (model) {
+//         var line = new String();
 
-        if (model.firstArgument === 0 && model.operator === '') {
-            if (model.module === 0) {
-                return '_';
-            } else {
-                return '_ mod ' + model.module;
-            }
-        }
+//         if (model.firstArgument === 0 && model.operator === '') {
+//             if (model.module === 0) {
+//                 return '_';
+//             } else {
+//                 return '_ mod ' + model.module;
+//             }
+//         }
 
-        line += model.firstArgument;
+//         line += model.firstArgument;
 
-        if (model.operator !== '') {
-            line += ' ' + model.operator;
-        }
+//         if (model.operator !== '') {
+//             line += ' ' + model.operator;
+//         }
 
-        if (model.secondArgument !== null) {
-            line += ' ' + model.secondArgument;
-        } else {
-            if (model.operator !== '') {
-                line += ' ';
-            }
-        }
+//         if (model.secondArgument !== null) {
+//             line += ' ' + model.secondArgument;
+//         } else {
+//             if (model.operator !== '') {
+//                 line += ' ';
+//             }
+//         }
 
-        if (model.result !== null) {
-            line += ' = ' + model.result;
-        }
+//         if (model.result !== null) {
+//             line += ' = ' + model.result;
+//         }
 
-        line += '_';
+//         line += '_';
 
-        if (model.module !== 0) {
-            line += ' mod ' + model.module;
-        }
+//         if (model.module !== 0) {
+//             line += ' mod ' + model.module;
+//         }
 
-        return line;
-    }
-}
+//         return line;
+//     }
+// }
+
+// module.exports = QueryBuilder;

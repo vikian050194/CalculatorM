@@ -12,3 +12,5 @@ function CookieReducer(previousState, action) {
             return previousState;
     }
 }
+
+module.exports = CookieReducer;
