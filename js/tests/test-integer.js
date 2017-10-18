@@ -237,6 +237,22 @@ function IntegerTestSet() {
     })();
     testSet.addTestItem(testSubtraction);
 
+    var testSubtraction = new TestItem();
+    testSubtraction.name = '1000000000000 SUB 999999999999';
+    testSubtraction.author = 'Vitaly';
+    
+    testSubtraction.test = function () {
+        var numberFirst = new Integer('1000000000000');
+        var numberSecond = new Integer('999999999999');
+        var result = Integer.sub(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testSubtraction.expectedObject = (function () {
+        return '1';
+    })();
+    testSet.addTestItem(testSubtraction);
+
 
     var testSubtraction = new TestItem();
     testSubtraction.name = '-21 SUB -30';
@@ -417,6 +433,38 @@ function IntegerTestSet() {
     testSet.addTestItem(testMultiplication);
 
     var testMultiplication = new TestItem();
+    testMultiplication.name = '0 MUL 0';
+    testMultiplication.author = 'Vitaly';
+    
+    testMultiplication.test = function () {
+        var numberFirst = new Integer('0');
+        var numberSecond = new Integer('0');
+        var result = Integer.mul(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testMultiplication.expectedObject = (function () {
+        return '0';
+        })();
+    testSet.addTestItem(testMultiplication);
+
+    var testMultiplication = new TestItem();
+    testMultiplication.name = '0 MUL 54364365345436';
+    testMultiplication.author = 'Vitaly';
+    
+    testMultiplication.test = function () {
+        var numberFirst = new Integer('0');
+        var numberSecond = new Integer('54364365345436');
+        var result = Integer.mul(numberFirst, numberSecond);
+        return result.toString();
+    };
+
+    testMultiplication.expectedObject = (function () {
+        return '0';
+        })();
+    testSet.addTestItem(testMultiplication);
+
+    var testMultiplication = new TestItem();
     testMultiplication.name = '9187 MUL 189';
     testMultiplication.author = 'Vitaly';
     
@@ -496,23 +544,39 @@ function IntegerTestSet() {
         })();
     testSet.addTestItem(testMultiplication);
 
-
-    var testPow = new TestItem();
-    testPow.name = '2 POW 8';
-    testPow.author = 'Vitaly';
+    // var testDiv = new TestItem();
+    // testDiv.name = '100000 MUL 10';
+    // testDiv.author = 'Vitaly';
     
-    testPow.test = function () {
-        var numberFirst = new Integer('2');
-        var numberSecond = new Integer('8');
-        var result = Integer.pow(numberFirst, numberSecond);
-        return result.toString();
-    };
+    // testDiv.test = function () {
+    //     var numberFirst = new Integer('100000');
+    //     var numberSecond = new Integer('10');
+    //     var result = Integer.div(numberFirst, numberSecond);
+    //     return result.toString();
+    // };
 
-    testPow.expectedObject = (function () {
-        return '256';
-        })();
-    testSet.addTestItem(testPow);
+    // testDiv.expectedObject = (function () {
+    //     return '10000';
+    //     })();
+    // testSet.addTestItem(testDiv);
 
 
-    return testSet.test();
+    // var testPow = new TestItem();
+    // testPow.name = '2 POW 8';
+    // testPow.author = 'Vitaly';
+    
+    // testPow.test = function () {
+    //     var numberFirst = new Integer('2');
+    //     var numberSecond = new Integer('8');
+    //     var result = Integer.pow(numberFirst, numberSecond);
+    //     return result.toString();
+    // };
+
+    // testPow.expectedObject = (function () {
+    //     return '256';
+    //     })();
+    // testSet.addTestItem(testPow);
+
+
+     return testSet.test();
 };

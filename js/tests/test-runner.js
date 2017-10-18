@@ -4,13 +4,13 @@ $(document).ready(function () {
     (function () {
         var testSets = [];
 
-    //  testSets.push(HistoryTestSet);
-    // testSets.push(QueryBuilderTestSet);
-    // testSets.push(ClearingReducerTestSet);
-    // testSets.push(DigitReducerTestSet);
-    // testSets.push(MemoryReducerTestSet);
-    // testSets.push(OperatorReducerTestSet);
-    // testSets.push(QueryReducerTestSet);
+     testSets.push(HistoryTestSet);
+    testSets.push(QueryBuilderTestSet);
+    testSets.push(ClearingReducerTestSet);
+    testSets.push(DigitReducerTestSet);
+    testSets.push(MemoryReducerTestSet);
+    testSets.push(OperatorReducerTestSet);
+    testSets.push(QueryReducerTestSet);
    testSets.push(IntegerTestSet);
 
         var totalCount = 0;
