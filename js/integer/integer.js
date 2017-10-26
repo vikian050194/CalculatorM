@@ -21,28 +21,20 @@ function Integer(number) {
             throw "Format error!";
         }
     }
-    // else {
-    //     this.digits[0] = 0;
-    // }
-    this.DeleteNulls = function () {
-        while (this.digits[this.digits.length - 1] === 0 && this.digits.length != 1) {
-            this.digits.length--;
-        }
+}
+
+Integer.prototype.toString = function () {
+    var result = '';
+
+    if (this.isNegative) {
+        result = '-';
     }
 
-    this.toString = function () {
-        var result = '';
+    result += String(this.digits.reduce(function (previousValue, currentValue) {
+        return '' + currentValue + previousValue;
+    }));
 
-        if (this.isNegative) {
-            result = '-';
-        }
-
-        result += String(this.digits.reduce(function (previousValue, currentValue) {
-            return '' + currentValue + previousValue;
-        }));
-
-        return result;
-    }
+    return result;
 }
 
 Integer.compasion = function (firstArgument, secondArgument) {
@@ -186,7 +178,9 @@ Integer.sub = function (firstArgument, secondArgument) {
 
             }
         }
-        result.DeleteNulls();
+        while (result.digits[result.digits.length - 1] === 0 && result.digits.length != 1) {
+            result.digits.length--;
+        }
     }
 
     if (firstArgument.isNegative === true && secondArgument.isNegative === true) {
@@ -254,7 +248,10 @@ Integer.mul = function (firstArgument, secondArgument) {
         else {
             result.isNegative = true;
         }
-        result.DeleteNulls();
+        while (result.digits[result.digits.length - 1] === 0 && result.digits.length != 1) {
+            result.digits.length--;
+        }
+
         return result;
     }
 }
@@ -283,7 +280,7 @@ Integer.div = function (firstArgument, secondArgument) {
                 firstArgumentDivDigits.digits.push(firstArgument.digits[i]);
                 i--;
             }
-            while(firstArgumentDivDigits.digits.length!=firstArgument.digits.length){
+             while(firstArgumentDivDigits.digits.length!=firstArgument.digits.length){
             if (!Integer.compasion(firstArgumentDivDigits, secondArgument)) {
                 firstArgumentDivDigits.digits[i] = firstArgument.digits[i];
             }
