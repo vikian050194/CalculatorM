@@ -11,17 +11,17 @@ var TestState = require('./test-state'),
 
 var assert = require('assert');
 
-var initialState = TestState;
-var Reducer = combineReducers({
-    cookie: CookieReducer,
-    clearing: ClearingReducer,
-    digit: DigitReducer,
-    memory: MemoryReducer,
-    operator: OperatorReducer,
-    query: QueryReducer
-});
-
 describe('History', function () {
+
+    var initialState = new TestState();
+    var Reducer = combineReducers({
+        cookie: CookieReducer,
+        clearing: ClearingReducer,
+        digit: DigitReducer,
+        memory: MemoryReducer,
+        operator: OperatorReducer,
+        query: QueryReducer
+    });
 
     before(function () {
         this.jsdom = require('jsdom-global')();
@@ -59,6 +59,74 @@ describe('History', function () {
         }, createAction('undo')()), {
             history: expectedHistory,
             currentIndex: 0
+        });
+    });
+
+    it('undo with new digit', function () {
+        var actualHistory = [
+            $.extend({}, $.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
+            $.extend({}, $.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 0,
+                query: '42 add 0_'
+            })
+        ];
+        var actualStateBeforeAddingNum = HistoryReducer(Reducer)({
+            history: actualHistory,
+            currentIndex: 1
+        }, createAction('undo')());
+
+        var expectedHistory = [
+            $.extend({}, $.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
+            $.extend({}, $.extend(true, {}, initialState), {firstArgument: 421, query: '421_'})
+        ];
+
+        assert.deepEqual(HistoryReducer(Reducer)(actualStateBeforeAddingNum, createAction('addDigit')(1)), {
+            history: expectedHistory,
+            currentIndex: 1
+        });
+    });
+
+    it('redo', function () {
+        var actualHistory = [
+            $.extend({}, $.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
+            $.extend({}, $.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 0,
+                query: '42 add 0_'
+            }),
+            $.extend({}, $.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 21,
+                query: '42 add 21_'
+            })
+        ];
+
+        var expectedHistory = [
+            $.extend({}, $.extend(true, {}, initialState), {firstArgument: 42, query: '42_'}),
+            $.extend({}, $.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 0,
+                query: '42 add 0_'
+            }),
+            $.extend({}, $.extend(true, {}, initialState), {
+                firstArgument: 42,
+                operator: 'add',
+                secondArgument: 21,
+                query: '42 add 21_'
+            })
+        ];
+
+        assert.deepEqual(HistoryReducer(Reducer)({
+            history: actualHistory,
+            currentIndex: 1
+        }, createAction('redo')()), {
+            history: expectedHistory,
+            currentIndex: 2
         });
     });
 });
