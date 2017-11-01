@@ -11,6 +11,9 @@ var TestState = require('./test-state'),
 
 var assert = require('assert');
 
+var applyJQuery = require('./apply-jquery');
+applyJQuery();
+
 describe('History', function () {
 
     var initialState = new TestState();
@@ -21,15 +24,6 @@ describe('History', function () {
         memory: MemoryReducer,
         operator: OperatorReducer,
         query: QueryReducer
-    });
-
-    before(function () {
-        this.jsdom = require('jsdom-global')();
-        $ = require('jquery');
-    });
-
-    after(function () {
-        this.jsdom()
     });
 
     it('undo', function () {

@@ -3,19 +3,13 @@ var TestState = require('./test-state'),
 
 var assert = require('assert');
 
+var applyJQuery = require('./apply-jquery');
+applyJQuery();
+
 describe('Query builder', function () {
 
     var initialState = new TestState();
     var queryBuilder = new QueryBuilder();
-
-    before(function () {
-        this.jsdom = require('jsdom-global')();
-        $ = require('jquery');
-    });
-
-    after(function () {
-        this.jsdom()
-    });
 
     it('empty query', function () {
         var actualState = $.extend(true, {}, initialState);

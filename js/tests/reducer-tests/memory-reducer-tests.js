@@ -4,18 +4,12 @@ var TestState = require('./../test-state'),
 
 var assert = require('assert');
 
+var applyJQuery = require('./../apply-jquery');
+applyJQuery();
+
 describe('Memory reducer', function () {
 
     var initialState = new TestState();
-
-    before(function () {
-        this.jsdom = require('jsdom-global')();
-        $ = require('jquery');
-    });
-
-    after(function () {
-        this.jsdom()
-    });
 
     it('add to zero memory', function () {
         var actualState = $.extend(true, {}, initialState);
