@@ -313,8 +313,25 @@ Integer.div = function (firstArgument, secondArgument) {
         else{
             result.digits.unshift(0);
         }
+        if(result.digits.length === 1 && result.digits[0]===0)
+        {
+            result.isNegative = false;
+        }
         return result;
     }
+} 
+
+Integer.mod = function (firstArgument, secondArgument) {
+    var result = new Integer();
+
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation div!'
+    }
+    else {
+
+    }
+
+    return result;
 }
 
 module.exports = Integer;

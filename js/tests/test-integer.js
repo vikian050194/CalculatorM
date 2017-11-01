@@ -428,6 +428,47 @@ describe('Tests for Integer', function () {
         var actual = Integer.div(firstNumber, secondNumber);
         
         assert.deepEqual(actual, expected);
+    })
+
+
+    it('div -8 to -3', function () {
+        var firstNumber = new Integer('-8');
+        var secondNumber = new Integer('-3');
+        var expected = new Integer('2');
+
+        var actual = Integer.div(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    })
+
+    it('div 0 to -3', function () {
+        var firstNumber = new Integer('0');
+        var secondNumber = new Integer('-3');
+        var expected = new Integer('0');
+
+        var actual = Integer.div(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    })
+
+    it('div -1 to 3', function () {
+        var firstNumber = new Integer('-1');
+        var secondNumber = new Integer('3');
+        var expected = new Integer('0');
+
+        var actual = Integer.div(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    })
+
+    it('div 8655288755589632247 to -4555534522452', function () {
+        var firstNumber = new Integer('8655288755589632247');
+        var secondNumber = new Integer('-4555534522452');
+        var expected = new Integer('-1899950');
+
+        var actual = Integer.div(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
     });
 
 })
