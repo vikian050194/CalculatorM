@@ -155,38 +155,37 @@ Integer.sub = function (firstArgument, secondArgument) {
 
             }
 
-        }
+            for (var i = 0; i < firstArgument.digits.length; i++) {
+                var secondArgumentDigit = secondArgument.digits[i] || 0;
 
-        for (var i = 0; i < firstArgument.digits.length; i++) {
-            var secondArgumentDigit = secondArgument.digits[i] || 0;
-
-            if (firstArgument.digits[i] >= secondArgumentDigit) {
-                var resultDigit = firstArgument.digits[i] - secondArgumentDigit;
-                result.digits.push(resultDigit);
-            }
-            else {
-                if (i < firstArgument.digits.length - 1) {
-                    firstArgument.digits[i] += 10;
-                    firstArgument.digits[i + 1] -= 1;
+                if (firstArgument.digits[i] >= secondArgumentDigit) {
+                    var resultDigit = firstArgument.digits[i] - secondArgumentDigit;
+                    result.digits.push(resultDigit);
                 }
-                if (i + 1 === firstArgument.digits.length - 1 && firstArgument.digits[i + 1] === 0) {
-                    firstArgument.digits.length -= 1;
+                else {
+                    if (i < firstArgument.digits.length - 1) {
+                        firstArgument.digits[i] += 10;
+                        firstArgument.digits[i + 1] -= 1;
+                    }
+                    if (i + 1 === firstArgument.digits.length - 1 && firstArgument.digits[i + 1] === 0) {
+                        firstArgument.digits.length -= 1;
+                    }
+
+                    resultDigit = firstArgument.digits[i] - secondArgumentDigit;
+                    result.digits.push(resultDigit);
+
                 }
-
-                resultDigit = firstArgument.digits[i] - secondArgumentDigit;
-                result.digits.push(resultDigit);
-
+            }
+            while (result.digits[result.digits.length - 1] === 0 && result.digits.length != 1) {
+                result.digits.length--;
             }
         }
-        while (result.digits[result.digits.length - 1] === 0 && result.digits.length != 1) {
-            result.digits.length--;
-        }
-    }
 
-    if (firstArgument.isNegative === true && secondArgument.isNegative === true) {
-        secondArgument.isNegative = false;
-        result = Integer.add(firstArgument, secondArgument);
-        return result;
+        if (firstArgument.isNegative === true && secondArgument.isNegative === true) {
+            secondArgument.isNegative = false;
+            result = Integer.add(firstArgument, secondArgument);
+            return result;
+        }
     }
     return result;
 }
@@ -263,35 +262,56 @@ Integer.div = function (firstArgument, secondArgument) {
         throw 'Error format in operation div!'
     }
     else {
-        if(firstArgument.isNegative === secondArgument.isNegative){
+        if (firstArgument.isNegative === secondArgument.isNegative) {
             result.isNegative = false;
         }
-        else{
+        else {
             result.isNegative = true;
         }
         firstArgument.isNegative = false;
         secondArgument.isNegative = false;
 
         if (Integer.compasion(firstArgument, secondArgument)) {
-            var count;
-            firstArgumentDivDigits = new Integer();
-            var i = firstArgument.digits.length - 1;
-            while (i >= 0 && firstArgumentDivDigits.digits.length != secondArgument.digits.length) {
-                firstArgumentDivDigits.digits.push(firstArgument.digits[i]);
-                i--;
-            }
-             while(firstArgumentDivDigits.digits.length!=firstArgument.digits.length){
-            if (!Integer.compasion(firstArgumentDivDigits, secondArgument)) {
-                firstArgumentDivDigits.digits[i] = firstArgument.digits[i];
+            var count = 0;
+            var firstArgumentDivDigits = new Integer();
+
+            if(firstArgument.digits.length === secondArgument.digits.length)
+            {
+                while(Integer.compasion(firstArgument,secondArgument)){
+                    firstArgument = Integer.sub(firstArgument, secondArgument);
+                    count++;
+                }
+                result.digits.unshift(count);
             }
 
-            while(!Integer.compasion(firstArgumentDivDigits, secondArgument)){
-                firstArgumentDivDigits = Integer.sub(firstArgumentDivDigits, secondArgument);
-                count++;
+            while (firstArgument.digits.length !== 0 && firstArgumentDivDigits.digits.length != secondArgument.digits.length) {
+                firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
             }
-            result.digits.push(count);
-            count = 0;
+
+            while (firstArgument.digits.length !== 0) {
+
+                if (!Integer.compasion(firstArgumentDivDigits, secondArgument)) {
+                    firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
+                }
+                var i = firstArgumentDivDigits.digits.length - 1;
+                while(firstArgumentDivDigits.digits[i]==0 && firstArgumentDivDigits.digits.length!==1)
+                {
+                        firstArgumentDivDigits.digits.length--;
+                        i--;
+                }
+                if (!(firstArgumentDivDigits.digits[0] === 0 && firstArgumentDivDigits.length === 1)) {
+                    while (Integer.compasion(firstArgumentDivDigits, secondArgument)) {
+                        firstArgumentDivDigits = Integer.sub(firstArgumentDivDigits, secondArgument);
+                        count++;
+                    }
+                }
+                result.digits.unshift(count);
+                count = 0;
+            }
         }
+
+        else{
+            result.digits.unshift(0);
         }
         return result;
     }
