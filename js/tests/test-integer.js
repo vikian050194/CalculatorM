@@ -469,6 +469,36 @@ describe('Tests for Integer', function () {
         var actual = Integer.div(firstNumber, secondNumber);
         
         assert.deepEqual(actual, expected);
+    })
+
+    it('mod 100 to 12', function () {
+        var firstNumber = new Integer('100');
+        var secondNumber = new Integer('12');
+        var expected = new Integer('4');
+
+        var actual = Integer.mod(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    })
+
+    it('mod 3379 to 52', function () {
+        var firstNumber = new Integer('3379');
+        var secondNumber = new Integer('52');
+        var expected = new Integer('51');
+
+        var actual = Integer.mod(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    })
+
+    it('mod 9 to 3', function () {
+        var firstNumber = new Integer('9');
+        var secondNumber = new Integer('3');
+        var expected = new Integer('0');
+
+        var actual = Integer.mod(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
     });
 
 })

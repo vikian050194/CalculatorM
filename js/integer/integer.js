@@ -1,3 +1,94 @@
+function divAndMod(firstArgument, secondArgument) {
+    var resultDiv = new Integer();
+
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation div!'
+    }
+    else {
+        if (firstArgument.isNegative === secondArgument.isNegative) {
+            resultDiv.isNegative = false;
+        }
+        else {
+            resultDiv.isNegative = true;
+        }
+
+        firstArgument.isNegative = false;
+        secondArgument.isNegative = false;
+
+        if (compasion(firstArgument, secondArgument)) {
+            var count = 0;
+            var firstArgumentDivDigits = new Integer();
+
+            if (firstArgument.digits.length === secondArgument.digits.length) {
+                while (compasion(firstArgument, secondArgument)) {
+                    firstArgument = Integer.sub(firstArgument, secondArgument);
+                    count++;
+                }
+                resultDiv.digits.unshift(count);
+            }
+
+            while (firstArgument.digits.length !== 0 && firstArgumentDivDigits.digits.length != secondArgument.digits.length) {
+                firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
+            }
+
+            while (firstArgument.digits.length !== 0) {
+                if (!compasion(firstArgumentDivDigits, secondArgument)) {
+                    firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
+                }
+                var i = firstArgumentDivDigits.digits.length - 1;
+
+                while (firstArgumentDivDigits.digits[i] == 0 && firstArgumentDivDigits.digits.length !== 1) {
+                    firstArgumentDivDigits.digits.length--;
+                    i--;
+                }
+
+                if (!(firstArgumentDivDigits.digits[0] === 0 && firstArgumentDivDigits.length === 1)) {
+                    while (compasion(firstArgumentDivDigits, secondArgument)) {
+                        firstArgumentDivDigits = Integer.sub(firstArgumentDivDigits, secondArgument);
+                        count++;
+                    }
+                }
+
+                resultDiv.digits.unshift(count);
+                count = 0;
+            }
+        }
+
+        else {
+            resultDiv.digits.unshift(0);
+        }
+        if (resultDiv.digits.length === 1 && resultDiv.digits[0] === 0) {
+            resultDiv.isNegative = false;
+        }
+
+        return { remainer: firstArgumentDivDigits, quotient: resultDiv };
+    }
+}
+
+function compasion(firstArgument, secondArgument) {
+    if (firstArgument.digits.length > secondArgument.digits.length) {
+        return true;
+    }
+    if (firstArgument.digits.length < secondArgument.digits.length) {
+        return false;
+    }
+    if (firstArgument.digits.length = secondArgument.digits.length) {
+        var i = firstArgument.digits.length - 1;
+        while (firstArgument.digits[i] === secondArgument.digits[i] && i != 0) {
+            i--;
+        }
+
+        if (firstArgument.digits[i] < secondArgument.digits[i]) {
+            return false;
+        }
+        else {
+            return true;
+        }
+
+
+    }
+}
+
 function Integer(number) {
     var pattern = /-*\d/;
 
@@ -35,30 +126,6 @@ Integer.prototype.toString = function () {
     }));
 
     return result;
-}
-
-Integer.compasion = function (firstArgument, secondArgument) {
-    if (firstArgument.digits.length > secondArgument.digits.length) {
-        return true;
-    }
-    if (firstArgument.digits.length < secondArgument.digits.length) {
-        return false;
-    }
-    if (firstArgument.digits.length = secondArgument.digits.length) {
-        var i = firstArgument.digits.length - 1;
-        while (firstArgument.digits[i] === secondArgument.digits[i] && i != 0) {
-            i--;
-        }
-
-        if (firstArgument.digits[i] < secondArgument.digits[i]) {
-            return false;
-        }
-        else {
-            return true;
-        }
-
-
-    }
 }
 
 Integer.add = function (firstArgument, secondArgument) {
@@ -147,7 +214,7 @@ Integer.sub = function (firstArgument, secondArgument) {
         if (firstArgument.isNegative === false && secondArgument.isNegative === false) {
             result.isNegative = false;
 
-            if (!Integer.compasion(firstArgument, secondArgument)) {
+            if (!compasion(firstArgument, secondArgument)) {
                 var exchange = firstArgument;
                 firstArgument = secondArgument;
                 secondArgument = exchange
@@ -255,83 +322,24 @@ Integer.mul = function (firstArgument, secondArgument) {
     }
 }
 
-Integer.div = function (firstArgument, secondArgument) {
-    var result = new Integer();
 
+Integer.div = function (firstArgument, secondArgument) {
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
         throw 'Error format in operation div!'
     }
     else {
-        if (firstArgument.isNegative === secondArgument.isNegative) {
-            result.isNegative = false;
-        }
-        else {
-            result.isNegative = true;
-        }
-        firstArgument.isNegative = false;
-        secondArgument.isNegative = false;
-
-        if (Integer.compasion(firstArgument, secondArgument)) {
-            var count = 0;
-            var firstArgumentDivDigits = new Integer();
-
-            if(firstArgument.digits.length === secondArgument.digits.length)
-            {
-                while(Integer.compasion(firstArgument,secondArgument)){
-                    firstArgument = Integer.sub(firstArgument, secondArgument);
-                    count++;
-                }
-                result.digits.unshift(count);
-            }
-
-            while (firstArgument.digits.length !== 0 && firstArgumentDivDigits.digits.length != secondArgument.digits.length) {
-                firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
-            }
-
-            while (firstArgument.digits.length !== 0) {
-
-                if (!Integer.compasion(firstArgumentDivDigits, secondArgument)) {
-                    firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
-                }
-                var i = firstArgumentDivDigits.digits.length - 1;
-                while(firstArgumentDivDigits.digits[i]==0 && firstArgumentDivDigits.digits.length!==1)
-                {
-                        firstArgumentDivDigits.digits.length--;
-                        i--;
-                }
-                if (!(firstArgumentDivDigits.digits[0] === 0 && firstArgumentDivDigits.length === 1)) {
-                    while (Integer.compasion(firstArgumentDivDigits, secondArgument)) {
-                        firstArgumentDivDigits = Integer.sub(firstArgumentDivDigits, secondArgument);
-                        count++;
-                    }
-                }
-                result.digits.unshift(count);
-                count = 0;
-            }
-        }
-
-        else{
-            result.digits.unshift(0);
-        }
-        if(result.digits.length === 1 && result.digits[0]===0)
-        {
-            result.isNegative = false;
-        }
-        return result;
+        return divAndMod(firstArgument, secondArgument).quotient;
     }
-} 
+}
+
 
 Integer.mod = function (firstArgument, secondArgument) {
-    var result = new Integer();
-
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
         throw 'Error format in operation div!'
     }
     else {
-
+        return divAndMod(firstArgument, secondArgument).remainer;
     }
-
-    return result;
 }
 
 module.exports = Integer;
