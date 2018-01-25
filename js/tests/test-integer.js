@@ -441,6 +441,17 @@ describe('Tests for Integer', function () {
         assert.deepEqual(actual, expected);
     })
 
+    it('div 12 to 2', function () {
+        var firstNumber = new Integer('12');
+        var secondNumber = new Integer('2');
+        var expected = new Integer('6');
+
+        var actual = Integer.div(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    })
+
+
     it('div 0 to -3', function () {
         var firstNumber = new Integer('0');
         var secondNumber = new Integer('-3');
@@ -501,4 +512,83 @@ describe('Tests for Integer', function () {
         assert.deepEqual(actual, expected);
     });
 
+    it('mod 3 to 2', function () {
+        var firstNumber = new Integer('3');
+        var secondNumber = new Integer('2');
+        var expected = new Integer('1');
+
+        var actual = Integer.mod(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+
+    it('pow 13 to 3', function () {
+        var firstNumber = new Integer('13');
+        var secondNumber = new Integer('3');
+        var expected = new Integer('2197');
+
+        var actual = Integer.pow(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+    
+    it('pow 2 to 6', function () {
+        var firstNumber = new Integer('2');
+        var secondNumber = new Integer('6');
+        var expected = new Integer('64');
+
+        var actual = Integer.pow(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+
+    it('pow 15 to 2', function () {
+        var firstNumber = new Integer('15');
+        var secondNumber = new Integer('2');
+        var expected = new Integer('225');
+
+        var actual = Integer.pow(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+
+    it('pow 20 to 4', function () {
+        var firstNumber = new Integer('20');
+        var secondNumber = new Integer('4');
+        var expected = new Integer('160000');
+
+        var actual = Integer.pow(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+
+    it('pow 12 to 12', function () {
+        var firstNumber = new Integer('12');
+        var secondNumber = new Integer('12');
+        var expected = new Integer('8916100448256');
+
+        var actual = Integer.pow(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+
+    it('pow 12 to 11', function () {
+        var firstNumber = new Integer('12');
+        var secondNumber = new Integer('11');
+        var expected = new Integer('743008370688');
+
+        var actual = Integer.pow(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+
+    it('pow 12 to 5', function () {
+        var firstNumber = new Integer('12');
+        var secondNumber = new Integer('5');
+        var expected = new Integer('248832');
+
+        var actual = Integer.pow(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
 })

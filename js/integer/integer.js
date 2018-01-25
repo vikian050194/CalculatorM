@@ -1,5 +1,47 @@
-function divAndMod(firstArgument, secondArgument) {
+function Integer(number) {
+    var pattern = /-*\d/;
+
+    this.digits = [];
+    this.isNegative = false;
+
+    if (number !== undefined) {
+        if (typeof number === "string" && pattern.test(number)) {
+            var start = 0;
+
+            if (number[0] === '-') {
+                this.isNegative = true;
+                start = 1;
+            }
+
+            for (var i = number.length - 1; i >= start; i--) {
+                this.digits.push(parseInt(number[i]));
+            }
+        }
+        else {
+            throw "Format error!";
+        }
+    }
+}
+
+Integer.prototype.toString = function () {
+    var result = '';
+
+    if (this.isNegative) {
+        result = '-';
+    }
+
+    result += String(this.digits.reduce(function (previousValue, currentValue) {
+        return '' + currentValue + previousValue;
+    }));
+
+    return result;
+}
+
+function divAndMod(a, b) {
+
     var resultDiv = new Integer();
+    var firstArgument = new Integer(a.toString());
+    var secondArgument = new Integer(b.toString());
 
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
         throw 'Error format in operation div!'
@@ -65,6 +107,20 @@ function divAndMod(firstArgument, secondArgument) {
     }
 }
 
+function getCoefficients(power) {
+    var coefficients = [];
+    var two = new Integer('2');
+    for (var i = 0; power.digits[0] > 1 || power.digits.length > 1; i++) {
+        // var coef = Integer.mod(power,two);
+        coefficients[i] = Integer.mod(power, two).digits[0];
+        power = Integer.div(power, two);
+        if (power.digits[0] === 1 && power.digits.length === 1) {
+            coefficients[i + 1] = 1;
+        }
+    }
+    return coefficients;
+}
+
 function compasion(firstArgument, secondArgument) {
     if (firstArgument.digits.length > secondArgument.digits.length) {
         return true;
@@ -87,45 +143,6 @@ function compasion(firstArgument, secondArgument) {
 
 
     }
-}
-
-function Integer(number) {
-    var pattern = /-*\d/;
-
-    this.digits = [];
-    this.isNegative = false;
-
-    if (number !== undefined) {
-        if (typeof number === "string" && pattern.test(number)) {
-            var start = 0;
-
-            if (number[0] === '-') {
-                this.isNegative = true;
-                start = 1;
-            }
-
-            for (var i = number.length - 1; i >= start; i--) {
-                this.digits.push(parseInt(number[i]));
-            }
-        }
-        else {
-            throw "Format error!";
-        }
-    }
-}
-
-Integer.prototype.toString = function () {
-    var result = '';
-
-    if (this.isNegative) {
-        result = '-';
-    }
-
-    result += String(this.digits.reduce(function (previousValue, currentValue) {
-        return '' + currentValue + previousValue;
-    }));
-
-    return result;
 }
 
 Integer.add = function (firstArgument, secondArgument) {
@@ -257,14 +274,35 @@ Integer.sub = function (firstArgument, secondArgument) {
     return result;
 }
 
-Integer.pow = function (firstArgument, secondArgument) {
+Integer.pow = function (firstArgument, power) {
     var result = new Integer('1');
 
-    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+    if (!(firstArgument instanceof Integer) || !(power instanceof Integer)) {
         throw 'Error format in operation power!'
     }
     else {
+        if (power.isNegative === true) {
+            throw 'Error! Power can not be less than 0'
+        }
+        if (power.length === 1 && power.digits[i] === 0) {
+            return new Integer('1');
+        }
 
+        if (power.length === 1 && power.digits[i] === 1) {
+            return firstArgument;
+        }
+
+        if (power.isNegative === false)
+            var coefficients = [];
+        coefficients = getCoefficients(power);
+        for (var i = coefficients.length - 1; i >= 0; i--) {
+            if (coefficients[i] === 1) {
+                result = Integer.mul(result, firstArgument);
+            }
+            if (i != 0) {
+                result = Integer.mul(result, result);
+            }
+        }
     }
     return result;
 
