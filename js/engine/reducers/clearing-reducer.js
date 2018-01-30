@@ -1,11 +1,13 @@
+var Integer = require('./../../integer/integer');
+
 function ClearingReducer(previousState, action) {
     switch (action.type) {
         case 'clear':
             return {
-                firstArgument: 0,
+                firstArgument: new Integer('0'),
 				secondArgument: null,
 				operator: '',
-				module: 0,
+				module: new Integer('0'),
 				memory: null,
 				query: '',
 				result: null,
@@ -17,17 +19,17 @@ function ClearingReducer(previousState, action) {
         case 'deleteDigit':
             if (previousState.result !== null && previousState.firstArgument === 0) {
                 return $.extend({}, previousState, {
-                    firstArgument: (previousState.result - previousState.result % 10) / 10,
+                    firstArgument: previousState.result.pop(),
                     result: null
                 });
             }
             if (previousState.operator !== '' && previousState.secondArgument === null) {
-                return previousState;
+                return $.extend({}, previousState, {operator: ''});
             }
             if (previousState.secondArgument === null) {
-                return $.extend({}, previousState, {firstArgument: (previousState.firstArgument - previousState.firstArgument % 10) / 10});
+                return $.extend({}, previousState, {firstArgument: (previousState.firstArgument).pop() });
             } else {
-                return $.extend({}, previousState, {secondArgument: (previousState.secondArgument - previousState.secondArgument % 10) / 10});
+                return $.extend({}, previousState, {secondArgument: (previousState.secondArgument).pop() });
             }
             break;
 

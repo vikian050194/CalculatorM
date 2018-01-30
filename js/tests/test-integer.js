@@ -522,6 +522,17 @@ describe('Tests for Integer', function () {
         assert.deepEqual(actual, expected);
     });
 
+    it('mod 4 to 10', function () {
+        var firstNumber = new Integer('4');
+        var secondNumber = new Integer('10');
+        var expected = new Integer('4');
+
+        var actual = Integer.mod(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+
+
     it('pow 13 to 3', function () {
         var firstNumber = new Integer('13');
         var secondNumber = new Integer('3');
@@ -531,7 +542,7 @@ describe('Tests for Integer', function () {
         
         assert.deepEqual(actual, expected);
     });
-    
+
     it('pow 2 to 6', function () {
         var firstNumber = new Integer('2');
         var secondNumber = new Integer('6');

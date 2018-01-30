@@ -1,3 +1,5 @@
+var Integer = require('./../../integer/integer');
+
 function OperatorReducer(previousState, action) {
     switch (action.type) {
         case 'addOperator':
@@ -7,42 +9,43 @@ function OperatorReducer(previousState, action) {
                 previousState.secondArgument = null;
             }
             if (action.value === 'mod') {
-                previousState.module = 0;
+                previousState.module = new Integer('0');
             }
-            return $.extend({}, previousState, {operator: action.value});
+            return $.extend({}, previousState, {operator: action.value}); 
             break;
 
         case 'precalculate':
+ 
             switch (previousState.operator) {
                 case 'add':
-                    previousState.result = previousState.firstArgument + previousState.secondArgument;
+                    previousState.result = Integer.add(previousState.firstArgument,previousState.secondArgument);
                     break;
                 case 'sub':
-                    previousState.result = previousState.firstArgument - previousState.secondArgument;
+                    previousState.result = Integer.sub(previousState.firstArgument, previousState.secondArgument);
                     break;
                 case 'mul':
-                    previousState.result = previousState.firstArgument * previousState.secondArgument;
+                    previousState.result = Integer.mul(previousState.firstArgument, previousState.secondArgument);
                     break;
                 case 'div':
-                    previousState.result = previousState.firstArgument / previousState.secondArgument;
+                    previousState.result = Integer.div(previousState.firstArgument,previousState.secondArgument);
                     break;
                 case 'pow':
-                    previousState.result = Math.pow(previousState.firstArgument, previousState.secondArgument);
+                    previousState.result = Integer.pow(previousState.firstArgument,previousState.secondArgument);
                     break;
                 case 'mod':
-                    if (previousState.secondArgument !== null && previousState.secondArgument !== 0) {
-                        previousState.result = previousState.firstArgument % previousState.secondArgument;
+                    if (previousState.secondArgument !== null && !previousState.secondArgument.isZero()) {
+                        previousState.result = Integer.mod(previousState.firstArgument, previousState.secondArgument);
                         previousState.module = previousState.secondArgument;
                     }
-                    if (previousState.secondArgument === 0) {
-                        previousState.module = 0;
+                    if (previousState.secondArgument.isZero()) {
+                        previousState.module = new Integer('0');
                     }
                     break;
             }
-            if (previousState.module !== 0 && previousState.result !== null) {
-                previousState.result %= previousState.module;
-                if (previousState.result < 0 && previousState.positiveCookie) {
-                    previousState.result += previousState.module;
+            if (!previousState.module.isZero()) {
+                previousState.result =  Integer.mod(previousState.result, previousState.module);
+                if (previousState.result.isNegative && previousState.positiveCookie) {
+                    previousState.result = Integer.add(previousState.result,previousState.module);
                 }
             }
             return previousState;
@@ -53,10 +56,10 @@ function OperatorReducer(previousState, action) {
             if (previousState.result === null) {
                 result = previousState.firstArgument;
             }
-            if (previousState.module !== 0) {
-                result %= previousState.module;
-                if (result < 0 && previousState.positiveCookie) {
-                    result += previousState.module;
+            if (!previousState.module.isZero()) {
+                result =  Integer.mod(result, previousState.module);
+                if (result.isNegative && previousState.positiveCookie) {
+                    previousState.result = Integer.add(previousState.result,previousState.module);
                 }
             }
             return $.extend({}, previousState, {result: result});

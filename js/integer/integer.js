@@ -23,6 +23,48 @@ function Integer(number) {
     }
 }
 
+Integer.prototype.isZero = function () {
+    if(this.digits.length === 1 && this.digits[0]=== 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+Integer.prototype.changeSign = function () {
+    
+       if(this.isNegative === true){
+           this.isNegative = false;
+       }
+       else{
+           this.isNegative = true;
+       }
+    }
+
+Integer.prototype.push = function (value) {
+
+    if (this.digits.length === 1 && this.digits[0] === 0) {
+        if (value !== 0) {
+            this.digits[0] = value;
+        }
+    }
+    else {
+        this.digits.unshift(value);
+    }
+}
+
+Integer.prototype.pop = function () {
+
+    if (this.digits.length === 1) {
+         this.digits[0] = 0;
+    }
+    else {
+        
+        this.digits.shift();
+    }
+}
+
 Integer.prototype.toString = function () {
     var result = '';
 
@@ -376,7 +418,12 @@ Integer.mod = function (firstArgument, secondArgument) {
         throw 'Error format in operation div!'
     }
     else {
-        return divAndMod(firstArgument, secondArgument).remainer;
+        if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1)||(!compasion(firstArgument,secondArgument))) {
+            return firstArgument;
+        }
+        else {
+            return divAndMod(firstArgument, secondArgument).remainer;
+        }
     }
 }
 

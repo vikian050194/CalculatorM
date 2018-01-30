@@ -50,7 +50,7 @@ function ClearingReducerTestSet() {
 
     backspaceFAToZeroTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {firstArgument: 0});
+        return $.extend({}, state, {firstArgument: ''});
     })();
     testSet.addTestItem(backspaceFAToZeroTest);
 

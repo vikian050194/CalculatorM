@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10340,6 +10340,441 @@ module.exports = createAction;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+function Integer(number) {
+    var pattern = /-*\d/;
+
+    this.digits = [];
+    this.isNegative = false;
+
+    if (number !== undefined) {
+        if (typeof number === "string" && pattern.test(number)) {
+            var start = 0;
+
+            if (number[0] === '-') {
+                this.isNegative = true;
+                start = 1;
+            }
+
+            for (var i = number.length - 1; i >= start; i--) {
+                this.digits.push(parseInt(number[i]));
+            }
+        }
+        else {
+            throw "Format error!";
+        }
+    }
+}
+
+Integer.prototype.isZero = function () {
+    if(this.digits.length === 1 && this.digits[0]=== 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+Integer.prototype.changeSign = function () {
+    
+       if(this.isNegative === true){
+           this.isNegative = false;
+       }
+       else{
+           this.isNegative = true;
+       }
+    }
+
+Integer.prototype.push = function (value) {
+
+    if (this.digits.length === 1 && this.digits[0] === 0) {
+        if (value !== 0) {
+            this.digits[0] = value;
+        }
+    }
+    else {
+        this.digits.unshift(value);
+    }
+}
+
+Integer.prototype.pop = function () {
+
+    if (this.digits.length === 1) {
+         this.digits[0] = 0;
+    }
+    else {
+        
+        this.digits.shift();
+    }
+}
+
+Integer.prototype.toString = function () {
+    var result = '';
+
+    if (this.isNegative) {
+        result = '-';
+    }
+
+    result += String(this.digits.reduce(function (previousValue, currentValue) {
+        return '' + currentValue + previousValue;
+    }));
+
+    return result;
+}
+
+function divAndMod(a, b) {
+
+    var resultDiv = new Integer();
+    var firstArgument = new Integer(a.toString());
+    var secondArgument = new Integer(b.toString());
+
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation div!'
+    }
+    else {
+        if (firstArgument.isNegative === secondArgument.isNegative) {
+            resultDiv.isNegative = false;
+        }
+        else {
+            resultDiv.isNegative = true;
+        }
+
+        firstArgument.isNegative = false;
+        secondArgument.isNegative = false;
+
+        if (compasion(firstArgument, secondArgument)) {
+            var count = 0;
+            var firstArgumentDivDigits = new Integer();
+
+            if (firstArgument.digits.length === secondArgument.digits.length) {
+                while (compasion(firstArgument, secondArgument)) {
+                    firstArgument = Integer.sub(firstArgument, secondArgument);
+                    count++;
+                }
+                resultDiv.digits.unshift(count);
+            }
+
+            while (firstArgument.digits.length !== 0 && firstArgumentDivDigits.digits.length != secondArgument.digits.length) {
+                firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
+            }
+
+            while (firstArgument.digits.length !== 0) {
+                if (!compasion(firstArgumentDivDigits, secondArgument)) {
+                    firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
+                }
+                var i = firstArgumentDivDigits.digits.length - 1;
+
+                while (firstArgumentDivDigits.digits[i] == 0 && firstArgumentDivDigits.digits.length !== 1) {
+                    firstArgumentDivDigits.digits.length--;
+                    i--;
+                }
+
+                if (!(firstArgumentDivDigits.digits[0] === 0 && firstArgumentDivDigits.length === 1)) {
+                    while (compasion(firstArgumentDivDigits, secondArgument)) {
+                        firstArgumentDivDigits = Integer.sub(firstArgumentDivDigits, secondArgument);
+                        count++;
+                    }
+                }
+
+                resultDiv.digits.unshift(count);
+                count = 0;
+            }
+        }
+
+        else {
+            resultDiv.digits.unshift(0);
+        }
+        if (resultDiv.digits.length === 1 && resultDiv.digits[0] === 0) {
+            resultDiv.isNegative = false;
+        }
+
+        return { remainer: firstArgumentDivDigits, quotient: resultDiv };
+    }
+}
+
+function getCoefficients(power) {
+    var coefficients = [];
+    var two = new Integer('2');
+    for (var i = 0; power.digits[0] > 1 || power.digits.length > 1; i++) {
+        // var coef = Integer.mod(power,two);
+        coefficients[i] = Integer.mod(power, two).digits[0];
+        power = Integer.div(power, two);
+        if (power.digits[0] === 1 && power.digits.length === 1) {
+            coefficients[i + 1] = 1;
+        }
+    }
+    return coefficients;
+}
+
+function compasion(firstArgument, secondArgument) {
+    if (firstArgument.digits.length > secondArgument.digits.length) {
+        return true;
+    }
+    if (firstArgument.digits.length < secondArgument.digits.length) {
+        return false;
+    }
+    if (firstArgument.digits.length = secondArgument.digits.length) {
+        var i = firstArgument.digits.length - 1;
+        while (firstArgument.digits[i] === secondArgument.digits[i] && i != 0) {
+            i--;
+        }
+
+        if (firstArgument.digits[i] < secondArgument.digits[i]) {
+            return false;
+        }
+        else {
+            return true;
+        }
+
+
+    }
+}
+
+Integer.add = function (firstArgument, secondArgument) {
+    var result = new Integer();
+
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation Add!'
+    }
+    else {
+        if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
+            secondArgument.isNegative = false;
+            result = Integer.sub(firstArgument, secondArgument);
+            return result;
+        }
+
+        if (firstArgument.isNegative === true && secondArgument.isNegative === false) {
+            firstArgument.isNegative = false;
+            result = Integer.sub(secondArgument, firstArgument);
+            return result;
+        }
+
+        if (firstArgument.isNegative === secondArgument.isNegative) {
+            result.isNegative = firstArgument.isNegative;
+            var i = 0;
+            var balance = 0;
+
+            if (firstArgument.digits.length < secondArgument.digits.length) {
+                var exchange = firstArgument;
+                firstArgument = secondArgument;
+                secondArgument = exchange;
+            }
+
+            for (; i < firstArgument.digits.length; i++) {
+                var secondArgumentDigit = secondArgument.digits[i] || 0;
+                var resultDigit = firstArgument.digits[i] + secondArgumentDigit + balance;
+
+                if (resultDigit >= 10) {
+                    balance = parseInt(resultDigit / 10);
+                    resultDigit %= 10;
+                } else {
+                    balance = 0;
+                }
+
+                result.digits.push(resultDigit);
+            }
+
+            if ((firstArgument.digits.length === secondArgument.digits.length) && balance !== 0) {
+                result.digits.push(balance);
+            }
+        }
+        else {
+            if (firstArgument.isNegative && !secondArgument.isNegative) {
+                firstArgument.isNegative = false;
+                result = Integer.sub(secondArgument, firstArgument);
+            }
+            else {
+                secondArgument.isNegative = false
+                result = Integer.sub(firstArgument, secondArgument);
+            }
+        }
+    }
+
+    return result;
+}
+
+Integer.sub = function (firstArgument, secondArgument) {
+    var result = new Integer();
+
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation Sub!'
+    }
+    else {
+
+        if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
+            secondArgument.isNegative = false;
+            result = Integer.add(firstArgument, secondArgument);
+            return result;
+        }
+
+        if (firstArgument.isNegative === true && secondArgument.isNegative === false) {
+            secondArgument.isNegative = true;
+            result = Integer.add(firstArgument, secondArgument);
+            return result;
+        }
+
+        if (firstArgument.isNegative === false && secondArgument.isNegative === false) {
+            result.isNegative = false;
+
+            if (!compasion(firstArgument, secondArgument)) {
+                var exchange = firstArgument;
+                firstArgument = secondArgument;
+                secondArgument = exchange
+                result.isNegative = true;
+
+            }
+
+            for (var i = 0; i < firstArgument.digits.length; i++) {
+                var secondArgumentDigit = secondArgument.digits[i] || 0;
+
+                if (firstArgument.digits[i] >= secondArgumentDigit) {
+                    var resultDigit = firstArgument.digits[i] - secondArgumentDigit;
+                    result.digits.push(resultDigit);
+                }
+                else {
+                    if (i < firstArgument.digits.length - 1) {
+                        firstArgument.digits[i] += 10;
+                        firstArgument.digits[i + 1] -= 1;
+                    }
+                    if (i + 1 === firstArgument.digits.length - 1 && firstArgument.digits[i + 1] === 0) {
+                        firstArgument.digits.length -= 1;
+                    }
+
+                    resultDigit = firstArgument.digits[i] - secondArgumentDigit;
+                    result.digits.push(resultDigit);
+
+                }
+            }
+            while (result.digits[result.digits.length - 1] === 0 && result.digits.length != 1) {
+                result.digits.length--;
+            }
+        }
+
+        if (firstArgument.isNegative === true && secondArgument.isNegative === true) {
+            secondArgument.isNegative = false;
+            result = Integer.add(firstArgument, secondArgument);
+            return result;
+        }
+    }
+    return result;
+}
+
+Integer.pow = function (firstArgument, power) {
+    var result = new Integer('1');
+
+    if (!(firstArgument instanceof Integer) || !(power instanceof Integer)) {
+        throw 'Error format in operation power!'
+    }
+    else {
+        if (power.isNegative === true) {
+            throw 'Error! Power can not be less than 0'
+        }
+        if (power.length === 1 && power.digits[i] === 0) {
+            return new Integer('1');
+        }
+
+        if (power.length === 1 && power.digits[i] === 1) {
+            return firstArgument;
+        }
+
+        if (power.isNegative === false)
+            var coefficients = [];
+        coefficients = getCoefficients(power);
+        for (var i = coefficients.length - 1; i >= 0; i--) {
+            if (coefficients[i] === 1) {
+                result = Integer.mul(result, firstArgument);
+            }
+            if (i != 0) {
+                result = Integer.mul(result, result);
+            }
+        }
+    }
+    return result;
+
+}
+
+Integer.mul = function (firstArgument, secondArgument) {
+    var result = new Integer();
+
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation multiplication!'
+    }
+    else {
+        for (var i = 0; i < secondArgument.digits.length; i++) {
+            var balance = 0;
+            var additionalNumber = new Integer();
+
+            for (var j = 0; j < firstArgument.digits.length; j++) {
+                additionalNumber.digits[j] = secondArgument.digits[i] * firstArgument.digits[j] + balance;
+
+                if (additionalNumber.digits[j] >= 10) {
+                    balance = parseInt(additionalNumber.digits[j] / 10);
+                    additionalNumber.digits[j] %= 10;
+                } else {
+                    balance = 0;
+                }
+
+            }
+
+            if (balance != 0) {
+                additionalNumber.digits[additionalNumber.digits.length] = balance;
+            }
+
+
+            for (var k = 0; k < i; k++) {
+                for (var j = additionalNumber.digits.length - 1; j >= 0; j--) {
+                    additionalNumber.digits[j + 1] = additionalNumber.digits[j];
+                }
+                additionalNumber.digits[0] = 0;
+            }
+
+            result = Integer.add(result, additionalNumber);
+        }
+
+        if (firstArgument.isNegative === secondArgument.isNegative) {
+            result.isNegative = false;
+        }
+        else {
+            result.isNegative = true;
+        }
+        while (result.digits[result.digits.length - 1] === 0 && result.digits.length != 1) {
+            result.digits.length--;
+        }
+
+        return result;
+    }
+}
+
+
+Integer.div = function (firstArgument, secondArgument) {
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation div!'
+    }
+    else {
+        return divAndMod(firstArgument, secondArgument).quotient;
+    }
+}
+
+
+Integer.mod = function (firstArgument, secondArgument) {
+    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
+        throw 'Error format in operation div!'
+    }
+    else {
+        if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1)||(!compasion(firstArgument,secondArgument))) {
+            return firstArgument;
+        }
+        else {
+            return divAndMod(firstArgument, secondArgument).remainer;
+        }
+    }
+}
+
+module.exports = Integer;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10514,11 +10949,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($, Cookies) {var PageHandler = __webpack_require__(4),
-    CalculatorUI = __webpack_require__(5);
+/* WEBPACK VAR INJECTION */(function($, Cookies) {var PageHandler = __webpack_require__(5),
+    CalculatorUI = __webpack_require__(6);
 
 $(document).ready(function () {
     var pageHandler = new PageHandler(4);
@@ -10579,10 +11014,10 @@ function setModuleSwitch() {
         moduleSwitch.checked = true;
     }
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(3)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {function PageHandler(lastPage) {
@@ -10626,10 +11061,10 @@ module.exports = PageHandler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var CalculatorStore = __webpack_require__(6),
+var CalculatorStore = __webpack_require__(7),
     Themer = __webpack_require__(21),
     applyMenu = __webpack_require__(22),
     applyDigits = __webpack_require__(23),
@@ -10658,27 +11093,28 @@ function CalculatorUI() {
 module.exports = CalculatorUI;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var createStore = __webpack_require__(7),
-    HistoryReducer = __webpack_require__(8),
-    combineReducers = __webpack_require__(9),
-    CookieReducer = __webpack_require__(10),
-    ClearingReducer = __webpack_require__(11),
-    DigitReducer = __webpack_require__(12),
-    MemoryReducer = __webpack_require__(13),
-    OperatorReducer = __webpack_require__(14),
-    QueryReducer = __webpack_require__(15),
+var createStore = __webpack_require__(8),
+    HistoryReducer = __webpack_require__(9),
+    combineReducers = __webpack_require__(10),
+    CookieReducer = __webpack_require__(11),
+    ClearingReducer = __webpack_require__(12),
+    DigitReducer = __webpack_require__(13),
+    MemoryReducer = __webpack_require__(14),
+    OperatorReducer = __webpack_require__(15),
+    QueryReducer = __webpack_require__(16),
     HistoryUpdate = __webpack_require__(18),
-    UpdateUI = __webpack_require__(19);
+    UpdateUI = __webpack_require__(19),
+    Integer = __webpack_require__(2);
 
 function CalculatorStore() {
     var initialState = {
-        firstArgument: 0,
+        firstArgument: new Integer('0'),
         secondArgument: null,
         operator: '',
-        module: 0,
+        module: new Integer('0'),
         memory: null,
         query: '_',
         result: null,
@@ -10709,7 +11145,7 @@ function CalculatorStore() {
 module.exports = CalculatorStore;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 function createStore(reducer, initialState) {
@@ -10754,7 +11190,7 @@ function createStore(reducer, initialState) {
 module.exports = createStore;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 function HistoryReducer(reducer) {
@@ -10792,7 +11228,7 @@ function HistoryReducer(reducer) {
 module.exports = HistoryReducer;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {function combineReducers(reducers) {
@@ -10808,7 +11244,7 @@ module.exports = combineReducers;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {function CookieReducer(previousState, action) {
@@ -10830,17 +11266,19 @@ module.exports = CookieReducer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {function ClearingReducer(previousState, action) {
+/* WEBPACK VAR INJECTION */(function($) {var Integer = __webpack_require__(2);
+
+function ClearingReducer(previousState, action) {
     switch (action.type) {
         case 'clear':
             return {
-                firstArgument: 0,
+                firstArgument: new Integer('0'),
 				secondArgument: null,
 				operator: '',
-				module: 0,
+				module: new Integer('0'),
 				memory: null,
 				query: '',
 				result: null,
@@ -10852,17 +11290,17 @@ module.exports = CookieReducer;
         case 'deleteDigit':
             if (previousState.result !== null && previousState.firstArgument === 0) {
                 return $.extend({}, previousState, {
-                    firstArgument: (previousState.result - previousState.result % 10) / 10,
+                    firstArgument: previousState.result.pop(),
                     result: null
                 });
             }
             if (previousState.operator !== '' && previousState.secondArgument === null) {
-                return previousState;
+                return $.extend({}, previousState, {operator: ''});
             }
             if (previousState.secondArgument === null) {
-                return $.extend({}, previousState, {firstArgument: (previousState.firstArgument - previousState.firstArgument % 10) / 10});
+                return $.extend({}, previousState, {firstArgument: (previousState.firstArgument).pop() });
             } else {
-                return $.extend({}, previousState, {secondArgument: (previousState.secondArgument - previousState.secondArgument % 10) / 10});
+                return $.extend({}, previousState, {secondArgument: (previousState.secondArgument).pop() });
             }
             break;
 
@@ -10875,45 +11313,38 @@ module.exports = ClearingReducer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {function DigitReducer(previousState, action) {
+/* WEBPACK VAR INJECTION */(function($) {var Integer = __webpack_require__(2);
+
+function DigitReducer(previousState, action) {
     switch (action.type) {
         case 'addDigit':
             if (previousState.operator === '') {
-                previousState.firstArgument *= 10;
-                if (previousState.firstArgument >= 0) {
-                    previousState.firstArgument += action.value;
-                } else {
-                    previousState.firstArgument -= action.value;
-                }
-                return $.extend({}, previousState, {firstArgument: previousState.firstArgument});
+               previousState.firstArgument.push(action.value);
+               return $.extend({}, previousState, {firstArgument: previousState.firstArgument});
+
             } else {
                 if (previousState.secondArgument === null) {
-                    previousState.secondArgument = 0;
+                    previousState.secondArgument = new Integer('0');
                 }
-                previousState.secondArgument *= 10;
-                if (previousState.secondArgument >= 0) {
-                    previousState.secondArgument += action.value;
-                } else {
-                    previousState.secondArgument -= action.value;
-                }
-                return $.extend({}, previousState, {secondArgument: previousState.secondArgument});
+               previousState.secondArgument.push(action.value);
+               return $.extend({}, previousState, {secondArgument: previousState.secondArgument});
             }
             break;
 
         case 'changeSign':
-            if(previousState.result !== null && previousState.firstArgument === 0) {
-                return $.extend({}, previousState, {firstArgument: previousState.result * (-1), result: null});
+            if(previousState.result !== null) {
+                return $.extend({}, previousState, {firstArgument: previousState.result.changeSign(), result: null});
             }
             if (previousState.operator === '') {
-                return $.extend({}, previousState, {firstArgument: previousState.firstArgument * (-1)});
+                return $.extend({}, previousState, {firstArgument: previousState.firstArgument.changeSign()});
             } else {
                 if (previousState.secondArgument === null) {
                     return previousState;
                 }
-                return $.extend({}, previousState, {secondArgument: previousState.secondArgument * (-1)});
+                return $.extend({}, previousState, {secondArgument: previousState.secondArgument.changeSign()});
             }
             break;
 
@@ -10926,7 +11357,7 @@ module.exports = DigitReducer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {function MemoryReducer(previousState, action) {
@@ -10963,10 +11394,12 @@ module.exports = MemoryReducer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {function OperatorReducer(previousState, action) {
+/* WEBPACK VAR INJECTION */(function($) {var Integer = __webpack_require__(2);
+
+function OperatorReducer(previousState, action) {
     switch (action.type) {
         case 'addOperator':
             if (previousState.result !== null && !isNaN(previousState.result)) {
@@ -10975,42 +11408,43 @@ module.exports = MemoryReducer;
                 previousState.secondArgument = null;
             }
             if (action.value === 'mod') {
-                previousState.module = 0;
+                previousState.module = new Integer('0');
             }
-            return $.extend({}, previousState, {operator: action.value});
+            return $.extend({}, previousState, {operator: action.value}); 
             break;
 
         case 'precalculate':
+ 
             switch (previousState.operator) {
                 case 'add':
-                    previousState.result = previousState.firstArgument + previousState.secondArgument;
+                    previousState.result = Integer.add(previousState.firstArgument,previousState.secondArgument);
                     break;
                 case 'sub':
-                    previousState.result = previousState.firstArgument - previousState.secondArgument;
+                    previousState.result = Integer.sub(previousState.firstArgument, previousState.secondArgument);
                     break;
                 case 'mul':
-                    previousState.result = previousState.firstArgument * previousState.secondArgument;
+                    previousState.result = Integer.mul(previousState.firstArgument, previousState.secondArgument);
                     break;
                 case 'div':
-                    previousState.result = previousState.firstArgument / previousState.secondArgument;
+                    previousState.result = Integer.div(previousState.firstArgument,previousState.secondArgument);
                     break;
                 case 'pow':
-                    previousState.result = Math.pow(previousState.firstArgument, previousState.secondArgument);
+                    previousState.result = Integer.pow(previousState.firstArgument,previousState.secondArgument);
                     break;
                 case 'mod':
-                    if (previousState.secondArgument !== null && previousState.secondArgument !== 0) {
-                        previousState.result = previousState.firstArgument % previousState.secondArgument;
+                    if (previousState.secondArgument !== null && !previousState.secondArgument.isZero()) {
+                        previousState.result = Integer.mod(previousState.firstArgument, previousState.secondArgument);
                         previousState.module = previousState.secondArgument;
                     }
-                    if (previousState.secondArgument === 0) {
-                        previousState.module = 0;
+                    if (previousState.secondArgument.isZero()) {
+                        previousState.module = new Integer('0');
                     }
                     break;
             }
-            if (previousState.module !== 0 && previousState.result !== null) {
-                previousState.result %= previousState.module;
-                if (previousState.result < 0 && previousState.positiveCookie) {
-                    previousState.result += previousState.module;
+            if (!previousState.module.isZero()) {
+                previousState.result =  Integer.mod(previousState.result, previousState.module);
+                if (previousState.result.isNegative && previousState.positiveCookie) {
+                    previousState.result = Integer.add(previousState.result,previousState.module);
                 }
             }
             return previousState;
@@ -11021,10 +11455,10 @@ module.exports = MemoryReducer;
             if (previousState.result === null) {
                 result = previousState.firstArgument;
             }
-            if (previousState.module !== 0) {
-                result %= previousState.module;
-                if (result < 0 && previousState.positiveCookie) {
-                    result += previousState.module;
+            if (!previousState.module.isZero()) {
+                result =  Integer.mod(result, previousState.module);
+                if (result.isNegative && previousState.positiveCookie) {
+                    previousState.result = Integer.add(previousState.result,previousState.module);
                 }
             }
             return $.extend({}, previousState, {result: result});
@@ -11039,26 +11473,24 @@ module.exports = OperatorReducer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var QueryBuilder = __webpack_require__(16),
-    isSafeInteger = __webpack_require__(17);
-
+/* WEBPACK VAR INJECTION */(function($) {var QueryBuilder = __webpack_require__(17),
+    Integer = __webpack_require__(2);
+    
 function QueryReducer(previousState, action) {
     switch (action.type) {
         case 'addOperator':
             var queryState = $.extend(true, {}, previousState);
             queryState.secondArgument = null;
-            if (!isSafeInteger(previousState.firstArgument)
-                || (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument))
-                || (previousState.result !== null && !isSafeInteger(previousState.result))) {
+            if (previousState.secondArgument !== null || previousState.result !== null) {
                 return $.extend({}, previousState, {
-                    firstArgument: 0,
+                    firstArgument: new Integer('0'),
                     operator: '',
                     secondArgument: null,
                     result: null,
-                    query: 'ERROR'
+                    query: 'ERROR1'
                 });
             }
             return $.extend({}, previousState, { query: new QueryBuilder().getQuery(queryState) });
@@ -11067,22 +11499,19 @@ function QueryReducer(previousState, action) {
         case 'calculate':
             var queryState = $.extend(true, {}, previousState);
             if (queryState.secondArgument === null && queryState.operator !== '') {
-                queryState.secondArgument = 0;
+                queryState.secondArgument = new Integer('0');
             }
             if (queryState.operator === 'mod') {
                 queryState.operator = '';
                 queryState.secondArgument = null;
             }
             var query = new QueryBuilder().getQuery(queryState);
-            if (!isSafeInteger(queryState.result)) {
-                previousState.result = null;
-                query = 'ERROR';
-            }
+           
             if (!previousState.moduleCookie) {
-                previousState.module = 0;
+                previousState.module = new Integer('0');
             }
             return $.extend({}, previousState, {
-                firstArgument: 0,
+                firstArgument: new Integer('0'),
                 operator: '',
                 secondArgument: null,
                 query: query
@@ -11091,16 +11520,7 @@ function QueryReducer(previousState, action) {
 
         case 'addDigit':
             previousState.result = null;
-            if (!isSafeInteger(previousState.firstArgument)
-                || (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument))) {
-                return $.extend({}, previousState, {
-                    firstArgument: 0,
-                    operator: '',
-                    secondArgument: null,
-                    result: null,
-                    query: 'ERROR'
-                });
-            }
+   
             return $.extend({}, previousState, { query: new QueryBuilder().getQuery(previousState) });
             break;
 
@@ -11122,29 +11542,29 @@ module.exports = QueryReducer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 function QueryBuilder() {
     this.getQuery = function (model) {
         var line = new String();
 
-        if (model.firstArgument === 0 && model.operator === '') {
-            if (model.module === 0) {
+        if (model.firstArgument.isZero() && model.operator === '') {
+            if (model.module.isZero()) {
                 return '_';
             } else {
-                return '_ mod ' + model.module;
+                return '_ mod ' + model.module.toString();
             }
         }
 
-        line += model.firstArgument;
+        line += model.firstArgument.toString();
 
         if (model.operator !== '') {
             line += ' ' + model.operator;
         }
 
         if (model.secondArgument !== null) {
-            line += ' ' + model.secondArgument;
+            line += ' ' + model.secondArgument.toString();
         } else {
             if (model.operator !== '') {
                 line += ' ';
@@ -11155,14 +11575,14 @@ function QueryBuilder() {
             line += '_';
         }
 
-        if (model.module !== 0 && model.result !== null) {
-            line += ' \u2630 ' + model.result + '_' + ' mod ' + model.module;
+        if (!model.module.isZero() && model.result !== null) {
+            line += ' \u2630 ' + model.result.toString() + '_' + ' mod ' + model.module.toString();
         } else {
             if (model.result !== null) {
-                line += ' = ' + model.result + '_';
+                line += ' = ' + model.result.toString() + '_';
             }
-            if (model.module !== 0) {
-                line += ' mod ' + model.module;
+            if (!model.module.isZero()) {
+                line += ' mod ' + model.module.toString();
             }
         }
 
@@ -11171,33 +11591,6 @@ function QueryBuilder() {
 }
 
 module.exports = QueryBuilder;
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-function isSafeInteger(number) {
-    if (typeof number !== 'number') {
-        return false;
-    }
-    if (!isFinite(number)) { //NaN is also not finite
-        return false;
-    }
-    // var integer = getSign(number) * Math.floor(Math.abs(number));
-    // if (integer !== number) {
-    //     return false;
-    // }
-    if (Math.abs(number) < Math.pow(2, 53) - 1) {
-        return true;
-    }
-    return false;
-}
-
-function getSign(x) {
-    return x ? x < 0 ? -1 : 1 : 0;
-}
-
-module.exports = isSafeInteger;
 
 /***/ }),
 /* 18 */
@@ -11266,7 +11659,7 @@ function UpdateUI(state) {
 }
 
 module.exports = UpdateUI;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(3)))
 
 /***/ }),
 /* 20 */
@@ -11356,7 +11749,7 @@ module.exports = AutoresizeText;
 }
 
 module.exports = Themer;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(0)))
 
 /***/ }),
 /* 22 */

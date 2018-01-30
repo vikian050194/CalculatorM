@@ -8,14 +8,15 @@ var createStore = require('./../flux/store-creator'),
     OperatorReducer = require('./reducers/operator-reducer'),
     QueryReducer = require('./reducers/query-reducer'),
     HistoryUpdate = require('./../history/history-update'),
-    UpdateUI = require('./../engine/update-ui');
+    UpdateUI = require('./../engine/update-ui'),
+    Integer = require('./../integer/integer');
 
 function CalculatorStore() {
     var initialState = {
-        firstArgument: 0,
+        firstArgument: new Integer('0'),
         secondArgument: null,
         operator: '',
-        module: 0,
+        module: new Integer('0'),
         memory: null,
         query: '_',
         result: null,

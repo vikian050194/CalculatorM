@@ -74,7 +74,7 @@ function QueryReducerTestSet() {
         var state = jQuery.extend(true, {}, initialState);
         state.firstArgument = 63;
         state.result = 63;
-        return $.extend({}, state, {firstArgument: 0, query: new QueryBuilder().getQuery(state)});
+        return $.extend({}, state, {firstArgument: '', query: new QueryBuilder().getQuery(state)});
     })();
     testSet.addTestItem(calculateWFAQueryTest);
 
@@ -96,7 +96,7 @@ function QueryReducerTestSet() {
         state.firstArgument = 63;
         state.result = 3;
         state.module = 20;
-        return $.extend({}, state, {firstArgument: 0, query: new QueryBuilder().getQuery(state)});
+        return $.extend({}, state, {firstArgument: '', query: new QueryBuilder().getQuery(state)});
     })();
     testSet.addTestItem(calculateWFAModQueryTest);
 
@@ -117,7 +117,7 @@ function QueryReducerTestSet() {
 
     calculateWNaNResultQueryTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {query: 'ERROR'});
+        return $.extend({}, state, {query: 'ERROR4'});
     })();
     testSet.addTestItem(calculateWNaNResultQueryTest);
 
@@ -138,7 +138,7 @@ function QueryReducerTestSet() {
 
     addOperatorWNaNResultQueryTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {query: 'ERROR'});
+        return $.extend({}, state, {query: 'ERROR5'});
     })();
     testSet.addTestItem(addOperatorWNaNResultQueryTest);
 

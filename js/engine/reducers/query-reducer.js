@@ -1,20 +1,18 @@
 var QueryBuilder = require('./../query-builders/query-builder-wtes'),
-    isSafeInteger = require('./../safe-integer');
-
+    Integer = require('./../../integer/integer');
+    
 function QueryReducer(previousState, action) {
     switch (action.type) {
         case 'addOperator':
             var queryState = $.extend(true, {}, previousState);
             queryState.secondArgument = null;
-            if (!isSafeInteger(previousState.firstArgument)
-                || (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument))
-                || (previousState.result !== null && !isSafeInteger(previousState.result))) {
+            if (previousState.secondArgument !== null || previousState.result !== null) {
                 return $.extend({}, previousState, {
-                    firstArgument: 0,
+                    firstArgument: new Integer('0'),
                     operator: '',
                     secondArgument: null,
                     result: null,
-                    query: 'ERROR'
+                    query: 'ERROR1'
                 });
             }
             return $.extend({}, previousState, { query: new QueryBuilder().getQuery(queryState) });
@@ -23,22 +21,19 @@ function QueryReducer(previousState, action) {
         case 'calculate':
             var queryState = $.extend(true, {}, previousState);
             if (queryState.secondArgument === null && queryState.operator !== '') {
-                queryState.secondArgument = 0;
+                queryState.secondArgument = new Integer('0');
             }
             if (queryState.operator === 'mod') {
                 queryState.operator = '';
                 queryState.secondArgument = null;
             }
             var query = new QueryBuilder().getQuery(queryState);
-            if (!isSafeInteger(queryState.result)) {
-                previousState.result = null;
-                query = 'ERROR';
-            }
+           
             if (!previousState.moduleCookie) {
-                previousState.module = 0;
+                previousState.module = new Integer('0');
             }
             return $.extend({}, previousState, {
-                firstArgument: 0,
+                firstArgument: new Integer('0'),
                 operator: '',
                 secondArgument: null,
                 query: query
@@ -47,16 +42,7 @@ function QueryReducer(previousState, action) {
 
         case 'addDigit':
             previousState.result = null;
-            if (!isSafeInteger(previousState.firstArgument)
-                || (previousState.secondArgument !== null && !isSafeInteger(previousState.secondArgument))) {
-                return $.extend({}, previousState, {
-                    firstArgument: 0,
-                    operator: '',
-                    secondArgument: null,
-                    result: null,
-                    query: 'ERROR'
-                });
-            }
+   
             return $.extend({}, previousState, { query: new QueryBuilder().getQuery(previousState) });
             break;
 

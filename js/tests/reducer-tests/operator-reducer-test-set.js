@@ -275,7 +275,7 @@ function OperatorReducerTestSet() {
 
     addOperatorModWZeroTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {firstArgument: 0, operator: 'mod', secondArgument: 0});
+        return $.extend({}, state, {firstArgument: '', operator: 'mod', secondArgument: 0});
     })();
     testSet.addTestItem(addOperatorModWZeroTest);
 
@@ -295,7 +295,7 @@ function OperatorReducerTestSet() {
 
     addOperatorModWZeroWPrevTest.expectedObject = (function () {
         var state = jQuery.extend(true, {}, initialState);
-        return $.extend({}, state, {firstArgument: 0, operator: 'mod', secondArgument: 0});
+        return $.extend({}, state, {firstArgument: '', operator: 'mod', secondArgument: 0});
     })();
     testSet.addTestItem(addOperatorModWZeroWPrevTest);
 
