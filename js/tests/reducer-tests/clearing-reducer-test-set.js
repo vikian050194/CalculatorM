@@ -1,6 +1,14 @@
-function ClearingReducerTestSet() {
-    var testSet = new TestSet();
-    var initialState = new TestState;
+var assert = require('assert'),
+Integer = require('./../integer/integer');
+
+describe('Tests for Integer', function () {
+it('Init Integer', function () {
+    var number = new Integer('2');
+
+    assert.equal(number.toString(), '2');
+});
+
+})
 
     var clearTest = new TestItem();
     clearTest.name = 'Clear';

@@ -1,130 +1,152 @@
-function QueryBuilderTestSet() {
-    var testSet = new TestSet();
-    var initialState = new TestState;
+var assert = require('assert'),
+Integer = require('./../integer/integer'),
+queryBuilder = require('./../engine/query-builders/query-builder-wtes');
 
-    var defaultModelTest = new TestItem();
-    defaultModelTest.name = 'Empty query';
-    defaultModelTest.test = function () {
-        var queryBuilder = new QueryBuilder();
-        var state = jQuery.extend(true, {}, initialState);
-        return queryBuilder.getQuery(state);
-    };
+describe('Tests query-builder', function () {
 
-    defaultModelTest.expectedObject = (function () {
-        return '_';
-    })();
+    it('Empty query', function () {
+    var state = jQuery.extend(true, {}, {
+    firstArgument: new Integer(''),
+    operator: '',
+    module: new Integer(''),
+    secondArgument: null,
+    result: null});
+    var fdsf=queryBuilder.getQuery(state);
+    assert.deepEqual(queryBuilder.getQuery(state), '_');
+});
 
-    defaultModelTest.author = 'Vitaly';
-    testSet.addTestItem(defaultModelTest);
-
-
-    var oneArgumentTest = new TestItem();
-    oneArgumentTest.name = 'One argument';
-    oneArgumentTest.test = function () {
-        var queryBuilder = new QueryBuilder();
-        var state = jQuery.extend(true, {}, initialState);
-        state.firstArgument = 3;
-        return queryBuilder.getQuery(state);
-    };
-
-    oneArgumentTest.expectedObject = (function () {
-        return '3_';
-    })();
-
-    oneArgumentTest.author = 'Vitaly';
-    testSet.addTestItem(oneArgumentTest);
+})
 
 
-    var OneArgumentAndOperation = new TestItem();
-    OneArgumentAndOperation.name = 'One argument and operation';
-    OneArgumentAndOperation.test = function () {
-        var queryBuilder = new QueryBuilder();
-        var state = jQuery.extend(true, {}, initialState);
-        state.firstArgument = 7;
-        state.operator = 'add';
-        state.secondArgument = 0;
-        return queryBuilder.getQuery(state);
-    };
-
-    OneArgumentAndOperation.expectedObject = (function () {
-        return '7 add 0_';
-    })();
-
-    OneArgumentAndOperation.author = 'Vitaly';
-    testSet.addTestItem(OneArgumentAndOperation);
 
 
-    var twoNumberAndOperationTest = new TestItem();
-    twoNumberAndOperationTest.name = 'Two arguments and operation';
-    twoNumberAndOperationTest.test = function () {
-        var queryBuilder = new QueryBuilder();
-        var state = jQuery.extend(true, {}, initialState);
-        state.firstArgument = 7;
-        state.operator = 'add';
-        state.secondArgument = 32;
-        return queryBuilder.getQuery(state);
-    };
+// function QueryBuilderTestSet() {
+//     var testSet = new TestSet();
+//     var initialState = new TestState;
 
-    twoNumberAndOperationTest.expectedObject = (function () {
-        return '7 add 32_';
-    })();
+//     var defaultModelTest = new TestItem();
+//     defaultModelTest.name = 'Empty query';
+//     defaultModelTest.test = function () {
+//         var queryBuilder = new QueryBuilder();
+//         var state = jQuery.extend(true, {}, initialState);
+//         return queryBuilder.getQuery(state);
+//     };
 
-    twoNumberAndOperationTest.author = 'Vitaly';
-    testSet.addTestItem(twoNumberAndOperationTest);
+//     defaultModelTest.expectedObject = (function () {
+//         return '_';
+//     })();
 
-
-    var ModuleTest = new TestItem();
-    ModuleTest.name = 'Test module';
-    ModuleTest.test = function () {
-        var queryBuilder = new QueryBuilder();
-        var state = jQuery.extend(true, {}, initialState);
-        state.module = 100;
-        return queryBuilder.getQuery(state);
-    };
-
-    ModuleTest.expectedObject = (function () {
-        return '_ mod 100';
-    })();
-
-    ModuleTest.author = 'Vitaly';
-    testSet.addTestItem(ModuleTest);
+//     defaultModelTest.author = 'Vitaly';
+//     testSet.addTestItem(defaultModelTest);
 
 
-    var ModuleAndArgumentTest = new TestItem();
-    ModuleAndArgumentTest.name = 'Test module';
-    ModuleAndArgumentTest.test = function () {
-        var queryBuilder = new QueryBuilder();
-        var state = jQuery.extend(true, {}, initialState);
-        state.firstArgument = 72;
-        state.module = 100;
-        return queryBuilder.getQuery(state);
-    };
+//     var oneArgumentTest = new TestItem();
+//     oneArgumentTest.name = 'One argument';
+//     oneArgumentTest.test = function () {
+//         var queryBuilder = new QueryBuilder();
+//         var state = jQuery.extend(true, {}, initialState);
+//         state.firstArgument = 3;
+//         return queryBuilder.getQuery(state);
+//     };
 
-    ModuleAndArgumentTest.expectedObject = (function () {
-        return '72_ mod 100';
-    })();
+//     oneArgumentTest.expectedObject = (function () {
+//         return '3_';
+//     })();
 
-    ModuleAndArgumentTest.author = 'Vitaly';
-    testSet.addTestItem(ModuleAndArgumentTest);
+//     oneArgumentTest.author = 'Vitaly';
+//     testSet.addTestItem(oneArgumentTest);
 
-    var ModuleAndTwoArgumentsTest = new TestItem();
-    ModuleAndTwoArgumentsTest.name = 'Test module';
-    ModuleAndTwoArgumentsTest.test = function () {
-        var queryBuilder = new QueryBuilder();
-        var state = jQuery.extend(true, {}, initialState);
-        state.firstArgument = 72;
-        state.module = 100;
-        state.operator = 'sub';
-        state.secondArgument = 5;
-        return queryBuilder.getQuery(state);
-    };
 
-    ModuleAndTwoArgumentsTest.expectedObject = (function () {
-        return '72 sub 5_ mod 100';
-    })();
+//     var OneArgumentAndOperation = new TestItem();
+//     OneArgumentAndOperation.name = 'One argument and operation';
+//     OneArgumentAndOperation.test = function () {
+//         var queryBuilder = new QueryBuilder();
+//         var state = jQuery.extend(true, {}, initialState);
+//         state.firstArgument = 7;
+//         state.operator = 'add';
+//         state.secondArgument = 0;
+//         return queryBuilder.getQuery(state);
+//     };
 
-    ModuleAndTwoArgumentsTest.author = 'Vitaly';
-    testSet.addTestItem(ModuleAndTwoArgumentsTest);
+//     OneArgumentAndOperation.expectedObject = (function () {
+//         return '7 add 0_';
+//     })();
 
-    return testSet.test();
-}
+//     OneArgumentAndOperation.author = 'Vitaly';
+//     testSet.addTestItem(OneArgumentAndOperation);
+
+
+//     var twoNumberAndOperationTest = new TestItem();
+//     twoNumberAndOperationTest.name = 'Two arguments and operation';
+//     twoNumberAndOperationTest.test = function () {
+//         var queryBuilder = new QueryBuilder();
+//         var state = jQuery.extend(true, {}, initialState);
+//         state.firstArgument = 7;
+//         state.operator = 'add';
+//         state.secondArgument = 32;
+//         return queryBuilder.getQuery(state);
+//     };
+
+//     twoNumberAndOperationTest.expectedObject = (function () {
+//         return '7 add 32_';
+//     })();
+
+//     twoNumberAndOperationTest.author = 'Vitaly';
+//     testSet.addTestItem(twoNumberAndOperationTest);
+
+
+//     var ModuleTest = new TestItem();
+//     ModuleTest.name = 'Test module';
+//     ModuleTest.test = function () {
+//         var queryBuilder = new QueryBuilder();
+//         var state = jQuery.extend(true, {}, initialState);
+//         state.module = 100;
+//         return queryBuilder.getQuery(state);
+//     };
+
+//     ModuleTest.expectedObject = (function () {
+//         return '_ mod 100';
+//     })();
+
+//     ModuleTest.author = 'Vitaly';
+//     testSet.addTestItem(ModuleTest);
+
+
+//     var ModuleAndArgumentTest = new TestItem();
+//     ModuleAndArgumentTest.name = 'Test module';
+//     ModuleAndArgumentTest.test = function () {
+//         var queryBuilder = new QueryBuilder();
+//         var state = jQuery.extend(true, {}, initialState);
+//         state.firstArgument = 72;
+//         state.module = 100;
+//         return queryBuilder.getQuery(state);
+//     };
+
+//     ModuleAndArgumentTest.expectedObject = (function () {
+//         return '72_ mod 100';
+//     })();
+
+//     ModuleAndArgumentTest.author = 'Vitaly';
+//     testSet.addTestItem(ModuleAndArgumentTest);
+
+//     var ModuleAndTwoArgumentsTest = new TestItem();
+//     ModuleAndTwoArgumentsTest.name = 'Test module';
+//     ModuleAndTwoArgumentsTest.test = function () {
+//         var queryBuilder = new QueryBuilder();
+//         var state = jQuery.extend(true, {}, initialState);
+//         state.firstArgument = 72;
+//         state.module = 100;
+//         state.operator = 'sub';
+//         state.secondArgument = 5;
+//         return queryBuilder.getQuery(state);
+//     };
+
+//     ModuleAndTwoArgumentsTest.expectedObject = (function () {
+//         return '72 sub 5_ mod 100';
+//     })();
+
+//     ModuleAndTwoArgumentsTest.author = 'Vitaly';
+//     testSet.addTestItem(ModuleAndTwoArgumentsTest);
+
+//     return testSet.test();
+// }

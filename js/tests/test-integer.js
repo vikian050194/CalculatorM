@@ -5,19 +5,19 @@ describe('Tests for Integer', function () {
     it('Init Integer', function () {
         var number = new Integer('2');
 
-        assert.equal(number.toString(), '2');
+        assert.deepEqual(number.toString(), '2');
     });
 
     it('Init negative nimber', function () {
         var number = new Integer('-2');
 
-        assert.equal(number.toString(), '-2');
+        assert.deepEqual(number.toString(), '-2');
     })
 
     it('Init big negative number', function () {
         var number = new Integer('-2235353410049237463142341099923123454687865');
 
-        assert.equal(number.toString(), '-2235353410049237463142341099923123454687865');
+        assert.deepEqual(number.toString(), '-2235353410049237463142341099923123454687865');
     })
 
     it('add 210 to 95', function () {
@@ -264,6 +264,26 @@ describe('Tests for Integer', function () {
         var firstNumber = new Integer('0');
         var secondNumber = new Integer('0');
         var expected = new Integer('0');
+
+        var actual = Integer.mul(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    })
+
+    it('mul 4 to 4', function () {
+        var firstNumber = new Integer('4');
+        var secondNumber = new Integer('4');
+        var expected = new Integer('16');
+
+        var actual = Integer.mul(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    })
+
+    it('mul 32 to 32', function () {
+        var firstNumber = new Integer('32');
+        var secondNumber = new Integer('32');
+        var expected = new Integer('1024');
 
         var actual = Integer.mul(firstNumber, secondNumber);
         
@@ -597,6 +617,26 @@ describe('Tests for Integer', function () {
         var firstNumber = new Integer('12');
         var secondNumber = new Integer('5');
         var expected = new Integer('248832');
+
+        var actual = Integer.pow(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+
+    it('pow 2 to 10', function () {
+        var firstNumber = new Integer('2');
+        var secondNumber = new Integer('10');
+        var expected = new Integer('1024');
+
+        var actual = Integer.pow(firstNumber, secondNumber);
+        
+        assert.deepEqual(actual, expected);
+    });
+
+    it('pow 2 to 11', function () {
+        var firstNumber = new Integer('2');
+        var secondNumber = new Integer('11');
+        var expected = new Integer('2048');
 
         var actual = Integer.pow(firstNumber, secondNumber);
         

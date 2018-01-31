@@ -10575,7 +10575,7 @@ Integer.add = function (firstArgument, secondArgument) {
                 result.digits.push(resultDigit);
             }
 
-            if ((firstArgument.digits.length === secondArgument.digits.length) && balance !== 0) {
+            if (balance !== 0) {
                 result.digits.push(balance);
             }
         }
