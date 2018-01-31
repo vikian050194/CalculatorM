@@ -8,10 +8,6 @@ $(document).ready(function () {
 
     setSlideButtons(pageHandler);
 
-    setPositiveSwitch();
-
-    setModuleSwitch();
-
     $('[data-value="redo"], [data-value="undo"]').attr('disabled', true);
 
     var calculator = new CalculatorUI();

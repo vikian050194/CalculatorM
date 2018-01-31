@@ -1,21 +1,28 @@
 function HistoryReducer(reducer) {
     return function (previousState, action) {
+        var newIndex = previousState.currentIndex;
+        var currentState = previousState.history[previousState.currentIndex];
         switch (action.type) {
             case 'undo':
-                var newIndex = previousState.currentIndex - 1;
-                var currentState = previousState.history[previousState.currentIndex];
-                while (newIndex > 0 && currentState === previousState.history[newIndex]) {
+                newIndex--;
+                while (newIndex > 0 && currentState.query === previousState.history[newIndex].query) {
                     newIndex--;
                 }
+
                 return {
                     history: previousState.history,
                     currentIndex: newIndex
                 };
                 break;
             case 'redo':
+                newIndex++;
+                while (newIndex < previousState.history.length - 1 && currentState.query === previousState.history[newIndex].query) {
+                    newIndex++;
+                }
+
                 return {
                     history: previousState.history,
-                    currentIndex: previousState.currentIndex + 1
+                    currentIndex: newIndex
                 };
                 break;
             default:
