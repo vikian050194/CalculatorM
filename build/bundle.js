@@ -10373,7 +10373,6 @@ Integer.prototype.push = function (value) {
         this.digits.unshift(value);
     }
 
-    return this;
 }
 
 Integer.prototype.pop = function () {
@@ -11349,8 +11348,8 @@ function DigitReducer(previousState, action) {
     switch (action.type) {
         case 'addDigit':
             if (previousState.operator === '') {
-              // previousState.firstArgument.push(action.value);
-               return $.extend({}, previousState, {firstArgument: previousState.firstArgument.push(action.value)});
+                previousState.firstArgument.push(action.value);
+               return $.extend({}, previousState, {firstArgument: previousState.firstArgument});
 
             } else {
                 if (previousState.secondArgument === null) {
@@ -11396,7 +11395,7 @@ function MemoryReducer(previousState, action) {
     switch (action.type) {
         case 'addToMemory':
             if (previousState.secondArgument === null) {
-                return $.extend({}, previousState, {memory: previousState.firstArgument});
+                return $.extend({}, previousState, {memory: new Integer(previousState.firstArgument.toString())});
 			} else {
                 return $.extend({}, previousState, {memory: previousState.secondArgument});
 			}
@@ -11536,9 +11535,7 @@ function QueryReducer(previousState, action) {
 
         case 'calculate':
             var queryState = $.extend(true, {}, previousState);
-            // if (queryState.secondArgument === null && queryState.operator !== '') {
-            //     queryState.secondArgument = new Integer('0');
-            // }
+            
             if (queryState.operator === 'mod') {
                 queryState.operator = '';
                 queryState.secondArgument = null;

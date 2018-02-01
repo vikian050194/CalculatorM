@@ -20,9 +20,7 @@ function QueryReducer(previousState, action) {
 
         case 'calculate':
             var queryState = $.extend(true, {}, previousState);
-            // if (queryState.secondArgument === null && queryState.operator !== '') {
-            //     queryState.secondArgument = new Integer('0');
-            // }
+            
             if (queryState.operator === 'mod') {
                 queryState.operator = '';
                 queryState.secondArgument = null;

@@ -4,9 +4,9 @@ function MemoryReducer(previousState, action) {
     switch (action.type) {
         case 'addToMemory':
             if (previousState.secondArgument === null) {
-                return $.extend({}, previousState, {memory: previousState.firstArgument});
+                return $.extend({}, previousState, {memory: new Integer(previousState.firstArgument.toString())});
 			} else {
-                return $.extend({}, previousState, {memory: previousState.secondArgument});
+                return $.extend({}, previousState, {memory: new Integer(previousState.secondArgument.toString())});
 			}
             break;
 
@@ -15,9 +15,9 @@ function MemoryReducer(previousState, action) {
                 return previousState;
 			}
             if (previousState.secondArgument === null) {
-                return $.extend({}, previousState, {firstArgument: previousState.memory});
+                return $.extend({}, previousState, {firstArgument: new Integer(previousState.memory.toString())});
 			} else {
-                return $.extend({}, previousState, {secondArgument: previousState.memory});
+                return $.extend({}, previousState, {secondArgument:new Integer(previousState.memory.toString())});
 			}
             break;
 
