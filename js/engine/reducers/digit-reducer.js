@@ -4,8 +4,8 @@ function DigitReducer(previousState, action) {
     switch (action.type) {
         case 'addDigit':
             if (previousState.operator === '') {
-               previousState.firstArgument.push(action.value);
-               return $.extend({}, previousState, {firstArgument: previousState.firstArgument});
+              // previousState.firstArgument.push(action.value);
+               return $.extend({}, previousState, {firstArgument: previousState.firstArgument.push(action.value)});
 
             } else {
                 if (previousState.secondArgument === null) {

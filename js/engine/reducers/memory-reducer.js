@@ -1,3 +1,5 @@
+Integer = require('./../../integer/integer');
+
 function MemoryReducer(previousState, action) {
     switch (action.type) {
         case 'addToMemory':

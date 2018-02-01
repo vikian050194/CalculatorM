@@ -43,6 +43,7 @@ Integer.prototype.push = function (value) {
     else {
         this.digits.unshift(value);
     }
+
 }
 
 Integer.prototype.pop = function () {

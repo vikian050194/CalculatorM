@@ -8,7 +8,7 @@ function ClearingReducer(previousState, action) {
 				secondArgument: null,
 				operator: '',
 				module: new Integer('0'),
-				memory: null,
+				memory: previousState.memory,
 				query: '',
 				result: null,
 				positiveCookie: previousState.positiveCookie,

@@ -10327,21 +10327,6 @@ return jQuery;
 /* 1 */
 /***/ (function(module, exports) {
 
-function createAction(type) {
-    return function (value) {
-        return {
-            type: type,
-            value: value
-        }
-    }
-}
-
-module.exports = createAction;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
 function Integer(number) {
     var pattern = /-*\d/;
 
@@ -10387,6 +10372,8 @@ Integer.prototype.push = function (value) {
     else {
         this.digits.unshift(value);
     }
+
+    return this;
 }
 
 Integer.prototype.pop = function () {
@@ -10767,6 +10754,21 @@ Integer.mod = function (firstArgument, secondArgument) {
 module.exports = Integer;
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+function createAction(type) {
+    return function (value) {
+        return {
+            type: type,
+            value: value
+        }
+    }
+}
+
+module.exports = createAction;
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11125,7 +11127,7 @@ var createStore = __webpack_require__(8),
     QueryReducer = __webpack_require__(16),
     HistoryUpdate = __webpack_require__(18),
     UpdateUI = __webpack_require__(19),
-    Integer = __webpack_require__(2);
+    Integer = __webpack_require__(1);
 
 function CalculatorStore() {
     var initialState = {
@@ -11294,7 +11296,7 @@ module.exports = CookieReducer;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var Integer = __webpack_require__(2);
+/* WEBPACK VAR INJECTION */(function($) {var Integer = __webpack_require__(1);
 
 function ClearingReducer(previousState, action) {
     switch (action.type) {
@@ -11304,7 +11306,7 @@ function ClearingReducer(previousState, action) {
 				secondArgument: null,
 				operator: '',
 				module: new Integer('0'),
-				memory: null,
+				memory: previousState.memory,
 				query: '',
 				result: null,
 				positiveCookie: previousState.positiveCookie,
@@ -11341,14 +11343,14 @@ module.exports = ClearingReducer;
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var Integer = __webpack_require__(2);
+/* WEBPACK VAR INJECTION */(function($) {var Integer = __webpack_require__(1);
 
 function DigitReducer(previousState, action) {
     switch (action.type) {
         case 'addDigit':
             if (previousState.operator === '') {
-               previousState.firstArgument.push(action.value);
-               return $.extend({}, previousState, {firstArgument: previousState.firstArgument});
+              // previousState.firstArgument.push(action.value);
+               return $.extend({}, previousState, {firstArgument: previousState.firstArgument.push(action.value)});
 
             } else {
                 if (previousState.secondArgument === null) {
@@ -11388,7 +11390,9 @@ module.exports = DigitReducer;
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {function MemoryReducer(previousState, action) {
+/* WEBPACK VAR INJECTION */(function($) {Integer = __webpack_require__(1);
+
+function MemoryReducer(previousState, action) {
     switch (action.type) {
         case 'addToMemory':
             if (previousState.secondArgument === null) {
@@ -11425,7 +11429,7 @@ module.exports = MemoryReducer;
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var Integer = __webpack_require__(2);
+/* WEBPACK VAR INJECTION */(function($) {var Integer = __webpack_require__(1);
 
 function OperatorReducer(previousState, action) {
     switch (action.type) {
@@ -11511,7 +11515,7 @@ module.exports = OperatorReducer;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var QueryBuilder = __webpack_require__(17),
-    Integer = __webpack_require__(2);
+    Integer = __webpack_require__(1);
     
 function QueryReducer(previousState, action) {
     switch (action.type) {
@@ -11789,7 +11793,7 @@ module.exports = Themer;
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(1);
+/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(2);
 
 function applyMenu(calculatorStore, themer) {
   $('#changeTheme').on('change', function () {
@@ -11821,7 +11825,7 @@ module.exports = applyMenu;
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(1);
+/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(2);
 
 function applyDigits(calculatorStore) {
     var applyDigit = function() {
@@ -11850,7 +11854,7 @@ module.exports = applyDigits;
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(1);
+/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(2);
 
 function applyOperators(calculatorStore) {
     var addOperator = function (dispatch, getState) {
@@ -11888,7 +11892,7 @@ module.exports = applyOperators;
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(1);
+/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(2);
 
 function applyClearing(calculatorStore) {
     var applyClear = function () {
@@ -11914,7 +11918,7 @@ module.exports = applyClearing;
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(1);
+/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(2);
 
 function applyMemory(calculatorStore) {
     var applyMemoryAdd = function () {
@@ -11947,7 +11951,7 @@ module.exports = applyMemory;
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(1);
+/* WEBPACK VAR INJECTION */(function($) {var createAction = __webpack_require__(2);
 
 function applyHistory(calculatorStore) {
     var applyUndo = function () {
