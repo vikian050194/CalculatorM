@@ -1,8 +1,9 @@
 var TestState = require('./../test-state'),
     ClearingReducer = require('./../../engine/reducers/clearing-reducer'),
     createAction = require('./../../engine/action-creator');
-
-var assert = require('assert');
+    
+var assert = require('assert'),
+    Integer = require('./../../integer/integer');
 
 var applyJQuery = require('./../apply-jquery');
 applyJQuery();
@@ -13,10 +14,10 @@ describe('Clearing reducer', function () {
 
     it('clear', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 3,
-            operator: 'add',
-            secondArgument: 5,
-            module: 78
+            firstArgument: new Integer('3'),
+            operator: "add",
+            secondArgument: new Integer('5'),
+            module: new Integer('78')
         });
 
         var expectedState = $.extend(true, {}, initialState);
@@ -26,11 +27,11 @@ describe('Clearing reducer', function () {
 
     it('backspace with first argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42
+            firstArgument: new Integer('42')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            firstArgument: 4
+            firstArgument: new Integer('4')
         });
 
         assert.deepEqual(ClearingReducer(actualState, createAction('deleteDigit')()), expectedState);
@@ -38,11 +39,11 @@ describe('Clearing reducer', function () {
 
     it('backspace to zero with first argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 4
+            firstArgument: new Integer('4')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            firstArgument: 0
+            firstArgument: new Integer('0')
         });
 
         assert.deepEqual(ClearingReducer(actualState, createAction('deleteDigit')()), expectedState);
@@ -50,15 +51,15 @@ describe('Clearing reducer', function () {
 
     it('backspace with second argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42,
-            operator: 'add',
-            secondArgument: 21
+            firstArgument: new Integer('42'),
+            operator: "add",
+            secondArgument: new Integer('21')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            secondArgument: 2,
-            firstArgument: 42,
-            operator: 'add'
+            firstArgument: new Integer('42'),
+            operator: "add",
+            secondArgument: new Integer('2')
         });
 
         assert.deepEqual(ClearingReducer(actualState, createAction('deleteDigit')()), expectedState);
@@ -66,15 +67,15 @@ describe('Clearing reducer', function () {
 
     it('backspace to zero with second argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42,
-            operator: 'add',
-            secondArgument: 2
+            firstArgument: new Integer('42'),
+            operator: "add",
+            secondArgument: new Integer('2')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            secondArgument: 0,
-            firstArgument: 42,
-            operator: 'add'
+            firstArgument: new Integer('42'),
+            operator: "add",
+            secondArgument: new Integer('0')
         });
 
         assert.deepEqual(ClearingReducer(actualState, createAction('deleteDigit')()), expectedState);

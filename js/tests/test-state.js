@@ -1,8 +1,10 @@
+var Integer = require('./../integer/integer');
+
 function TestState() {
-    this.firstArgument = 0;
+    this.firstArgument = new Integer('0');
     this.secondArgument = null;
     this.operator = '';
-    this.module = 0;
+    this.module = new Integer('0');
     this.memory = null;
     this.query = '';
     this.result = null;

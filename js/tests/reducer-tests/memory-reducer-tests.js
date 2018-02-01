@@ -2,7 +2,8 @@ var TestState = require('./../test-state'),
     MemoryReducer = require('./../../engine/reducers/memory-reducer'),
     createAction = require('./../../engine/action-creator');
 
-var assert = require('assert');
+var assert = require('assert'),
+    Integer = require('./../../integer/integer');
 
 var applyJQuery = require('./../apply-jquery');
 applyJQuery();
@@ -14,19 +15,19 @@ describe('Memory reducer', function () {
     it('add to zero memory', function () {
         var actualState = $.extend(true, {}, initialState);
 
-        var expectedState = $.extend(true, {}, initialState, {memory: 0});
+        var expectedState = $.extend(true, {}, initialState, {memory: new Integer('0')});
 
         assert.deepEqual(MemoryReducer(actualState, createAction('addToMemory')()), expectedState);
     });
 
     it('add to memory', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42
+            firstArgument: new Integer('42')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            memory: 42,
-            firstArgument: 42
+            memory: new Integer('42'),
+            firstArgument: new Integer('42')
         });
 
         assert.deepEqual(MemoryReducer(actualState, createAction('addToMemory')()), expectedState);
@@ -34,16 +35,16 @@ describe('Memory reducer', function () {
 
     it('add zero to memory from second argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42,
+            firstArgument: new Integer('42'),
             operator: 'add',
-            secondArgument: 0
+            secondArgument: new Integer('0')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            memory: 0,
-            firstArgument: 42,
+            memory: new Integer('0'),
+            firstArgument: new Integer('42'),
             operator: 'add',
-            secondArgument: 0
+            secondArgument: new Integer('0')
         });
 
         assert.deepEqual(MemoryReducer(actualState, createAction('addToMemory')()), expectedState);
@@ -51,16 +52,16 @@ describe('Memory reducer', function () {
 
     it('add to memory from second argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42,
+            firstArgument: new Integer('42'),
             operator: 'add',
-            secondArgument: 21
+            secondArgument: new Integer('21')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            memory: 21,
-            firstArgument: 42,
+            memory: new Integer('21'),
+            firstArgument: new Integer('42'),
             operator: 'add',
-            secondArgument: 21
+            secondArgument: new Integer('21')
         });
 
         assert.deepEqual(MemoryReducer(actualState, createAction('addToMemory')()), expectedState);
@@ -68,11 +69,11 @@ describe('Memory reducer', function () {
 
     it('try memory recall from empty memory', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42
+            firstArgument: new Integer('42')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            firstArgument: 42
+            firstArgument: new Integer('42')
         });
 
         assert.deepEqual(MemoryReducer(actualState, createAction('getFromMemory')()), expectedState);
@@ -80,13 +81,13 @@ describe('Memory reducer', function () {
 
     it('memory recall', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42,
-            memory: 21
+            firstArgument: new Integer('42'),
+            memory: new Integer('21')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            firstArgument: 21,
-            memory: 21
+            firstArgument: new Integer('21'),
+            memory: new Integer('21')
         });
 
         assert.deepEqual(MemoryReducer(actualState, createAction('getFromMemory')()), expectedState);
@@ -94,17 +95,17 @@ describe('Memory reducer', function () {
 
     it('memory recall to second argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42,
-            memory: 21,
+            firstArgument: new Integer('42'),
+            memory: new Integer('21'),
             operator: 'add',
-            secondArgument: 3
+            secondArgument: new Integer('3')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            firstArgument: 42,
-            memory: 21,
+            firstArgument: new Integer('42'),
+            memory: new Integer('21'),
             operator: 'add',
-            secondArgument: 21
+            secondArgument: new Integer('21')
         });
 
         assert.deepEqual(MemoryReducer(actualState, createAction('getFromMemory')()), expectedState);
@@ -112,7 +113,7 @@ describe('Memory reducer', function () {
 
     it('clear memory', function () {
         var actualState = $.extend(true, {}, initialState, {
-            memory: 21
+            memory: new Integer('21')
         });
 
         var expectedState = $.extend(true, {}, initialState);
@@ -130,16 +131,16 @@ describe('Memory reducer', function () {
 
     it('clear memory with arguments and operator', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 42,
-            memory: 21,
+            firstArgument: new Integer('42'),
+            memory: new Integer('21'),
             operator: 'add',
-            secondArgument: 21
+            secondArgument: new Integer('21')
         });
 
         var expectedState = $.extend(true, {}, initialState, {
-            firstArgument: 42,
+            firstArgument: new Integer('42'),
             operator: 'add',
-            secondArgument: 21
+            secondArgument: new Integer('21')
         });
 
         assert.deepEqual(MemoryReducer(actualState, createAction('clearMemory')()), expectedState);

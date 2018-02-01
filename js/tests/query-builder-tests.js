@@ -1,5 +1,6 @@
 var TestState = require('./test-state'),
-    QueryBuilder = require('./../engine/query-builder');
+    QueryBuilder = require('./../engine/query-builder'),
+    Integer = require('./../integer/integer');
 
 var assert = require('assert');
 
@@ -12,14 +13,18 @@ describe('Query builder', function () {
     var queryBuilder = new QueryBuilder();
 
     it('empty query', function () {
-        var actualState = $.extend(true, {}, initialState);
+        var actualState = $.extend(true, {}, initialState,  {
+            firstArgument: new Integer('0'),
+            module: new Integer('0')
+        });
 
         assert.deepEqual(queryBuilder.getQuery(actualState), '_');
     });
 
     it('one argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 3
+            firstArgument: new Integer('3'),
+            module: new Integer('0')
         });
 
         assert.deepEqual(queryBuilder.getQuery(actualState), '3_');
@@ -27,9 +32,10 @@ describe('Query builder', function () {
 
     it('one argument and operation', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 7,
-            operator: 'add',
-            secondArgument: 0
+            firstArgument: new Integer('7'),
+            operator: "add",
+            secondArgument: new Integer('0'),
+            module: new Integer('0')
         });
 
         assert.deepEqual(queryBuilder.getQuery(actualState), '7 add 0_');
@@ -37,9 +43,10 @@ describe('Query builder', function () {
 
     it('two arguments and operation', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 7,
-            operator: 'add',
-            secondArgument: 32
+            firstArgument: new Integer('7'),
+            operator: "add",
+            secondArgument: new Integer('32'),
+            module: new Integer('0')
         });
 
         assert.deepEqual(queryBuilder.getQuery(actualState), '7 add 32_');
@@ -47,7 +54,8 @@ describe('Query builder', function () {
 
     it('query with module', function () {
         var actualState = $.extend(true, {}, initialState, {
-            module: 100
+            firstArgument: new Integer('0'),
+            module: new Integer('100')
         });
 
         assert.deepEqual(queryBuilder.getQuery(actualState), '_ mod 100');
@@ -55,8 +63,8 @@ describe('Query builder', function () {
 
     it('query with module and first argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 72,
-            module: 100
+            firstArgument: new Integer('72'),
+            module: new Integer('100')
         });
 
         assert.deepEqual(queryBuilder.getQuery(actualState), '72_ mod 100');
@@ -64,10 +72,10 @@ describe('Query builder', function () {
 
     it('query with module, first argument, operator and second argument', function () {
         var actualState = $.extend(true, {}, initialState, {
-            firstArgument: 72,
-            module: 100,
-            operator: 'sub',
-            secondArgument: 5
+            firstArgument: new Integer('72'),
+            operator: "sub",
+            secondArgument: new Integer('5'),
+            module: new Integer('100')
         });
 
         assert.deepEqual(queryBuilder.getQuery(actualState), '72 sub 5_ mod 100');

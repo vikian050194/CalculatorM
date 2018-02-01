@@ -18,15 +18,18 @@ function DigitReducer(previousState, action) {
 
         case 'changeSign':
             if(previousState.result !== null) {
-                return $.extend({}, previousState, {firstArgument: previousState.result.changeSign(), result: null});
+                previousState.result.changeSign();
+                return $.extend({}, previousState, {firstArgument: previousState.result, result: null, secondArgument: null});
             }
             if (previousState.operator === '') {
-                return $.extend({}, previousState, {firstArgument: previousState.firstArgument.changeSign()});
+                previousState.firstArgument.changeSign()
+                return $.extend({}, previousState, {firstArgument: previousState.firstArgument});
             } else {
                 if (previousState.secondArgument === null) {
                     return previousState;
                 }
-                return $.extend({}, previousState, {secondArgument: previousState.secondArgument.changeSign()});
+                previousState.secondArgument.changeSign()
+                return $.extend({}, previousState, {secondArgument: previousState.secondArgument});
             }
             break;
 

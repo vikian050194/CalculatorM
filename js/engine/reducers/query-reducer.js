@@ -1,4 +1,4 @@
-var QueryBuilder = require('./../query-builders/query-builder-wtes'),
+var QueryBuilder = require('./../query-builder'),
     Integer = require('./../../integer/integer');
     
 function QueryReducer(previousState, action) {
@@ -20,9 +20,9 @@ function QueryReducer(previousState, action) {
 
         case 'calculate':
             var queryState = $.extend(true, {}, previousState);
-            if (queryState.secondArgument === null && queryState.operator !== '') {
-                queryState.secondArgument = new Integer('0');
-            }
+            // if (queryState.secondArgument === null && queryState.operator !== '') {
+            //     queryState.secondArgument = new Integer('0');
+            // }
             if (queryState.operator === 'mod') {
                 queryState.operator = '';
                 queryState.secondArgument = null;

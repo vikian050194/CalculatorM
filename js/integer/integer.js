@@ -24,23 +24,14 @@ function Integer(number) {
 }
 
 Integer.prototype.isZero = function () {
-    if(this.digits.length === 1 && this.digits[0]=== 0){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return this.digits.length === 1 && this.digits[0] === 0;
 }
 
 Integer.prototype.changeSign = function () {
-    
-       if(this.isNegative === true){
-           this.isNegative = false;
-       }
-       else{
-           this.isNegative = true;
-       }
-    }
+    if(!this.isZero())
+    this.isNegative = !this.isNegative;
+    else this.isNegative = false;
+}
 
 Integer.prototype.push = function (value) {
 
@@ -57,10 +48,10 @@ Integer.prototype.push = function (value) {
 Integer.prototype.pop = function () {
 
     if (this.digits.length === 1) {
-         this.digits[0] = 0;
+        this.digits[0] = 0;
     }
     else {
-        
+
         this.digits.shift();
     }
 }
@@ -82,6 +73,7 @@ Integer.prototype.toString = function () {
 function divAndMod(a, b) {
 
     var resultDiv = new Integer();
+    var firstArgumentDivDigits = new Integer();
     var firstArgument = new Integer(a.toString());
     var secondArgument = new Integer(b.toString());
 
@@ -101,8 +93,7 @@ function divAndMod(a, b) {
 
         if (compasion(firstArgument, secondArgument)) {
             var count = 0;
-            var firstArgumentDivDigits = new Integer();
-
+            firstArgumentDivDigits = new Integer();
             if (firstArgument.digits.length === secondArgument.digits.length) {
                 while (compasion(firstArgument, secondArgument)) {
                     firstArgument = Integer.sub(firstArgument, secondArgument);
@@ -144,7 +135,7 @@ function divAndMod(a, b) {
         if (resultDiv.digits.length === 1 && resultDiv.digits[0] === 0) {
             resultDiv.isNegative = false;
         }
-
+        firstArgumentDivDigits.isNegative = resultDiv.isNegative;
         return { remainer: firstArgumentDivDigits, quotient: resultDiv };
     }
 }
@@ -152,8 +143,8 @@ function divAndMod(a, b) {
 function getCoefficients(power) {
     var coefficients = [];
     var two = new Integer('2');
+
     for (var i = 0; power.digits[0] > 1 || power.digits.length > 1; i++) {
-        // var coef = Integer.mod(power,two);
         coefficients[i] = Integer.mod(power, two).digits[0];
         power = Integer.div(power, two);
         if (power.digits[0] === 1 && power.digits.length === 1) {
@@ -167,9 +158,11 @@ function compasion(firstArgument, secondArgument) {
     if (firstArgument.digits.length > secondArgument.digits.length) {
         return true;
     }
+
     if (firstArgument.digits.length < secondArgument.digits.length) {
         return false;
     }
+
     if (firstArgument.digits.length = secondArgument.digits.length) {
         var i = firstArgument.digits.length - 1;
         while (firstArgument.digits[i] === secondArgument.digits[i] && i != 0) {
@@ -418,7 +411,7 @@ Integer.mod = function (firstArgument, secondArgument) {
         throw 'Error format in operation div!'
     }
     else {
-        if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1)||(!compasion(firstArgument,secondArgument))) {
+        if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1) || (!compasion(firstArgument, secondArgument))) {
             return firstArgument;
         }
         else {

@@ -10368,23 +10368,14 @@ function Integer(number) {
 }
 
 Integer.prototype.isZero = function () {
-    if(this.digits.length === 1 && this.digits[0]=== 0){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return this.digits.length === 1 && this.digits[0] === 0;
 }
 
 Integer.prototype.changeSign = function () {
-    
-       if(this.isNegative === true){
-           this.isNegative = false;
-       }
-       else{
-           this.isNegative = true;
-       }
-    }
+    if(!this.isZero())
+    this.isNegative = !this.isNegative;
+    else this.isNegative = false;
+}
 
 Integer.prototype.push = function (value) {
 
@@ -10401,10 +10392,10 @@ Integer.prototype.push = function (value) {
 Integer.prototype.pop = function () {
 
     if (this.digits.length === 1) {
-         this.digits[0] = 0;
+        this.digits[0] = 0;
     }
     else {
-        
+
         this.digits.shift();
     }
 }
@@ -10426,6 +10417,7 @@ Integer.prototype.toString = function () {
 function divAndMod(a, b) {
 
     var resultDiv = new Integer();
+    var firstArgumentDivDigits = new Integer();
     var firstArgument = new Integer(a.toString());
     var secondArgument = new Integer(b.toString());
 
@@ -10445,8 +10437,7 @@ function divAndMod(a, b) {
 
         if (compasion(firstArgument, secondArgument)) {
             var count = 0;
-            var firstArgumentDivDigits = new Integer();
-
+            firstArgumentDivDigits = new Integer();
             if (firstArgument.digits.length === secondArgument.digits.length) {
                 while (compasion(firstArgument, secondArgument)) {
                     firstArgument = Integer.sub(firstArgument, secondArgument);
@@ -10488,7 +10479,7 @@ function divAndMod(a, b) {
         if (resultDiv.digits.length === 1 && resultDiv.digits[0] === 0) {
             resultDiv.isNegative = false;
         }
-
+        firstArgumentDivDigits.isNegative = resultDiv.isNegative;
         return { remainer: firstArgumentDivDigits, quotient: resultDiv };
     }
 }
@@ -10496,8 +10487,8 @@ function divAndMod(a, b) {
 function getCoefficients(power) {
     var coefficients = [];
     var two = new Integer('2');
+
     for (var i = 0; power.digits[0] > 1 || power.digits.length > 1; i++) {
-        // var coef = Integer.mod(power,two);
         coefficients[i] = Integer.mod(power, two).digits[0];
         power = Integer.div(power, two);
         if (power.digits[0] === 1 && power.digits.length === 1) {
@@ -10511,9 +10502,11 @@ function compasion(firstArgument, secondArgument) {
     if (firstArgument.digits.length > secondArgument.digits.length) {
         return true;
     }
+
     if (firstArgument.digits.length < secondArgument.digits.length) {
         return false;
     }
+
     if (firstArgument.digits.length = secondArgument.digits.length) {
         var i = firstArgument.digits.length - 1;
         while (firstArgument.digits[i] === secondArgument.digits[i] && i != 0) {
@@ -10762,7 +10755,7 @@ Integer.mod = function (firstArgument, secondArgument) {
         throw 'Error format in operation div!'
     }
     else {
-        if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1)||(!compasion(firstArgument,secondArgument))) {
+        if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1) || (!compasion(firstArgument, secondArgument))) {
             return firstArgument;
         }
         else {
@@ -10962,10 +10955,6 @@ $(document).ready(function () {
 
     setSlideButtons(pageHandler);
 
-    setPositiveSwitch();
-
-    setModuleSwitch();
-
     $('[data-value="redo"], [data-value="undo"]').attr('disabled', true);
 
     var calculator = new CalculatorUI();
@@ -11064,7 +11053,7 @@ module.exports = PageHandler;
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var CalculatorStore = __webpack_require__(7),
+/* WEBPACK VAR INJECTION */(function(Cookies) {var CalculatorStore = __webpack_require__(7),
     Themer = __webpack_require__(21),
     applyMenu = __webpack_require__(22),
     applyDigits = __webpack_require__(23),
@@ -11074,7 +11063,35 @@ var CalculatorStore = __webpack_require__(7),
     applyHistory = __webpack_require__(27);
 
 function CalculatorUI() {
-    var calculatorStore = new CalculatorStore();
+    var cookiesSettings = {
+        expires: 31
+    };
+
+    var positiveCookie = Cookies.get('positive');
+    if (positiveCookie === undefined) {
+        Cookies.set('positive', false, cookiesSettings);
+        positiveCookie = 'false';
+    }
+
+    var moduleCookie = Cookies.get('module');
+    if (moduleCookie === undefined) {
+        Cookies.set('positive', false, cookiesSettings);
+        moduleCookie = 'false';
+    }
+
+    var initialState = {
+        firstArgument: 0,
+        secondArgument: null,
+        operator: '',
+        module: 0,
+        memory: null,
+        query: '_',
+        result: null,
+        positiveCookie: (positiveCookie === 'true'),
+        moduleCookie: (moduleCookie === 'true')
+    };
+
+    var calculatorStore = new CalculatorStore(initialState); //send initstate
     var themer = new Themer();
 
     var init = function () {
@@ -11091,6 +11108,7 @@ function CalculatorUI() {
 }
 
 module.exports = CalculatorUI;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 7 */
@@ -11195,22 +11213,29 @@ module.exports = createStore;
 
 function HistoryReducer(reducer) {
     return function (previousState, action) {
+        var newIndex = previousState.currentIndex;
+        var currentState = previousState.history[previousState.currentIndex];
         switch (action.type) {
             case 'undo':
-                var newIndex = previousState.currentIndex - 1;
-                var currentState = previousState.history[previousState.currentIndex];
-                while (newIndex > 0 && currentState === previousState.history[newIndex]) {
+                newIndex--;
+                while (newIndex > 0 && currentState.query === previousState.history[newIndex].query) {
                     newIndex--;
                 }
+
                 return {
                     history: previousState.history,
                     currentIndex: newIndex
                 };
                 break;
             case 'redo':
+                newIndex++;
+                while (newIndex < previousState.history.length - 1 && currentState.query === previousState.history[newIndex].query) {
+                    newIndex++;
+                }
+
                 return {
                     history: previousState.history,
-                    currentIndex: previousState.currentIndex + 1
+                    currentIndex: newIndex
                 };
                 break;
             default:
@@ -11336,15 +11361,18 @@ function DigitReducer(previousState, action) {
 
         case 'changeSign':
             if(previousState.result !== null) {
-                return $.extend({}, previousState, {firstArgument: previousState.result.changeSign(), result: null});
+                previousState.result.changeSign();
+                return $.extend({}, previousState, {firstArgument: previousState.result, result: null, secondArgument: null});
             }
             if (previousState.operator === '') {
-                return $.extend({}, previousState, {firstArgument: previousState.firstArgument.changeSign()});
+                previousState.firstArgument.changeSign()
+                return $.extend({}, previousState, {firstArgument: previousState.firstArgument});
             } else {
                 if (previousState.secondArgument === null) {
                     return previousState;
                 }
-                return $.extend({}, previousState, {secondArgument: previousState.secondArgument.changeSign()});
+                previousState.secondArgument.changeSign()
+                return $.extend({}, previousState, {secondArgument: previousState.secondArgument});
             }
             break;
 
@@ -11402,7 +11430,7 @@ module.exports = MemoryReducer;
 function OperatorReducer(previousState, action) {
     switch (action.type) {
         case 'addOperator':
-            if (previousState.result !== null && !isNaN(previousState.result)) {
+            if (previousState.result !== null && !(previousState.result.isZero())) {
                 previousState.firstArgument = previousState.result;
                 previousState.result = null;
                 previousState.secondArgument = null;
@@ -11410,58 +11438,64 @@ function OperatorReducer(previousState, action) {
             if (action.value === 'mod') {
                 previousState.module = new Integer('0');
             }
-            return $.extend({}, previousState, {operator: action.value}); 
+            return $.extend({}, previousState, { operator: action.value });
             break;
 
         case 'precalculate':
- 
-            switch (previousState.operator) {
-                case 'add':
-                    previousState.result = Integer.add(previousState.firstArgument,previousState.secondArgument);
-                    break;
-                case 'sub':
-                    previousState.result = Integer.sub(previousState.firstArgument, previousState.secondArgument);
-                    break;
-                case 'mul':
-                    previousState.result = Integer.mul(previousState.firstArgument, previousState.secondArgument);
-                    break;
-                case 'div':
-                    previousState.result = Integer.div(previousState.firstArgument,previousState.secondArgument);
-                    break;
-                case 'pow':
-                    previousState.result = Integer.pow(previousState.firstArgument,previousState.secondArgument);
-                    break;
-                case 'mod':
-                    if (previousState.secondArgument !== null && !previousState.secondArgument.isZero()) {
-                        previousState.result = Integer.mod(previousState.firstArgument, previousState.secondArgument);
-                        previousState.module = previousState.secondArgument;
+            if (previousState.secondArgument !== null) {
+                switch (previousState.operator) {
+                    case 'add':
+                        previousState.result = Integer.add(previousState.firstArgument, previousState.secondArgument);
+                        break;
+                    case 'sub':
+                        previousState.result = Integer.sub(previousState.firstArgument, previousState.secondArgument);
+                        break;
+                    case 'mul':
+                        previousState.result = Integer.mul(previousState.firstArgument, previousState.secondArgument);
+                        break;
+                    case 'div':
+                        previousState.result = Integer.div(previousState.firstArgument, previousState.secondArgument);
+                        break;
+                    case 'pow':
+                        previousState.result = Integer.pow(previousState.firstArgument, previousState.secondArgument);
+                        break;
+                    case 'mod':
+                        if (previousState.secondArgument !== null && !previousState.secondArgument.isZero()) {
+                            previousState.result = Integer.mod(previousState.firstArgument, previousState.secondArgument);
+                            previousState.module = previousState.secondArgument;
+                        }
+                        if (previousState.secondArgument.isZero()) {
+                            previousState.module = new Integer('0');
+                        }
+                        break;
+                }
+                if (!previousState.module.isZero()) {
+                    previousState.result = Integer.mod(previousState.result, previousState.module);
+                    if (previousState.result.isNegative && previousState.positiveCookie) {
+                        previousState.result = Integer.add(previousState.result, previousState.module);
                     }
-                    if (previousState.secondArgument.isZero()) {
-                        previousState.module = new Integer('0');
-                    }
-                    break;
-            }
-            if (!previousState.module.isZero()) {
-                previousState.result =  Integer.mod(previousState.result, previousState.module);
-                if (previousState.result.isNegative && previousState.positiveCookie) {
-                    previousState.result = Integer.add(previousState.result,previousState.module);
                 }
             }
             return previousState;
             break;
 
         case 'calculate':
+
+        if(previousState.secondArgument === null && (previousState.module === null|| previousState.module.isZero())){
+            return previousState;
+        }
             var result = previousState.result;
             if (previousState.result === null) {
                 result = previousState.firstArgument;
             }
             if (!previousState.module.isZero()) {
-                result =  Integer.mod(result, previousState.module);
+                result = Integer.mod(result, previousState.module);
                 if (result.isNegative && previousState.positiveCookie) {
-                    previousState.result = Integer.add(previousState.result,previousState.module);
+                    result = Integer.add(result, previousState.module);
                 }
             }
-            return $.extend({}, previousState, {result: result});
+
+            return $.extend({}, previousState, { result: result });
             break;
 
         default:
@@ -11493,14 +11527,14 @@ function QueryReducer(previousState, action) {
                     query: 'ERROR1'
                 });
             }
-            return $.extend({}, previousState, { query: new QueryBuilder().getQuery(queryState) });
+            return $.extend({}, previousState, {query: new QueryBuilder().getQuery(queryState)});
             break;
 
         case 'calculate':
             var queryState = $.extend(true, {}, previousState);
-            if (queryState.secondArgument === null && queryState.operator !== '') {
-                queryState.secondArgument = new Integer('0');
-            }
+            // if (queryState.secondArgument === null && queryState.operator !== '') {
+            //     queryState.secondArgument = new Integer('0');
+            // }
             if (queryState.operator === 'mod') {
                 queryState.operator = '';
                 queryState.secondArgument = null;
@@ -11530,7 +11564,7 @@ function QueryReducer(previousState, action) {
         case 'getFromMemory':
         case 'clearMemory':
         case 'changeSign':
-            return $.extend({}, previousState, { query: new QueryBuilder().getQuery(previousState) });
+            return $.extend({}, previousState, {query: new QueryBuilder().getQuery(previousState)});
             break;
 
         default:
