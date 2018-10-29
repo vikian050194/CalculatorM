@@ -9,24 +9,15 @@
             "stopOnEntry": false,
             "args": [
                 "${file}",
-                "--no-timeouts"
+                "--no-timeouts",
+                "--require",
+                "babel-register"
             ],
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": null,
             "env": {
                 "NODE_ENV": "testing"
             }
-        },
-        {
-            "name": "Run chrome",
-            "type": "node",
-            "request": "launch",
-            "windows": {
-                "command": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-            },
-            "args": [
-                "${file}"
-            ]
         }
     ]
 }

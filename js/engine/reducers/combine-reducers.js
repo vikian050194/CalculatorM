@@ -3,8 +3,8 @@ function combineReducers(reducers) {
         return Object.keys(reducers).reduce(function (nextState, key) {
             nextState = reducers[key](nextState, action);
             return nextState;
-        }, $.extend(true, {}, previousState));
-    }
+        }, previousState);
+    };
 }
 
-module.exports = combineReducers;
+export default combineReducers;

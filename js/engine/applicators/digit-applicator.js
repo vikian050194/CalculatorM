@@ -1,4 +1,4 @@
-var createAction = require('./../action-creator');
+import createAction from "./../action-creator";
 
 function applyDigits(calculatorStore) {
     var applyDigit = function() {
@@ -6,8 +6,8 @@ function applyDigits(calculatorStore) {
         for (var i = 0; i <= digits.length; i++) {
             (function () {
                 var value = digits[i];
-                $('[data-value=' + value + ']').on('click', function () {
-                    calculatorStore.dispatch(createAction('addDigit')(value));
+                $("[data-value=" + value + "]").on("click", function () {
+                    calculatorStore.dispatch(createAction("addDigit")(value));
                 });
             })();
         }
@@ -15,9 +15,9 @@ function applyDigits(calculatorStore) {
 
     applyDigit();
 
-    $('[data-value="sign"]').on('click', function () {
-        calculatorStore.dispatch(createAction('changeSign')());
+    $("[data-value=\"sign\"]").on("click", function () {
+        calculatorStore.dispatch(createAction("changeSign")());
     });
 }
 
-module.exports = applyDigits;
+export default applyDigits;

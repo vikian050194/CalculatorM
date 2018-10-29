@@ -1,44 +1,44 @@
-var Integer = require('./../../integer/integer');
+import Integer from "./../../integer/integer";
 
 function OperatorReducer(previousState, action) {
     switch (action.type) {
-        case 'addOperator':
+        case "addOperator":
             if (previousState.result !== null && !(previousState.result.isZero())) {
                 previousState.firstArgument = previousState.result;
                 previousState.result = null;
                 previousState.secondArgument = null;
             }
-            if (action.value === 'mod') {
-                previousState.module = new Integer('0');
+            if (action.value === "mod") {
+                previousState.module = new Integer("0");
             }
-            return $.extend({}, previousState, { operator: action.value });
-            break;
-
-        case 'precalculate':
+            return { ...previousState,
+                operator: action.value
+            };
+        case "precalculate":
             if (previousState.secondArgument !== null) {
                 switch (previousState.operator) {
-                    case 'add':
+                    case "add":
                         previousState.result = Integer.add(previousState.firstArgument, previousState.secondArgument);
                         break;
-                    case 'sub':
+                    case "sub":
                         previousState.result = Integer.sub(previousState.firstArgument, previousState.secondArgument);
                         break;
-                    case 'mul':
+                    case "mul":
                         previousState.result = Integer.mul(previousState.firstArgument, previousState.secondArgument);
                         break;
-                    case 'div':
+                    case "div":
                         previousState.result = Integer.div(previousState.firstArgument, previousState.secondArgument);
                         break;
-                    case 'pow':
+                    case "pow":
                         previousState.result = Integer.pow(previousState.firstArgument, previousState.secondArgument);
                         break;
-                    case 'mod':
+                    case "mod":
                         if (previousState.secondArgument !== null && !previousState.secondArgument.isZero()) {
                             previousState.result = Integer.mod(previousState.firstArgument, previousState.secondArgument);
                             previousState.module = previousState.secondArgument;
                         }
                         if (previousState.secondArgument.isZero()) {
-                            previousState.module = new Integer('0');
+                            previousState.module = new Integer("0");
                         }
                         break;
                 }
@@ -50,13 +50,10 @@ function OperatorReducer(previousState, action) {
                 }
             }
             return previousState;
-            break;
-
-        case 'calculate':
-
-        if(previousState.secondArgument === null && (previousState.module === null|| previousState.module.isZero())){
-            return previousState;
-        }
+        case "calculate":
+            if (previousState.secondArgument === null && (previousState.module === null || previousState.module.isZero())) {
+                return previousState;
+            }
             var result = previousState.result;
             if (previousState.result === null) {
                 result = previousState.firstArgument;
@@ -68,12 +65,12 @@ function OperatorReducer(previousState, action) {
                 }
             }
 
-            return $.extend({}, previousState, { result: result });
-            break;
-
+            return { ...previousState,
+                result: result
+            };
         default:
             return previousState;
     }
 }
 
-module.exports = OperatorReducer;
+export default OperatorReducer;

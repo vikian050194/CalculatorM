@@ -1,18 +1,18 @@
-var AutoresizeText = require('./../ui/autoresize-text')
+import AutoresizeText from "./../ui/autoresize-text";
 
 function UpdateUI(state) {
     var queries = [];
-    if (state.query.indexOf(' = ') >= 0) {
-        queries = (state.query).split(' = ');
-        queries[0] += ' =';
-        queries[1] = '= ' + queries[1];
+    if (state.query.indexOf(" = ") >= 0) {
+        queries = (state.query).split(" = ");
+        queries[0] += " =";
+        queries[1] = "= " + queries[1];
     } else {
-        if (state.query.indexOf(' \u2630 ') >= 0) {
-            queries = (state.query).split(' \u2630 ');
-            queries[0] += ' \u2630';
-            queries[1] = '\u2630 ' + queries[1];
+        if (state.query.indexOf(" \u2630 ") >= 0) {
+            queries = (state.query).split(" \u2630 ");
+            queries[0] += " \u2630";
+            queries[1] = "\u2630 " + queries[1];
         } else {
-            var modIndex = state.query.indexOf('mod');
+            var modIndex = state.query.indexOf("mod");
             if (modIndex >= 0) {
                 queries[0] = state.query.slice(0, modIndex - 1);
                 queries[1] = state.query.slice(modIndex);
@@ -22,19 +22,21 @@ function UpdateUI(state) {
         }
     }
 
-    $('#query').val(queries[0]);
+    $("#query").val(queries[0]);
+
     if (queries[1] !== undefined) {
-        $('#result').val(queries[1]);
+        $("#result").val(queries[1]);
     } else {
-        $('#result').val('');
+        $("#result").val("");
     }
     AutoresizeText();
 
     var cookiesSettings = {
         expires: 31
     };
-	Cookies.set('positive', state.positiveCookie, cookiesSettings);
-	Cookies.set('module', state.moduleCookie, cookiesSettings);
+
+    Cookies.set("positive", state.positiveCookie, cookiesSettings);
+    Cookies.set("module", state.moduleCookie, cookiesSettings);
 }
 
-module.exports = UpdateUI;
+export default UpdateUI;

@@ -1,39 +1,39 @@
-var CalculatorStore = require('./calculator-store'),
-    Themer = require('./../ui/themer'),
-    applyMenu = require('./applicators/menu-applicator'),
-    applyDigits = require('./applicators/digit-applicator'),
-    applyOperators = require('./applicators/operator-applicator'),
-    applyClearing = require('./applicators/clearing-applicator'),
-    applyMemory = require('./applicators/memory-applicator'),
-    applyHistory = require('./applicators/history-applicator');
+import CalculatorStore from "./calculator-store";
+import Themer from "./../ui/themer";
+import applyMenu from "./applicators/menu-applicator";
+import applyDigits from "./applicators/digit-applicator";
+import applyOperators from "./applicators/operator-applicator";
+import applyClearing from "./applicators/clearing-applicator";
+import applyMemory from "./applicators/memory-applicator";
+import applyHistory from "./applicators/history-applicator";
 
 function CalculatorUI() {
     var cookiesSettings = {
         expires: 31
     };
 
-    var positiveCookie = Cookies.get('positive');
+    var positiveCookie = Cookies.get("positive");
     if (positiveCookie === undefined) {
-        Cookies.set('positive', false, cookiesSettings);
-        positiveCookie = 'false';
+        Cookies.set("positive", false, cookiesSettings);
+        positiveCookie = "false";
     }
 
-    var moduleCookie = Cookies.get('module');
+    var moduleCookie = Cookies.get("module");
     if (moduleCookie === undefined) {
-        Cookies.set('positive', false, cookiesSettings);
-        moduleCookie = 'false';
+        Cookies.set("positive", false, cookiesSettings);
+        moduleCookie = "false";
     }
 
     var initialState = {
         firstArgument: 0,
         secondArgument: null,
-        operator: '',
+        operator: "",
         module: 0,
         memory: null,
-        query: '_',
+        query: "_",
         result: null,
-        positiveCookie: (positiveCookie === 'true'),
-        moduleCookie: (moduleCookie === 'true')
+        positiveCookie: (positiveCookie === "true"),
+        moduleCookie: (moduleCookie === "true")
     };
 
     var calculatorStore = new CalculatorStore(initialState); //send initstate
@@ -52,4 +52,4 @@ function CalculatorUI() {
     init();
 }
 
-module.exports = CalculatorUI;
+export default CalculatorUI;

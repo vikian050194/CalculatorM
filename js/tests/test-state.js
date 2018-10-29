@@ -1,15 +1,15 @@
-var Integer = require('./../integer/integer');
+import Integer from "./../integer/integer";
 
 function TestState() {
-    this.firstArgument = new Integer('0');
+    this.firstArgument = new Integer();
     this.secondArgument = null;
-    this.operator = '';
-    this.module = new Integer('0');
+    this.operator = "";
+    this.module = new Integer();
     this.memory = null;
-    this.query = '';
+    this.query = "";
     this.result = null;
     this.positiveCookie = false;
     this.moduleCookie = true;
 }
 
-module.exports = TestState;
+export default TestState;

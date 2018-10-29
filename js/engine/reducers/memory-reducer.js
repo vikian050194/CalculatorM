@@ -1,33 +1,37 @@
-Integer = require('./../../integer/integer');
+import Integer from "./../../integer/integer";
 
 function MemoryReducer(previousState, action) {
     switch (action.type) {
-        case 'addToMemory':
+        case "addToMemory":
             if (previousState.secondArgument === null) {
-                return $.extend({}, previousState, {memory: new Integer(previousState.firstArgument.toString())});
-			} else {
-                return $.extend({}, previousState, {memory: new Integer(previousState.secondArgument.toString())});
-			}
-            break;
-
-        case 'getFromMemory':
+                return { ...previousState,
+                    memory: new Integer(previousState.firstArgument.toString())
+                };
+            } else {
+                return { ...previousState,
+                    memory: new Integer(previousState.secondArgument.toString())
+                };
+            }
+        case "getFromMemory":
             if (previousState.memory === null) {
                 return previousState;
-			}
+            }
             if (previousState.secondArgument === null) {
-                return $.extend({}, previousState, {firstArgument: new Integer(previousState.memory.toString())});
-			} else {
-                return $.extend({}, previousState, {secondArgument:new Integer(previousState.memory.toString())});
-			}
-            break;
-
-        case 'clearMemory':
-            return $.extend({}, previousState, {memory: null});
-            break;
-
+                return { ...previousState,
+                    firstArgument: new Integer(previousState.memory.toString())
+                };
+            } else {
+                return { ...previousState,
+                    secondArgument: new Integer(previousState.memory.toString())
+                };
+            }
+        case "clearMemory":
+            return { ...previousState,
+                memory: null
+            };
         default:
             return previousState;
     }
 }
 
-module.exports = MemoryReducer;
+export default MemoryReducer;

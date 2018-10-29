@@ -1,14 +1,20 @@
-function Integer(number) {
-    var pattern = /-*\d/;
+function Integer() {
+    if (arguments.length === 0) {
+        this.digits = [0];
+        this.isNegative = false;
+    }
 
-    this.digits = [];
-    this.isNegative = false;
+    if (arguments.length === 1) {
+        let pattern = /-*\d/;
+        let number = arguments[0];
 
-    if (number !== undefined) {
+        this.digits = [];
+        this.isNegative = false;
+
         if (typeof number === "string" && pattern.test(number)) {
             var start = 0;
 
-            if (number[0] === '-') {
+            if (number[0] === "-") {
                 this.isNegative = true;
                 start = 1;
             }
@@ -16,22 +22,32 @@ function Integer(number) {
             for (var i = number.length - 1; i >= start; i--) {
                 this.digits.push(parseInt(number[i]));
             }
+        } else {
+            throw new Error("Format error!");
         }
-        else {
-            throw "Format error!";
-        }
+    }
+
+    if (arguments.length === 2) {
+        this.digits = arguments[0];
+        this.isNegative = arguments[1];
     }
 }
 
+Integer.prototype.clone = function () {
+    return new Integer([...this.digits], this.isNegative);
+};
+
 Integer.prototype.isZero = function () {
     return this.digits.length === 1 && this.digits[0] === 0;
-}
+};
 
 Integer.prototype.changeSign = function () {
-    if(!this.isZero())
-    this.isNegative = !this.isNegative;
-    else this.isNegative = false;
-}
+    if (!this.isZero()) {
+        this.isNegative = !this.isNegative;
+    } else {
+        this.isNegative = false;
+    }
+};
 
 Integer.prototype.push = function (value) {
 
@@ -39,53 +55,45 @@ Integer.prototype.push = function (value) {
         if (value !== 0) {
             this.digits[0] = value;
         }
-    }
-    else {
+    } else {
         this.digits.unshift(value);
     }
-
-}
+};
 
 Integer.prototype.pop = function () {
-
     if (this.digits.length === 1) {
         this.digits[0] = 0;
-    }
-    else {
-
+    } else {
         this.digits.shift();
     }
-}
+};
 
 Integer.prototype.toString = function () {
-    var result = '';
+    var result = "";
 
     if (this.isNegative) {
-        result = '-';
+        result = "-";
     }
 
     result += String(this.digits.reduce(function (previousValue, currentValue) {
-        return '' + currentValue + previousValue;
+        return "" + currentValue + previousValue;
     }));
 
     return result;
-}
+};
 
 function divAndMod(a, b) {
-
     var resultDiv = new Integer();
     var firstArgumentDivDigits = new Integer();
-    var firstArgument = new Integer(a.toString());
-    var secondArgument = new Integer(b.toString());
+    var firstArgument = a.clone();
+    var secondArgument = b.clone();
 
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw 'Error format in operation div!'
-    }
-    else {
+        throw "Error format in operation div!";
+    } else {
         if (firstArgument.isNegative === secondArgument.isNegative) {
             resultDiv.isNegative = false;
-        }
-        else {
+        } else {
             resultDiv.isNegative = true;
         }
 
@@ -128,22 +136,23 @@ function divAndMod(a, b) {
                 resultDiv.digits.unshift(count);
                 count = 0;
             }
-        }
-
-        else {
+        } else {
             resultDiv.digits.unshift(0);
         }
         if (resultDiv.digits.length === 1 && resultDiv.digits[0] === 0) {
             resultDiv.isNegative = false;
         }
         firstArgumentDivDigits.isNegative = resultDiv.isNegative;
-        return { remainer: firstArgumentDivDigits, quotient: resultDiv };
+        return {
+            remainer: firstArgumentDivDigits,
+            quotient: resultDiv
+        };
     }
 }
 
 function getCoefficients(power) {
     var coefficients = [];
-    var two = new Integer('2');
+    var two = new Integer("2");
 
     for (var i = 0; power.digits[0] > 1 || power.digits.length > 1; i++) {
         coefficients[i] = Integer.mod(power, two).digits[0];
@@ -164,7 +173,7 @@ function compasion(firstArgument, secondArgument) {
         return false;
     }
 
-    if (firstArgument.digits.length = secondArgument.digits.length) {
+    if (firstArgument.digits.length === secondArgument.digits.length) {
         var i = firstArgument.digits.length - 1;
         while (firstArgument.digits[i] === secondArgument.digits[i] && i != 0) {
             i--;
@@ -172,36 +181,31 @@ function compasion(firstArgument, secondArgument) {
 
         if (firstArgument.digits[i] < secondArgument.digits[i]) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
-
-
     }
 }
 
 Integer.add = function (firstArgument, secondArgument) {
-    var result = new Integer();
+    let resultDigits = [],
+        isNegativeResult = false;
 
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw 'Error format in operation Add!'
-    }
-    else {
+        throw "Error format in operation Add!";
+    } else {
         if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
             secondArgument.isNegative = false;
-            result = Integer.sub(firstArgument, secondArgument);
-            return result;
+            return Integer.sub(firstArgument, secondArgument);
         }
 
         if (firstArgument.isNegative === true && secondArgument.isNegative === false) {
             firstArgument.isNegative = false;
-            result = Integer.sub(secondArgument, firstArgument);
-            return result;
+            return Integer.sub(secondArgument, firstArgument);
         }
 
         if (firstArgument.isNegative === secondArgument.isNegative) {
-            result.isNegative = firstArgument.isNegative;
+            isNegativeResult = firstArgument.isNegative;
             var i = 0;
             var balance = 0;
 
@@ -222,35 +226,32 @@ Integer.add = function (firstArgument, secondArgument) {
                     balance = 0;
                 }
 
-                result.digits.push(resultDigit);
+                resultDigits.push(resultDigit);
             }
 
             if (balance !== 0) {
-                result.digits.push(balance);
+                resultDigits.push(balance);
             }
-        }
-        else {
+        } else {
             if (firstArgument.isNegative && !secondArgument.isNegative) {
                 firstArgument.isNegative = false;
-                result = Integer.sub(secondArgument, firstArgument);
-            }
-            else {
-                secondArgument.isNegative = false
-                result = Integer.sub(firstArgument, secondArgument);
+                return Integer.sub(secondArgument, firstArgument);
+            } else {
+                secondArgument.isNegative = false;
+                return Integer.sub(firstArgument, secondArgument);
             }
         }
     }
 
-    return result;
-}
+    return new Integer(resultDigits, isNegativeResult);
+};
 
 Integer.sub = function (firstArgument, secondArgument) {
     var result = new Integer();
 
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw 'Error format in operation Sub!'
-    }
-    else {
+        throw "Error format in operation Sub!";
+    } else {
 
         if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
             secondArgument.isNegative = false;
@@ -270,7 +271,7 @@ Integer.sub = function (firstArgument, secondArgument) {
             if (!compasion(firstArgument, secondArgument)) {
                 var exchange = firstArgument;
                 firstArgument = secondArgument;
-                secondArgument = exchange
+                secondArgument = exchange;
                 result.isNegative = true;
 
             }
@@ -281,8 +282,7 @@ Integer.sub = function (firstArgument, secondArgument) {
                 if (firstArgument.digits[i] >= secondArgumentDigit) {
                     var resultDigit = firstArgument.digits[i] - secondArgumentDigit;
                     result.digits.push(resultDigit);
-                }
-                else {
+                } else {
                     if (i < firstArgument.digits.length - 1) {
                         firstArgument.digits[i] += 10;
                         firstArgument.digits[i + 1] -= 1;
@@ -308,29 +308,31 @@ Integer.sub = function (firstArgument, secondArgument) {
         }
     }
     return result;
-}
+};
 
 Integer.pow = function (firstArgument, power) {
-    var result = new Integer('1');
+    var result = new Integer("1");
 
     if (!(firstArgument instanceof Integer) || !(power instanceof Integer)) {
-        throw 'Error format in operation power!'
-    }
-    else {
+        throw "Error format in operation power!";
+    } else {
         if (power.isNegative === true) {
-            throw 'Error! Power can not be less than 0'
+            throw "Error! Power can not be less than 0";
         }
+
         if (power.length === 1 && power.digits[i] === 0) {
-            return new Integer('1');
+            return new Integer("1");
         }
 
         if (power.length === 1 && power.digits[i] === 1) {
             return firstArgument;
         }
 
-        if (power.isNegative === false)
+        if (power.isNegative === false) {
             var coefficients = [];
+        }
         coefficients = getCoefficients(power);
+
         for (var i = coefficients.length - 1; i >= 0; i--) {
             if (coefficients[i] === 1) {
                 result = Integer.mul(result, firstArgument);
@@ -340,17 +342,16 @@ Integer.pow = function (firstArgument, power) {
             }
         }
     }
-    return result;
 
-}
+    return result;
+};
 
 Integer.mul = function (firstArgument, secondArgument) {
     var result = new Integer();
 
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw 'Error format in operation multiplication!'
-    }
-    else {
+        throw "Error format in operation multiplication!";
+    } else {
         for (var i = 0; i < secondArgument.digits.length; i++) {
             var balance = 0;
             var additionalNumber = new Integer();
@@ -371,11 +372,11 @@ Integer.mul = function (firstArgument, secondArgument) {
                 additionalNumber.digits[additionalNumber.digits.length] = balance;
             }
 
-
-            for (var k = 0; k < i; k++) {
-                for (var j = additionalNumber.digits.length - 1; j >= 0; j--) {
+            for (let k = 0; k < i; k++) {
+                for (let j = additionalNumber.digits.length - 1; j >= 0; j--) {
                     additionalNumber.digits[j + 1] = additionalNumber.digits[j];
                 }
+
                 additionalNumber.digits[0] = 0;
             }
 
@@ -384,41 +385,36 @@ Integer.mul = function (firstArgument, secondArgument) {
 
         if (firstArgument.isNegative === secondArgument.isNegative) {
             result.isNegative = false;
-        }
-        else {
+        } else {
             result.isNegative = true;
         }
+
         while (result.digits[result.digits.length - 1] === 0 && result.digits.length != 1) {
             result.digits.length--;
         }
 
         return result;
     }
-}
-
+};
 
 Integer.div = function (firstArgument, secondArgument) {
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw 'Error format in operation div!'
-    }
-    else {
+        throw "Error format in operation div!";
+    } else {
         return divAndMod(firstArgument, secondArgument).quotient;
     }
-}
-
+};
 
 Integer.mod = function (firstArgument, secondArgument) {
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw 'Error format in operation div!'
-    }
-    else {
+        throw "Error format in operation div!";
+    } else {
         if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1) || (!compasion(firstArgument, secondArgument))) {
             return firstArgument;
-        }
-        else {
+        } else {
             return divAndMod(firstArgument, secondArgument).remainer;
         }
     }
-}
+};
 
-module.exports = Integer;
+export default Integer;
