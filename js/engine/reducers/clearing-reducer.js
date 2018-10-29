@@ -1,39 +1,42 @@
+import Integer from "./../../integer/integer";
+
 function ClearingReducer(previousState, action) {
     switch (action.type) {
-        case 'clear':
+        case "clear":
             return {
-                firstArgument: 0,
-				secondArgument: null,
-				operator: '',
-				module: 0,
-				memory: null,
-				query: '',
-				result: null,
-				positiveCookie: previousState.positiveCookie,
-				moduleCookie: previousState.moduleCookie
+                firstArgument: new Integer("0"),
+                secondArgument: null,
+                operator: "",
+                module: new Integer("0"),
+                memory: previousState.memory,
+                query: "",
+                result: null,
+                positiveCookie: previousState.positiveCookie,
+                moduleCookie: previousState.moduleCookie
             };
-            break;
 
-        case 'deleteDigit':
+        case "deleteDigit":
             if (previousState.result !== null && previousState.firstArgument === 0) {
-                return $.extend({}, previousState, {
-                    firstArgument: (previousState.result - previousState.result % 10) / 10,
+                return { ...previousState,
+                    firstArgument: previousState.result.pop(),
                     result: null
-                });
+                };
             }
-            if (previousState.operator !== '' && previousState.secondArgument === null) {
-                return previousState;
+            if (previousState.operator !== "" && previousState.secondArgument === null) {
+                return { ...previousState,
+                    operator: ""
+                };
             }
             if (previousState.secondArgument === null) {
-                return $.extend({}, previousState, {firstArgument: (previousState.firstArgument - previousState.firstArgument % 10) / 10});
+                previousState.firstArgument.pop();
+                return previousState; 
             } else {
-                return $.extend({}, previousState, {secondArgument: (previousState.secondArgument - previousState.secondArgument % 10) / 10});
+                previousState.secondArgument.pop();
+                return previousState; 
             }
-            break;
-
         default:
             return previousState;
     }
 }
 
-module.exports = ClearingReducer;
+export default ClearingReducer;

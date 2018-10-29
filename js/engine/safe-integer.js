@@ -1,5 +1,5 @@
 function isSafeInteger(number) {
-    if (typeof number !== 'number') {
+    if (typeof number !== "number") {
         return false;
     }
     if (!isFinite(number)) { //NaN is also not finite
@@ -19,4 +19,4 @@ function getSign(x) {
     return x ? x < 0 ? -1 : 1 : 0;
 }
 
-module.exports = isSafeInteger;
+export default isSafeInteger;

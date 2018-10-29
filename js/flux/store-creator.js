@@ -22,7 +22,7 @@ function createStore(reducer, initialState) {
         state = reducer(state, action);
         listeners.forEach(function (callback) {
             callback(state);
-        })
+        });
     };
 
     var thunk = function (func, value) {
@@ -34,7 +34,7 @@ function createStore(reducer, initialState) {
         thunk: thunk,
         dispatch: dispatch,
         addListener: addListener
-    }
+    };
 }
 
-module.exports = createStore;
+export default createStore;

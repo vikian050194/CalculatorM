@@ -3,8 +3,8 @@ function createAction(type) {
         return {
             type: type,
             value: value
-        }
-    }
+        };
+    };
 }
 
-module.exports = createAction;
+export default createAction;

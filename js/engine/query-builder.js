@@ -2,45 +2,45 @@ function QueryBuilder() {
     this.getQuery = function (model) {
         var line = new String();
 
-        if (model.firstArgument === 0 && model.operator === '') {
-            if (model.module === 0) {
-                return '_';
+        if (model.firstArgument.isZero() && model.operator === "") {
+            if (model.module.isZero()) {
+                return "_";
             } else {
-                return '_ mod ' + model.module;
+                return "_ mod " + model.module.toString();
             }
         }
 
-        line += model.firstArgument;
+        line += model.firstArgument.toString();
 
-        if (model.operator !== '') {
-            line += ' ' + model.operator;
+        if (model.operator !== "") {
+            line += " " + model.operator;
         }
 
         if (model.secondArgument !== null) {
-            line += ' ' + model.secondArgument;
+            line += " " + model.secondArgument.toString();
         } else {
-            if (model.operator !== '') {
-                line += ' ';
+            if (model.operator !== "") {
+                line += " ";
             }
         }
 
         if (model.result === null) {
-            line += '_';
+            line += "_";
         }
 
-        if (model.module !== 0 && model.result !== null) {
-            line += ' \u2630 ' + model.result + '_' + ' mod ' + model.module;
+        if (!model.module.isZero() && model.result !== null) {
+            line += " \u2630 " + model.result.toString() + "_" + " mod " + model.module.toString();
         } else {
             if (model.result !== null) {
-                line += ' = ' + model.result + '_';
+                line += " = " + model.result.toString() + "_";
             }
-            if (model.module !== 0) {
-                line += ' mod ' + model.module;
+            if (!model.module.isZero()) {
+                line += " mod " + model.module.toString();
             }
         }
 
         return line;
-    }
+    };
 }
 
-module.exports = QueryBuilder;
+export default QueryBuilder;

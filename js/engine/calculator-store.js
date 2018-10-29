@@ -1,23 +1,24 @@
-var createStore = require('./../flux/store-creator'),
-    HistoryReducer = require('./../history/history-reducer'),
-    combineReducers = require('./reducers/combine-reducers'),
-    CookieReducer = require('./reducers/cookie-reducer'),
-    ClearingReducer = require('./reducers/clearing-reducer'),
-    DigitReducer = require('./reducers/digit-reducer'),
-    MemoryReducer = require('./reducers/memory-reducer'),
-    OperatorReducer = require('./reducers/operator-reducer'),
-    QueryReducer = require('./reducers/query-reducer'),
-    HistoryUpdate = require('./../history/history-update'),
-    UpdateUI = require('./../engine/update-ui');
+import createStore from "./../flux/store-creator";
+import HistoryReducer from "./../history/history-reducer";
+import combineReducers from "./reducers/combine-reducers";
+import CookieReducer from "./reducers/cookie-reducer";
+import ClearingReducer from "./reducers/clearing-reducer";
+import DigitReducer from "./reducers/digit-reducer";
+import MemoryReducer from "./reducers/memory-reducer";
+import OperatorReducer from "./reducers/operator-reducer";
+import QueryReducer from "./reducers/query-reducer";
+import HistoryUpdate from "./../history/history-update";
+import UpdateUI from "./../engine/update-ui";
+import Integer from "./../integer/integer";
 
 function CalculatorStore() {
     var initialState = {
-        firstArgument: 0,
+        firstArgument: new Integer("0"),
         secondArgument: null,
-        operator: '',
-        module: 0,
+        operator: "",
+        module: new Integer("0"),
         memory: null,
-        query: '_',
+        query: "_",
         result: null,
         positiveCookie: false,
         moduleCookie: false
@@ -43,4 +44,4 @@ function CalculatorStore() {
     UpdateUI(initialState);
 }
 
-module.exports = CalculatorStore;
+export default CalculatorStore;

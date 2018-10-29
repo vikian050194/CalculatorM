@@ -1,21 +1,21 @@
-var createAction = require('./../action-creator');
+import createAction from "./../action-creator";
 
 function applyMemory(calculatorStore) {
     var applyMemoryAdd = function () {
-        $('[data-value="memoryAdd"]').on('click', function () {
-            calculatorStore.dispatch(createAction('addToMemory')());
+        $("[data-value=\"memoryAdd\"]").on("click", function () {
+            calculatorStore.dispatch(createAction("addToMemory")());
         });
     };
 
     var applyMemoryRecall = function () {
-        $('[data-value="memoryRecall"]').on('click', function () {
-            calculatorStore.dispatch(createAction('getFromMemory')());
+        $("[data-value=\"memoryRecall\"]").on("click", function () {
+            calculatorStore.dispatch(createAction("getFromMemory")());
         });
     };
 
     var applyMemoryClear = function () {
-        $('[data-value="memoryClear"]').on('click', function () {
-            calculatorStore.dispatch(createAction('clearMemory')());
+        $("[data-value=\"memoryClear\"]").on("click", function () {
+            calculatorStore.dispatch(createAction("clearMemory")());
         });
     };
 
@@ -24,4 +24,4 @@ function applyMemory(calculatorStore) {
     applyMemoryClear();
 }
 
-module.exports = applyMemory;
+export default applyMemory;
