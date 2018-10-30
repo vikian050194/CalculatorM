@@ -1,188 +1,194 @@
 import TestState from "./../test-state";
 import DigitReducer from "./../../engine/reducers/digit-reducer";
-import OperatorReducer from "./../../engine/reducers/operator-reducer";
-import QueryReducer from "./../../engine/reducers/query-reducer";
 import createAction from "./../../engine/action-creator";
 import Integer from "./../../integer/integer";
 
 import assert from "assert";
 
-var initialState = new TestState();
-
 describe("Digit reducer", function () {
-    describe("Actions", function(){
-        it("action \"addDigit\"", function () {
-            var actualState = { ...initialState
-            };
-    
-            var expectedState = { ...initialState,
+    describe("Actions", function () {
+        it("add initial digit to first argument", function () {
+            var actualState = new TestState();
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("4")
             };
-    
+
             assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(4)), expectedState);
+            assert.equal(actualState.firstArgument.isZero(), true, "mutation detected");
         });
-    
-        it("few actions \"addDigit\"", function () {
-            var actualState = { ...initialState,
+
+        it("add second digit to first argument", function () {
+            var actualState = { ...new TestState(),
                 firstArgument: new Integer("4")
             };
-    
-            var expectedState = { ...initialState,
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("42")
             };
-    
+
             assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(2)), expectedState);
+            assert.deepEqual(actualState.firstArgument, new Integer("4"), "mutation detected");
         });
-    
-        it("add digit to secondArgument", function () {
-            var actualState = { ...initialState,
+
+        it("add initial digit to second argument", function () {
+            var actualState = { ...new TestState(),
                 firstArgument: new Integer("42"),
                 operator: "add"
             };
-    
-            var expectedState = { ...initialState,
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("42"),
                 operator: "add",
                 secondArgument: new Integer("2")
             };
-    
+
             assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(2)), expectedState);
+            assert.equal(actualState.secondArgument, null, "mutation detected");
         });
-    
-        it("add few digits to secondArgument", function () {
-            var actualState = { ...initialState,
+
+        it("add second digit to second argument", function () {
+            var actualState = { ...new TestState(),
                 firstArgument: new Integer("42"),
                 operator: "add",
                 secondArgument: new Integer("2")
             };
-    
-            var expectedState = { ...initialState,
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("42"),
                 operator: "add",
                 secondArgument: new Integer("21")
             };
-    
+
             assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(1)), expectedState);
+            assert.deepEqual(actualState.secondArgument, new Integer("2"), "mutation detected");
         });
-    
-        it("add digit to positive value", function () {
-            var actualState = { ...initialState,
+
+        it("add third digit to positive first argument", function () {
+            var actualState = { ...new TestState(),
                 firstArgument: new Integer("42")
             };
-    
-            var expectedState = { ...initialState,
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("421")
             };
-    
+
             assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(1)), expectedState);
+            assert.deepEqual(actualState.firstArgument, new Integer("42"), "mutation detected");
         });
-    
-        it("add digit to negative value", function () {
-            var actualState = { ...initialState,
+
+        it("add third digit to negative first argument", function () {
+            var actualState = { ...new TestState(),
                 firstArgument: new Integer("-42")
             };
-    
-            var expectedState = { ...initialState,
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("-421")
             };
-    
+
             assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(1)), expectedState);
+            assert.deepEqual(actualState.firstArgument, new Integer("-42"), "mutation detected");
         });
-    
-        it("add digit to zero", function () {
-            var actualState = { ...initialState
-            };
-    
-            var expectedState = { ...initialState,
-                firstArgument: new Integer("1")
-            };
-    
-            assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(1)), expectedState);
-        });
-    
-        it("change sign to firstArgument", function () {
-            var actualState = { ...initialState,
+
+        it("change sign of first argument", function () {
+            var actualState = { ...new TestState(),
                 firstArgument: new Integer("42")
             };
-    
-            var expectedState = { ...initialState,
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("-42")
             };
-    
+
+            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.equal(actualState.firstArgument.isNegative, false, "mutation detected");
+        });
+
+        it("change sign of first argument(zero)", function () {
+            var actualState = { ...new TestState()
+            };
+
+            var expectedState = { ...new TestState()
+            };
+
             assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
         });
-    
-        it("change sign to firstArgument with zero", function () {
-            var actualState = { ...initialState
-            };
-    
-            var expectedState = { ...initialState
-            };
-    
-            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
-        });
-    
-        it("change sign to secondArgument", function () {
-            var actualState = { ...initialState,
+
+        it("change sign of second argument", function () {
+            var actualState = { ...new TestState(),
                 firstArgument: new Integer("42"),
                 operator: "add",
                 secondArgument: new Integer("21")
             };
-    
-            var expectedState = { ...initialState,
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("42"),
                 operator: "add",
                 secondArgument: new Integer("-21")
             };
-    
+
             assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.equal(actualState.secondArgument.isNegative, false, "mutation detected");
         });
-    
-        it("change sign to secondArgument with zero", function () {
-            var actualState = { ...initialState,
+
+        it("change sign of second argument(zero)", function () {
+            var actualState = { ...new TestState(),
                 firstArgument: new Integer("42"),
                 operator: "add",
                 secondArgument: new Integer()
             };
-    
-            var expectedState = { ...initialState,
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("42"),
                 operator: "add",
                 secondArgument: new Integer()
             };
-    
+
             assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
         });
-    
-        it("change sign to result", function () {
-            var actualState = { ...initialState,
+
+        it("change sign of second argument(null)", function () {
+            var actualState = { ...new TestState(),
+                firstArgument: new Integer("42"),
+                operator: "add"
+            };
+
+            var expectedState = { ...new TestState(),
+                firstArgument: new Integer("42"),
+                operator: "add"
+            };
+
+            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.equal(actualState.secondArgument, null, "mutation detected");
+        });
+
+        it("change sign of result", function () {
+            var actualState = { ...new TestState(),
                 firstArgument: new Integer("42"),
                 operator: "add",
                 secondArgument: new Integer("21"),
                 result: new Integer("63")
             };
-    
-            var expectedState = { ...initialState,
+
+            var expectedState = { ...new TestState(),
                 firstArgument: new Integer("-63"),
                 operator: "",
                 secondArgument: null,
                 result: null
             };
-    
-            actualState = DigitReducer(actualState, createAction("changeSign")());
-            assert.deepEqual(actualState, expectedState);
+
+            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.deepEqual(actualState.firstArgument, new Integer("42"), "mutation detected");
+            assert.equal(actualState.operator, "add", "mutation detected");
+            assert.deepEqual(actualState.secondArgument, new Integer("21"), "mutation detected");
+            assert.deepEqual(actualState.result, new Integer("63"), "mutation detected");
         });
-    });
 
-    describe("Immutability", function(){
-        it("action \"changeSign\" of first argument", function () {
-            const initialTestState = { ...initialState,
-                firstArgument: new Integer("4")
-            };
-    
-            DigitReducer(initialTestState, createAction("changeSign")());
+        it("action for different reducer", function () {
+            var actualState = new TestState();
 
-            assert.equal(initialTestState.firstArgument.isNegative, false);
+            var expectedState = new TestState();
+
+            assert.deepEqual(DigitReducer(actualState, createAction("TestAction")()), expectedState);
         });
     });
 });

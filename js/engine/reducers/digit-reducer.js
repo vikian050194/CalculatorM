@@ -6,48 +6,50 @@ function DigitReducer(previousState, action) {
 
     switch (action.type) {
         case "addDigit":
-            if (previousState.operator === "") {
-                previousState.firstArgument.push(action.value);
-                return { ...previousState,
-                    firstArgument: previousState.firstArgument
-                };
+            if (result.operator === "") {
+                result.firstArgument = result.firstArgument.clone();
+                result.firstArgument.push(action.value);
 
+                return result;
             } else {
-                if (previousState.secondArgument === null) {
-                    previousState.secondArgument = new Integer("0");
+                if (result.secondArgument === null) {
+                    result.secondArgument = new Integer();
+                } else {
+                    result.secondArgument = result.secondArgument.clone();
                 }
-                previousState.secondArgument.push(action.value);
-                return { ...previousState,
-                    secondArgument: previousState.secondArgument
-                };
+
+                result.secondArgument.push(action.value);
+                return result;
             }
         case "changeSign":
-            if (previousState.result !== null) {
-                previousState.result.changeSign();
-                return { ...previousState,
-                    firstArgument: previousState.result,
-                    result: null,
-                    secondArgument: null,
-                    operator: ""
-                };
+            if (result.result !== null) {
+                result.result = result.result.clone();
+                result.result.changeSign();
+
+                result.firstArgument = result.result;
+                result.result = null;
+                result.secondArgument = null;
+                result.operator = "";
+
+                return result;
             }
-            if (previousState.operator === "") {
+            if (result.operator === "") {
                 result.firstArgument = result.firstArgument.clone();
                 result.firstArgument.changeSign();
 
                 return result;
             } else {
-                if (previousState.secondArgument === null) {
-                    return previousState;
+                if (result.secondArgument === null) {
+                    return result;
                 }
-                previousState.secondArgument.changeSign();
-                return { ...previousState,
-                    secondArgument: previousState.secondArgument
-                };
+
+                result.secondArgument = result.secondArgument.clone();
+                result.secondArgument.changeSign();
+
+                return result;
             }
         default:
             return previousState;
     }
 }
-
 export default DigitReducer;
