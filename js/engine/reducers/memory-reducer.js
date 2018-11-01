@@ -1,15 +1,13 @@
-import Integer from "./../../integer/integer";
-
 function MemoryReducer(previousState, action) {
     switch (action.type) {
         case "addToMemory":
             if (previousState.secondArgument === null) {
                 return { ...previousState,
-                    memory: new Integer(previousState.firstArgument.toString())
+                    memory: previousState.firstArgument.clone()
                 };
             } else {
                 return { ...previousState,
-                    memory: new Integer(previousState.secondArgument.toString())
+                    memory: previousState.secondArgument.clone()
                 };
             }
         case "getFromMemory":
@@ -18,11 +16,11 @@ function MemoryReducer(previousState, action) {
             }
             if (previousState.secondArgument === null) {
                 return { ...previousState,
-                    firstArgument: new Integer(previousState.memory.toString())
+                    firstArgument: previousState.memory.clone()
                 };
             } else {
                 return { ...previousState,
-                    secondArgument: new Integer(previousState.memory.toString())
+                    secondArgument: previousState.memory.clone()
                 };
             }
         case "clearMemory":
