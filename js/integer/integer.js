@@ -1,56 +1,238 @@
-function Integer() {
-    if (arguments.length === 0) {
-        this.digits = [0];
-        this.isNegative = false;
-    }
+class Integer {
+    constructor() {
+        if (arguments.length === 0) {
+            this.digits = [0];
+            this.isNegative = false;
+        }
 
-    if (arguments.length === 1) {
-        let pattern = /-*\d/;
-        let number = arguments[0];
+        if (arguments.length === 1) {
+            const pattern = /-*\d/;
+            let number = arguments[0];
 
-        this.digits = [];
-        this.isNegative = false;
+            this.digits = [];
+            this.isNegative = false;
 
-        if (typeof number === "string" && pattern.test(number)) {
-            var start = 0;
+            if (typeof number === "string" && pattern.test(number)) {
+                var start = 0;
 
-            if (number[0] === "-") {
-                this.isNegative = true;
-                start = 1;
+                if (number[0] === "-") {
+                    this.isNegative = true;
+                    start = 1;
+                }
+
+                for (var i = number.length - 1; i >= start; i--) {
+                    this.digits.push(parseInt(number[i]));
+                }
+            } else {
+                throw new Error("Format error!");
             }
+        }
 
-            for (var i = number.length - 1; i >= start; i--) {
-                this.digits.push(parseInt(number[i]));
-            }
-        } else {
-            throw new Error("Format error!");
+        if (arguments.length === 2) {
+            this.digits = arguments[0];
+            this.isNegative = arguments[1];
         }
     }
 
-    if (arguments.length === 2) {
-        this.digits = arguments[0];
-        this.isNegative = arguments[1];
+    get isZero() {
+        return this.digits.length === 1 && this.digits[0] === 0;
+    }
+
+    clone() {
+        return new Integer([...this.digits], this.isNegative);
+    }
+
+    toString() {
+        let result = "";
+
+        if (this.isNegative) {
+            result = "-";
+        }
+
+        result += new String(this.digits.reduce(function (previousValue, currentValue) {
+            return "" + currentValue + previousValue;
+        }));
+
+        return result;
+    }
+
+    changeSign() {
+        if (!this.isZero) {
+            this.isNegative = !this.isNegative;
+        } else {
+            this.isNegative = false;
+        }
+    }
+
+    _checkArgument(argument) {
+        if (!(argument instanceof Integer)) {
+            throw new Error(`Argument(${argument}) is not instance of Integer`);
+        }
+    }
+
+    _checkArguments() {
+        if (arguments.length !== 2) {
+            throw new Error("Invalid count of arguments");
+        }
+
+        this._checkArgument(arguments[0]);
+        this._checkArgument(arguments[1]);
+    }
+
+    static compare(firstArgument, secondArgument) {
+        //this._checkArguments(firstArgument, secondArgument);
+
+        if (!firstArgument.isNegative && secondArgument.isNegative) {
+            return 1;
+        }
+
+        if (firstArgument.isNegative && !secondArgument.isNegative) {
+            return -1;
+        }
+
+        if (firstArgument.digits.length > secondArgument.digits.length) {
+            return firstArgument.isNegative ? -1 : 1;
+        }
+
+        if (firstArgument.digits.length < secondArgument.digits.length) {
+            return firstArgument.isNegative ? 1 : -1;
+        }
+
+        var i = firstArgument.digits.length - 1;
+
+        while (firstArgument.digits[i] === secondArgument.digits[i] && i != 0) {
+            i--;
+        }
+
+        if (firstArgument.digits[i] < secondArgument.digits[i]) {
+            return firstArgument.isNegative ? 1 : -1;
+        }
+
+        if (firstArgument.digits[i] > secondArgument.digits[i]) {
+            return firstArgument.isNegative ? -1 : 1;
+        }
+
+        return 0;
+    }
+
+    static areEqual(firstArgument, secondArgument) {
+        //this._checkArguments(firstArgument, secondArgument);
+
+        return Integer.compare(firstArgument, secondArgument) === 0;
+    }
+
+    static add(a, b) {
+        //this._checkArguments(a, b);
+
+        let resultDigits = [],
+            isNegativeResult = false,
+            firstArgument = a.clone(),
+            secondArgument = b.clone();
+
+        if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
+            secondArgument.isNegative = false;
+            return Integer.subtract(firstArgument, secondArgument);
+        }
+
+        if (firstArgument.isNegative === true && secondArgument.isNegative === false) {
+            firstArgument.isNegative = false;
+            return Integer.subtract(secondArgument, firstArgument);
+        }
+
+        isNegativeResult = firstArgument.isNegative;
+        let balance = 0;
+
+        if (firstArgument.digits.length < secondArgument.digits.length) {
+            let temp = firstArgument;
+            firstArgument = secondArgument;
+            secondArgument = temp;
+        }
+
+        for (let index = 0; index < firstArgument.digits.length; index++) {
+            const secondArgumentDigit = secondArgument.digits[index] || 0;
+            let resultDigit = firstArgument.digits[index] + secondArgumentDigit + balance;
+
+            if (resultDigit >= 10) {
+                balance = parseInt(resultDigit / 10);
+                resultDigit %= 10;
+            } else {
+                balance = 0;
+            }
+
+            resultDigits.push(resultDigit);
+        }
+
+        if (balance !== 0) {
+            resultDigits.push(balance);
+        }
+
+        return new Integer(resultDigits, isNegativeResult);
+    }
+
+    static subtract(a, b) {
+        //this._checkArguments(a, b);
+
+        let resultDigits = [],
+            isNegativeResult = false,
+            firstArgument = a.clone(),
+            secondArgument = b.clone();
+
+        if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
+            secondArgument.isNegative = false;
+            return Integer.add(firstArgument, secondArgument);
+        }
+
+        if (firstArgument.isNegative === true && secondArgument.isNegative === false) {
+            secondArgument.isNegative = true;
+            return Integer.add(firstArgument, secondArgument);
+        }
+
+        if (firstArgument.isNegative === false && secondArgument.isNegative === false) {
+            isNegativeResult = false;
+
+            if (Integer.compare(firstArgument, secondArgument) === -1) {
+                var exchange = firstArgument;
+                firstArgument = secondArgument;
+                secondArgument = exchange;
+                isNegativeResult = true;
+            }
+
+            for (var i = 0; i < firstArgument.digits.length; i++) {
+                var secondArgumentDigit = secondArgument.digits[i] || 0;
+
+                if (firstArgument.digits[i] >= secondArgumentDigit) {
+                    var resultDigit = firstArgument.digits[i] - secondArgumentDigit;
+                    resultDigits.push(resultDigit);
+                } else {
+                    if (i < firstArgument.digits.length - 1) {
+                        firstArgument.digits[i] += 10;
+                        firstArgument.digits[i + 1] -= 1;
+                    }
+                    if (i + 1 === firstArgument.digits.length - 1 && firstArgument.digits[i + 1] === 0) {
+                        firstArgument.digits.length -= 1;
+                    }
+
+                    resultDigit = firstArgument.digits[i] - secondArgumentDigit;
+                    resultDigits.push(resultDigit);
+
+                }
+            }
+
+            while (resultDigits[resultDigits.length - 1] === 0 && resultDigits.length != 1) {
+                resultDigits.length--;
+            }
+        }
+
+        if (firstArgument.isNegative === true && secondArgument.isNegative === true) {
+            secondArgument.isNegative = false;
+            return Integer.add(firstArgument, secondArgument);
+        }
+
+        return new Integer(resultDigits, isNegativeResult);
     }
 }
 
-Integer.prototype.clone = function () {
-    return new Integer([...this.digits], this.isNegative);
-};
-
-Integer.prototype.isZero = function () {
-    return this.digits.length === 1 && this.digits[0] === 0;
-};
-
-Integer.prototype.changeSign = function () {
-    if (!this.isZero()) {
-        this.isNegative = !this.isNegative;
-    } else {
-        this.isNegative = false;
-    }
-};
-
 Integer.prototype.push = function (value) {
-
     if (this.digits.length === 1 && this.digits[0] === 0) {
         if (value !== 0) {
             this.digits[0] = value;
@@ -66,20 +248,6 @@ Integer.prototype.pop = function () {
     } else {
         this.digits.shift();
     }
-};
-
-Integer.prototype.toString = function () {
-    var result = "";
-
-    if (this.isNegative) {
-        result = "-";
-    }
-
-    result += String(this.digits.reduce(function (previousValue, currentValue) {
-        return "" + currentValue + previousValue;
-    }));
-
-    return result;
 };
 
 function divAndMod(a, b) {
@@ -100,11 +268,11 @@ function divAndMod(a, b) {
         firstArgument.isNegative = false;
         secondArgument.isNegative = false;
 
-        if (compasion(firstArgument, secondArgument)) {
+        if (Integer.areEqual(firstArgument, secondArgument)) {
             var count = 0;
             firstArgumentDivDigits = new Integer();
             if (firstArgument.digits.length === secondArgument.digits.length) {
-                while (compasion(firstArgument, secondArgument)) {
+                while (Integer.areEqual(firstArgument, secondArgument)) {
                     firstArgument = Integer.sub(firstArgument, secondArgument);
                     count++;
                 }
@@ -116,7 +284,7 @@ function divAndMod(a, b) {
             }
 
             while (firstArgument.digits.length !== 0) {
-                if (!compasion(firstArgumentDivDigits, secondArgument)) {
+                if (!Integer.areEqual(firstArgumentDivDigits, secondArgument)) {
                     firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
                 }
                 var i = firstArgumentDivDigits.digits.length - 1;
@@ -127,7 +295,7 @@ function divAndMod(a, b) {
                 }
 
                 if (!(firstArgumentDivDigits.digits[0] === 0 && firstArgumentDivDigits.length === 1)) {
-                    while (compasion(firstArgumentDivDigits, secondArgument)) {
+                    while (Integer.areEqual(firstArgumentDivDigits, secondArgument)) {
                         firstArgumentDivDigits = Integer.sub(firstArgumentDivDigits, secondArgument);
                         count++;
                     }
@@ -163,152 +331,6 @@ function getCoefficients(power) {
     }
     return coefficients;
 }
-
-function compasion(firstArgument, secondArgument) {
-    if (firstArgument.digits.length > secondArgument.digits.length) {
-        return true;
-    }
-
-    if (firstArgument.digits.length < secondArgument.digits.length) {
-        return false;
-    }
-
-    if (firstArgument.digits.length === secondArgument.digits.length) {
-        var i = firstArgument.digits.length - 1;
-        while (firstArgument.digits[i] === secondArgument.digits[i] && i != 0) {
-            i--;
-        }
-
-        if (firstArgument.digits[i] < secondArgument.digits[i]) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-}
-
-Integer.add = function (firstArgument, secondArgument) {
-    let resultDigits = [],
-        isNegativeResult = false;
-
-    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw "Error format in operation Add!";
-    } else {
-        if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
-            secondArgument.isNegative = false;
-            return Integer.sub(firstArgument, secondArgument);
-        }
-
-        if (firstArgument.isNegative === true && secondArgument.isNegative === false) {
-            firstArgument.isNegative = false;
-            return Integer.sub(secondArgument, firstArgument);
-        }
-
-        if (firstArgument.isNegative === secondArgument.isNegative) {
-            isNegativeResult = firstArgument.isNegative;
-            var i = 0;
-            var balance = 0;
-
-            if (firstArgument.digits.length < secondArgument.digits.length) {
-                var exchange = firstArgument;
-                firstArgument = secondArgument;
-                secondArgument = exchange;
-            }
-
-            for (; i < firstArgument.digits.length; i++) {
-                var secondArgumentDigit = secondArgument.digits[i] || 0;
-                var resultDigit = firstArgument.digits[i] + secondArgumentDigit + balance;
-
-                if (resultDigit >= 10) {
-                    balance = parseInt(resultDigit / 10);
-                    resultDigit %= 10;
-                } else {
-                    balance = 0;
-                }
-
-                resultDigits.push(resultDigit);
-            }
-
-            if (balance !== 0) {
-                resultDigits.push(balance);
-            }
-        } else {
-            if (firstArgument.isNegative && !secondArgument.isNegative) {
-                firstArgument.isNegative = false;
-                return Integer.sub(secondArgument, firstArgument);
-            } else {
-                secondArgument.isNegative = false;
-                return Integer.sub(firstArgument, secondArgument);
-            }
-        }
-    }
-
-    return new Integer(resultDigits, isNegativeResult);
-};
-
-Integer.sub = function (firstArgument, secondArgument) {
-    var result = new Integer();
-
-    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw "Error format in operation Sub!";
-    } else {
-
-        if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
-            secondArgument.isNegative = false;
-            result = Integer.add(firstArgument, secondArgument);
-            return result;
-        }
-
-        if (firstArgument.isNegative === true && secondArgument.isNegative === false) {
-            secondArgument.isNegative = true;
-            result = Integer.add(firstArgument, secondArgument);
-            return result;
-        }
-
-        if (firstArgument.isNegative === false && secondArgument.isNegative === false) {
-            result.isNegative = false;
-
-            if (!compasion(firstArgument, secondArgument)) {
-                var exchange = firstArgument;
-                firstArgument = secondArgument;
-                secondArgument = exchange;
-                result.isNegative = true;
-
-            }
-
-            for (var i = 0; i < firstArgument.digits.length; i++) {
-                var secondArgumentDigit = secondArgument.digits[i] || 0;
-
-                if (firstArgument.digits[i] >= secondArgumentDigit) {
-                    var resultDigit = firstArgument.digits[i] - secondArgumentDigit;
-                    result.digits.push(resultDigit);
-                } else {
-                    if (i < firstArgument.digits.length - 1) {
-                        firstArgument.digits[i] += 10;
-                        firstArgument.digits[i + 1] -= 1;
-                    }
-                    if (i + 1 === firstArgument.digits.length - 1 && firstArgument.digits[i + 1] === 0) {
-                        firstArgument.digits.length -= 1;
-                    }
-
-                    resultDigit = firstArgument.digits[i] - secondArgumentDigit;
-                    result.digits.push(resultDigit);
-
-                }
-            }
-            while (result.digits[result.digits.length - 1] === 0 && result.digits.length != 1) {
-                result.digits.length--;
-            }
-        }
-
-        if (firstArgument.isNegative === true && secondArgument.isNegative === true) {
-            secondArgument.isNegative = false;
-            result = Integer.add(firstArgument, secondArgument);
-            return result;
-        }
-    }
-    return result;
-};
 
 Integer.pow = function (firstArgument, power) {
     var result = new Integer("1");
@@ -409,7 +431,7 @@ Integer.mod = function (firstArgument, secondArgument) {
     if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
         throw "Error format in operation div!";
     } else {
-        if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1) || (!compasion(firstArgument, secondArgument))) {
+        if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1) || (!Integer.areEqual(firstArgument, secondArgument))) {
             return firstArgument;
         } else {
             return divAndMod(firstArgument, secondArgument).remainer;
