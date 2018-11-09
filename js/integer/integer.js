@@ -64,24 +64,7 @@ class Integer {
         }
     }
 
-    _checkArgument(argument) {
-        if (!(argument instanceof Integer)) {
-            throw new Error(`Argument(${argument}) is not instance of Integer`);
-        }
-    }
-
-    _checkArguments() {
-        if (arguments.length !== 2) {
-            throw new Error("Invalid count of arguments");
-        }
-
-        this._checkArgument(arguments[0]);
-        this._checkArgument(arguments[1]);
-    }
-
     static compare(firstArgument, secondArgument) {
-        //this._checkArguments(firstArgument, secondArgument);
-
         if (!firstArgument.isNegative && secondArgument.isNegative) {
             return 1;
         }
@@ -116,14 +99,10 @@ class Integer {
     }
 
     static areEqual(firstArgument, secondArgument) {
-        //this._checkArguments(firstArgument, secondArgument);
-
         return Integer.compare(firstArgument, secondArgument) === 0;
     }
 
     static add(a, b) {
-        //this._checkArguments(a, b);
-
         let resultDigits = [],
             isNegativeResult = false,
             firstArgument = a.clone(),
@@ -131,12 +110,12 @@ class Integer {
 
         if (firstArgument.isNegative === false && secondArgument.isNegative === true) {
             secondArgument.isNegative = false;
-            return Integer.subtract(firstArgument, secondArgument);
+            return Integer.sub(firstArgument, secondArgument);
         }
 
         if (firstArgument.isNegative === true && secondArgument.isNegative === false) {
             firstArgument.isNegative = false;
-            return Integer.subtract(secondArgument, firstArgument);
+            return Integer.sub(secondArgument, firstArgument);
         }
 
         isNegativeResult = firstArgument.isNegative;
@@ -169,9 +148,7 @@ class Integer {
         return new Integer(resultDigits, isNegativeResult);
     }
 
-    static subtract(a, b) {
-        //this._checkArguments(a, b);
-
+    static sub(a, b) {
         let resultDigits = [],
             isNegativeResult = false,
             firstArgument = a.clone(),
@@ -230,155 +207,17 @@ class Integer {
 
         return new Integer(resultDigits, isNegativeResult);
     }
-}
 
-Integer.prototype.push = function (value) {
-    if (this.digits.length === 1 && this.digits[0] === 0) {
-        if (value !== 0) {
-            this.digits[0] = value;
-        }
-    } else {
-        this.digits.unshift(value);
-    }
-};
+    static mul(a, b) {
+        let result = new Integer(),
+            firstArgument = a.clone(),
+            secondArgument = b.clone();
 
-Integer.prototype.pop = function () {
-    if (this.digits.length === 1) {
-        this.digits[0] = 0;
-    } else {
-        this.digits.shift();
-    }
-};
+        for (let i = 0; i < secondArgument.digits.length; i++) {
+            let balance = 0;
+            const additionalNumber = new Integer();
 
-function divAndMod(a, b) {
-    var resultDiv = new Integer();
-    var firstArgumentDivDigits = new Integer();
-    var firstArgument = a.clone();
-    var secondArgument = b.clone();
-
-    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw "Error format in operation div!";
-    } else {
-        if (firstArgument.isNegative === secondArgument.isNegative) {
-            resultDiv.isNegative = false;
-        } else {
-            resultDiv.isNegative = true;
-        }
-
-        firstArgument.isNegative = false;
-        secondArgument.isNegative = false;
-
-        if (Integer.areEqual(firstArgument, secondArgument)) {
-            var count = 0;
-            firstArgumentDivDigits = new Integer();
-            if (firstArgument.digits.length === secondArgument.digits.length) {
-                while (Integer.areEqual(firstArgument, secondArgument)) {
-                    firstArgument = Integer.sub(firstArgument, secondArgument);
-                    count++;
-                }
-                resultDiv.digits.unshift(count);
-            }
-
-            while (firstArgument.digits.length !== 0 && firstArgumentDivDigits.digits.length != secondArgument.digits.length) {
-                firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
-            }
-
-            while (firstArgument.digits.length !== 0) {
-                if (!Integer.areEqual(firstArgumentDivDigits, secondArgument)) {
-                    firstArgumentDivDigits.digits.unshift(firstArgument.digits.pop());
-                }
-                var i = firstArgumentDivDigits.digits.length - 1;
-
-                while (firstArgumentDivDigits.digits[i] == 0 && firstArgumentDivDigits.digits.length !== 1) {
-                    firstArgumentDivDigits.digits.length--;
-                    i--;
-                }
-
-                if (!(firstArgumentDivDigits.digits[0] === 0 && firstArgumentDivDigits.length === 1)) {
-                    while (Integer.areEqual(firstArgumentDivDigits, secondArgument)) {
-                        firstArgumentDivDigits = Integer.sub(firstArgumentDivDigits, secondArgument);
-                        count++;
-                    }
-                }
-
-                resultDiv.digits.unshift(count);
-                count = 0;
-            }
-        } else {
-            resultDiv.digits.unshift(0);
-        }
-        if (resultDiv.digits.length === 1 && resultDiv.digits[0] === 0) {
-            resultDiv.isNegative = false;
-        }
-        firstArgumentDivDigits.isNegative = resultDiv.isNegative;
-        return {
-            remainer: firstArgumentDivDigits,
-            quotient: resultDiv
-        };
-    }
-}
-
-function getCoefficients(power) {
-    var coefficients = [];
-    var two = new Integer("2");
-
-    for (var i = 0; power.digits[0] > 1 || power.digits.length > 1; i++) {
-        coefficients[i] = Integer.mod(power, two).digits[0];
-        power = Integer.div(power, two);
-        if (power.digits[0] === 1 && power.digits.length === 1) {
-            coefficients[i + 1] = 1;
-        }
-    }
-    return coefficients;
-}
-
-Integer.pow = function (firstArgument, power) {
-    var result = new Integer("1");
-
-    if (!(firstArgument instanceof Integer) || !(power instanceof Integer)) {
-        throw "Error format in operation power!";
-    } else {
-        if (power.isNegative === true) {
-            throw "Error! Power can not be less than 0";
-        }
-
-        if (power.length === 1 && power.digits[i] === 0) {
-            return new Integer("1");
-        }
-
-        if (power.length === 1 && power.digits[i] === 1) {
-            return firstArgument;
-        }
-
-        if (power.isNegative === false) {
-            var coefficients = [];
-        }
-        coefficients = getCoefficients(power);
-
-        for (var i = coefficients.length - 1; i >= 0; i--) {
-            if (coefficients[i] === 1) {
-                result = Integer.mul(result, firstArgument);
-            }
-            if (i != 0) {
-                result = Integer.mul(result, result);
-            }
-        }
-    }
-
-    return result;
-};
-
-Integer.mul = function (firstArgument, secondArgument) {
-    var result = new Integer();
-
-    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw "Error format in operation multiplication!";
-    } else {
-        for (var i = 0; i < secondArgument.digits.length; i++) {
-            var balance = 0;
-            var additionalNumber = new Integer();
-
-            for (var j = 0; j < firstArgument.digits.length; j++) {
+            for (let j = 0; j < firstArgument.digits.length; j++) {
                 additionalNumber.digits[j] = secondArgument.digits[i] * firstArgument.digits[j] + balance;
 
                 if (additionalNumber.digits[j] >= 10) {
@@ -411,31 +250,96 @@ Integer.mul = function (firstArgument, secondArgument) {
             result.isNegative = true;
         }
 
-        while (result.digits[result.digits.length - 1] === 0 && result.digits.length != 1) {
+        while (result.digits[result.digits.length - 1] === 0 && result.digits.length !== 1) {
             result.digits.length--;
         }
 
         return result;
     }
-};
 
-Integer.div = function (firstArgument, secondArgument) {
-    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw "Error format in operation div!";
-    } else {
-        return divAndMod(firstArgument, secondArgument).quotient;
-    }
-};
+    static pow(a, p) {
+        let result = new Integer("1"),
+            firstArgument = a.clone(),
+            power = p.clone();
 
-Integer.mod = function (firstArgument, secondArgument) {
-    if (!(firstArgument instanceof Integer) || !(secondArgument instanceof Integer)) {
-        throw "Error format in operation div!";
-    } else {
-        if ((secondArgument.digits[0] === 0 && secondArgument.digits.length === 1) || (!Integer.areEqual(firstArgument, secondArgument))) {
-            return firstArgument;
-        } else {
-            return divAndMod(firstArgument, secondArgument).remainer;
+        if (power.isZero) {
+            return result;
         }
+
+        if (Integer.areEqual(power, new Integer("1"))) {
+            return firstArgument;
+        }
+
+        const coefficients = getCoefficients(power);
+
+        for (var i = coefficients.length - 1; i >= 0; i--) {
+            if (coefficients[i] === 1) {
+                result = Integer.mul(result, firstArgument);
+            }
+
+            if (i != 0) {
+                result = Integer.mul(result, result);
+            }
+        }
+
+        return result;
+    }
+}
+
+function divide(a, b) {
+    let quotient = new Integer(),
+        remainer = a.clone(),
+        comparer = b.clone();
+
+    comparer.isNegative = false;
+
+    switch (Integer.compare(a, b)) {
+        case 0:
+            quotient = new Integer("1");
+            remainer = new Integer();
+            break;
+        case -1:
+            if (!a.isNegative && !b.isNegative) {
+                break;
+            }
+        case 1:
+            while (Integer.compare(remainer, comparer) !== -1 || remainer.isNegative) {
+                remainer = !!(a.isNegative ^ b.isNegative) ? Integer.add(remainer, b) : Integer.sub(remainer, b);
+                quotient = Integer.add(quotient, new Integer("1"));
+            }
+
+            quotient.isNegative = !!(a.isNegative ^ b.isNegative);
+            break;
+    }
+
+    return {
+        remainer,
+        quotient
+    };
+}
+
+function getCoefficients(power) {
+    var coefficients = [];
+    var two = new Integer("2");
+
+    for (var i = 0; power.digits[0] > 1 || power.digits.length > 1; i++) {
+        coefficients[i] = Integer.mod(power, two).digits[0];
+        power = Integer.div(power, two);
+
+        if (power.digits[0] === 1 && power.digits.length === 1) {
+            coefficients[i + 1] = 1;
+        }
+    }
+    return coefficients;
+}
+
+Integer.;
+
+Integer.mod = function (a, m) {
+    if (Integer.areEqual(a, m)) {
+        return new Integer();
+    } else {
+        return divide(a, m).remainer;
     }
 };
 
