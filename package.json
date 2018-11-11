@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --content-base ./ --inline",
     "webpack": "webpack",
     "test": "mocha ./js/tests/**/*-tests.js  --require babel-register --watch",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha -- ./js/tests/**/*-tests.js --require babel-register"
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha -- ./js/tests/**/integer-tests/**/*-tests.js --require babel-register"
   },
   "repository": {
     "type": "git",
