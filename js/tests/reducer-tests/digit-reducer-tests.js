@@ -15,7 +15,7 @@ describe("Digit reducer", function () {
             };
 
             assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(4)), expectedState);
-            assert.equal(actualState.firstArgument.isZero(), true, "mutation detected");
+            assert.equal(actualState.firstArgument.isZero, true, "mutation detected");
         });
 
         it("add second digit to first argument", function () {

@@ -19,7 +19,7 @@ function ClearingReducer(previousState, action) {
             };
 
         case "deleteDigit":
-            if (result.result !== null && result.firstArgument.isZero()) {
+            if (result.result !== null && result.firstArgument.isZero) {
                 result.firstArgument = result.result.clone();
                 result.firstArgument.pop();
                 result.result = null;

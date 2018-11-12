@@ -64,6 +64,24 @@ class Integer {
         }
     }
 
+    push (value) {
+        if (this.isZero) {
+            if (value !== 0) {
+                this.digits[0] = value;
+            }
+        } else {
+            this.digits.unshift(value);
+        }
+    }
+
+    pop () {
+        if (this.digits.length === 1) {
+            this.digits[0] = 0;
+        } else {
+            this.digits.shift();
+        }
+    }
+
     static compare(firstArgument, secondArgument) {
         if (!firstArgument.isNegative && secondArgument.isNegative) {
             return 1;
@@ -181,10 +199,8 @@ class Integer {
                     var resultDigit = firstArgument.digits[i] - secondArgumentDigit;
                     resultDigits.push(resultDigit);
                 } else {
-                    if (i < firstArgument.digits.length - 1) {
-                        firstArgument.digits[i] += 10;
-                        firstArgument.digits[i + 1] -= 1;
-                    }
+                    firstArgument.digits[i] += 10;
+                    firstArgument.digits[i + 1] -= 1;
 
                     if (i + 1 === firstArgument.digits.length - 1 && firstArgument.digits[i + 1] === 0) {
                         firstArgument.digits.length -= 1;

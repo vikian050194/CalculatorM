@@ -2,8 +2,8 @@ function QueryBuilder() {
     this.getQuery = function (model) {
         var line = new String();
 
-        if (model.firstArgument.isZero() && model.operator === "") {
-            if (model.module.isZero()) {
+        if (model.firstArgument.isZero && model.operator === "") {
+            if (model.module.isZero) {
                 return "_";
             } else {
                 return "_ mod " + model.module.toString();
@@ -28,13 +28,13 @@ function QueryBuilder() {
             line += "_";
         }
 
-        if (!model.module.isZero() && model.result !== null) {
+        if (!model.module.isZero && model.result !== null) {
             line += " \u2630 " + model.result.toString() + "_" + " mod " + model.module.toString();
         } else {
             if (model.result !== null) {
                 line += " = " + model.result.toString() + "_";
             }
-            if (!model.module.isZero()) {
+            if (!model.module.isZero) {
                 line += " mod " + model.module.toString();
             }
         }

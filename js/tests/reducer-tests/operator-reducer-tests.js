@@ -82,8 +82,7 @@ describe("Operator reducer", function () {
         assert.deepEqual(OperatorReducer(actualState, createAction("calculate")()), expectedState);
     });
 
-    it.only("action \"calculate\" with module", function () {
-        debugger;
+    it("action \"calculate\" with module", function () {
         var actualState = { ...initialState,
             firstArgument: new Integer("63"),
             module: new Integer("5")
@@ -268,12 +267,12 @@ describe("Operator reducer", function () {
 
     it("add operator with positive cookie and module", function () {
         var actualState = { ...initialState,
-            firstArgument: new Integer("-18"),
-            positiveCookie: true,
-            module: new Integer("9")
+            firstArgument: new Integer("18"),
+            secondArgument: new Integer("1"),
+            operator: "add",
+            module: new Integer("9"),
+            positiveCookie: true
         };
-        actualState = OperatorReducer(actualState, createAction("addOperator")("add"));
-        actualState.secondArgument = new Integer("1");
 
         var expectedState = { ...initialState,
             firstArgument: new Integer("18"),

@@ -142,14 +142,4 @@ describe("Integer: sub", function () {
 
         assert.deepEqual(actual, expected);
     });
-
-    it("subtract 3 from 45", function () {
-        var firstNumber = new Integer("1");
-        var secondNumber = new Integer("2");
-        var expected = new Integer("-39");
-        debugger;
-        var actual = Integer.sub(firstNumber, secondNumber);
-
-        assert.deepEqual(actual, expected);
-    });
 });
