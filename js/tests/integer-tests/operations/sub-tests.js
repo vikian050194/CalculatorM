@@ -3,7 +3,7 @@ import Integer from "../../../integer/integer";
 import assert from "assert";
 
 describe("Integer: sub", function () {
-    it("of 1 sub 1", function () {
+    it("subtract 1 from 1", function () {
         var firstNumber = new Integer("1");
         var secondNumber = new Integer("1");
         var expected = new Integer("0");
@@ -13,7 +13,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of 100 sub 9", function () {
+    it("subtract 9 from 100", function () {
         var firstNumber = new Integer("100");
         var secondNumber = new Integer("9");
         var expected = new Integer("91");
@@ -23,7 +23,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of 21 sub 30", function () {
+    it("subtract 30 from 21", function () {
         var firstNumber = new Integer("21");
         var secondNumber = new Integer("30");
         var expected = new Integer("-9");
@@ -33,7 +33,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of 1000 sub 999", function () {
+    it("subtract 999 from 1000", function () {
         var firstNumber = new Integer("1000");
         var secondNumber = new Integer("999");
         var expected = new Integer("1");
@@ -43,7 +43,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of 1000000000000 sub 999999999999", function () {
+    it("subtract 999999999999 from 1000000000000", function () {
         var firstNumber = new Integer("1000000000000");
         var secondNumber = new Integer("999999999999");
         var expected = new Integer("1");
@@ -53,7 +53,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of -21 sub -30", function () {
+    it("subtract -30 from -21", function () {
         var firstNumber = new Integer("-21");
         var secondNumber = new Integer("-30");
         var expected = new Integer("9");
@@ -63,7 +63,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of -21 sub 30", function () {
+    it("subtract  30 from -21", function () {
         var firstNumber = new Integer("-21");
         var secondNumber = new Integer("30");
         var expected = new Integer("-51");
@@ -73,7 +73,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of 21 sub -30", function () {
+    it("subtract -30 from 21", function () {
         var firstNumber = new Integer("21");
         var secondNumber = new Integer("-30");
         var expected = new Integer("51");
@@ -83,7 +83,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of 100000000 sub 1", function () {
+    it("subtract 1 from 100000000", function () {
         var firstNumber = new Integer("100000000");
         var secondNumber = new Integer("1");
         var expected = new Integer("99999999");
@@ -93,7 +93,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of -645645776578 sub 343255465768768798", function () {
+    it("subtract 343255465768768798 from 645645776578", function () {
         var firstNumber = new Integer("-645645776578");
         var secondNumber = new Integer("343255465768768798");
         var expected = new Integer("-343256111414545376");
@@ -103,7 +103,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of 354456436346 sub 4364", function () {
+    it("subtract 4364 from 354456436346", function () {
         var firstNumber = new Integer("354456436346");
         var secondNumber = new Integer("4364");
         var expected = new Integer("354456431982");
@@ -113,7 +113,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of 965394583456 sub 89534", function () {
+    it("subtract 89534 from 965394583456", function () {
         var firstNumber = new Integer("965394583456");
         var secondNumber = new Integer("89534");
         var expected = new Integer("965394493922");
@@ -123,7 +123,7 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of 354456436346345745645684965394583456 sub 4364565454645823653489534", function () {
+    it("subtract 4364565454645823653489534 from 354456436346345745645684965394583456", function () {
         var firstNumber = new Integer("354456436346345745645684965394583456");
         var secondNumber = new Integer("4364565454645823653489534");
         var expected = new Integer("354456436341981180191039141741093922");
@@ -133,11 +133,21 @@ describe("Integer: sub", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("of -1 sub -1000000000000", function () {
+    it("subtract -1000000000000 from -1", function () {
         var firstNumber = new Integer("-1");
         var secondNumber = new Integer("-1000000000000");
         var expected = new Integer("999999999999");
 
+        var actual = Integer.sub(firstNumber, secondNumber);
+
+        assert.deepEqual(actual, expected);
+    });
+
+    it("subtract 3 from 45", function () {
+        var firstNumber = new Integer("1");
+        var secondNumber = new Integer("2");
+        var expected = new Integer("-39");
+        debugger;
         var actual = Integer.sub(firstNumber, secondNumber);
 
         assert.deepEqual(actual, expected);

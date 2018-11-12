@@ -3,7 +3,7 @@ import Integer from "../../../integer/integer";
 import assert from "assert";
 
 describe("Integer: mul", function () {
-    it("9 mul by 1", function () {
+    it("mul 9 by 1", function () {
         var firstNumber = new Integer("9");
         var secondNumber = new Integer("10");
         var expected = new Integer("90");
@@ -13,7 +13,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("935345 mul by 0", function () {
+    it("mul 935345 by 0", function () {
         var firstNumber = new Integer("935345");
         var secondNumber = new Integer("0");
         var expected = new Integer("0");
@@ -23,7 +23,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("0 mul by 0", function () {
+    it("mul 0 by 0", function () {
         var firstNumber = new Integer("0");
         var secondNumber = new Integer("0");
         var expected = new Integer("0");
@@ -33,7 +33,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("4 mul by 4", function () {
+    it("mul 4 by 4", function () {
         var firstNumber = new Integer("4");
         var secondNumber = new Integer("4");
         var expected = new Integer("16");
@@ -43,7 +43,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("32 mul by 32", function () {
+    it("mul 32 by 32", function () {
         var firstNumber = new Integer("32");
         var secondNumber = new Integer("32");
         var expected = new Integer("1024");
@@ -53,7 +53,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("0 mul by 54364365345436", function () {
+    it("mul 0 by 54364365345436", function () {
         var firstNumber = new Integer("0");
         var secondNumber = new Integer("54364365345436");
         var expected = new Integer("0");
@@ -63,7 +63,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("9187 mul by 189", function () {
+    it("mul 9187 by 189", function () {
         var firstNumber = new Integer("9187");
         var secondNumber = new Integer("189");
         var expected = new Integer("1736343");
@@ -73,7 +73,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("9187 mul by -189", function () {
+    it("mul 9187 by -189", function () {
         var firstNumber = new Integer("9187");
         var secondNumber = new Integer("-189");
         var expected = new Integer("-1736343");
@@ -83,7 +83,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("-9187 mul by 189", function () {
+    it("mul -9187 by 189", function () {
         var firstNumber = new Integer("-9187");
         var secondNumber = new Integer("189");
         var expected = new Integer("-1736343");
@@ -93,7 +93,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("-91874214143 mul by -32534563000", function () {
+    it("mul -91874214143 by -32534563000", function () {
         var firstNumber = new Integer("-91874214143");
         var secondNumber = new Integer("-32534563000");
         var expected = new Integer("2989087408110924509000");
@@ -103,7 +103,7 @@ describe("Integer: mul", function () {
         assert.deepEqual(actual, expected);
     });
 
-    it("324144744621 mul by 1000000000000", function () {
+    it("mul 324144744621 by 1000000000000", function () {
         var firstNumber = new Integer("324144744621");
         var secondNumber = new Integer("1000000000000");
         var expected = new Integer("324144744621000000000000");

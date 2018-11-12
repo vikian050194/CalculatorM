@@ -185,13 +185,13 @@ class Integer {
                         firstArgument.digits[i] += 10;
                         firstArgument.digits[i + 1] -= 1;
                     }
+
                     if (i + 1 === firstArgument.digits.length - 1 && firstArgument.digits[i + 1] === 0) {
                         firstArgument.digits.length -= 1;
                     }
 
                     resultDigit = firstArgument.digits[i] - secondArgumentDigit;
                     resultDigits.push(resultDigit);
-
                 }
             }
 
@@ -284,6 +284,18 @@ class Integer {
 
         return result;
     }
+
+    static div(a, b) {
+        return divide(a, b).quotient;
+    }
+
+    static mod(a, m) {
+        if (Integer.areEqual(a, m)) {
+            return new Integer();
+        } else {
+            return divide(a, m).remainer;
+        }
+    }
 }
 
 function divide(a, b) {
@@ -292,7 +304,14 @@ function divide(a, b) {
         comparer = b.clone();
 
     comparer.isNegative = false;
+    const divideBySubtraction = function () {
+        while (Integer.compare(remainer, comparer) !== -1 || remainer.isNegative) {
+            remainer = a.isNegative ^ b.isNegative ? Integer.add(remainer, b) : Integer.sub(remainer, b);
+            quotient = Integer.add(quotient, new Integer("1"));
+        }
 
+        quotient.isNegative = !!(a.isNegative ^ b.isNegative);
+    };
     switch (Integer.compare(a, b)) {
         case 0:
             quotient = new Integer("1");
@@ -302,13 +321,11 @@ function divide(a, b) {
             if (!a.isNegative && !b.isNegative) {
                 break;
             }
-        case 1:
-            while (Integer.compare(remainer, comparer) !== -1 || remainer.isNegative) {
-                remainer = !!(a.isNegative ^ b.isNegative) ? Integer.add(remainer, b) : Integer.sub(remainer, b);
-                quotient = Integer.add(quotient, new Integer("1"));
-            }
 
-            quotient.isNegative = !!(a.isNegative ^ b.isNegative);
+            divideBySubtraction();
+            break;
+        case 1:
+            divideBySubtraction();
             break;
     }
 
@@ -332,15 +349,5 @@ function getCoefficients(power) {
     }
     return coefficients;
 }
-
-Integer.;
-
-Integer.mod = function (a, m) {
-    if (Integer.areEqual(a, m)) {
-        return new Integer();
-    } else {
-        return divide(a, m).remainer;
-    }
-};
 
 export default Integer;

@@ -3,7 +3,7 @@ import Integer from "../../../integer/integer";
 import assert from "assert";
 
 describe("Integer: div", function () {
-    it("7 div by 3", function () {
+    it("div 7 by 3", function () {
         const a = new Integer("7");
         const b = new Integer("3");
         const expectedQ = new Integer("2");
@@ -16,7 +16,7 @@ describe("Integer: div", function () {
         assert.deepEqual(actualR, expectedR);
     });
 
-    it("7 div by -3", function () {
+    it("div 7 by -3", function () {
         const a = new Integer("7");
         const b = new Integer("-3");
         const expectedQ = new Integer("-2");
@@ -29,7 +29,7 @@ describe("Integer: div", function () {
         assert.deepEqual(actualR, expectedR);
     });
 
-    it("-7 div by 3", function () {
+    it("div -7 by 3", function () {
         const a = new Integer("-7");
         const b = new Integer("3");
         const expectedQ = new Integer("-3");
@@ -42,7 +42,7 @@ describe("Integer: div", function () {
         assert.deepEqual(actualR, expectedR);
     });
 
-    it("-7 div by -3", function () {
+    it("div -7 by -3", function () {
         const a = new Integer("-7");
         const b = new Integer("-3");
         const expectedQ = new Integer("3");
@@ -55,7 +55,7 @@ describe("Integer: div", function () {
         assert.deepEqual(actualR, expectedR);
     });
 
-    it("3 div by 7", function () {
+    it("div 3 by 7", function () {
         const a = new Integer("3");
         const b = new Integer("7");
         const expectedQ = new Integer();
@@ -68,7 +68,7 @@ describe("Integer: div", function () {
         assert.deepEqual(actualR, expectedR);
     });
 
-    it("7 div by 7", function () {
+    it("div 7 by 7", function () {
         const a = new Integer("7");
         const b = new Integer("7");
         const expectedQ = new Integer("1");
@@ -81,7 +81,7 @@ describe("Integer: div", function () {
         assert.deepEqual(actualR, expectedR);
     });
 
-    it("9 div by 3", function () {
+    it("div 9 by 3", function () {
         const a = new Integer("9");
         const b = new Integer("3");
         const expectedQ = new Integer("3");
@@ -94,7 +94,7 @@ describe("Integer: div", function () {
         assert.deepEqual(actualR, expectedR);
     });
 
-    it("0 div by 7", function () {
+    it("div 0 by 7", function () {
         const a = new Integer();
         const b = new Integer("7");
         const expectedQ = new Integer();
