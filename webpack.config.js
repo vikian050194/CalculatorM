@@ -1,4 +1,4 @@
-var webpack = require("webpack"),
+const webpack = require("webpack"),
     ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
@@ -25,13 +25,19 @@ module.exports = {
             },
             {
                 test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url-loader?limit=1024&name=/fonts/[name].[ext]"
+                loader: "url-loader",
+                options: {
+                    limit: 1024,
+                    name: "[name].[ext]",
+                    outputPath: "fonts/"
+                }
             }
         ]
     },
     output: {
         filename: "./bundle.js",
-        path: __dirname + "/build"
+        path: __dirname + "/build",
+        publicPath: "/"
     },
     plugins: [
         new webpack.ProvidePlugin({
@@ -40,5 +46,14 @@ module.exports = {
             "Cookies": "js-cookie"
         }),
         new ExtractTextPlugin("./bundle.css")
-    ]
+    ],
+    devServer: {
+        index: "index.html",
+        contentBase: __dirname,
+        publicPath: "/build/",
+        port: 8080,
+        watchContentBase: true,
+        open: true,
+        inline: true
+    }
 };
