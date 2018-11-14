@@ -25,7 +25,7 @@ module.exports = {
             },
             {
                 test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file-loader",
+                loader: "url-loader",
                 options: {
                     limit: 1024,
                     name: "[name].[ext]",
@@ -53,7 +53,7 @@ module.exports = {
         publicPath: "/build/",
         port: 8080,
         watchContentBase: true,
-        open: false,
+        open: true,
         inline: true
     }
 };
