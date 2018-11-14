@@ -25,18 +25,19 @@ module.exports = {
             },
             {
                 test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url-loader",
+                loader: "file-loader",
                 options: {
                     limit: 1024,
                     name: "[name].[ext]",
-                    outputPath: "fonts/"
+                    outputPath: "fonts/",
+                    publicPath: "/build/fonts/"
                 }
             }
         ]
     },
     output: {
         filename: "./bundle.js",
-        path: __dirname + "/build",
+        path: __dirname + "/build/",
         publicPath: "/"
     },
     plugins: [
@@ -49,11 +50,10 @@ module.exports = {
     ],
     devServer: {
         index: "index.html",
-        contentBase: __dirname,
         publicPath: "/build/",
         port: 8080,
         watchContentBase: true,
-        open: true,
+        open: false,
         inline: true
     }
 };
