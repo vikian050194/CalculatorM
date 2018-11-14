@@ -1,37 +1,49 @@
+import Integer from "./../../integer/integer";
+
 function ClearingReducer(previousState, action) {
+    const result = { ...previousState
+    };
+
     switch (action.type) {
-        case 'clear':
+        case "clear":
             return {
-                firstArgument: 0,
-				secondArgument: null,
-				operator: '',
-				module: 0,
-				memory: null,
-				query: '',
-				result: null,
-				positiveCookie: previousState.positiveCookie,
-				moduleCookie: previousState.moduleCookie
+                firstArgument: new Integer(),
+                secondArgument: null,
+                operator: "",
+                module: new Integer(),
+                memory: previousState.memory,
+                query: "",
+                result: null,
+                positiveCookie: previousState.positiveCookie,
+                moduleCookie: previousState.moduleCookie
             };
-            break;
 
-        case 'deleteDigit':
-            if (previousState.result !== null && previousState.firstArgument === 0) {
-                return $.extend({}, previousState, {
-                    firstArgument: (previousState.result - previousState.result % 10) / 10,
-                    result: null
-                });
+        case "deleteDigit":
+            if (result.result !== null && result.firstArgument.isZero) {
+                result.firstArgument = result.result.clone();
+                result.firstArgument.pop();
+                result.result = null;
+                return result;
             }
-            if (previousState.operator !== '' && previousState.secondArgument === null) {
-                return previousState;
+
+            if (previousState.operator !== "" && previousState.secondArgument === null) {
+                return { ...previousState,
+                    operator: ""
+                };
             }
-            if (previousState.secondArgument === null) {
-                return $.extend({}, previousState, {firstArgument: (previousState.firstArgument - previousState.firstArgument % 10) / 10});
+
+            if (result.secondArgument === null) {
+                result.firstArgument = result.firstArgument.clone();
+                result.firstArgument.pop();
+                return result;
             } else {
-                return $.extend({}, previousState, {secondArgument: (previousState.secondArgument - previousState.secondArgument % 10) / 10});
+                result.secondArgument = result.secondArgument.clone();
+                result.secondArgument.pop();
+                return result;
             }
-            break;
-
         default:
             return previousState;
     }
 }
+
+export default ClearingReducer;

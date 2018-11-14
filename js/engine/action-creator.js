@@ -3,6 +3,8 @@ function createAction(type) {
         return {
             type: type,
             value: value
-        }
-    }
+        };
+    };
 }
+
+export default createAction;

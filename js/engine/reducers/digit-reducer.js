@@ -1,43 +1,55 @@
+import Integer from "./../../integer/integer";
+
 function DigitReducer(previousState, action) {
+    const result = { ...previousState
+    };
+
     switch (action.type) {
-        case 'addDigit':
-            if (previousState.operator === '') {
-                previousState.firstArgument *= 10;
-                if (previousState.firstArgument >= 0) {
-                    previousState.firstArgument += action.value;
-                } else {
-                    previousState.firstArgument -= action.value;
-                }
-                return $.extend({}, previousState, {firstArgument: previousState.firstArgument});
-            } else {
-                if (previousState.secondArgument === null) {
-                    previousState.secondArgument = 0;
-                }
-                previousState.secondArgument *= 10;
-                if (previousState.secondArgument >= 0) {
-                    previousState.secondArgument += action.value;
-                } else {
-                    previousState.secondArgument -= action.value;
-                }
-                return $.extend({}, previousState, {secondArgument: previousState.secondArgument});
-            }
-            break;
+        case "addDigit":
+            if (result.operator === "") {
+                result.firstArgument = result.firstArgument.clone();
+                result.firstArgument.push(action.value);
 
-        case 'changeSign':
-            if(previousState.result !== null && previousState.firstArgument === 0) {
-                return $.extend({}, previousState, {firstArgument: previousState.result * (-1), result: null});
-            }
-            if (previousState.operator === '') {
-                return $.extend({}, previousState, {firstArgument: previousState.firstArgument * (-1)});
+                return result;
             } else {
-                if (previousState.secondArgument === null) {
-                    return previousState;
+                if (result.secondArgument === null) {
+                    result.secondArgument = new Integer();
+                } else {
+                    result.secondArgument = result.secondArgument.clone();
                 }
-                return $.extend({}, previousState, {secondArgument: previousState.secondArgument * (-1)});
-            }
-            break;
 
+                result.secondArgument.push(action.value);
+                return result;
+            }
+        case "changeSign":
+            if (result.result !== null) {
+                result.result = result.result.clone();
+                result.result.changeSign();
+
+                result.firstArgument = result.result;
+                result.result = null;
+                result.secondArgument = null;
+                result.operator = "";
+
+                return result;
+            }
+            if (result.operator === "") {
+                result.firstArgument = result.firstArgument.clone();
+                result.firstArgument.changeSign();
+
+                return result;
+            } else {
+                if (result.secondArgument === null) {
+                    return result;
+                }
+
+                result.secondArgument = result.secondArgument.clone();
+                result.secondArgument.changeSign();
+
+                return result;
+            }
         default:
             return previousState;
     }
 }
+export default DigitReducer;

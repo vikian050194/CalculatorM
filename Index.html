@@ -5,46 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>CalculatorM</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
-    <link id="theme" href="css/themes.css" rel="stylesheet">
-    <script type="text/javascript" src="js/plugins/jquery-2.2.4.js"></script>
-    <script type="text/javascript" src="js/plugins/js.cookie.js"></script>
-    <script type="text/javascript" src="js/integer/integer.js"></script>
-    <script type="text/javascript" src="js/ui/themer.js"></script>
-    <script type="text/javascript" src="js/ui/page-handler.js"></script>
-    <script type="text/javascript" src="js/ui/autoresize-text.js"></script>
-    <script type="text/javascript" src="js/engine/query-builders/query-builder-wtes.js"></script>
-    <script type="text/javascript" src="js/engine/action-creator.js"></script>
-    <script type="text/javascript" src="js/engine/calculator-store.js"></script>
-    <script type="text/javascript" src="js/engine/calculator.ui.js"></script>
-    <script type="text/javascript" src="js/engine/update-ui.js"></script>
-    <script type="text/javascript" src="js/engine/safe-integer.js"></script>
-    <script type="text/javascript" src="js/engine/reducers/cookie-reducer.js"></script>
-    <script type="text/javascript" src="js/engine/reducers/clearing-reducer.js"></script>
-    <script type="text/javascript" src="js/engine/reducers/combine-reducers.js"></script>
-    <script type="text/javascript" src="js/engine/reducers/digit-reducer.js"></script>
-    <script type="text/javascript" src="js/engine/reducers/memory-reducer.js"></script>
-    <script type="text/javascript" src="js/engine/reducers/operator-reducer.js"></script>
-    <script type="text/javascript" src="js/engine/reducers/query-reducer.js"></script>
-    <script type="text/javascript" src="js/engine/applicators/clearing-applicator.js"></script>
-    <script type="text/javascript" src="js/engine/applicators/digit-applicator.js"></script>
-    <script type="text/javascript" src="js/engine/applicators/history-applicator.js"></script>
-    <script type="text/javascript" src="js/engine/applicators/memory-applicator.js"></script>
-    <script type="text/javascript" src="js/engine/applicators/operator-applicator.js"></script>
-    <script type="text/javascript" src="js/engine/applicators/menu-applicator.js"></script>
-    <script type="text/javascript" src="js/flux/store-creator.js"></script>
-    <script type="text/javascript" src="js/history/history-update.js"></script>
-    <script type="text/javascript" src="js/history/history-reducer.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <link rel="shortcut icon" href="icons/index.png" />
+    <link href="build/bundle.css" rel="stylesheet">
+    <script type="text/javascript" src="build/bundle.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" />
 </head>
 
 <body>
     <div id="calculator" class="calculator-blue">
         <div id="lines-container">
-            <input id="query" class="form-control line resize" readonly>
-            <input id="result" class="form-control line resize" readonly>
+            <input id="query" class="form-control line resize" readonly disabled>
+            <input id="result" class="form-control line resize" readonly disabled>
         </div>
         <div id="work-panel">
             <div id="btns-table">

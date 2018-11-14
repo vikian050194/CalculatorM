@@ -1,16 +1,20 @@
+import createAction from "./../action-creator";
+
 function applyClearing(calculatorStore) {
     var applyClear = function () {
-        $('[data-value="clear"]').on('click', function () {
-            calculatorStore.dispatch(createAction('clear')());
+        $("[data-value=\"clear\"]").on("click", function () {
+            calculatorStore.dispatch(createAction("clear")());
         });
     };
 
     var applyBackspace = function () {
-        $('[data-value="backspace"]').on('click', function () {
-            calculatorStore.dispatch(createAction('deleteDigit')());
-        })
+        $("[data-value=\"backspace\"]").on("click", function () {
+            calculatorStore.dispatch(createAction("deleteDigit")());
+        });
     };
 
     applyClear();
     applyBackspace();
 }
+
+export default applyClearing;

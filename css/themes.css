@@ -3,7 +3,7 @@
 }
 .calculator-blue .btn-operator{
     color: #fff;
-    background: linear-gradient(to bottom,#5bc0de 0,#2aabd2 100%);
+    background-image: linear-gradient(to bottom,#5bc0de 0,#2aabd2 100%);
     border-color: #46b8da;
 }
 .calculator-blue .btn-digit{
@@ -13,12 +13,12 @@
 }
 .calculator-blue .btn-special{
     color: #fff;
-    background: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+    background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
     border-color: #245580;
 }
 .calculator-blue .label-default{
     color: #fff;
-    background: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+    background: #337ab7;
     border-color: #245580;
 }
 
@@ -42,7 +42,7 @@
 }
 .calculator-gray .label-default{
     color: white;
-    background-image: linear-gradient(to bottom,#5f666d 0,#373B3F 100%);
+    background: #5f666d;
     border-color: #242629;
 }
 
@@ -66,6 +66,6 @@
 }
 .calculator-russia .label-default {
     color: #fff;
-    background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
+    background: #d9534f;
     border-color: #d43f3a;
 }

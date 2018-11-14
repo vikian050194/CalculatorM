@@ -1,14 +1,17 @@
 function CookieReducer(previousState, action) {
     switch (action.type) {
-        case 'changePositiveCookie':
-            return $.extend({}, previousState, {positiveCookie: action.value});
-            break;
+        case "changePositiveCookie":
+            return { ...previousState,
+                positiveCookie: action.value
+            };
 
-        case 'changeModuleCookie':
-            return $.extend({}, previousState, {moduleCookie: action.value});
-            break;
-
+        case "changeModuleCookie":
+            return { ...previousState,
+                moduleCookie: action.value
+            };
         default:
             return previousState;
     }
 }
+
+export default CookieReducer;

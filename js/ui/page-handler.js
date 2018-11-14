@@ -15,22 +15,24 @@ function PageHandler(lastPage) {
             number = lastPageNumber;
         }
 
-        for(var i = 1; i <= lastPageNumber; i++) {
+        for(let i = 1; i <= lastPageNumber; i++) {
             if(i === number) {
-                $('#page-' + i).removeClass('not-displayed');
+                $("#page-" + i).removeClass("not-displayed");
             } else {
-                $('#page-' + i).addClass('not-displayed');
+                $("#page-" + i).addClass("not-displayed");
             }
         }
 
-        for(var i = 1; i <= lastPageNumber; i++) {
+        for(let i = 1; i <= lastPageNumber; i++) {
             if(i === number) {
-                $('#dot' + i).addClass('slick-active');
+                $("#dot" + i).addClass("slick-active");
             } else {
-                $('#dot' + i).removeClass('slick-active');
+                $("#dot" + i).removeClass("slick-active");
             }
         }
 
         currentPageNumber = number;
-    }
+    };
 }
+
+export default PageHandler;
