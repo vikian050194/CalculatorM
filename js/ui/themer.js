@@ -9,9 +9,13 @@ function Themer() {
     }
 
     function changeTheme() {
-        var calc = $("#calculator");
-        var oldTheme = calc.attr("class");
-        calc.removeClass(oldTheme).addClass("calculator-" + themes[currentThemeIndex]);
+        var calc = $(".calculator");
+
+        for (const theme of themes) {
+            calc.removeClass(`calculator-${theme}`);
+        }
+
+        calc.addClass("calculator-" + themes[currentThemeIndex]);
     }
 
     this.setTheme = function (themeIndex) {

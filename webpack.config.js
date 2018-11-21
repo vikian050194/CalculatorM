@@ -50,9 +50,10 @@ module.exports = {
     ],
     devServer: {
         index: "index.html",
+        contentBase: __dirname,
         publicPath: "/build/",
         port: 8080,
-        watchContentBase: true,
+        watchContentBase: false,
         open: true,
         inline: true
     }

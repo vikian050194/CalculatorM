@@ -6,8 +6,11 @@ import applyOperators from "./applicators/operator-applicator";
 import applyClearing from "./applicators/clearing-applicator";
 import applyMemory from "./applicators/memory-applicator";
 import applyHistory from "./applicators/history-applicator";
+import PageHandler from "./../ui/page-handler";
 
 function CalculatorUI() {
+    new PageHandler();
+
     var cookiesSettings = {
         expires: 31
     };
