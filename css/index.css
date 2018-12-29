@@ -50,10 +50,12 @@ ul {
 
 .pages-container:focus,
 .page:focus,
+.menu-page:focus,
 .btn:focus {
     outline: 0;
 }
-.page {
+.page,
+.menu-page {
     width: 100vw;
     padding: 0 2vh 2vh 2vh;
     display: flex;

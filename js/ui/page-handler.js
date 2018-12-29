@@ -20,7 +20,7 @@ export default function PageHandler() {
         // alignment of cells, "center", "left", or "right"
         // or a decimal 0-1, 0 is beginning (left) of container, 1 is end (right)
 
-        cellSelector: undefined,
+        cellSelector: ".page",
         // specify selector for cell elements
 
         contain: false,
