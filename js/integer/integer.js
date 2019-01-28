@@ -64,7 +64,7 @@ class Integer {
         }
     }
 
-    push (value) {
+    push(value) {
         if (this.isZero) {
             if (value !== 0) {
                 this.digits[0] = value;
@@ -74,7 +74,7 @@ class Integer {
         }
     }
 
-    pop () {
+    pop() {
         if (this.digits.length === 1) {
             this.digits[0] = 0;
         } else {
@@ -312,6 +312,71 @@ class Integer {
             return divide(a, m).remainer;
         }
     }
+    static inverse(a, b) {
+        if (a.isZero || b.isZero) {
+            return new Integer("-1");
+        }
+        if (!Integer.areEqual(gcd(a, b).d, new Integer("1"))) {
+            return new Integer("-1");
+        } else {
+            let inverseElement = gcd(a, b).coeffA;
+            if (inverseElement.isNegative) {
+                inverseElement = Integer.add(inverseElement, b);
+            }
+            return inverseElement;
+        }
+    }
+}
+
+function gcd(a, b) {
+    let n = new Integer(),
+        m = new Integer(),
+        x1 = new Integer("0"),
+        x2 = new Integer("1"),
+        y1 = new Integer("1"),
+        y2 = new Integer("0"),
+        x = new Integer(),
+        y = new Integer(),
+        q = new Integer(),
+        r = new Integer(),
+        d = new Integer();
+
+    if (Integer.compare(a, b) === 1) {
+        n = a.clone();
+        m = b.clone();
+    } else {
+        n = b.clone();
+        m = a.clone();
+    }
+    while (Integer.compare(m, new Integer("0")) === 1) {
+        q = Integer.div(n, m);
+        r = Integer.sub(n, Integer.mul(q, m));
+        x = Integer.sub(x2, Integer.mul(q, x1));
+        y = Integer.sub(y2, Integer.mul(q, y1));
+        n = m.clone();
+        m = r.clone();
+        x2 = x1.clone();
+        x1 = x.clone();
+        y2 = y1.clone();
+        y1 = y.clone();
+    }
+    d = n.clone();
+    x = x2.clone();
+    y = y2.clone();
+    if (Integer.compare(a, b) === 1) {
+        return {
+            d,
+            coeffA:x,
+            coeffB:y
+        };
+    }
+    else{
+        return {
+            d,
+            coeffA:y,
+            coeffB:x
+        };
+    }
 }
 
 function divide(a, b) {
@@ -365,5 +430,4 @@ function getCoefficients(power) {
     }
     return coefficients;
 }
-
 export default Integer;
