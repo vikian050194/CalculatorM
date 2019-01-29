@@ -312,70 +312,103 @@ class Integer {
             return divide(a, m).remainer;
         }
     }
+
     static inverse(a, b) {
-        if (a.isZero || b.isZero) {
+        if (a.isNegative && !b.isNegative) {
+            while (a.isNegative) {
+                a = Integer.add(a, b);
+            }
+        } else if (b.isNegative) {
             return new Integer("-1");
         }
-        if (!Integer.areEqual(gcd(a, b).d, new Integer("1"))) {
+
+        if (!Integer.areEqual(Integer.gcd(a, b).d, new Integer("1"))) {
             return new Integer("-1");
         } else {
-            let inverseElement = gcd(a, b).coeffA;
+            let inverseElement = Integer.gcd(a, b).coefficientA;
+
             if (inverseElement.isNegative) {
                 inverseElement = Integer.add(inverseElement, b);
             }
+
             return inverseElement;
         }
     }
-}
+    static gcd(a, b) {
+        let n = new Integer(),
+            m = new Integer(),
+            x1 = new Integer("0"),
+            x2 = new Integer("1"),
+            y1 = new Integer("1"),
+            y2 = new Integer("0"),
+            x = new Integer(),
+            y = new Integer(),
+            q = new Integer(),
+            r = new Integer(),
+            d = new Integer();
 
-function gcd(a, b) {
-    let n = new Integer(),
-        m = new Integer(),
-        x1 = new Integer("0"),
-        x2 = new Integer("1"),
-        y1 = new Integer("1"),
-        y2 = new Integer("0"),
-        x = new Integer(),
-        y = new Integer(),
-        q = new Integer(),
-        r = new Integer(),
-        d = new Integer();
+        if (a.isZero && b.isZero) {
+            return {
+                d: new Integer("-1"),
+                coefficientA: x,
+                coefficientB: y
+            };
+        } else if (a.isZero) {
+            return {
+                d: b.clone(),
+                coefficientA: x,
+                coefficientB: y
+            };
+        } else if (b.isZero) {
+            return {
+                d: a.clone(),
+                coefficientA: x,
+                coefficientB: y
+            };
+        }
 
-    if (Integer.compare(a, b) === 1) {
-        n = a.clone();
-        m = b.clone();
-    } else {
-        n = b.clone();
-        m = a.clone();
-    }
-    while (Integer.compare(m, new Integer("0")) === 1) {
-        q = Integer.div(n, m);
-        r = Integer.sub(n, Integer.mul(q, m));
-        x = Integer.sub(x2, Integer.mul(q, x1));
-        y = Integer.sub(y2, Integer.mul(q, y1));
-        n = m.clone();
-        m = r.clone();
-        x2 = x1.clone();
-        x1 = x.clone();
-        y2 = y1.clone();
-        y1 = y.clone();
-    }
-    d = n.clone();
-    x = x2.clone();
-    y = y2.clone();
-    if (Integer.compare(a, b) === 1) {
-        return {
-            d,
-            coeffA:x,
-            coeffB:y
-        };
-    }
-    else{
-        return {
-            d,
-            coeffA:y,
-            coeffB:x
-        };
+        if (Integer.compare(a, b) === 1) {
+            n = a.clone();
+            n.isNegative = false;
+            m = b.clone();
+            m.isNegative = false;
+        } else {
+            n = b.clone();
+            n.isNegative = false;
+            m = a.clone();
+            m.isNegative = false;
+        }
+
+        while (Integer.compare(m, new Integer("0")) === 1) {
+            q = Integer.div(n, m);
+            r = Integer.sub(n, Integer.mul(q, m));
+            x = Integer.sub(x2, Integer.mul(q, x1));
+            y = Integer.sub(y2, Integer.mul(q, y1));
+            n = m.clone();
+            m = r.clone();
+            x2 = x1.clone();
+            x1 = x.clone();
+            y2 = y1.clone();
+            y1 = y.clone();
+        }
+
+        d = n.clone();
+        x = x2.clone();
+        y = y2.clone();
+
+        if (Integer.compare(a, b) === 1) {
+            return {
+                d,
+                coefficientA: x,
+                coefficientB: y
+            };
+        } else {
+            return {
+                d,
+                coefficientA: y,
+                coefficientB: x
+            };
+        }
     }
 }
 
@@ -430,4 +463,5 @@ function getCoefficients(power) {
     }
     return coefficients;
 }
+
 export default Integer;

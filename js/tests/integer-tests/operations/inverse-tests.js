@@ -3,7 +3,7 @@ import Integer from "../../../integer/integer";
 import assert from "assert";
 
 describe("Integer: inverse", function () {
-    it.only("inverse 3 mod 13", function () {
+    it("inverse 3 mod 13", function () {
         var firstNumber = new Integer("3");
         var secondNumber = new Integer("13");
         var expected = new Integer("9");
@@ -12,7 +12,7 @@ describe("Integer: inverse", function () {
 
         assert.deepEqual(actual, expected);
     });
-    it.only("inverse 2 mod 13", function () {
+    it("inverse 2 mod 13", function () {
         var firstNumber = new Integer("2");
         var secondNumber = new Integer("13");
         var expected = new Integer("7");
@@ -21,7 +21,25 @@ describe("Integer: inverse", function () {
 
         assert.deepEqual(actual, expected);
     });
-    it.only("inverse 0 mod 13", function () {
+    it("inverse -11 mod 13", function () {
+        var firstNumber = new Integer("-11");
+        var secondNumber = new Integer("13");
+        var expected = new Integer("7");
+
+        var actual = Integer.inverse(firstNumber, secondNumber);
+
+        assert.deepEqual(actual, expected);
+    });
+    it("inverse 2 mod -13", function () {
+        var firstNumber = new Integer("2");
+        var secondNumber = new Integer("-13");
+        var expected = new Integer("-1");
+
+        var actual = Integer.inverse(firstNumber, secondNumber);
+
+        assert.deepEqual(actual, expected);
+    });
+    it("inverse 0 mod 13", function () {
         var firstNumber = new Integer("0");
         var secondNumber = new Integer("13");
         var expected = new Integer("-1");
@@ -30,7 +48,7 @@ describe("Integer: inverse", function () {
 
         assert.deepEqual(actual, expected);
     });
-    it.only("inverse 3 mod 0", function () {
+    it("inverse 3 mod 0", function () {
         var firstNumber = new Integer("3");
         var secondNumber = new Integer("0");
         var expected = new Integer("-1");
@@ -39,7 +57,16 @@ describe("Integer: inverse", function () {
 
         assert.deepEqual(actual, expected);
     });
-    it.only("inverse 53 mod 84", function () {
+    it("inverse 0 mod 0", function () {
+        var firstNumber = new Integer("0");
+        var secondNumber = new Integer("0");
+        var expected = new Integer("-1");
+
+        var actual = Integer.inverse(firstNumber, secondNumber);
+
+        assert.deepEqual(actual, expected);
+    });
+    it("inverse 53 mod 84", function () {
         var firstNumber = new Integer("53");
         var secondNumber = new Integer("84");
         var expected = new Integer("65");
@@ -48,12 +75,30 @@ describe("Integer: inverse", function () {
 
         assert.deepEqual(actual, expected);
     });
-    it.only("inverse 29 mod 13", function () {
+    it("inverse 29 mod 13", function () {
         var firstNumber = new Integer("29");
         var secondNumber = new Integer("13");
         var expected = new Integer("9");
 
         var actual = Integer.inverse(firstNumber, secondNumber);
+
+        assert.deepEqual(actual, expected);
+    });
+    it("gcd 29, 13", function () {
+        var firstNumber = new Integer("29");
+        var secondNumber = new Integer("13");
+        var expected = new Integer("1");
+
+        var actual = Integer.gcd(firstNumber, secondNumber).d;
+
+        assert.deepEqual(actual, expected);
+    });
+    it("gcd 415, 28", function () {
+        var firstNumber = new Integer("415");
+        var secondNumber = new Integer("1328");
+        var expected = new Integer("83");
+
+        var actual = Integer.gcd(firstNumber, secondNumber).d;
 
         assert.deepEqual(actual, expected);
     });
