@@ -322,10 +322,12 @@ class Integer {
             return new Integer("-1");
         }
 
-        if (!Integer.areEqual(Integer.gcd(a, b).d, new Integer("1"))) {
+        let GCD = Integer.gcd(a, b);
+
+        if (!Integer.areEqual(GCD.d, new Integer("1"))) {
             return new Integer("-1");
         } else {
-            let inverseElement = Integer.gcd(a, b).coefficientA;
+            let inverseElement = GCD.coefficientA;
 
             if (inverseElement.isNegative) {
                 inverseElement = Integer.add(inverseElement, b);
@@ -369,15 +371,14 @@ class Integer {
 
         if (Integer.compare(a, b) === 1) {
             n = a.clone();
-            n.isNegative = false;
             m = b.clone();
-            m.isNegative = false;
         } else {
             n = b.clone();
-            n.isNegative = false;
             m = a.clone();
-            m.isNegative = false;
         }
+
+        n.isNegative = false;
+        m.isNegative = false;
 
         while (Integer.compare(m, new Integer("0")) === 1) {
             q = Integer.div(n, m);
