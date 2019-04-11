@@ -70,7 +70,7 @@ module.exports = {
         new ExtractTextPlugin("./bundle.css")
     ],
     devServer: {
-        index: path.resolve(__dirname, "build", "index.html"),
+        index: path.resolve(__dirname, "index.html"),
         contentBase: path.resolve(__dirname, "build"),
         publicPath: "/",
         port: 8080,
