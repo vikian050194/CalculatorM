@@ -1,6 +1,7 @@
 const webpack = require("webpack"),
     path = require("path"),
-    ExtractTextPlugin = require("extract-text-webpack-plugin");
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: ["./js/index.js", "bootstrap-loader/extractStyles",  "./build.js"],
