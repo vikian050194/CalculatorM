@@ -53,6 +53,8 @@ function CalculatorUI() {
     };
 
     init();
+
+    $("[data-value=\"nothing\"]").attr("disabled", true);
 }
 
 export default CalculatorUI;
