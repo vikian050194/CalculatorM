@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "dev": "webpack -w",
-    "webpack": "webpack",
+    "build": "webpack",
     "test": "mocha ./js/tests/**/*-tests.js  --require babel-register --watch",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha -- ./js/tests/**/*-tests.js --require babel-register"
   },
