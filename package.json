@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vikian050194/Calculator.git"
+    "url": "git+https://github.com/vikian050194/CalculatorM.git"
   },
   "author": "kirillv",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vikian050194/Calculator/issues"
+    "url": "https://github.com/vikian050194/CalculatorM/issues"
   },
-  "homepage": "https://github.com/vikian050194/Calculator#readme",
+  "homepage": "https://github.com/vikian050194/CalculatorM#readme",
   "devDependencies": {
     "assert": "^1.4.1",
     "babel-core": "^6.26.3",
@@ -28,25 +28,24 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "bootstrap": "^3.4.1",
-    "bootstrap-loader": "^2.2.0",
+    "bootstrap-loader": "^3.0.4",
     "bootstrap-sass": "^3.4.1",
-    "css-loader": "^0.28.10",
+    "css-loader": "^2.1.1",
     "eslint": "^5.6.1",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.11",
-    "flickity": "^2.1.2",
-    "html-webpack-plugin": "^3.2.0",
+    "file-loader": "^3.0.1",
+    "flickity": "^2.2.0",
     "istanbul": "^1.0.0-alpha.2",
-    "jquery": "^3.3.1",
-    "js-cookie": "^2.1.4",
+    "jquery": "^3.4.1",
+    "js-cookie": "^2.2.0",
     "microevents": "^0.3.3",
-    "mocha": "^5.0.0",
-    "node-sass": "^4.11.0",
-    "resolve-url-loader": "^2.3.1",
-    "sass-loader": "^6.0.7",
-    "style-loader": "^0.20.3",
-    "url-loader": "^1.0.1",
-    "webpack": "^3.12.0",
-    "webpack-dev-server": "^2.11.3"
+    "mini-css-extract-plugin": "^0.6.0",
+    "mocha": "^6.1.4",
+    "node-sass": "^4.12.0",
+    "resolve-url-loader": "^3.1.0",
+    "sass-loader": "^7.1.0",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.3.1"
   }
 }

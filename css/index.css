@@ -6,14 +6,14 @@
 
 .display-container {
     height: 30vh;
-    margin: 1rem;
+    margin: 2.5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .display-row {
-    height: 15vh;
+    height: 100%;
     text-align: right;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -43,26 +43,30 @@ ul {
     list-style-type: none;
 }
 
+.pages-container {
+    width: 100vw;
+    /* display: inline-block; */
+}
+
 .pages-container:focus,
 .page:focus,
 .menu-page:focus,
 .btn:focus {
     outline: 0;
 }
-
 .page,
 .menu-page {
     width: 100vw;
-    padding: 0 1rem 1rem 1rem;
+    padding: 0 2vh 2vh 2vh;
     display: flex;
     flex-wrap: wrap;
 }
 
 .btn {
-    font-size: 6vh;
-    width: 22%;
+    font-size: 10vw;
+    width: 23%;
     height: 11.65vh;
-    margin: 0 1vw 1vh 1vw;
+    margin: 0.5vh 1%;
     font-weight: bold;
     overflow: hidden;
 }

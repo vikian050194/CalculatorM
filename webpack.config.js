@@ -1,10 +1,9 @@
 const webpack = require("webpack"),
     path = require("path"),
-    ExtractTextPlugin = require("extract-text-webpack-plugin"),
-    HtmlWebpackPlugin = require("html-webpack-plugin");
+    MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: ["./js/index.js", "bootstrap-loader/extractStyles",  "./build.js"],
+    entry: ["./js/index.js", "bootstrap-loader/extractStyles", "./build.js"],
     devtool: "inline-source-map",
     module: {
         rules: [
@@ -20,10 +19,10 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
+                ]
             },
             {
                 test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -68,7 +67,9 @@ module.exports = {
             "jQuery": "jquery",
             "Cookies": "js-cookie"
         }),
-        new ExtractTextPlugin("./bundle.css")
+        new MiniCssExtractPlugin({
+            filename: "bundle.css"
+        })
     ],
     devServer: {
         index: path.resolve(__dirname, "index.html"),
@@ -78,5 +79,6 @@ module.exports = {
         watchContentBase: false,
         open: true,
         inline: true
-    }
+    },
+    mode: "development"
 };
