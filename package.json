@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "dev": "webpack -w",
-    "build": "webpack",
+    "build": "webpack ",
+    "release": "webpack --config webpack.production.config.js",
     "test": "mocha ./js/tests/**/*-tests.js  --require babel-register --watch",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha -- ./js/tests/**/*-tests.js --require babel-register"
   },
@@ -43,9 +44,11 @@
     "node-sass": "^4.12.0",
     "resolve-url-loader": "^3.1.0",
     "sass-loader": "^7.1.0",
+    "terser-webpack-plugin": "^1.2.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-dev-server": "^3.3.1",
+    "webpack-merge": "^4.2.1"
   }
 }
