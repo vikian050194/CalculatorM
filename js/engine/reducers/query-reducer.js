@@ -2,14 +2,18 @@ import QueryBuilder from "./../query-builder";
 import Integer from "./../../integer/integer";
 
 function QueryReducer(previousState, action) {
+    let queryState = null;
+
     switch (action.type) {
         case "addOperator":
-            var queryState = { ...previousState,
+            queryState = {
+                ...previousState,
                 secondArgument: null
             };
 
             if (previousState.secondArgument !== null || previousState.result !== null) {
-                return { ...previousState,
+                return {
+                    ...previousState,
                     firstArgument: new Integer("0"),
                     operator: "",
                     secondArgument: null,
@@ -18,23 +22,28 @@ function QueryReducer(previousState, action) {
                 };
             }
 
-            return { ...previousState,
+            return {
+                ...previousState,
                 query: new QueryBuilder().getQuery(queryState)
             };
         case "calculate":
-            var queryState = { ...previousState
+            queryState = {
+                ...previousState
             };
 
             if (queryState.operator === "mod") {
                 queryState.operator = "";
                 queryState.secondArgument = null;
             }
+            
             var query = new QueryBuilder().getQuery(queryState);
 
             if (!previousState.moduleCookie) {
                 previousState.module = new Integer();
             }
-            return { ...previousState,
+
+            return {
+                ...previousState,
                 firstArgument: new Integer(),
                 operator: "",
                 secondArgument: null,
@@ -43,7 +52,8 @@ function QueryReducer(previousState, action) {
         case "addDigit":
             previousState.result = null;
 
-            return { ...previousState,
+            return {
+                ...previousState,
                 query: new QueryBuilder().getQuery(previousState)
             };
         case "clear":
@@ -52,7 +62,8 @@ function QueryReducer(previousState, action) {
         case "getFromMemory":
         case "clearMemory":
         case "changeSign":
-            return { ...previousState,
+            return {
+                ...previousState,
                 query: new QueryBuilder().getQuery(previousState)
             };
         default:

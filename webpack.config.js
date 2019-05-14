@@ -10,12 +10,14 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
-                use: {
+                use: [{
                     loader: "babel-loader",
                     options: {
                         presets: ["env"]
                     }
-                }
+                },
+                "eslint-loader"
+                ]
             },
             {
                 test: /\.css$/,
