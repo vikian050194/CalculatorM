@@ -1,0 +1,13 @@
+<first argument> <set module>
+
+<first argument> <binary operator> <second argument> <calculate>
+
+<first argument> <binary operator> <second argument> <set module> <third argument> <calculate>
+
+
+<first argument> <set module>
+<first argument> <binary operator> <second argument> <calculate>
+
+<first argument> <unary operator> <calculate>
+
+<first argument> <unary operator> <set module> <third argument> <calculate>

@@ -21,6 +21,20 @@ function applyMenu(calculatorStore, themer) {
     moduleCheckbox.change(function () {
         calculatorStore.dispatch(createAction("changeModuleCookie")(this.checked));
     });
+
+    $("#menu").on("click", function () {
+        $(".page").each(function (i, e) {
+            $(e).hide();
+        });
+        $(".menu-page").show();
+    });
+
+    $("#ok").on("click", function(){
+        $(".page").each(function (i, e) {
+            $(e).show();
+        });
+        $(".menu-page").hide();
+    });
 }
 
 export default applyMenu;

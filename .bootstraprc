@@ -1,11 +1,11 @@
 {
     "bootstrapVersion": 3,
-    "styleLoaders": ["style-loader", "css-loader?sourceMap", "resolve-url-loader?sourceMap", "sass-loader?sourceMap"],
+    "styleLoaders": ["css-loader?sourceMap", "resolve-url-loader?sourceMap", "sass-loader?sourceMap"],
     "styles": {
         "mixins": true,
         "normalize": true,
         "print": true,
-        "glyphicons": true,
+        "glyphicons": false,
         "scaffolding": true,
         "type": true,
         "code": true,

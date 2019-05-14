@@ -5,105 +5,158 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>CalculatorM</title>
-    <link href="build/bundle.css" rel="stylesheet">
-    <script type="text/javascript" src="build/bundle.js"></script>
+    <link href="bundle.css" rel="stylesheet">
+    <script type="text/javascript" src="bundle.js"></script>
     <link rel="shortcut icon" href="favicon.ico" />
 </head>
 
 <body>
-    <div id="calculator" class="calculator-blue">
-        <div id="lines-container">
-            <input id="query" class="form-control line resize" readonly disabled>
-            <input id="result" class="form-control line resize" readonly disabled>
+    <div class="calculator calculator-blue">
+        <div class="display-container">
+            <input id="query" class="form-control display-row query-row resize" readonly disabled>
+            <input id="result" class="form-control display-row result-row resize" readonly disabled>
         </div>
-        <div id="work-panel">
-            <div id="btns-table">
-                <div id="slide-btns">
-                    <button id="F1" class="btn btn-operator slide-btn">F1</button>
-                    <button id="F2" class="btn btn-operator slide-btn">F2</button>
-                    <button id="F3" disabled class="btn btn-operator slide-btn">F3</button>
-                    <button id="menu" class="btn btn-operator">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </button>
-                </div>
-                <div id="carousel" class="page-container">
-                    <div id="page-1" class="page">
-                        <button id="add" class="btn btn-operator text-btn" data-value="add">add</button>
-                        <button id="sub" class="btn btn-operator text-btn" data-value="sub">sub</button>
-                        <button id="mul" class="btn btn-operator text-btn" data-value="mul">mul</button>
-                        <button id="div" class="btn btn-operator text-btn" data-value="div">div</button>
-                        <button id="pow" class="btn btn-operator text-btn" data-value="pow">pow</button>
-                        <button id="7" class="btn btn-digit" data-value="7">7</button>
-                        <button id="8" class="btn btn-digit" data-value="8">8</button>
-                        <button id="9" class="btn btn-digit" data-value="9">9</button>
-                        <button id="mod" class="btn btn-operator text-btn" data-value="mod">mod</button>
-                        <button id="4" class="btn btn-digit" data-value="4">4</button>
-                        <button id="5" class="btn btn-digit" data-value="5">5</button>
-                        <button id="6" class="btn btn-digit" data-value="6">6</button>
-                        <button id="backspace" class="btn btn-special" data-value="backspace">
-                            <span class="glyphicon glyphicon-step-backward"></span>
-                        </button>
-                        <button id="1" class="btn btn-digit" data-value="1">1</button>
-                        <button id="2" class="btn btn-digit" data-value="2">2</button>
-                        <button id="3" class="btn btn-digit" data-value="3">3</button>
-                        <button id="clear" class="btn btn-special" data-value="clear">C</button>
-                        <button id="0" class="btn btn-digit" data-value="0">0</button>
-                        <button id="sign" class="btn btn-special sign-btn" data-value="sign"></button>
-                        <button id="calc" class="btn btn-special" data-value="calc">=</button>
-                    </div>
-                    <div id="page-2" class="page">
-                        <button id="MR" class="btn btn-operator text-btn" data-value="memoryRecall">MR</button>
-                        <button id="undo" class="btn btn-operator text-btn" data-value="undo">undo</button>
-                        <button id="redo" class="btn btn-operator text-btn" data-value="redo">redo</button>
-                        <button id="?" class="btn btn-operator" data-value="?" disabled>?</button>
-                        <button id="M+" class="btn btn-operator text-btn" data-value="memoryAdd">M+</button>
-                        <button id="7-page2" class="btn btn-digit" data-value="7">7</button>
-                        <button id="8-page2" class="btn btn-digit" data-value="8">8</button>
-                        <button id="9-page2" class="btn btn-digit" data-value="9">9</button>
-                        <button id="MC" class="btn btn-operator text-btn" data-value="memoryClear">MC</button>
-                        <button id="4-page2" class="btn btn-digit" data-value="4">4</button>
-                        <button id="5-page2" class="btn btn-digit" data-value="5">5</button>
-                        <button id="6-page2" class="btn btn-digit" data-value="6">6</button>
-                        <button id="backspace-page2" class="btn btn-special" data-value="backspace">
-                            <span class="glyphicon glyphicon-step-backward"></span>
-                        </button>
-                        <button id="1-page2" class="btn btn-digit" data-value="1">1</button>
-                        <button id="2-page2" class="btn btn-digit" data-value="2">2</button>
-                        <button id="3-page2" class="btn btn-digit" data-value="3">3</button>
-                        <button id="clear-page2" class="btn btn-special" data-value="clear">C</button>
-                        <button id="0-page2" class="btn btn-digit" data-value="0">0</button>
-                        <button id="sign-page2" class="btn btn-special sign-btn" data-value="sign"></button>
-                        <button id="calc-page2" class="btn btn-special" data-value="calc">=</button>
-                    </div>
-                    <div id="page-3" class="page">
-                    </div>
-                    <div id="page-4" class="page">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <span>Change theme</span>
-                                <select class="form-control" id="changeTheme">
-                                    <option>Blue</option>
-                                    <option>Gray</option>
-                                    <option>Russia</option>
-                                </select>
-                            </li>
-                            <li class="list-group-item">
-                                <span>Set result of module calculation to positive number</span>
-                                <div class="switch">
-                                    <input id="positive" type="checkbox"/>
-                                    <label for="positive" class="label-default"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <span>Set module remembering</span>
-                                <div class="switch">
-                                    <input id="module" type="checkbox"/>
-                                    <label for="module" class="label-default"></label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <div class="pages-container">
+            <div class="page">
+                <button class="btn btn-operator" data-value="add">
+                    &plus;
+                </button>
+                <button class="btn btn-operator" data-value="sub">
+                    &minus;
+                </button>
+                <button class="btn btn-operator" data-value="mul">
+                    &times;
+                </button>
+                <button class="btn btn-operator" data-value="div">
+                    &divide;
+                </button>
+                <button class="btn btn-operator" data-value="pow">
+                    x<sup>y</sup>
+                </button>
+                <button class="btn btn-digit" data-value="7">7</button>
+                <button class="btn btn-digit" data-value="8">8</button>
+                <button class="btn btn-digit" data-value="9">9</button>
+                <button class="btn btn-special" data-value="sign">
+                    &plusmn;
+                </button>
+                <button class="btn btn-digit" data-value="4">4</button>
+                <button class="btn btn-digit" data-value="5">5</button>
+                <button class="btn btn-digit" data-value="6">6</button>
+                <button class="btn btn-special" data-value="backspace">
+                    &#8656;
+                </button>
+                <button class="btn btn-digit" data-value="1">1</button>
+                <button class="btn btn-digit" data-value="2">2</button>
+                <button class="btn btn-digit" data-value="3">3</button>
+                <button class="btn btn-special" data-value="clear">C</button>
+                <button class="btn btn-digit" data-value="0">0</button>
+                <button class="btn btn-special" data-value="mod">
+                    &#8801;
+                </button>
+                <button class="btn btn-special" data-value="calc">
+                    &equals;
+                </button>
+            </div>
+            <div class="page">
+                <button class="btn btn-operator" data-value="nothing">
+                   &quest;
+                </button>
+                <button class="btn btn-operator" data-value="nothing">
+                   &quest;
+                </button>
+                <button class="btn btn-operator" data-value="nothing">
+                   &quest;
+                </button>
+                <button id="menu" class="btn btn-operator">
+                    &#9745;
+                </button>
+                <button class="btn btn-operator" data-value="euclid">
+                    x<sup>-1</sup>
+                </button>
+                <button class="btn btn-digit" data-value="7">7</button>
+                <button class="btn btn-digit" data-value="8">8</button>
+                <button class="btn btn-digit" data-value="9">9</button>
+                <button class="btn btn-special" data-value="sign">
+                    &plusmn;
+                </button>
+                <button class="btn btn-digit" data-value="4">4</button>
+                <button class="btn btn-digit" data-value="5">5</button>
+                <button class="btn btn-digit" data-value="6">6</button>
+                <button class="btn btn-special" data-value="backspace">
+                    &#8656;
+                </button>
+                <button class="btn btn-digit" data-value="1">1</button>
+                <button class="btn btn-digit" data-value="2">2</button>
+                <button class="btn btn-digit" data-value="3">3</button>
+                <button class="btn btn-special" data-value="clear">C</button>
+                <button class="btn btn-digit" data-value="0">0</button>
+                <button class="btn btn-special" data-value="mod">
+                    &#8801;
+                </button>
+                <button class="btn btn-special" data-value="calc">
+                    &equals;
+                </button>
+            </div>
+            <div class="page">
+                <button class="btn btn-operator" data-value="memoryAdd">M+</button>
+                <button class="btn btn-operator" data-value="memoryRecall">MR</button>
+                <button class="btn btn-operator" disabled data-value="undo">
+                    &#9754;
+                </button>
+                <button class="btn btn-operator" disabled data-value="redo">
+                    &#9755;
+                </button>
+                <button class="btn btn-operator" data-value="memoryClear">MC</button>
+                <button class="btn btn-digit" data-value="7">7</button>
+                <button class="btn btn-digit" data-value="8">8</button>
+                <button class="btn btn-digit" data-value="9">9</button>
+                <button class="btn btn-special sign-btn" data-value="sign">
+                    &plusmn;
+                </button>
+                <button class="btn btn-digit" data-value="4">4</button>
+                <button class="btn btn-digit" data-value="5">5</button>
+                <button class="btn btn-digit" data-value="6">6</button>
+                <button class="btn btn-special" data-value="backspace">
+                    &#8656;
+                </button>
+                <button class="btn btn-digit" data-value="1">1</button>
+                <button class="btn btn-digit" data-value="2">2</button>
+                <button class="btn btn-digit" data-value="3">3</button>
+                <button class="btn btn-special" data-value="clear">C</button>
+                <button class="btn btn-digit" data-value="0">0</button>
+                <button class="btn btn-special" data-value="mod">
+                    &#8801;
+                </button>
+                <button class="btn btn-special" data-value="calc">
+                    &equals;
+                </button>
+            </div>
+            <div class="menu-page" style="display: none;">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span>Theme</span>
+                        <select class="form-control" id="changeTheme">
+                            <option>Blue</option>
+                            <option>Gray</option>
+                            <option>Russia</option>
+                        </select>
+                    </li>
+                    <li class="list-group-item">
+                        <span>Non negative result</span>
+                        <div class="switch">
+                            <input id="positive" type="checkbox" />
+                            <label for="positive" class="label-default"></label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span>Reuse module</span>
+                        <div class="switch">
+                            <input id="module" type="checkbox" />
+                            <label for="module" class="label-default"></label>
+                        </div>
+                    </li>
+                </ul>
+                <button type="button" class="btn btn-default" id="ok">Ok</button>
             </div>
         </div>
     </div>
