@@ -1,8 +1,11 @@
-const webpack = require("webpack"),
-    path = require("path"),
-    MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+process.env.NODE_ENV = "development";
 
 module.exports = {
+    mode: "development",
     entry: ["./js/index.js", "bootstrap-loader/extractStyles", "./build.js"],
     devtool: "inline-source-map",
     module: {
@@ -16,8 +19,7 @@ module.exports = {
                         presets: ["env"]
                     }
                 },
-                "eslint-loader"
-                ]
+                "eslint-loader"]
             },
             {
                 test: /\.css$/,
@@ -81,6 +83,5 @@ module.exports = {
         watchContentBase: false,
         open: true,
         inline: true
-    },
-    mode: "development"
+    }
 };

@@ -8,7 +8,7 @@
     "dev": "webpack -w",
     "build": "webpack ",
     "release": "webpack --config webpack.production.config.js",
-    "test": "mocha ./js/tests/**/*-tests.js  --require babel-register --watch",
+    "test": "mocha ./js/tests/**/*-tests.js  --require babel-register",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha -- ./js/tests/**/*-tests.js --require babel-register"
   },
   "repository": {
