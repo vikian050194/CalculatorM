@@ -1,44 +1,44 @@
-function Themer() {
-    var themes = ["blue", "gray", "russia"];
-    var id = "theme";
+import { SETTINGS, THEMES, DEFAULT_SETTINGS } from "../constants";
 
-    function saveInCookies() {
-        Cookies.set(id, currentThemeIndex, {
+class Themer {
+    constructor() {
+        let theme = Cookies.get(SETTINGS.THEME);
+
+        if (!this.isValidTheme(theme)) {
+            theme = DEFAULT_SETTINGS.THEME;
+        }
+
+        this.setTheme(theme);
+
+        $("#changeTheme").val(theme);
+    }
+
+    isValidTheme(theme) {
+        return theme && THEMES.includes(theme) !== -1;
+    }
+
+    saveInCookies(theme) {
+        Cookies.set(SETTINGS.THEME, theme, {
             expires: 31
         });
     }
 
-    function changeTheme() {
-        var calc = $(".calculator");
+    changeTheme(theme) {
+        const calc = $(".calculator");
 
-        for (const theme of themes) {
-            calc.removeClass(`calculator-${theme}`);
-        }
+        THEMES.forEach((t) => { calc.removeClass(`calculator-${t}`); });
 
-        calc.addClass("calculator-" + themes[currentThemeIndex]);
+        calc.addClass("calculator-" + theme);
     }
 
-    this.setTheme = function (themeIndex) {
-        if (themeIndex < 0 || themeIndex >= themes.length) {
+    setTheme(theme) {
+        if (!this.isValidTheme(theme)) {
             return;
         }
 
-        currentThemeIndex = themeIndex;
-        saveInCookies();
-        changeTheme();
-    };
-
-    var currentThemeIndex = Cookies.get(id);
-
-    if (currentThemeIndex == undefined || currentThemeIndex != undefined && currentThemeIndex >= themes.length) {
-        currentThemeIndex = 0;
-        saveInCookies();
-    } else if (currentThemeIndex != 0) {
-        changeTheme();
+        this.saveInCookies(theme);
+        this.changeTheme(theme);
     }
-
-    var changeThemeSelect = $("#changeTheme");
-    changeThemeSelect[0].selectedIndex = currentThemeIndex;
 }
 
 export default Themer;

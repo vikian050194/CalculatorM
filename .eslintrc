@@ -20,7 +20,8 @@
         "no-multiple-empty-lines": [ "error", { "max": 1 } ],
         "linebreak-style": [ "error", "windows"],
         "no-console": [ "warn", { "allow": [ "info", "error" ] } ],
-        "comma-dangle": ["error", "never"]
+        "comma-dangle": ["error", "never"],
+        "no-debugger": "error"
     },
     "globals": {
         "Backbone": true,

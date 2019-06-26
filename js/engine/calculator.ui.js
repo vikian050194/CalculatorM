@@ -7,24 +7,31 @@ import applyClearing from "./applicators/clearing-applicator";
 import applyMemory from "./applicators/memory-applicator";
 import applyHistory from "./applicators/history-applicator";
 import PageHandler from "./../ui/page-handler";
+import { SETTINGS, DEFAULT_SETTINGS } from "../constants";
 
 function CalculatorUI() {
     new PageHandler();
 
-    var cookiesSettings = {
-        expires: 31
+    const cookiesSettings = {
+        expires: DEFAULT_SETTINGS.EXPIRES
     };
 
-    var positiveCookie = Cookies.get("positive");
-    if (positiveCookie === undefined) {
-        Cookies.set("positive", false, cookiesSettings);
-        positiveCookie = "false";
+    let positiveCookie = Cookies.get(SETTINGS.POSITIVE);
+    if (!positiveCookie) {
+        positiveCookie = DEFAULT_SETTINGS.POSITIVE;
+        Cookies.set(SETTINGS.POSITIVE, positiveCookie, cookiesSettings);
+    }
+    else {
+        positiveCookie = positiveCookie == true;
     }
 
-    var moduleCookie = Cookies.get("module");
-    if (moduleCookie === undefined) {
-        Cookies.set("positive", false, cookiesSettings);
-        moduleCookie = "false";
+    let moduleCookie = Cookies.get(SETTINGS.MODULE);
+    if (!moduleCookie) {
+        moduleCookie = DEFAULT_SETTINGS.MODULE;
+        Cookies.set(SETTINGS.MODULE, moduleCookie, cookiesSettings);
+    }
+    else {
+        moduleCookie = moduleCookie == true;
     }
 
     var initialState = {
@@ -35,8 +42,8 @@ function CalculatorUI() {
         memory: null,
         query: "_",
         result: null,
-        positiveCookie: (positiveCookie === "true"),
-        moduleCookie: (moduleCookie === "true")
+        positiveCookie,
+        moduleCookie
     };
 
     var calculatorStore = new CalculatorStore(initialState); //send initstate

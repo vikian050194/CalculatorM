@@ -1,4 +1,5 @@
 import AutoresizeText from "./../ui/autoresize-text";
+import { SETTINGS } from "../constants";
 
 function UpdateUI(state) {
     var queries = [];
@@ -35,8 +36,8 @@ function UpdateUI(state) {
         expires: 31
     };
 
-    Cookies.set("positive", state.positiveCookie, cookiesSettings);
-    Cookies.set("module", state.moduleCookie, cookiesSettings);
+    Cookies.set(SETTINGS.POSITIVE, state.positiveCookie, cookiesSettings);
+    Cookies.set(SETTINGS.MODULE, state.moduleCookie, cookiesSettings);
 }
 
 export default UpdateUI;
