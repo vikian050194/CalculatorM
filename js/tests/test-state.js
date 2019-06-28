@@ -1,14 +1,13 @@
-import Integer from "./../integer/integer";
+import Integer from "./../integer";
 
 function TestState() {
     this.firstArgument = new Integer();
     this.secondArgument = null;
-    this.operator = "";
-    this.module = new Integer();
+    this.operator = null;
+    this.module = null;
     this.memory = null;
-    this.query = "";
     this.result = null;
-    this.positiveCookie = false;
+    this.positiveCookie = true;
     this.moduleCookie = true;
 }
 

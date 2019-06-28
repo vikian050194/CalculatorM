@@ -2,20 +2,19 @@ import createAction from "./../action-creator";
 
 function applyMenu(calculatorStore, themer) {
     $("#changeTheme").on("change", function () {
-        var optionIndex = this.selectedIndex;
-        themer.setTheme(optionIndex);
+        themer.setTheme(this.selectedOptions[0].value);
     });
 
-    var positiveCheckbox = $("#positive");
-    if (positiveCheckbox[0].checked) {
+    const positiveCheckbox = $("#positive");
+    if (positiveCheckbox.checked) {
         calculatorStore.dispatch(createAction("changePositiveCookie")(true));
     }
     positiveCheckbox.change(function () {
         calculatorStore.dispatch(createAction("changePositiveCookie")(this.checked));
     });
 
-    var moduleCheckbox = $("#module");
-    if (moduleCheckbox[0].checked) {
+    const moduleCheckbox = $("#module");
+    if (moduleCheckbox.checked) {
         calculatorStore.dispatch(createAction("changeModuleCookie")(true));
     }
     moduleCheckbox.change(function () {

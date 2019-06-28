@@ -1,17 +1,19 @@
-function CookieReducer(previousState, action) {
+const cookieReducer = (previousState, action) => {
     switch (action.type) {
         case "changePositiveCookie":
-            return { ...previousState,
+            return {
+                ...previousState,
                 positiveCookie: action.value
             };
 
         case "changeModuleCookie":
-            return { ...previousState,
+            return {
+                ...previousState,
                 moduleCookie: action.value
             };
         default:
             return previousState;
     }
-}
+};
 
-export default CookieReducer;
+export { cookieReducer };

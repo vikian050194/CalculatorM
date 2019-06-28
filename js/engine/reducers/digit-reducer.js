@@ -1,12 +1,13 @@
-import Integer from "./../../integer/integer";
+import Integer from "./../../integer";
 
-function DigitReducer(previousState, action) {
-    const result = { ...previousState
+const digitReducer = (previousState, action) => {
+    const result = {
+        ...previousState
     };
 
     switch (action.type) {
         case "addDigit":
-            if (result.operator === "") {
+            if (result.operator === null) {
                 result.firstArgument = result.firstArgument.clone();
                 result.firstArgument.push(action.value);
 
@@ -29,11 +30,12 @@ function DigitReducer(previousState, action) {
                 result.firstArgument = result.result;
                 result.result = null;
                 result.secondArgument = null;
-                result.operator = "";
+                result.operator = null;
 
                 return result;
             }
-            if (result.operator === "") {
+
+            if (result.operator === null) {
                 result.firstArgument = result.firstArgument.clone();
                 result.firstArgument.changeSign();
 
@@ -51,5 +53,6 @@ function DigitReducer(previousState, action) {
         default:
             return previousState;
     }
-}
-export default DigitReducer;
+};
+
+export { digitReducer };

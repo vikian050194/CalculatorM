@@ -17,8 +17,18 @@ const DEFAULT_SETTINGS = {
     EXPIRES: 31
 };
 
+const OPERATORS = {
+    ADD: "ADD",
+    SUB: "SUB",
+    MUL: "MUL",
+    DIV: "DIV",
+    MOD: "MOD",
+    POW: "POW"
+};
+
 export {
     SETTINGS,
     DEFAULT_SETTINGS,
-    THEMES
+    THEMES,
+    OPERATORS
 };

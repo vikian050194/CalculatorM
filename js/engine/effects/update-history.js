@@ -1,5 +1,5 @@
-function HistoryUpdate(func) {
-    return function (state) {
+const updateHistory = (...functions) => {
+    return (state) => {
         if (state.currentIndex - 1 < 0)
             $("[data-value=\"undo\"]").attr("disabled", true);
         else
@@ -10,8 +10,8 @@ function HistoryUpdate(func) {
             $("[data-value=\"redo\"]").attr("disabled", false);
 
         var currentState = state.history[state.currentIndex];
-        func(currentState);
+        functions.forEach(f => f(currentState));
     };
-}
+};
 
-export default HistoryUpdate;
+export { updateHistory };

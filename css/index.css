@@ -15,9 +15,9 @@
 .display-row {
     height: 100%;
     text-align: right;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    overflow: hidden;
+    /* word-wrap: break-word; */
+    /* overflow-wrap: break-word; */
+    overflow-y: scroll;
     resize: none;
 }
 
@@ -31,6 +31,11 @@
     border-top: none;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
+}
+
+.query-row,
+.result-row{
+    font-size: 10vw;
 }
 
 .form-control:focus {
@@ -62,7 +67,7 @@ ul {
     flex-wrap: wrap;
 }
 
-.btn {
+.btn-foo {
     font-size: 10vw;
     width: 23%;
     height: 11.65vh;
@@ -93,65 +98,6 @@ ul {
     font-size: 3vh;
     height: auto;
     margin-left: 3vh;
-}
-
-.switch {
-    width: 10vh;
-    margin: 2vh 0 2vh 3vh;
-}
-
-.switch>input[type="checkbox"] {
-    display: none;
-}
-
-.switch>label {
-    cursor: pointer;
-    height: 0px;
-    position: relative;
-    width: 70%;
-}
-
-.switch>label::before {
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 2vh;
-    content: '';
-    height: 4vh;
-    margin-top: -2vh;
-    position: absolute;
-    opacity: 0.3;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
-    width: 8vh;
-}
-
-.switch>label::after {
-    background: rgb(255, 255, 255);
-    border-radius: 16px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    content: '';
-    height: 4.5vh;
-    left: -1vh;
-    margin-top: -1.25vh;
-    position: absolute;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    top: -1vh;
-    width: 4.5vh;
-}
-
-.switch>input[type="checkbox"]:checked+label::before {
-    background: inherit;
-    opacity: 0.5;
-}
-
-.switch>input[type="checkbox"]:checked+label::after {
-    background: inherit;
-    left: 5vh;
 }
 
 @media only screen and (min-device-width: 800px) {

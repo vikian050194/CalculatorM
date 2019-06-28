@@ -1,6 +1,6 @@
 import TestState from "./test-state";
 import QueryBuilder from "./../engine/query-builder";
-import Integer from "./../integer/integer";
+import Integer from "./../integer";
 
 import assert from "assert";
 

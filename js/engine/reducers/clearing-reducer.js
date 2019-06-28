@@ -1,6 +1,6 @@
-import Integer from "./../../integer/integer";
+import Integer from "../../integer";
 
-function ClearingReducer(previousState, action) {
+const clearingReducer = (previousState, action) => {
     const result = { ...previousState
     };
 
@@ -12,7 +12,6 @@ function ClearingReducer(previousState, action) {
                 operator: "",
                 module: new Integer(),
                 memory: previousState.memory,
-                query: "",
                 result: null,
                 positiveCookie: previousState.positiveCookie,
                 moduleCookie: previousState.moduleCookie
@@ -44,6 +43,6 @@ function ClearingReducer(previousState, action) {
         default:
             return previousState;
     }
-}
+};
 
-export default ClearingReducer;
+export { clearingReducer };

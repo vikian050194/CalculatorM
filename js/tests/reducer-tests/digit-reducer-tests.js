@@ -1,7 +1,7 @@
 import TestState from "./../test-state";
-import DigitReducer from "./../../engine/reducers/digit-reducer";
+import { digitReducer } from "./../../engine/reducers";
 import createAction from "./../../engine/action-creator";
-import Integer from "./../../integer/integer";
+import Integer from "./../../integer";
 
 import assert from "assert";
 
@@ -14,7 +14,7 @@ describe("Digit reducer", function () {
                 firstArgument: new Integer("4")
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(4)), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("addDigit")(4)), expectedState);
             assert.equal(actualState.firstArgument.isZero, true, "mutation detected");
         });
 
@@ -27,7 +27,7 @@ describe("Digit reducer", function () {
                 firstArgument: new Integer("42")
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(2)), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("addDigit")(2)), expectedState);
             assert.deepEqual(actualState.firstArgument, new Integer("4"), "mutation detected");
         });
 
@@ -43,7 +43,7 @@ describe("Digit reducer", function () {
                 secondArgument: new Integer("2")
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(2)), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("addDigit")(2)), expectedState);
             assert.equal(actualState.secondArgument, null, "mutation detected");
         });
 
@@ -60,7 +60,7 @@ describe("Digit reducer", function () {
                 secondArgument: new Integer("21")
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(1)), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("addDigit")(1)), expectedState);
             assert.deepEqual(actualState.secondArgument, new Integer("2"), "mutation detected");
         });
 
@@ -73,7 +73,7 @@ describe("Digit reducer", function () {
                 firstArgument: new Integer("421")
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(1)), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("addDigit")(1)), expectedState);
             assert.deepEqual(actualState.firstArgument, new Integer("42"), "mutation detected");
         });
 
@@ -86,7 +86,7 @@ describe("Digit reducer", function () {
                 firstArgument: new Integer("-421")
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("addDigit")(1)), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("addDigit")(1)), expectedState);
             assert.deepEqual(actualState.firstArgument, new Integer("-42"), "mutation detected");
         });
 
@@ -99,7 +99,7 @@ describe("Digit reducer", function () {
                 firstArgument: new Integer("-42")
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("changeSign")()), expectedState);
             assert.equal(actualState.firstArgument.isNegative, false, "mutation detected");
         });
 
@@ -110,7 +110,7 @@ describe("Digit reducer", function () {
             var expectedState = { ...new TestState()
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("changeSign")()), expectedState);
         });
 
         it("change sign of second argument", function () {
@@ -126,7 +126,7 @@ describe("Digit reducer", function () {
                 secondArgument: new Integer("-21")
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("changeSign")()), expectedState);
             assert.equal(actualState.secondArgument.isNegative, false, "mutation detected");
         });
 
@@ -143,7 +143,7 @@ describe("Digit reducer", function () {
                 secondArgument: new Integer()
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("changeSign")()), expectedState);
         });
 
         it("change sign of second argument(null)", function () {
@@ -157,7 +157,7 @@ describe("Digit reducer", function () {
                 operator: "add"
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("changeSign")()), expectedState);
             assert.equal(actualState.secondArgument, null, "mutation detected");
         });
 
@@ -176,7 +176,7 @@ describe("Digit reducer", function () {
                 result: null
             };
 
-            assert.deepEqual(DigitReducer(actualState, createAction("changeSign")()), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("changeSign")()), expectedState);
             assert.deepEqual(actualState.firstArgument, new Integer("42"), "mutation detected");
             assert.equal(actualState.operator, "add", "mutation detected");
             assert.deepEqual(actualState.secondArgument, new Integer("21"), "mutation detected");
@@ -188,7 +188,7 @@ describe("Digit reducer", function () {
 
             var expectedState = new TestState();
 
-            assert.deepEqual(DigitReducer(actualState, createAction("TestAction")()), expectedState);
+            assert.deepEqual(digitReducer(actualState, createAction("TestAction")()), expectedState);
         });
     });
 });

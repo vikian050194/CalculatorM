@@ -1,5 +1,5 @@
-import CalculatorUI from "./engine/calculator.ui";
+import calculatorView from "./engine/calculator-view";
 
 $(document).ready(function () {
-    new CalculatorUI();
+    calculatorView();
 });

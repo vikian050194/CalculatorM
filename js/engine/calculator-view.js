@@ -1,15 +1,16 @@
 import CalculatorStore from "./calculator-store";
-import Themer from "./../ui/themer";
+import Themer from "../ui/themer";
 import applyMenu from "./applicators/menu-applicator";
 import applyDigits from "./applicators/digit-applicator";
 import applyOperators from "./applicators/operator-applicator";
 import applyClearing from "./applicators/clearing-applicator";
 import applyMemory from "./applicators/memory-applicator";
 import applyHistory from "./applicators/history-applicator";
-import PageHandler from "./../ui/page-handler";
+import PageHandler from "../ui/page-handler";
+import Integer from "../integer";
 import { SETTINGS, DEFAULT_SETTINGS } from "../constants";
 
-function CalculatorUI() {
+const calculatorView = () => {
     new PageHandler();
 
     const cookiesSettings = {
@@ -17,7 +18,8 @@ function CalculatorUI() {
     };
 
     let positiveCookie = Cookies.get(SETTINGS.POSITIVE);
-    if (!positiveCookie) {
+    
+    if (positiveCookie === undefined) {
         positiveCookie = DEFAULT_SETTINGS.POSITIVE;
         Cookies.set(SETTINGS.POSITIVE, positiveCookie, cookiesSettings);
     }
@@ -26,7 +28,8 @@ function CalculatorUI() {
     }
 
     let moduleCookie = Cookies.get(SETTINGS.MODULE);
-    if (!moduleCookie) {
+
+    if (moduleCookie === undefined) {
         moduleCookie = DEFAULT_SETTINGS.MODULE;
         Cookies.set(SETTINGS.MODULE, moduleCookie, cookiesSettings);
     }
@@ -34,22 +37,21 @@ function CalculatorUI() {
         moduleCookie = moduleCookie == true;
     }
 
-    var initialState = {
-        firstArgument: 0,
+    const initialState = {
+        firstArgument: new Integer(),
         secondArgument: null,
-        operator: "",
-        module: 0,
+        operator: null,
+        module: null,
         memory: null,
-        query: "_",
         result: null,
         positiveCookie,
         moduleCookie
     };
 
-    var calculatorStore = new CalculatorStore(initialState); //send initstate
-    var themer = new Themer();
+    const calculatorStore = new CalculatorStore(initialState);
+    const themer = new Themer();
 
-    var init = function () {
+    const init =  () => {
         applyMenu(calculatorStore, themer);
 
         applyDigits(calculatorStore);
@@ -62,6 +64,10 @@ function CalculatorUI() {
     init();
 
     $("[data-value=\"nothing\"]").attr("disabled", true);
-}
+    $("#positive").checkboxpicker();
+    $("#positive").prop("checked", positiveCookie);
+    $("#module").checkboxpicker();
+    $("#module").prop("checked", moduleCookie);
+};
 
-export default CalculatorUI;
+export default calculatorView;

@@ -1,4 +1,4 @@
-import Integer from "../../integer/integer";
+import Integer from "../../integer";
 
 import assert from "assert";
 

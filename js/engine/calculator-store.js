@@ -1,35 +1,28 @@
 import createStore from "./../flux/store-creator";
-import HistoryReducer from "./../history/history-reducer";
 import combineReducers from "./reducers/combine-reducers";
-import CookieReducer from "./reducers/cookie-reducer";
-import ClearingReducer from "./reducers/clearing-reducer";
-import DigitReducer from "./reducers/digit-reducer";
-import MemoryReducer from "./reducers/memory-reducer";
-import OperatorReducer from "./reducers/operator-reducer";
-import QueryReducer from "./reducers/query-reducer";
-import HistoryUpdate from "./../history/history-update";
-import UpdateUI from "./../engine/update-ui";
-import Integer from "./../integer/integer";
 
-function CalculatorStore() {
-    var initialState = {
-        firstArgument: new Integer("0"),
-        secondArgument: null,
-        operator: "",
-        module: new Integer("0"),
-        memory: null,
-        query: "_",
-        result: null,
-        positiveCookie: false,
-        moduleCookie: false
-    };
-    var store = createStore(HistoryReducer(combineReducers({
-        cookie: CookieReducer,
-        clearing: ClearingReducer,
-        digit: DigitReducer,
-        memory: MemoryReducer,
-        operator: OperatorReducer,
-        query: QueryReducer
+import {
+    historyReducer,
+    cookieReducer,
+    clearingReducer,
+    digitReducer,
+    memoryReducer,
+    operatorReducer
+} from "./reducers";
+
+import {
+    updateView,
+    updateHistory,
+    updateCookies
+} from "./effects";
+
+function CalculatorStore(initialState) {
+    const store = createStore(historyReducer(combineReducers({
+        cookie: cookieReducer,
+        clearing: clearingReducer,
+        digit: digitReducer,
+        memory: memoryReducer,
+        operator: operatorReducer
     })), initialState);
 
     this.thunk = function (func, value) {
@@ -40,8 +33,8 @@ function CalculatorStore() {
         return store.dispatch(action);
     };
 
-    store.addListener(HistoryUpdate(UpdateUI));
-    UpdateUI(initialState);
+    store.addListener(updateHistory(updateView, updateCookies));
+    updateView(initialState);
 }
 
 export default CalculatorStore;

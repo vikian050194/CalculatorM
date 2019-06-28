@@ -1,6 +1,6 @@
-import Integer from "./../../integer/integer";
+import Integer from "./../../integer";
 
-function OperatorReducer(previousState, action) {
+const operatorReducer = (previousState, action) => {
     switch (action.type) {
         case "addOperator":
             if (previousState.result !== null && !(previousState.result.isZero)) {
@@ -8,9 +8,11 @@ function OperatorReducer(previousState, action) {
                 previousState.result = null;
                 previousState.secondArgument = null;
             }
-            if (action.value === "mod") {
-                previousState.module = new Integer("0");
-            }
+
+            // if (action.value === "mod") {
+            //     previousState.module = new Integer("0");
+            // }
+
             return { ...previousState,
                 operator: action.value
             };
@@ -42,8 +44,10 @@ function OperatorReducer(previousState, action) {
                         }
                         break;
                 }
+
                 if (!previousState.module.isZero) {
                     previousState.result = Integer.mod(previousState.result, previousState.module);
+
                     if (previousState.result.isNegative && previousState.positiveCookie) {
                         previousState.result = Integer.add(previousState.result, previousState.module);
                     }
@@ -54,10 +58,14 @@ function OperatorReducer(previousState, action) {
             if (previousState.secondArgument === null && (previousState.module === null || previousState.module.isZero)) {
                 return previousState;
             }
-            var result = previousState.result;
+
+            // eslint-disable-next-line no-case-declarations
+            let result = previousState.result;
+
             if (previousState.result === null) {
                 result = previousState.firstArgument;
             }
+
             if (!previousState.module.isZero) {
                 result = Integer.mod(result, previousState.module);
                 if (result.isNegative && previousState.positiveCookie) {
@@ -71,6 +79,6 @@ function OperatorReducer(previousState, action) {
         default:
             return previousState;
     }
-}
+};
 
-export default OperatorReducer;
+export { operatorReducer };

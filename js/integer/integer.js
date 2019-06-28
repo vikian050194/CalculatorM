@@ -465,4 +465,4 @@ function getCoefficients(power) {
     return coefficients;
 }
 
-export default Integer;
+export { Integer };

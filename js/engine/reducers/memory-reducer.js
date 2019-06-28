@@ -1,4 +1,4 @@
-function MemoryReducer(previousState, action) {
+const memoryReducer = (previousState, action) => {
     switch (action.type) {
         case "addToMemory":
             if (previousState.secondArgument === null) {
@@ -14,6 +14,7 @@ function MemoryReducer(previousState, action) {
             if (previousState.memory === null) {
                 return previousState;
             }
+            
             if (previousState.secondArgument === null) {
                 return { ...previousState,
                     firstArgument: previousState.memory.clone()
@@ -30,6 +31,6 @@ function MemoryReducer(previousState, action) {
         default:
             return previousState;
     }
-}
+};
 
-export default MemoryReducer;
+export { memoryReducer };

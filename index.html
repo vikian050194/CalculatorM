@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimal-ui, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>CalculatorM</title>
     <link href="bundle.css" rel="stylesheet">
     <script type="text/javascript" src="bundle.js"></script>
@@ -13,121 +14,121 @@
 <body>
     <div class="calculator calculator-blue">
         <div class="display-container">
-            <input id="query" class="form-control display-row query-row resize" readonly disabled>
-            <input id="result" class="form-control display-row result-row resize" readonly disabled>
+            <div id="query" class="form-control display-row query-row"></div>
+            <div id="result" class="form-control display-row result-row"></div>
         </div>
         <div class="pages-container">
             <div class="page">
-                <button class="btn btn-operator" data-value="add">
+                <button class="btn btn-foo btn-operator" data-value="add">
                     &plus;
                 </button>
-                <button class="btn btn-operator" data-value="sub">
+                <button class="btn btn-foo btn-operator" data-value="sub">
                     &minus;
                 </button>
-                <button class="btn btn-operator" data-value="mul">
+                <button class="btn btn-foo btn-operator" data-value="mul">
                     &times;
                 </button>
-                <button class="btn btn-operator" data-value="div">
+                <button class="btn btn-foo btn-operator" data-value="div">
                     &divide;
                 </button>
-                <button class="btn btn-operator" data-value="pow">
+                <button class="btn btn-foo btn-operator" data-value="pow">
                     x<sup>y</sup>
                 </button>
-                <button class="btn btn-digit" data-value="7">7</button>
-                <button class="btn btn-digit" data-value="8">8</button>
-                <button class="btn btn-digit" data-value="9">9</button>
-                <button class="btn btn-special" data-value="sign">
+                <button class="btn btn-foo btn-digit" data-value="7">7</button>
+                <button class="btn btn-foo btn-digit" data-value="8">8</button>
+                <button class="btn btn-foo btn-digit" data-value="9">9</button>
+                <button class="btn btn-foo btn-special" data-value="sign">
                     &plusmn;
                 </button>
-                <button class="btn btn-digit" data-value="4">4</button>
-                <button class="btn btn-digit" data-value="5">5</button>
-                <button class="btn btn-digit" data-value="6">6</button>
-                <button class="btn btn-special" data-value="backspace">
+                <button class="btn btn-foo btn-digit" data-value="4">4</button>
+                <button class="btn btn-foo btn-digit" data-value="5">5</button>
+                <button class="btn btn-foo btn-digit" data-value="6">6</button>
+                <button class="btn btn-foo btn-special" data-value="backspace">
                     &#8656;
                 </button>
-                <button class="btn btn-digit" data-value="1">1</button>
-                <button class="btn btn-digit" data-value="2">2</button>
-                <button class="btn btn-digit" data-value="3">3</button>
-                <button class="btn btn-special" data-value="clear">C</button>
-                <button class="btn btn-digit" data-value="0">0</button>
-                <button class="btn btn-special" data-value="mod">
+                <button class="btn btn-foo btn-digit" data-value="1">1</button>
+                <button class="btn btn-foo btn-digit" data-value="2">2</button>
+                <button class="btn btn-foo btn-digit" data-value="3">3</button>
+                <button class="btn btn-foo btn-special" data-value="clear">C</button>
+                <button class="btn btn-foo btn-digit" data-value="0">0</button>
+                <button class="btn btn-foo btn-special" data-value="mod">
                     &#8801;
                 </button>
-                <button class="btn btn-special" data-value="calc">
+                <button class="btn btn-foo btn-special" data-value="calc">
                     &equals;
                 </button>
             </div>
             <div class="page">
-                <button class="btn btn-operator" data-value="nothing">
+                <button class="btn btn-foo btn-operator" data-value="nothing">
                     &quest;
                 </button>
-                <button class="btn btn-operator" data-value="nothing">
+                <button class="btn btn-foo btn-operator" data-value="nothing">
                     &quest;
                 </button>
-                <button class="btn btn-operator" data-value="nothing">
+                <button class="btn btn-foo btn-operator" data-value="nothing">
                     &quest;
                 </button>
-                <button id="menu" class="btn btn-operator">
+                <button id="menu" class="btn btn-foo btn-operator">
                     &#9745;
                 </button>
-                <button class="btn btn-operator" data-value="euclid" disabled>
+                <button class="btn btn-foo btn-operator" data-value="euclid" disabled>
                     x<sup>-1</sup>
                 </button>
-                <button class="btn btn-digit" data-value="7">7</button>
-                <button class="btn btn-digit" data-value="8">8</button>
-                <button class="btn btn-digit" data-value="9">9</button>
-                <button class="btn btn-special" data-value="sign">
+                <button class="btn btn-foo btn-digit" data-value="7">7</button>
+                <button class="btn btn-foo btn-digit" data-value="8">8</button>
+                <button class="btn btn-foo btn-digit" data-value="9">9</button>
+                <button class="btn btn-foo btn-special" data-value="sign">
                     &plusmn;
                 </button>
-                <button class="btn btn-digit" data-value="4">4</button>
-                <button class="btn btn-digit" data-value="5">5</button>
-                <button class="btn btn-digit" data-value="6">6</button>
-                <button class="btn btn-special" data-value="backspace">
+                <button class="btn btn-foo btn-digit" data-value="4">4</button>
+                <button class="btn btn-foo btn-digit" data-value="5">5</button>
+                <button class="btn btn-foo btn-digit" data-value="6">6</button>
+                <button class="btn btn-foo btn-special" data-value="backspace">
                     &#8656;
                 </button>
-                <button class="btn btn-digit" data-value="1">1</button>
-                <button class="btn btn-digit" data-value="2">2</button>
-                <button class="btn btn-digit" data-value="3">3</button>
-                <button class="btn btn-special" data-value="clear">C</button>
-                <button class="btn btn-digit" data-value="0">0</button>
-                <button class="btn btn-special" data-value="mod">
+                <button class="btn btn-foo btn-digit" data-value="1">1</button>
+                <button class="btn btn-foo btn-digit" data-value="2">2</button>
+                <button class="btn btn-foo btn-digit" data-value="3">3</button>
+                <button class="btn btn-foo btn-special" data-value="clear">C</button>
+                <button class="btn btn-foo btn-digit" data-value="0">0</button>
+                <button class="btn btn-foo btn-special" data-value="mod">
                     &#8801;
                 </button>
-                <button class="btn btn-special" data-value="calc">
+                <button class="btn btn-foo btn-special" data-value="calc">
                     &equals;
                 </button>
             </div>
             <div class="page">
-                <button class="btn btn-operator" data-value="memoryAdd">M+</button>
-                <button class="btn btn-operator" data-value="memoryRecall">MR</button>
-                <button class="btn btn-operator" disabled data-value="undo">
+                <button class="btn btn-foo btn-operator" data-value="memoryAdd">M+</button>
+                <button class="btn btn-foo btn-operator" data-value="memoryRecall">MR</button>
+                <button class="btn btn-foo btn-operator" disabled data-value="undo">
                     &#9754;
                 </button>
-                <button class="btn btn-operator" disabled data-value="redo">
+                <button class="btn btn-foo btn-operator" disabled data-value="redo">
                     &#9755;
                 </button>
-                <button class="btn btn-operator" data-value="memoryClear">MC</button>
-                <button class="btn btn-digit" data-value="7">7</button>
-                <button class="btn btn-digit" data-value="8">8</button>
-                <button class="btn btn-digit" data-value="9">9</button>
-                <button class="btn btn-special sign-btn" data-value="sign">
+                <button class="btn btn-foo btn-operator" data-value="memoryClear">MC</button>
+                <button class="btn btn-foo btn-digit" data-value="7">7</button>
+                <button class="btn btn-foo btn-digit" data-value="8">8</button>
+                <button class="btn btn-foo btn-digit" data-value="9">9</button>
+                <button class="btn btn-foo btn-special sign-btn" data-value="sign">
                     &plusmn;
                 </button>
-                <button class="btn btn-digit" data-value="4">4</button>
-                <button class="btn btn-digit" data-value="5">5</button>
-                <button class="btn btn-digit" data-value="6">6</button>
-                <button class="btn btn-special" data-value="backspace">
+                <button class="btn btn-foo btn-digit" data-value="4">4</button>
+                <button class="btn btn-foo btn-digit" data-value="5">5</button>
+                <button class="btn btn-foo btn-digit" data-value="6">6</button>
+                <button class="btn btn-foo btn-special" data-value="backspace">
                     &#8656;
                 </button>
-                <button class="btn btn-digit" data-value="1">1</button>
-                <button class="btn btn-digit" data-value="2">2</button>
-                <button class="btn btn-digit" data-value="3">3</button>
-                <button class="btn btn-special" data-value="clear">C</button>
-                <button class="btn btn-digit" data-value="0">0</button>
-                <button class="btn btn-special" data-value="mod">
+                <button class="btn btn-foo btn-digit" data-value="1">1</button>
+                <button class="btn btn-foo btn-digit" data-value="2">2</button>
+                <button class="btn btn-foo btn-digit" data-value="3">3</button>
+                <button class="btn btn-foo btn-special" data-value="clear">C</button>
+                <button class="btn btn-foo btn-digit" data-value="0">0</button>
+                <button class="btn btn-foo btn-special" data-value="mod">
                     &#8801;
                 </button>
-                <button class="btn btn-special" data-value="calc">
+                <button class="btn btn-foo btn-special" data-value="calc">
                     &equals;
                 </button>
             </div>
@@ -142,21 +143,25 @@
                         </select>
                     </li>
                     <li class="list-group-item">
-                        <span>Non negative result</span>
-                        <div class="switch">
-                            <input id="positive" type="checkbox" />
-                            <label for="positive" class="label-default"></label>
+                        <div>
+                            <span>Non negative result</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="positive">
                         </div>
                     </li>
                     <li class="list-group-item">
-                        <span>Reuse module</span>
-                        <div class="switch">
-                            <input id="module" type="checkbox" />
-                            <label for="module" class="label-default"></label>
+                        <div>
+                            <span>Reuse module</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="module">
                         </div>
                     </li>
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-default" id="ok">Ok</button>
+                    </li>
                 </ul>
-                <button type="button" class="btn btn-default" id="ok">Ok</button>
             </div>
         </div>
     </div>
