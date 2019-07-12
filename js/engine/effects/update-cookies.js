@@ -5,8 +5,8 @@ function updateCookies(state) {
         expires: 31
     };
 
-    Cookies.set(SETTINGS.POSITIVE, state.positiveCookie, cookiesSettings);
-    Cookies.set(SETTINGS.MODULE, state.moduleCookie, cookiesSettings);
+    Cookies.set(SETTINGS.POSITIVE, state.settings.positive, cookiesSettings);
+    Cookies.set(SETTINGS.MODULE, state.settings.module, cookiesSettings);
 }
 
 export { updateCookies };

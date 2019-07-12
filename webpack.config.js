@@ -29,17 +29,17 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.(woff|woff2|ttf|eot)$/,
                 loader: "url-loader",
                 options: {
                     limit: 1024,
                     name: "[name].[ext]",
-                    outputPath: "fonts",
-                    publicPath: "fonts"
+                    outputPath: "fonts/",
+                    publicPath: "fonts/"
                 }
             },
             {
-                test: /\.(jpg|jpeg|gif|png|ico)$/,
+                test: /\.ico$/,
                 loader: "file-loader",
                 options: {
                     limit: 1024,

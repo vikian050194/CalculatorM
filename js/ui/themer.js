@@ -14,7 +14,7 @@ class Themer {
     }
 
     isValidTheme(theme) {
-        return theme && THEMES.includes(theme) !== -1;
+        return theme && THEMES.indexOf(theme) !== -1;
     }
 
     saveInCookies(theme) {

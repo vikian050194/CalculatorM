@@ -1,43 +1,42 @@
-import TestState from "./../test-state";
+import initialState from "./../../engine/initial-state";
 import { operatorReducer } from "./../../engine/reducers";
 import createAction from "./../../engine/action-creator";
 import Integer from "./../../integer";
+import { OPERATORS } from "./../../constants";
 
 import assert from "assert";
 
 describe("Operator reducer", function () {
 
-    var initialState = new TestState();
+    it("add operator, query is empty", function () {
+        const actualState = initialState;
+        const expectedState = initialState;
 
-    it("action \"addOperator\" with empty input", function () {
+        for (const key in OPERATORS) {
+            const value = OPERATORS[key];
+
+            assert.deepEqual(
+                operatorReducer(actualState, createAction("addOperator")(value)),
+                expectedState,
+                `"${value}" operator is handled in the wrong way`);
+        }
+    });
+
+    it("add operator, one argument is in query", function () {
         var actualState = {
-            ...initialState
+            ...initialState,
+            query: [new Integer("42")]
         };
 
         var expectedState = {
             ...initialState,
-            operator: "add"
+            firstArgument: [new Integer("42"), "ADD"]
         };
 
         assert.deepEqual(operatorReducer(actualState, createAction("addOperator")("add")), expectedState);
     });
 
-    it("action \"addOperator\" without previous operator", function () {
-        var actualState = {
-            ...initialState,
-            firstArgument: new Integer("42")
-        };
-
-        var expectedState = {
-            ...initialState,
-            firstArgument: new Integer("42"),
-            operator: "add"
-        };
-
-        assert.deepEqual(operatorReducer(actualState, createAction("addOperator")("add")), expectedState);
-    });
-
-    it("several actions \"addOperator\" in a row", function () {
+    /*it("several actions \"addOperator\" in a row", function () {
         var actualState = {
             ...initialState,
             firstArgument: new Integer("42")
@@ -343,7 +342,7 @@ describe("Operator reducer", function () {
             ...initialState
         };
         actualState = operatorReducer(actualState, createAction("addOperator")("mod"));
-        
+
         var expectedState = {
             ...initialState,
             firstArgument: new Integer("0"),
@@ -373,5 +372,5 @@ describe("Operator reducer", function () {
         };
 
         assert.deepEqual(actualState, expectedState);
-    });
+    });*/
 });

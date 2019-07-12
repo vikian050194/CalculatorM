@@ -3,9 +3,9 @@ import combineReducers from "./reducers/combine-reducers";
 
 import {
     historyReducer,
-    cookieReducer,
+    settingsReducer,
     clearingReducer,
-    digitReducer,
+    argumentReducer,
     memoryReducer,
     operatorReducer
 } from "./reducers";
@@ -18,9 +18,9 @@ import {
 
 function CalculatorStore(initialState) {
     const store = createStore(historyReducer(combineReducers({
-        cookie: cookieReducer,
+        settings: settingsReducer,
         clearing: clearingReducer,
-        digit: digitReducer,
+        argument: argumentReducer,
         memory: memoryReducer,
         operator: operatorReducer
     })), initialState);

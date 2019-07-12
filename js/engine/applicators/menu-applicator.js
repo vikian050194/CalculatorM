@@ -7,18 +7,18 @@ function applyMenu(calculatorStore, themer) {
 
     const positiveCheckbox = $("#positive");
     if (positiveCheckbox.checked) {
-        calculatorStore.dispatch(createAction("changePositiveCookie")(true));
+        calculatorStore.dispatch(createAction("changeSetting")({ name: "positive", value: true }));
     }
     positiveCheckbox.change(function () {
-        calculatorStore.dispatch(createAction("changePositiveCookie")(this.checked));
+        calculatorStore.dispatch(createAction("changeSetting")({ name: "positive", value: this.checked }));
     });
 
     const moduleCheckbox = $("#module");
     if (moduleCheckbox.checked) {
-        calculatorStore.dispatch(createAction("changeModuleCookie")(true));
+        calculatorStore.dispatch(createAction("changeSetting")({ name: "module", value: true }));
     }
     moduleCheckbox.change(function () {
-        calculatorStore.dispatch(createAction("changeModuleCookie")(this.checked));
+        calculatorStore.dispatch(createAction("changeSetting")({ name: "module", value: this.checked }));
     });
 
     $("#menu").on("click", function () {
@@ -28,7 +28,7 @@ function applyMenu(calculatorStore, themer) {
         $(".menu-page").show();
     });
 
-    $("#ok").on("click", function(){
+    $("#ok").on("click", function () {
         $(".page").each(function (i, e) {
             $(e).show();
         });

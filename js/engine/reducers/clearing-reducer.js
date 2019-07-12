@@ -1,20 +1,15 @@
-import Integer from "../../integer";
+import initialState from "../initial-state";
 
 const clearingReducer = (previousState, action) => {
-    const result = { ...previousState
+    const result = {
+        ...previousState
     };
 
     switch (action.type) {
         case "clear":
             return {
-                firstArgument: new Integer(),
-                secondArgument: null,
-                operator: "",
-                module: new Integer(),
-                memory: previousState.memory,
-                result: null,
-                positiveCookie: previousState.positiveCookie,
-                moduleCookie: previousState.moduleCookie
+                ...initialState,
+                settings: previousState.settings
             };
 
         case "deleteDigit":
@@ -26,7 +21,8 @@ const clearingReducer = (previousState, action) => {
             }
 
             if (previousState.operator !== "" && previousState.secondArgument === null) {
-                return { ...previousState,
+                return {
+                    ...previousState,
                     operator: ""
                 };
             }

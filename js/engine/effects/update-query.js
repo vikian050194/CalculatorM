@@ -1,7 +1,6 @@
 const updateQuery = (state) => {
-    //\u2630
-
-    $("#query").html(state.firstArgument.toString());
+    $("#query").html(state.query.items.map(i => `<span>${i}</span>`).join("<span>&nbsp;</span>") + "<span class=\"blinking-cursor\">|</span>");
+    document.getElementsByClassName("blinking-cursor")[0].scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 };
 
 export { updateQuery };

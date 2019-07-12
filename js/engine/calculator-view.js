@@ -7,7 +7,7 @@ import applyClearing from "./applicators/clearing-applicator";
 import applyMemory from "./applicators/memory-applicator";
 import applyHistory from "./applicators/history-applicator";
 import PageHandler from "../ui/page-handler";
-import Integer from "../integer";
+import initialState from "./initial-state";
 import { SETTINGS, DEFAULT_SETTINGS } from "../constants";
 
 const calculatorView = () => {
@@ -17,41 +17,44 @@ const calculatorView = () => {
         expires: DEFAULT_SETTINGS.EXPIRES
     };
 
-    let positiveCookie = Cookies.get(SETTINGS.POSITIVE);
-    
-    if (positiveCookie === undefined) {
-        positiveCookie = DEFAULT_SETTINGS.POSITIVE;
-        Cookies.set(SETTINGS.POSITIVE, positiveCookie, cookiesSettings);
+    let positive = Cookies.get(SETTINGS.POSITIVE);
+
+    if (positive === undefined) {
+        positive = DEFAULT_SETTINGS.POSITIVE;
+        Cookies.set(SETTINGS.POSITIVE, positive, cookiesSettings);
     }
     else {
-        positiveCookie = positiveCookie == true;
+        positive = positive == true;
     }
 
-    let moduleCookie = Cookies.get(SETTINGS.MODULE);
+    let module = Cookies.get(SETTINGS.MODULE);
 
-    if (moduleCookie === undefined) {
-        moduleCookie = DEFAULT_SETTINGS.MODULE;
-        Cookies.set(SETTINGS.MODULE, moduleCookie, cookiesSettings);
+    if (module === undefined) {
+        module = DEFAULT_SETTINGS.MODULE;
+        Cookies.set(SETTINGS.MODULE, module, cookiesSettings);
     }
     else {
-        moduleCookie = moduleCookie == true;
+        module = module == true;
     }
 
-    const initialState = {
-        firstArgument: new Integer(),
-        secondArgument: null,
-        operator: null,
-        module: null,
-        memory: null,
-        result: null,
-        positiveCookie,
-        moduleCookie
+    const state = {
+        ...initialState,
+        settings: { positive: positive, module: module }
     };
 
-    const calculatorStore = new CalculatorStore(initialState);
+    // const state = {
+    //     ...initialState,
+    //     settings: { positive: positive, module: module },
+    //     query: {
+    //         ...initialState.query, items: ["1", "add"],
+    //         index: 2
+    //     }
+    // };
+
+    const calculatorStore = new CalculatorStore(state);
     const themer = new Themer();
 
-    const init =  () => {
+    const init = () => {
         applyMenu(calculatorStore, themer);
 
         applyDigits(calculatorStore);
@@ -65,9 +68,9 @@ const calculatorView = () => {
 
     $("[data-value=\"nothing\"]").attr("disabled", true);
     $("#positive").checkboxpicker();
-    $("#positive").prop("checked", positiveCookie);
+    $("#positive").prop("checked", positive);
     $("#module").checkboxpicker();
-    $("#module").prop("checked", moduleCookie);
+    $("#module").prop("checked", module);
 };
 
 export default calculatorView;

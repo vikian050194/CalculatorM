@@ -18,17 +18,29 @@ const DEFAULT_SETTINGS = {
 };
 
 const OPERATORS = {
-    ADD: "ADD",
-    SUB: "SUB",
-    MUL: "MUL",
-    DIV: "DIV",
-    MOD: "MOD",
-    POW: "POW"
+    ADD: "add",
+    SUB: "sub",
+    MUL: "mul",
+    DIV: "div",
+    MOD: "mod",
+    POW: "pow"
+};
+
+const ACTIONS = {
+    ADD_DIGIT: "addDigit",
+    CHANGE_SIGN: "changeSign"
+};
+
+const TOKEN_TYPE = {
+    OPERATOR: "operator",
+    ARGUMENT: "argument"
 };
 
 export {
     SETTINGS,
     DEFAULT_SETTINGS,
     THEMES,
-    OPERATORS
+    OPERATORS,
+    ACTIONS,
+    TOKEN_TYPE
 };
