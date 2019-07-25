@@ -1,20 +1,14 @@
 import createAction from "./../action-creator";
+import { ACTIONS } from "../../constants";
 
-function applyHistory(calculatorStore) {
-    var applyUndo = function () {
-        $("[data-value=\"undo\"]").on("click", function () {
-            calculatorStore.dispatch(createAction("undo")());
-        });
-    };
+function historyApplicator(calculatorStore) {
+    $("[data-value=\"undo\"]").on("click", function () {
+        calculatorStore.dispatch(createAction(ACTIONS.UNDO)());
+    });
 
-    var applyRedo = function () {
-        $("[data-value=\"redo\"]").on("click", function () {
-            calculatorStore.dispatch(createAction("redo")());
-        });
-    };
-
-    applyUndo();
-    applyRedo();
+    $("[data-value=\"redo\"]").on("click", function () {
+        calculatorStore.dispatch(createAction(ACTIONS.REDO)());
+    });
 }
 
-export default applyHistory;
+export { historyApplicator };

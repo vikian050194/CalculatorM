@@ -7,7 +7,8 @@ import {
     clearingReducer,
     argumentReducer,
     memoryReducer,
-    operatorReducer
+    operatorReducer,
+    navigationReducer
 } from "./reducers";
 
 import {
@@ -22,7 +23,8 @@ function CalculatorStore(initialState) {
         clearing: clearingReducer,
         argument: argumentReducer,
         memory: memoryReducer,
-        operator: operatorReducer
+        operator: operatorReducer,
+        navigation: navigationReducer
     })), initialState);
 
     this.thunk = function (func, value) {

@@ -1,4 +1,3 @@
-// import Integer from "../../integer";
 import { ACTIONS, TOKEN_TYPE } from "./../../constants";
 
 const addDigit = (query, digit) => {

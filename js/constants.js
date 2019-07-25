@@ -28,7 +28,15 @@ const OPERATORS = {
 
 const ACTIONS = {
     ADD_DIGIT: "addDigit",
-    CHANGE_SIGN: "changeSign"
+    ADD_OPERATOR: "addOperator",
+    CHANGE_SIGN: "changeSign",
+    CLEAR: "clear",
+    DELETE: "delete",
+    CHANGE_SETTING: "changeSetting",
+    UNDO: "undo",
+    REDO: "redo",
+    MOVE_LEFT: "moveLeft",
+    MOVE_RIGHT: "moveRight"
 };
 
 const TOKEN_TYPE = {

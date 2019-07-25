@@ -1,8 +1,8 @@
-import { TOKEN_TYPE } from "./../../constants";
+import { TOKEN_TYPE, ACTIONS } from "./../../constants";
 
 const operatorReducer = (previousState, action) => {
     switch (action.type) {
-        case "addOperator":
+        case ACTIONS.ADD_OPERATOR:
             if (previousState.query.type === TOKEN_TYPE.OPERATOR) {
                 return {
                     ...previousState,

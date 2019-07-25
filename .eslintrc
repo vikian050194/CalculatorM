@@ -21,7 +21,7 @@
         "linebreak-style": [ "error", "windows"],
         "no-console": [ "warn", { "allow": [ "info", "error" ] } ],
         "comma-dangle": ["error", "never"],
-        "no-debugger": "error"
+        "no-debugger": "warn"
     },
     "globals": {
         "Backbone": true,

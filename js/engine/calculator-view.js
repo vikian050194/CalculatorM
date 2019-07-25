@@ -1,11 +1,15 @@
 import CalculatorStore from "./calculator-store";
 import Themer from "../ui/themer";
-import applyMenu from "./applicators/menu-applicator";
-import applyDigits from "./applicators/digit-applicator";
-import applyOperators from "./applicators/operator-applicator";
-import applyClearing from "./applicators/clearing-applicator";
-import applyMemory from "./applicators/memory-applicator";
-import applyHistory from "./applicators/history-applicator";
+import {
+    menuApplicator,
+    digitApplicator,
+    operatorApplicator,
+    clearingApplicator,
+    memoryApplicator,
+    historyApplicator,
+    navigationApplicator,
+    keyboardApplicator
+} from "./applicators";
 import PageHandler from "../ui/page-handler";
 import initialState from "./initial-state";
 import { SETTINGS, DEFAULT_SETTINGS } from "../constants";
@@ -55,13 +59,16 @@ const calculatorView = () => {
     const themer = new Themer();
 
     const init = () => {
-        applyMenu(calculatorStore, themer);
+        menuApplicator(calculatorStore, themer);
 
-        applyDigits(calculatorStore);
-        applyOperators(calculatorStore);
-        applyClearing(calculatorStore);
-        applyMemory(calculatorStore);
-        applyHistory(calculatorStore);
+        digitApplicator(calculatorStore);
+        operatorApplicator(calculatorStore);
+        clearingApplicator(calculatorStore);
+        memoryApplicator(calculatorStore);
+        historyApplicator(calculatorStore);
+        navigationApplicator(calculatorStore);
+
+        keyboardApplicator(calculatorStore);
     };
 
     init();

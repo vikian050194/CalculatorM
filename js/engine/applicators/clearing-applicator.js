@@ -1,15 +1,16 @@
 import createAction from "./../action-creator";
+import { ACTIONS } from "../../constants";
 
-function applyClearing(calculatorStore) {
-    var applyClear = function () {
+function clearingApplicator(calculatorStore) {
+    const applyClear = function () {
         $("[data-value=\"clear\"]").on("click", function () {
-            calculatorStore.dispatch(createAction("clear")());
+            calculatorStore.dispatch(createAction(ACTIONS.CLEAR)());
         });
     };
 
-    var applyBackspace = function () {
+    const applyBackspace = function () {
         $("[data-value=\"backspace\"]").on("click", function () {
-            calculatorStore.dispatch(createAction("deleteDigit")());
+            calculatorStore.dispatch(createAction(ACTIONS.DELETE)());
         });
     };
 
@@ -17,4 +18,4 @@ function applyClearing(calculatorStore) {
     applyBackspace();
 }
 
-export default applyClearing;
+export { clearingApplicator };

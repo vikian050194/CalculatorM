@@ -1,24 +1,25 @@
 import createAction from "./../action-creator";
+import { ACTIONS } from "../../constants";
 
-function applyMenu(calculatorStore, themer) {
+function menuApplicator(calculatorStore, themer) {
     $("#changeTheme").on("change", function () {
         themer.setTheme(this.selectedOptions[0].value);
     });
 
     const positiveCheckbox = $("#positive");
     if (positiveCheckbox.checked) {
-        calculatorStore.dispatch(createAction("changeSetting")({ name: "positive", value: true }));
+        calculatorStore.dispatch(createAction(ACTIONS.CHANGE_SETTING)({ name: "positive", value: true }));
     }
     positiveCheckbox.change(function () {
-        calculatorStore.dispatch(createAction("changeSetting")({ name: "positive", value: this.checked }));
+        calculatorStore.dispatch(createAction(ACTIONS.CHANGE_SETTING)({ name: "positive", value: this.checked }));
     });
 
     const moduleCheckbox = $("#module");
     if (moduleCheckbox.checked) {
-        calculatorStore.dispatch(createAction("changeSetting")({ name: "module", value: true }));
+        calculatorStore.dispatch(createAction(ACTIONS.CHANGE_SETTING)({ name: "module", value: true }));
     }
     moduleCheckbox.change(function () {
-        calculatorStore.dispatch(createAction("changeSetting")({ name: "module", value: this.checked }));
+        calculatorStore.dispatch(createAction(ACTIONS.CHANGE_SETTING)({ name: "module", value: this.checked }));
     });
 
     $("#menu").on("click", function () {
@@ -36,4 +37,4 @@ function applyMenu(calculatorStore, themer) {
     });
 }
 
-export default applyMenu;
+export { menuApplicator };

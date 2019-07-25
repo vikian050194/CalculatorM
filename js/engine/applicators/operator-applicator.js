@@ -1,32 +1,17 @@
-import createAction from "./../action-creator";
+import createAction from "../action-creator";
+import { ACTIONS } from "./../../constants";
 
-function applyOperators(calculatorStore) {
-    var addOperator = function (dispatch, getState) {
-        return function (value) {
-            if (getState().secondArgument !== null) {
-                dispatch(createAction("precalculate")());
-            }
-            if (value !== "calc") {
-                dispatch(createAction("addOperator")(value));
-            } else {
-                dispatch(createAction("calculate")());
-            }
-        };
-    };
+function operatorApplicator(calculatorStore) {
+    const operators = ["add", "sub", "mul", "div", "pow", "calc", "mod"];
 
-    var applyOperators = function () {
-        var operators = ["add", "sub", "mul", "div", "pow", "calc", "mod"];
-        for (var i = 0; i <= operators.length; i++) {
-            (function () {
-                var value = operators[i];
-                $("[data-value=" + value + "]").on("click", function () {
-                    calculatorStore.thunk(addOperator, value);
-                });
-            })();
-        }
-    };
-
-    applyOperators();
+    for (let i = 0; i <= operators.length; i++) {
+        (function () {
+            const value = operators[i];
+            $("[data-value=" + value + "]").on("click", function () {
+                calculatorStore.dispatch(createAction(ACTIONS.ADD_OPERATOR)(value));
+            });
+        })();
+    }
 }
 
-export default applyOperators;
+export { operatorApplicator };
