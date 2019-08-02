@@ -16,7 +16,7 @@
     text-align: right;
     width: 96vw;
     background-color: #FFFFFF;
-    overflow-x: hidden;
+    overflow-x: auto;
     overflow-y: hidden;
     resize: none;
     /* border: 1px solid #CCCCCC; */

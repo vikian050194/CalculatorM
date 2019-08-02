@@ -40,7 +40,7 @@ function keyboardApplicator(calculatorStore) {
     document.addEventListener("keydown", logKey);
 
     function logKey(e) {
-        console.info(e.keyCode);
+        console.info(`keyCode: ${e.keyCode}`);
     }
 
     const applyNavigation = function () {

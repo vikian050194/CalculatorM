@@ -3,7 +3,7 @@ import { ACTIONS } from "../../constants";
 const navigationReducer = (previousState, action) => {
     switch (action.type) {
         case ACTIONS.MOVE_LEFT:
-            if (previousState.query.index !== 0) {
+            if (previousState.query.index !== -1) {
                 return {
                     ...previousState,
                     query: { ...previousState.query, index: previousState.query.index - 1 }
@@ -12,7 +12,7 @@ const navigationReducer = (previousState, action) => {
 
             return previousState;
         case ACTIONS.MOVE_RIGHT:
-            if (previousState.query.index !== previousState.query.items.length) {
+            if (previousState.query.index !== previousState.query.items.length - 1) {
                 return {
                     ...previousState,
                     query: { ...previousState.query, index: previousState.query.index + 1 }
