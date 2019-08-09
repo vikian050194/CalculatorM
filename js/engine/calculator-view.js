@@ -15,7 +15,11 @@ import initialState from "./initial-state";
 import { SETTINGS, DEFAULT_SETTINGS } from "../constants";
 
 const calculatorView = () => {
-    new PageHandler();
+    const pageHandler = new PageHandler();
+
+    for (let i = 1; i <= 4; i++) {
+        (function (index) { $(`[data-value="goto${i}"]`).click(() => pageHandler.select(index - 1)); })(i);
+    }
 
     const cookiesSettings = {
         expires: DEFAULT_SETTINGS.EXPIRES

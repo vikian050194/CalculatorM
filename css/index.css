@@ -12,7 +12,6 @@
 }
 
 .display-row {
-    height: 100%;
     text-align: right;
     width: 96vw;
     background-color: #FFFFFF;
@@ -24,14 +23,12 @@
 }
 
 .query-row {
-    height: 13vh;
     border-bottom: none;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
 
 .result-row {
-    height: 13vh;
     border-top: none;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
@@ -39,8 +36,9 @@
 
 .query-row,
 .result-row {
+    height: 13vh;
     padding: 1vh 2vw;
-    font-size: 7vh
+    font-size: 7vh;
 }
 
 .form-control:focus {
@@ -66,16 +64,25 @@ ul {
 }
 
 .page,
-.menu-page {
+.menu-page,
+.navigation-container {
     width: 100vw;
-    padding: 0.5vh 1vw;
     display: flex;
     flex-wrap: wrap;
 }
 
+.page,
+.menu-page{
+    padding: 0 1vw 0.5vh 1vw;
+}
+
+.navigation-container{
+    padding: 0.5vh 1vw 0 1vw;
+}
+
 .btn-calculator {
     font-size: 4vh;
-    width: 17.6vw;
+    width: 22.5vw;
     height: 11vh;
     margin: 0.5vh 1vw;
     font-weight: bold;
