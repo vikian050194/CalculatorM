@@ -1,5 +1,6 @@
-const webpack = require("webpack");
 const path = require("path");
+const webpack = require("webpack");
+const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const buildFolderName = "public";
@@ -60,7 +61,7 @@ module.exports = {
     },
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, "build"),
+        path: path.resolve(__dirname, buildFolderName),
         publicPath: "/"
     },
     plugins: [
@@ -71,11 +72,17 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: "bundle.css"
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: "index.html" },
+                { from: "favicon.svg" }
+            ]
         })
     ],
     devServer: {
-        index: path.resolve(__dirname, "index.html"),
-        contentBase: path.resolve(__dirname, "build"),
+        index: path.resolve(__dirname, buildFolderName, "index.html"),
+        contentBase: path.resolve(__dirname, buildFolderName),
         publicPath: "/",
         port: 8080,
         watchContentBase: false,

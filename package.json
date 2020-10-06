@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/vikian050194/CalculatorM.git"
   },
-  "author": "kirillv",
+  "author": "vikian050194",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vikian050194/CalculatorM/issues"
@@ -32,6 +32,7 @@
     "bootstrap-checkbox": "^1.5.0",
     "bootstrap-loader": "^3.0.4",
     "bootstrap-sass": "^3.4.1",
+    "copy-webpack-plugin": "^6.0.1",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
     "eslint-loader": "^2.1.2",
