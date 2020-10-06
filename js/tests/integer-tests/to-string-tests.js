@@ -12,12 +12,12 @@ describe("Integer: toString", function () {
     it("Forty two", function () {
         var number = new Integer("42");
 
-        assert.deepEqual(number.toString(), "42");
+        assert.deepStrictEqual(number.toString(), "42");
     });
 
     it("Minus forty two", function () {
         var number = new Integer("-42");
 
-        assert.deepEqual(number.toString(), "-42");
+        assert.deepStrictEqual(number.toString(), "-42");
     });
 });

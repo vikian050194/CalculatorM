@@ -8,7 +8,7 @@ describe("Integer: push", function () {
 
         number.push(0);
 
-        assert.deepEqual(number, new Integer());
+        assert.deepStrictEqual(number, new Integer());
     });
 
     it("Push non zero digit", function () {
@@ -16,7 +16,7 @@ describe("Integer: push", function () {
 
         number.push(7);
 
-        assert.deepEqual(number, new Integer("7"));
+        assert.deepStrictEqual(number, new Integer("7"));
     });
 });
 
@@ -26,7 +26,7 @@ describe("Integer: pop", function () {
 
         number.pop();
 
-        assert.deepEqual(number, new Integer());
+        assert.deepStrictEqual(number, new Integer());
     });
 
     it("Pop from single digit number", function () {
@@ -34,7 +34,7 @@ describe("Integer: pop", function () {
 
         number.pop();
 
-        assert.deepEqual(number, new Integer());
+        assert.deepStrictEqual(number, new Integer());
     });
 
     it("Pop from two digits number", function () {
@@ -42,6 +42,6 @@ describe("Integer: pop", function () {
 
         number.pop();
 
-        assert.deepEqual(number, new Integer("4"));
+        assert.deepStrictEqual(number, new Integer("4"));
     });
 });

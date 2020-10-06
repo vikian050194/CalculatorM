@@ -13,7 +13,7 @@ describe("Query", function () {
             module: new Integer("0")
         };
 
-        assert.deepEqual(queryBuilder.getQuery(actualState), "_");
+        assert.deepStrictEqual(queryBuilder.getQuery(actualState), "_");
     });
 
     it("one argument", function () {
@@ -22,7 +22,7 @@ describe("Query", function () {
             module: new Integer("0")
         };
 
-        assert.deepEqual(queryBuilder.getQuery(actualState), "3_");
+        assert.deepStrictEqual(queryBuilder.getQuery(actualState), "3_");
     });
 
     it("one argument and operation", function () {
@@ -33,7 +33,7 @@ describe("Query", function () {
             module: new Integer("0")
         };
 
-        assert.deepEqual(queryBuilder.getQuery(actualState), "7 add 0_");
+        assert.deepStrictEqual(queryBuilder.getQuery(actualState), "7 add 0_");
     });
 
     it("two arguments and operation", function () {
@@ -44,7 +44,7 @@ describe("Query", function () {
             module: new Integer("0")
         };
 
-        assert.deepEqual(queryBuilder.getQuery(actualState), "7 add 32_");
+        assert.deepStrictEqual(queryBuilder.getQuery(actualState), "7 add 32_");
     });
 
     it("query with module", function () {
@@ -53,7 +53,7 @@ describe("Query", function () {
             module: new Integer("100")
         };
 
-        assert.deepEqual(queryBuilder.getQuery(actualState), "_ mod 100");
+        assert.deepStrictEqual(queryBuilder.getQuery(actualState), "_ mod 100");
     });
 
     it("query with module and first argument", function () {
@@ -62,7 +62,7 @@ describe("Query", function () {
             module: new Integer("100")
         };
 
-        assert.deepEqual(queryBuilder.getQuery(actualState), "72_ mod 100");
+        assert.deepStrictEqual(queryBuilder.getQuery(actualState), "72_ mod 100");
     });
 
     it("query with module, first argument, operator and second argument", function () {
@@ -73,6 +73,6 @@ describe("Query", function () {
             module: new Integer("100")
         };
 
-        assert.deepEqual(queryBuilder.getQuery(actualState), "72 sub 5_ mod 100");
+        assert.deepStrictEqual(queryBuilder.getQuery(actualState), "72 sub 5_ mod 100");
     });
 });

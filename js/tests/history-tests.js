@@ -52,7 +52,7 @@ describe("History", function () {
         }
         ];
 
-        assert.deepEqual(historyReducer(Reducer)({
+        assert.deepStrictEqual(historyReducer(Reducer)({
             history: actualHistory,
             currentIndex: 1
         }, createAction("undo")()),{history: expectedHistory, currentIndex: 0 });
@@ -86,7 +86,7 @@ describe("History", function () {
         }
         ];
 
-        assert.deepEqual(historyReducer(Reducer)(actualStateBeforeAddingNum, createAction("addDigit")(1)), {
+        assert.deepStrictEqual(historyReducer(Reducer)(actualStateBeforeAddingNum, createAction("addDigit")(1)), {
             history: expectedHistory,
             currentIndex: 1
         });
@@ -129,7 +129,7 @@ describe("History", function () {
         }
         ];
 
-        assert.deepEqual(historyReducer(Reducer)({
+        assert.deepStrictEqual(historyReducer(Reducer)({
             history: actualHistory,
             currentIndex: 1
         }, createAction("redo")()), { history: expectedHistory, currentIndex: 2 });

@@ -21,7 +21,7 @@
 //         };
 //         expectedState.query = new QueryBuilder().getQuery(expectedState);
 
-//         assert.deepEqual(QueryReducer(actualState, createAction("addDigit")(1)), expectedState);
+//         assert.deepStrictEqual(QueryReducer(actualState, createAction("addDigit")(1)), expectedState);
 //     });
 
 //     it("query after action \"addOperator\"", function () {
@@ -37,7 +37,7 @@
 //         };
 //         expectedState.query = new QueryBuilder().getQuery(expectedState);
 
-//         assert.deepEqual(QueryReducer(actualState, createAction("addOperator")("add")), expectedState);
+//         assert.deepStrictEqual(QueryReducer(actualState, createAction("addOperator")("add")), expectedState);
 //     });
 
 //     it("query after action \"calculate\"", function () {
@@ -59,7 +59,7 @@
 //             query: new QueryBuilder().getQuery(queryState)
 //         };
 
-//         assert.deepEqual(QueryReducer(actualState, createAction("calculate")()), expectedState);
+//         assert.deepStrictEqual(QueryReducer(actualState, createAction("calculate")()), expectedState);
 //     });
 
 //     it("query after action \"calculate\" with first argument", function () {
@@ -76,7 +76,7 @@
 //             query: new QueryBuilder().getQuery(queryState)
 //         };
 
-//         assert.deepEqual(QueryReducer(actualState, createAction("calculate")()), expectedState);
+//         assert.deepStrictEqual(QueryReducer(actualState, createAction("calculate")()), expectedState);
 //     });
 
 //     it("query after action \"calculate\" with first argument and module", function () {
@@ -98,7 +98,7 @@
 //             query: new QueryBuilder().getQuery(queryState)
 //         };
 
-//         assert.deepEqual(QueryReducer(actualState, createAction("calculate")()), expectedState);
+//         assert.deepStrictEqual(QueryReducer(actualState, createAction("calculate")()), expectedState);
 //     });
 
 //     // it("query after action "calculate" with NaN result", function () {
@@ -114,7 +114,7 @@
 //     //         query: "ERROR"
 //     //     };
 
-//     //     assert.deepEqual(QueryReducer(actualState, createAction("calculate")()), expectedState);
+//     //     assert.deepStrictEqual(QueryReducer(actualState, createAction("calculate")()), expectedState);
 //     // });
 
 //     // it("query after action "addOperator" with NaN result", function () {
@@ -130,7 +130,7 @@
 //     //         query: "ERROR"
 //     //     };
 
-//     //     assert.deepEqual(QueryReducer(actualState, createAction("addOperator")("add")), expectedState);
+//     //     assert.deepStrictEqual(QueryReducer(actualState, createAction("addOperator")("add")), expectedState);
 //     // });
 
 //     it("query after adding module with previous module", function () {
@@ -148,6 +148,6 @@
 //             query: "63 mod _"
 //         };
 
-//         assert.deepEqual(QueryReducer(actualState, createAction("addOperator")("mod")), expectedState);
+//         assert.deepStrictEqual(QueryReducer(actualState, createAction("addOperator")("mod")), expectedState);
 //     });
 // });

@@ -14,7 +14,7 @@ describe("Memory reducer", function () {
             memory: new Integer()
         };
 
-        assert.deepEqual(memoryReducer(actualState, createAction("addToMemory")()), expectedState);
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("addToMemory")()), expectedState);
     });
 
     it("add first argument", function () {
@@ -27,8 +27,8 @@ describe("Memory reducer", function () {
             firstArgument: new Integer("42")
         };
 
-        assert.deepEqual(memoryReducer(actualState, createAction("addToMemory")()), expectedState);
-        assert.deepEqual(actualState.memory, null, "mutation detected");
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("addToMemory")()), expectedState);
+        assert.deepStrictEqual(actualState.memory, null, "mutation detected");
     });
 
     it("add second argument(zero)", function () {
@@ -45,8 +45,8 @@ describe("Memory reducer", function () {
             secondArgument: new Integer()
         };
 
-        assert.deepEqual(memoryReducer(actualState, createAction("addToMemory")()), expectedState);
-        assert.deepEqual(actualState.memory, null, "mutation detected");
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("addToMemory")()), expectedState);
+        assert.deepStrictEqual(actualState.memory, null, "mutation detected");
 
     });
 
@@ -64,8 +64,8 @@ describe("Memory reducer", function () {
             secondArgument: new Integer("21")
         };
 
-        assert.deepEqual(memoryReducer(actualState, createAction("addToMemory")()), expectedState);
-        assert.deepEqual(actualState.memory, null, "mutation detected");
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("addToMemory")()), expectedState);
+        assert.deepStrictEqual(actualState.memory, null, "mutation detected");
     });
 
     it("recall from empty memory", function () {
@@ -77,7 +77,7 @@ describe("Memory reducer", function () {
             firstArgument: new Integer("42")
         };
 
-        assert.deepEqual(memoryReducer(actualState, createAction("getFromMemory")()), expectedState);
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("getFromMemory")()), expectedState);
     });
 
     it("recall from memory to first argument", function () {
@@ -91,8 +91,8 @@ describe("Memory reducer", function () {
             memory: new Integer("21")
         };
 
-        assert.deepEqual(memoryReducer(actualState, createAction("getFromMemory")()), expectedState);
-        assert.deepEqual(actualState.firstArgument, new Integer("42"), "mutation detected");
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("getFromMemory")()), expectedState);
+        assert.deepStrictEqual(actualState.firstArgument, new Integer("42"), "mutation detected");
     });
 
     it("recall from memory to second argument", function () {
@@ -110,8 +110,8 @@ describe("Memory reducer", function () {
             secondArgument: new Integer("21")
         };
 
-        assert.deepEqual(memoryReducer(actualState, createAction("getFromMemory")()), expectedState);
-        assert.deepEqual(actualState.secondArgument, new Integer("3"), "mutation detected");
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("getFromMemory")()), expectedState);
+        assert.deepStrictEqual(actualState.secondArgument, new Integer("3"), "mutation detected");
     });
 
     it("clear empty memory", function () {
@@ -121,7 +121,7 @@ describe("Memory reducer", function () {
         var expectedState = { ...new TestState()
         };
 
-        assert.deepEqual(memoryReducer(actualState, createAction("clearMemory")()), expectedState);
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("clearMemory")()), expectedState);
     });
 
     it("clear memory", function () {
@@ -138,7 +138,7 @@ describe("Memory reducer", function () {
             secondArgument: new Integer("21")
         };
 
-        assert.deepEqual(memoryReducer(actualState, createAction("clearMemory")()), expectedState);
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("clearMemory")()), expectedState);
     });
 
     it("action for different reducer", function () {
@@ -146,6 +146,6 @@ describe("Memory reducer", function () {
 
         var expectedState = new TestState();
 
-        assert.deepEqual(memoryReducer(actualState, createAction("TestAction")()), expectedState);
+        assert.deepStrictEqual(memoryReducer(actualState, createAction("TestAction")()), expectedState);
     });
 });

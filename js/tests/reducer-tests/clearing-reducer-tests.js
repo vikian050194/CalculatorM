@@ -17,11 +17,11 @@ describe("Clearing reducer", function () {
         var expectedState = { ...new TestState()
         };
 
-        assert.deepEqual(clearingReducer(actualState, createAction("clear")()), expectedState);
-        assert.deepEqual(actualState.firstArgument, new Integer("3"), "mutation detected");
-        assert.deepEqual(actualState.secondArgument, new Integer("5"), "mutation detected");
-        assert.deepEqual(actualState.result, new Integer("8"), "mutation detected");
-        assert.deepEqual(actualState.module, new Integer("11"), "mutation detected");
+        assert.deepStrictEqual(clearingReducer(actualState, createAction("clear")()), expectedState);
+        assert.deepStrictEqual(actualState.firstArgument, new Integer("3"), "mutation detected");
+        assert.deepStrictEqual(actualState.secondArgument, new Integer("5"), "mutation detected");
+        assert.deepStrictEqual(actualState.result, new Integer("8"), "mutation detected");
+        assert.deepStrictEqual(actualState.module, new Integer("11"), "mutation detected");
         assert.equal(actualState.operator, "add", "mutation detected");
     });
 
@@ -34,8 +34,8 @@ describe("Clearing reducer", function () {
             firstArgument: new Integer("4")
         };
 
-        assert.deepEqual(clearingReducer(actualState, createAction("deleteDigit")()), expectedState);
-        assert.deepEqual(actualState.firstArgument, new Integer("42"), "mutation detected");
+        assert.deepStrictEqual(clearingReducer(actualState, createAction("deleteDigit")()), expectedState);
+        assert.deepStrictEqual(actualState.firstArgument, new Integer("42"), "mutation detected");
     });
 
     it("remove second digit of second argument", function () {
@@ -51,8 +51,8 @@ describe("Clearing reducer", function () {
             secondArgument: new Integer("2")
         };
 
-        assert.deepEqual(clearingReducer(actualState, createAction("deleteDigit")()), expectedState);
-        assert.deepEqual(actualState.secondArgument, new Integer("21"), "mutation detected");
+        assert.deepStrictEqual(clearingReducer(actualState, createAction("deleteDigit")()), expectedState);
+        assert.deepStrictEqual(actualState.secondArgument, new Integer("21"), "mutation detected");
     });
 
     it("remove operator", function () {
@@ -66,7 +66,7 @@ describe("Clearing reducer", function () {
             operator: ""
         };
 
-        assert.deepEqual(clearingReducer(actualState, createAction("deleteDigit")()), expectedState);
+        assert.deepStrictEqual(clearingReducer(actualState, createAction("deleteDigit")()), expectedState);
         assert.equal(actualState.operator, "add", "mutation detected");
     });
 
@@ -79,8 +79,8 @@ describe("Clearing reducer", function () {
             firstArgument: new Integer("6")
         };
 
-        assert.deepEqual(clearingReducer(actualState, createAction("deleteDigit")()), expectedState);
-        assert.deepEqual(actualState.result, new Integer("63"), "mutation detected");
+        assert.deepStrictEqual(clearingReducer(actualState, createAction("deleteDigit")()), expectedState);
+        assert.deepStrictEqual(actualState.result, new Integer("63"), "mutation detected");
     });
 
     it("action for different reducer", function () {
@@ -88,6 +88,6 @@ describe("Clearing reducer", function () {
 
         var expectedState = new TestState();
 
-        assert.deepEqual(clearingReducer(actualState, createAction("TestAction")()), expectedState);
+        assert.deepStrictEqual(clearingReducer(actualState, createAction("TestAction")()), expectedState);
     });
 });

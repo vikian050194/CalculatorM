@@ -10,7 +10,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract 9 from 100", function () {
@@ -20,7 +20,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract 30 from 21", function () {
@@ -30,7 +30,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract 999 from 1000", function () {
@@ -40,7 +40,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract 999999999999 from 1000000000000", function () {
@@ -50,7 +50,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract -30 from -21", function () {
@@ -60,7 +60,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract  30 from -21", function () {
@@ -70,7 +70,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract -30 from 21", function () {
@@ -80,7 +80,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract 1 from 100000000", function () {
@@ -90,7 +90,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract 343255465768768798 from 645645776578", function () {
@@ -100,7 +100,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract 4364 from 354456436346", function () {
@@ -110,7 +110,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract 89534 from 965394583456", function () {
@@ -120,7 +120,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract 4364565454645823653489534 from 354456436346345745645684965394583456", function () {
@@ -130,7 +130,7 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("subtract -1000000000000 from -1", function () {
@@ -140,6 +140,6 @@ describe("Integer: sub", function () {
 
         var actual = Integer.sub(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 });

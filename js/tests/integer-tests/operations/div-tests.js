@@ -12,8 +12,8 @@ describe("Integer: div", function () {
         const actualQ = Integer.div(a, b);
         const actualR = Integer.mod(a, b);
 
-        assert.deepEqual(actualQ, expectedQ);
-        assert.deepEqual(actualR, expectedR);
+        assert.deepStrictEqual(actualQ, expectedQ);
+        assert.deepStrictEqual(actualR, expectedR);
     });
 
     it("div 7 by -3", function () {
@@ -25,8 +25,8 @@ describe("Integer: div", function () {
         const actualQ = Integer.div(a, b);
         const actualR = Integer.mod(a, b);
 
-        assert.deepEqual(actualQ, expectedQ);
-        assert.deepEqual(actualR, expectedR);
+        assert.deepStrictEqual(actualQ, expectedQ);
+        assert.deepStrictEqual(actualR, expectedR);
     });
 
     it("div -7 by 3", function () {
@@ -38,8 +38,8 @@ describe("Integer: div", function () {
         const actualQ = Integer.div(a, b);
         const actualR = Integer.mod(a, b);
 
-        assert.deepEqual(actualQ, expectedQ);
-        assert.deepEqual(actualR, expectedR);
+        assert.deepStrictEqual(actualQ, expectedQ);
+        assert.deepStrictEqual(actualR, expectedR);
     });
 
     it("div -7 by -3", function () {
@@ -51,8 +51,8 @@ describe("Integer: div", function () {
         const actualQ = Integer.div(a, b);
         const actualR = Integer.mod(a, b);
 
-        assert.deepEqual(actualQ, expectedQ);
-        assert.deepEqual(actualR, expectedR);
+        assert.deepStrictEqual(actualQ, expectedQ);
+        assert.deepStrictEqual(actualR, expectedR);
     });
 
     it("div 3 by 7", function () {
@@ -64,8 +64,8 @@ describe("Integer: div", function () {
         const actualQ = Integer.div(a, b);
         const actualR = Integer.mod(a, b);
 
-        assert.deepEqual(actualQ, expectedQ);
-        assert.deepEqual(actualR, expectedR);
+        assert.deepStrictEqual(actualQ, expectedQ);
+        assert.deepStrictEqual(actualR, expectedR);
     });
 
     it("div 7 by 7", function () {
@@ -77,8 +77,8 @@ describe("Integer: div", function () {
         const actualQ = Integer.div(a, b);
         const actualR = Integer.mod(a, b);
 
-        assert.deepEqual(actualQ, expectedQ);
-        assert.deepEqual(actualR, expectedR);
+        assert.deepStrictEqual(actualQ, expectedQ);
+        assert.deepStrictEqual(actualR, expectedR);
     });
 
     it("div 9 by 3", function () {
@@ -90,8 +90,8 @@ describe("Integer: div", function () {
         const actualQ = Integer.div(a, b);
         const actualR = Integer.mod(a, b);
 
-        assert.deepEqual(actualQ, expectedQ);
-        assert.deepEqual(actualR, expectedR);
+        assert.deepStrictEqual(actualQ, expectedQ);
+        assert.deepStrictEqual(actualR, expectedR);
     });
 
     it("div 0 by 7", function () {
@@ -103,7 +103,7 @@ describe("Integer: div", function () {
         const actualQ = Integer.div(a, b);
         const actualR = Integer.mod(a, b);
 
-        assert.deepEqual(actualQ, expectedQ);
-        assert.deepEqual(actualR, expectedR);
+        assert.deepStrictEqual(actualQ, expectedQ);
+        assert.deepStrictEqual(actualR, expectedR);
     });
 });

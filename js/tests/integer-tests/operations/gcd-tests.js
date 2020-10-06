@@ -10,7 +10,7 @@ describe("Integer: gcd", function () {
     
         var actual = Integer.gcd(firstNumber, secondNumber).d;
     
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
     
     it("gcd 415, 28", function () {
@@ -20,7 +20,7 @@ describe("Integer: gcd", function () {
     
         var actual = Integer.gcd(firstNumber, secondNumber).d;
     
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 });
 

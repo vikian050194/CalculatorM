@@ -10,7 +10,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(a, power);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
     
     it("2 to the 1 power", function () {
@@ -20,7 +20,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(a, power);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("2 to the 6 power", function () {
@@ -30,7 +30,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
     
     it("13 to the 3 power", function () {
@@ -40,7 +40,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("15 to the 2 power", function () {
@@ -50,7 +50,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("20 to the 4 power", function () {
@@ -60,7 +60,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("12 to the 12 power", function () {
@@ -70,7 +70,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("12 to the 11 power", function () {
@@ -80,7 +80,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("12 to the 5 power", function () {
@@ -90,7 +90,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("2 to the 10 power", function () {
@@ -100,7 +100,7 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("2 to the 11 power", function () {
@@ -110,6 +110,6 @@ describe("Integer: pow", function () {
 
         const actual = Integer.pow(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 });

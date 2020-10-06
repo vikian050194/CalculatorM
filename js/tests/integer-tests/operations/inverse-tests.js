@@ -10,7 +10,7 @@ describe("Integer: inverse", function () {
 
         var actual = Integer.inverse(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("inverse 2 mod 13", function () {
@@ -20,7 +20,7 @@ describe("Integer: inverse", function () {
 
         var actual = Integer.inverse(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("inverse -11 mod 13", function () {
@@ -30,7 +30,7 @@ describe("Integer: inverse", function () {
 
         var actual = Integer.inverse(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("inverse 2 mod -13", function () {
@@ -40,7 +40,7 @@ describe("Integer: inverse", function () {
 
         var actual = Integer.inverse(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("inverse 0 mod 13", function () {
@@ -50,7 +50,7 @@ describe("Integer: inverse", function () {
 
         var actual = Integer.inverse(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
     
     it("inverse 3 mod 0", function () {
@@ -60,7 +60,7 @@ describe("Integer: inverse", function () {
 
         var actual = Integer.inverse(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
     
     it("inverse 0 mod 0", function () {
@@ -70,7 +70,7 @@ describe("Integer: inverse", function () {
 
         var actual = Integer.inverse(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
     
     it("inverse 53 mod 84", function () {
@@ -80,7 +80,7 @@ describe("Integer: inverse", function () {
 
         var actual = Integer.inverse(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
     
     it("inverse 29 mod 13", function () {
@@ -90,6 +90,6 @@ describe("Integer: inverse", function () {
 
         var actual = Integer.inverse(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 });

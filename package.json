@@ -9,7 +9,7 @@
     "build": "webpack ",
     "release": "webpack --config webpack.production.config.js",
     "test": "mocha ./js/tests/**/*-tests.js  --require babel-register",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha -- ./js/tests/**/*-tests.js --require babel-register"
+    "cover": "nyc --reporter=html npm run test"
   },
   "repository": {
     "type": "git",
@@ -37,13 +37,13 @@
     "eslint-loader": "^2.1.2",
     "file-loader": "^3.0.1",
     "flickity": "^2.2.0",
-    "istanbul": "^1.0.0-alpha.2",
     "jquery": "^3.4.1",
     "js-cookie": "^2.2.0",
     "microevents": "^0.3.3",
     "mini-css-extract-plugin": "^0.6.0",
     "mocha": "^6.1.4",
     "node-sass": "^4.12.0",
+    "nyc": "^15.1.0",
     "resolve-url-loader": "^3.1.0",
     "sass-loader": "^7.1.0",
     "terser-webpack-plugin": "^1.2.3",

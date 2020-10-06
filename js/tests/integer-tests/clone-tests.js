@@ -9,7 +9,7 @@ describe("Integer: clone", function () {
         clone.digits.push(7);
         clone.isNegative = true;
 
-        assert.deepEqual(clone, new Integer("-742"));
-        assert.deepEqual(number, new Integer("42"));
+        assert.deepStrictEqual(clone, new Integer("-742"));
+        assert.deepStrictEqual(number, new Integer("42"));
     });
 });

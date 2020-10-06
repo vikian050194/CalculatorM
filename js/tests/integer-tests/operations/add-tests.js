@@ -10,7 +10,7 @@ describe("Integer: add", function () {
 
         var actual = Integer.add(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("add 0 to 0", function () {
@@ -20,7 +20,7 @@ describe("Integer: add", function () {
 
         var actual = Integer.add(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("add -87 to -59", function () {
@@ -30,7 +30,7 @@ describe("Integer: add", function () {
 
         var actual = Integer.add(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("add 87 to -59", function () {
@@ -40,7 +40,7 @@ describe("Integer: add", function () {
 
         var actual = Integer.add(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("add -87 to 59", function () {
@@ -50,7 +50,7 @@ describe("Integer: add", function () {
 
         var actual = Integer.add(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("add 21037831813 to 959", function () {
@@ -60,7 +60,7 @@ describe("Integer: add", function () {
 
         var actual = Integer.add(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("add 21037831813453466456745765767525 to 46457656765756756465656756", function () {
@@ -70,7 +70,7 @@ describe("Integer: add", function () {
 
         var actual = Integer.add(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 
     it("add -210378318130 to 959", function () {
@@ -80,6 +80,6 @@ describe("Integer: add", function () {
 
         var actual = Integer.add(firstNumber, secondNumber);
 
-        assert.deepEqual(actual, expected);
+        assert.deepStrictEqual(actual, expected);
     });
 });

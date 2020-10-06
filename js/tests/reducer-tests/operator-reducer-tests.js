@@ -15,7 +15,7 @@ describe("Operator reducer", function () {
         for (const key in OPERATORS) {
             const value = OPERATORS[key];
 
-            assert.deepEqual(
+            assert.deepStrictEqual(
                 operatorReducer(actualState, createAction("addOperator")(value)),
                 expectedState,
                 `"${value}" operator is handled in the wrong way`);
@@ -33,7 +33,7 @@ describe("Operator reducer", function () {
             firstArgument: [new Integer("42"), "ADD"]
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("addOperator")("add")), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("addOperator")("add")), expectedState);
     });
 
     /*it("several actions \"addOperator\" in a row", function () {
@@ -52,7 +52,7 @@ describe("Operator reducer", function () {
             operator: "div"
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("addOperator")("div")), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("addOperator")("div")), expectedState);
     });
 
     it("action \"addOperator\" with previous operator", function () {
@@ -70,7 +70,7 @@ describe("Operator reducer", function () {
             operator: "mul"
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("addOperator")("mul")), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("addOperator")("mul")), expectedState);
     });
 
     it("calculate right after \"addOperator\"", function () {
@@ -87,7 +87,7 @@ describe("Operator reducer", function () {
             operator: "div"
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
     });
 
     it("action \"calculate\" with module", function () {
@@ -104,7 +104,7 @@ describe("Operator reducer", function () {
             module: new Integer("5")
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
     });
 
     it("action \"calculate\" with first argument", function () {
@@ -118,7 +118,7 @@ describe("Operator reducer", function () {
             firstArgument: new Integer("63")
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
     });
 
     it("add operator \"add\"", function () {
@@ -137,7 +137,7 @@ describe("Operator reducer", function () {
             result: new Integer("63")
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("add operator \"sub\"", function () {
@@ -156,7 +156,7 @@ describe("Operator reducer", function () {
             result: new Integer("21")
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("add operator \"mul\"", function () {
@@ -175,7 +175,7 @@ describe("Operator reducer", function () {
             result: new Integer("8")
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("add operator \"div\"", function () {
@@ -194,7 +194,7 @@ describe("Operator reducer", function () {
             result: new Integer("2")
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("add operator \"pow\"", function () {
@@ -213,7 +213,7 @@ describe("Operator reducer", function () {
             result: new Integer("16")
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("add operator \"mod\"", function () {
@@ -233,7 +233,7 @@ describe("Operator reducer", function () {
             result: new Integer("1")
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("add operator \"mod\" with zero", function () {
@@ -251,7 +251,7 @@ describe("Operator reducer", function () {
             secondArgument: new Integer("0")
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("add operator \"mod\" with zero with previous module", function () {
@@ -270,7 +270,7 @@ describe("Operator reducer", function () {
             secondArgument: null
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("add operator \"mod\" with positive cookie", function () {
@@ -292,7 +292,7 @@ describe("Operator reducer", function () {
             positiveCookie: true
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("add operator with positive cookie and module", function () {
@@ -315,7 +315,7 @@ describe("Operator reducer", function () {
             positiveCookie: true
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("precalculate")()), expectedState);
     });
 
     it("calculate with positive cookie and module", function () {
@@ -334,7 +334,7 @@ describe("Operator reducer", function () {
             positiveCookie: true
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
     });
 
     it("calculate right after \"mod\"", function () {
@@ -349,7 +349,7 @@ describe("Operator reducer", function () {
             operator: "mod"
         };
 
-        assert.deepEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
+        assert.deepStrictEqual(operatorReducer(actualState, createAction("calculate")()), expectedState);
     });
 
     it("add operator after calculate with \"mod\"", function () {
@@ -371,6 +371,6 @@ describe("Operator reducer", function () {
             module: new Integer("72")
         };
 
-        assert.deepEqual(actualState, expectedState);
+        assert.deepStrictEqual(actualState, expectedState);
     });*/
 });
