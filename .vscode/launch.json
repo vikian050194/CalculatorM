@@ -2,7 +2,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run mocha",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+        // {
+        //     "type": "chrome",
+        //     "request": "launch",
+        //     "name": "Launch Chrome",
+        //     "url": "file://${workspaceFolder}/index.html",
+        //     "webRoot": "${workspaceFolder}"
+        // },
+        {
+            "name": "Debug test",
             "type": "node",
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",

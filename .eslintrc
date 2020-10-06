@@ -18,13 +18,12 @@
         "semi": [ "error", "always" ],
         "indent": [ "error", 4, { "SwitchCase": 1 } ],
         "no-multiple-empty-lines": [ "error", { "max": 1 } ],
-        "linebreak-style": [ "error", "windows"],
+        "linebreak-style": [ "error", "unix"],
         "no-console": [ "warn", { "allow": [ "info", "error" ] } ],
         "comma-dangle": ["error", "never"],
         "no-debugger": "warn"
     },
     "globals": {
-        "Backbone": true,
         "Cookies": true
     }
 }
